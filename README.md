@@ -32,7 +32,8 @@ Works with **Claude**, **ChatGPT**, **Microsoft Copilot (M365)**, and **GovAI Ch
 
 ## How to use it
 
-> **Live site**: *Coming soon — deploying to GitHub Pages*
+> **Live site**: [public-service-prompt-gallery.netlify.app](https://public-service-prompt-gallery.netlify.app)
+> *TODO: move to a permanent custom domain*
 
 1. **Set your context** — choose your AI tool and the highest information classification you'll be working with
 2. **Browse or search** — find a workflow by domain, task type, or APS level
@@ -106,7 +107,7 @@ References and frameworks:
 - Public Governance, Performance and Accountability Act 2013 (PGPA Act)
 - Anthropic prompt engineering resources
 
-Built with [Astro](https://astro.build). Hosted on [GitHub Pages](https://pages.github.com).
+Built with [Astro](https://astro.build). Hosted on [Netlify](https://netlify.com).
 
 ---
 

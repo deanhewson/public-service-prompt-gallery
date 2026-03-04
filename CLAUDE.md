@@ -11,17 +11,17 @@ The library should be:
 - Accessible to varied APS skill levels (APS 3-4 through SES)
 - Compliant-aware (PGPA, PSPF, Privacy Act, APS Values)
 
-Primary output: a web app deployed to GitHub Pages with static JSON data files.
+Primary output: a web app deployed to Netlify with static JSON data files.
 See architecture doc for JSON schemas, enums, and data model.
 
 ## Current Phase
 MVP: Build one complete end-to-end workflow (Briefing Note) as proof of concept,
-visible on GitHub Pages.
+visible on Netlify.
 
 ## Tech Stack
 - **Frontend**: Astro (static site generator)
 - **Data**: Static JSON files in `data/`
-- **Hosting**: GitHub Pages, deployed via GitHub Actions
+- **Hosting**: Netlify (auto-deploys from GitHub on push to master)
 - **Notes**: Obsidian vault in `notes/`
 - **Prompt templates**: `{{variable_name}}` syntax throughout
 

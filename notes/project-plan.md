@@ -5,7 +5,7 @@
 **Goal**: A publicly accessible web app where APS staff can browse, understand, and copy structured AI prompts and multi-step workflows for common public service tasks.
 
 **MVP done when**:
-- [ ] One complete workflow (Briefing Note) is live on GitHub Pages
+- [ ] One complete workflow (Briefing Note) is live on Netlify
 - [ ] Workflow shows steps, trust indicators, skill level toggle, and copyable prompts
 - [ ] Classification and platform selectors work
 - [ ] JSON data file validates against the architecture schema
@@ -35,7 +35,7 @@
 ### Phase 1 — MVP (Briefing Note workflow)
 - [ ] `data/workflows/wf-pol-001-briefing-note.json` — first data file
 - [ ] Astro site reads JSON and renders workflow steps
-- [ ] GitHub Actions deploys to GitHub Pages on push to main
+- [x] Netlify auto-deploys from GitHub on push to master
 - [ ] Trust indicators visible in UI
 - [ ] Skill level toggle (beginner / intermediate / advanced)
 - [ ] Copy-to-clipboard on prompt text
@@ -63,8 +63,8 @@
 |---|---|---|
 | Frontend framework | Astro | Static output, good templating, real patterns, GitHub Pages compatible |
 | Data storage (MVP) | Static JSON files | No backend needed, Astro reads natively, easy to edit |
-| Hosting | GitHub Pages | Free, version-controlled, fits "keep it in GitHub" goal |
-| Deployment | GitHub Actions | Automates build + deploy on push to main |
+| Hosting | Netlify | Free tier, deploys from private GitHub repo, auto-deploys on push |
+| Deployment | Netlify CI | Triggered automatically on push to master. No GitHub Actions needed. |
 | Notes | Obsidian | Vault lives in `notes/`, git-tracked |
 | Prompt template syntax | `{{variable_name}}` | Defined in architecture doc, consistent throughout |
 | Analytics | GoatCounter | Privacy-first (no cookies, respects DNT), free for open source, no cookie banner needed. Upgrade to GA4 later if needed. |
@@ -193,7 +193,8 @@ Priority order (from architecture doc):
 - [ ] Licence decision made and added to README
 - [ ] No personal details in any public-facing file (README, site content)
 - [ ] `notes/` folder reviewed — this is git-tracked and will be public. Consider whether project-plan.md needs scrubbing of personal context.
-- [ ] Site functional on GitHub Pages
+- [ ] Site functional on Netlify
+- [ ] TODO: move to permanent custom domain (e.g. prompts.deanhewson.com.au)
 - [ ] Repo description and topics set on GitHub
 
 **Files that are public when repo goes public:**
@@ -232,9 +233,9 @@ When adding new features or making significant decisions, flag what needs updati
 
 | Date | Decision | Rationale |
 |---|---|---|
-| 2026-03-04 | Astro for frontend | Static output, GitHub Pages compatible, good learning curve |
+| 2026-03-04 | Astro for frontend | Static output, Netlify compatible, good learning curve |
 | 2026-03-04 | Static JSON for MVP data | No backend needed, simple to start, easy to migrate |
-| 2026-03-04 | GitHub Pages for hosting | Free, version-controlled, fits project constraints |
+| 2026-03-04 | Netlify for hosting | Free tier supports private repos; GitHub Pages does not without paid plan |
 | 2026-03-04 | Briefing Note as MVP workflow | Most universal APS task, already fully specified in architecture doc |
 | 2026-03-04 | GoatCounter for analytics | Privacy-first, no cookie banner, free for open source, fits public service values |
 | 2026-03-04 | Tally.so for feedback form | Clean UX, free, embeddable, no GitHub account required |
@@ -272,7 +273,7 @@ When adding new features or making significant decisions, flag what needs updati
 - Architecture doc: `notes/aps-genai-prompt-library-architecture.md`
 - Research doc: `notes/aps-genai-prompt-library-research-1.md`
 - Astro docs: https://docs.astro.build
-- GitHub Pages + Astro: https://docs.astro.build/en/guides/deploy/github/
+- Netlify + Astro: https://docs.astro.build/en/guides/deploy/netlify/
 - GoatCounter: https://www.goatcounter.com
 - Tally.so: https://tally.so
 - APS AI Plan 2025: referenced in research doc
