@@ -9,13 +9,13 @@
 - [x] Workflow shows steps, trust indicators, skill level toggle, and copyable prompts
 - [x] Platform selector works (classification selector deferred to Phase 2)
 - [x] JSON data file validates against the architecture schema
+- [x] Feedback form live for non-GitHub users (Netlify Forms)
 - [ ] At least one colleague has used it and given feedback
 
 **v1 done when**:
-- [ ] All 7 priority workflows built and live
+- [ ] All 7 priority workflows built and live (5 of 7 done)
 - [ ] Building block browser works
 - [ ] Search/filter by domain, APS level, complexity
-- [ ] Feedback form live for non-GitHub users
 - [ ] GoatCounter analytics running with privacy toggle
 
 ---
@@ -32,7 +32,7 @@
 - [x] Node.js installed
 - [x] Astro scaffolded
 
-### Phase 1 — MVP (Briefing Note workflow) ✓
+### Phase 1 — MVP + content expansion ✓
 - [x] `data/workflows/wf-pol-001-briefing-note.json` — first data file
 - [x] Astro site reads JSON and renders workflow steps
 - [x] Netlify auto-deploys from GitHub on push to master
@@ -42,7 +42,12 @@
 - [x] Platform selector (Claude/ChatGPT/Copilot — XML strip transform)
 - [x] Progress bar — horizontal, sticky, copy marks step done
 - [x] Netlify feedback form — captures workflow + step context
-- [x] Home page — updated hero, proof of concept framing, contact links
+- [x] Home page — hero, methodology section, proof of concept framing, contact links
+- [x] Shared WorkflowLayout.astro — single layout for all workflow pages
+- [x] Grouped dropdown nav (Policy Development / Stakeholder Engagement / General Productivity)
+- [x] PoC banner on every page
+- [x] Workflow limitations notice at top of page (above selectors)
+- [x] All 5 workflows live: Briefing Note, QT Brief, Stakeholder Analysis, Plain Language Rewrite, Meeting Preparation
 - [ ] Classification selector (deferred — see Future UI Overhaul below)
 
 ### Future UI Overhaul (after MVP feedback)

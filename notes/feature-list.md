@@ -1,16 +1,16 @@
 # Feature List — APS GenAI Prompt Gallery
 
-Current state as of March 2026. Use this to review what's present before pushing to Netlify.
+Current state as of March 2026. Live at public-service-prompt-gallery.netlify.app
 
 ---
 
 ## Site-wide
 
-- [x] PoC/early-release banner on every page (yellow, links to LinkedIn)
-- [x] Navigation header on every page — logo + links to all 5 workflows
-- [x] Active nav link highlighted on current workflow page
-- [x] Consistent blue header colour (#1a4fa0) across all pages
-- [x] Responsive layout (nav links hidden on mobile <680px)
+- [x] PoC/early-release banner on every page (alert pink #F5EEF3 / #C19AB7, links to LinkedIn)
+- [x] Navigation header on every page — logo + grouped dropdown (Policy Development / Stakeholder Engagement / General Productivity)
+- [x] Active nav group highlighted when on a workflow in that group
+- [x] Consistent dark header colour (#170a1c) across all pages
+- [x] Responsive layout (nav groups hidden on mobile <680px)
 - [x] No login, no accounts, no data stored anywhere
 
 ---
@@ -100,8 +100,8 @@ Current state as of March 2026. Use this to review what's present before pushing
 - [x] Form submits to Netlify — no backend needed
 
 ### Limitations
-- [x] Collapsible "Known limitations of this step" in each step
-- [x] Workflow-level limitations section at bottom of page
+- [x] "Known limitations of this step" in each step — always expanded (not collapsible)
+- [x] Workflow-level limitations notice at top of page, above selectors — styled in alert colour
 
 ---
 
@@ -158,6 +158,7 @@ Current state as of March 2026. Use this to review what's present before pushing
 
 ## Known issues / watch list
 
-- Windows EBUSY error on build is harmless — Astro tries to clean a temp dir still held open; both HTML files generate correctly
+- Windows EBUSY error on build is harmless — Astro tries to clean a temp dir still held open; all 6 pages generate correctly
 - Prompt length — some steps have long prompts. Watch feedback for signs users find them overwhelming before trimming.
-- Nav links hidden on mobile (<680px) — no mobile nav yet. Fine for now.
+- Nav groups hidden on mobile (<680px) — no mobile nav yet. Fine for now.
+- Netlify feedback form only works when deployed — does nothing in local dev.
