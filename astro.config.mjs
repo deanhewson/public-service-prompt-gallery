@@ -3,5 +3,5 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://aps-prompt-gallery.netlify.app',
+  site: 'https://public-service-prompt-gallery.netlify.app',
 });
