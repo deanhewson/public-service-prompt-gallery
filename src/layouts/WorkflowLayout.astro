@@ -1061,7 +1061,7 @@ const navGroups = [
   <div class="feedback-section" id="workflow-feedback">
     <h3>How did this workflow work for you?</h3>
     <p>Your feedback helps improve these workflows for APS staff. Takes 30 seconds.</p>
-    <form name="workflow-feedback" data-netlify="true" netlify-honeypot="bot-field" method="POST">
+    <form name="workflow-feedback" data-netlify="true" netlify-honeypot="bot-field" method="POST" action="/">
       <input type="hidden" name="form-name" value="workflow-feedback" />
       <input type="hidden" name="workflow" value={workflow.name} />
       <input type="hidden" name="step" id="feedback-step-field" value="" />
