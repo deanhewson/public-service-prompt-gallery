@@ -1,0 +1,39 @@
+{
+  "id": "QG-COMPLIANCE-001",
+  "name": "APS Compliance Check",
+  "description": "Checks the draft against core APS compliance frameworks: PGPA Act, APS Values, Privacy Act, and PSPF. Flags issues for officer review before submission.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-04",
+
+  "gate_type": "compliance",
+  "severity": "required",
+
+  "prompt_template": "<instructions>\nReview the briefing note above for compliance with key Australian Public Service frameworks. For each framework, provide a STATUS and NOTES.\n\n---\n\n**1. PGPA Act (Public Governance, Performance and Accountability Act 2013)**\nCheck:\n- Does this advice support proper use and management of public resources?\n- Is the advice evidence-based and does it support accountability?\n- Are recommendations appropriately scoped (not overstepping delegated authority)?\n\nSTATUS: Pass / Flag / Needs Review\nNOTES:\n\n---\n\n**2. APS Values (ICARE)**\nCheck:\n- Impartial: Is the advice politically impartial and free of bias?\n- Committed to Service: Does it clearly serve the public interest?\n- Accountable: Are recommendations defensible and clearly attributed?\n- Respectful: Is the language respectful of all stakeholders mentioned?\n- Ethical: Does the advice meet ethical standards?\n\nSTATUS: Pass / Flag / Needs Review\nNOTES:\n\n---\n\n**3. Privacy Act 1988 / Australian Privacy Principles**\nCheck:\n- Does the brief include, reference, or require access to personal information?\n- If yes, are appropriate handling and collection requirements noted?\n- Is any personal information described appropriately or anonymised?\n\nSTATUS: Pass / Flag / Needs Review\nNOTES:\n\n---\n\n**4. PSPF (Protective Security Policy Framework)**\nCheck:\n- Is the security classification appropriate for the content?\n- Does any content suggest it should be classified higher than OFFICIAL?\n- Is any sensitive information (OFFICIAL: Sensitive or above) handled correctly?\n\nSTATUS: Pass / Flag / Needs Review\nNOTES:\n\n---\n\n**5. FOI Discoverability**\nCheck:\n- Could this document be requested under Freedom of Information?\n- Is the language appropriate for potential public disclosure?\n- Are any statements in this brief that could cause problems if released?\n\nSTATUS: Pass / Flag / Needs Review\nNOTES:\n\n---\n\nCONCLUDE with:\n- COMPLIANCE SUMMARY: Overall assessment (All Clear / Minor Issues / Action Required)\n- RECOMMENDED ACTIONS: List any specific actions the officer should take before submitting\n</instructions>",
+
+  "variables": [],
+
+  "trust_pattern": "framework_checklist",
+  "compliance_frameworks": ["pgpa_act", "aps_values", "privacy_act", "pspf", "foi_act"],
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "This is your final sign-off check before submitting. Work through the Recommended Actions list. If you're unsure about any compliance issue, check with your supervisor or your agency's legal/governance team.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "The compliance check catches structural issues — but you are still the accountable officer. The model's assessment is a prompt for your thinking, not a compliance certificate.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "For sensitive briefs, supplement this AI compliance check with a review from your agency's legal or privacy team. The model cannot assess agency-specific compliance requirements or unpublished policy.",
+      "prompt_modification": "Add to the instructions: 'Also check against: **Agency-specific requirements**: {{agency_specific_requirements}}'"
+    }
+  },
+
+  "tags": ["compliance", "pgpa", "pspf", "privacy", "quality-gate", "final-check"],
+  "known_limitations": [
+    "This is an AI compliance check — it is not a legal opinion and does not substitute for advice from your agency's legal or governance team.",
+    "The model's knowledge of legislation may be outdated. Always check against current versions of relevant Acts and policy frameworks.",
+    "Compliance with PSPF classification requirements must ultimately be assessed by an appropriately trained officer."
+  ]
+}

@@ -1,17 +1,601 @@
 ---
-
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" />
+  <title>APS GenAI Prompt Gallery</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --color-primary: #170a1c;
+      --color-primary-light: #DFD9E2;
+      --color-bg: #F7F7FF;
+      --color-surface: #ffffff;
+      --color-border: #dee2e6;
+      --color-text: #212529;
+      --color-muted: #6c757d;
+      --radius: 8px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── PoC Banner ──────────────────────────────────── */
+    .poc-banner {
+      background: #F5EEF3;
+      border-bottom: 1px solid #C19AB7;
+      font-size: 0.82rem;
+      color: #3d1a35;
+      padding: 7px 0;
+      text-align: center;
+    }
+    .poc-banner a { color: var(--color-primary); }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    .site-header {
+      background: var(--color-primary);
+      color: white;
+      padding: 0 24px;
+    }
+
+    .site-nav {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+    }
+
+    .nav-logo {
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      margin-right: 24px;
+      padding: 14px 0;
+      flex-shrink: 0;
+    }
+    .nav-logo:hover { text-decoration: none; opacity: 0.9; }
+
+    .nav-links {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .nav-group {
+      position: relative;
+    }
+
+    .nav-group-trigger {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      font-family: inherit;
+      padding: 14px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      height: 100%;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-group:hover .nav-group-trigger { color: white; }
+
+    .nav-chevron {
+      font-size: 0.65rem;
+      transition: transform 0.2s;
+      opacity: 0.7;
+    }
+    .nav-group:hover .nav-chevron { transform: rotate(180deg); }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 190px;
+      background: #2a1432;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      z-index: 200;
+    }
+    .nav-group:hover .nav-dropdown { display: block; }
+
+    .nav-dropdown a {
+      display: block;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+      padding: 10px 16px;
+      white-space: nowrap;
+      transition: color 0.1s, background 0.1s;
+    }
+    .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
+
+    /* ── Container ───────────────────────────────────── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      padding: 48px 0 40px;
+    }
+
+    .hero h2 {
+      font-size: 1.7rem;
+      margin: 0 0 16px;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: var(--color-muted);
+      max-width: 640px;
+      margin: 0 0 16px;
+    }
+
+    .security-notice {
+      background: var(--color-primary-light);
+      border-left: 3px solid var(--color-primary);
+      padding: 12px 16px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.875rem;
+      max-width: 640px;
+      margin: 24px 0 0;
+    }
+
+    /* ── How it works ────────────────────────────────── */
+    .methodology {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 40px 0;
+    }
+
+    .methodology h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .methodology .subtitle {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      margin: 0 0 28px;
+    }
+
+    .method-flow {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .method-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      min-width: 72px;
+    }
+
+    .method-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .method-icon.gen    { background: #d1e7dd; }
+    .method-icon.gate   { background: #ede7f6; }
+    .method-icon.revise { background: #fff3cd; }
+    .method-icon.done   { background: #cfe2ff; }
+
+    .method-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .method-arrow {
+      font-size: 1rem;
+      color: var(--color-border);
+      flex-shrink: 0;
+      padding: 13px 2px 0;
+    }
+
+    .method-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .method-point {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .method-point-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .method-point h4 {
+      margin: 0 0 3px;
+      font-size: 0.9rem;
+    }
+
+    .method-point p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Section header ──────────────────────────────── */
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-muted);
+      margin: 40px 0 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* ── Workflow cards ───────────────────────────────── */
+    .workflow-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .workflow-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 2px 8px rgba(26,79,160,0.1);
+      text-decoration: none;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 0 0 3px;
+      color: var(--color-primary);
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin: 0 0 8px;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      background: #e9ecef;
+      color: #495057;
+    }
+
+    .badge.badge-new {
+      background: #d1e7dd;
+      color: #0a3622;
+      font-weight: 600;
+    }
+
+    .card-arrow {
+      color: var(--color-muted);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      padding-top: 10px;
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    .footer {
+      margin: 48px 0 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 680px) {
+      .method-points { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PoC banner -->
+<div class="poc-banner">
+  Early release - more workflows on the way. Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a>.
+  Feedback welcome - reach out on <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a>. Help even more welcome - <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">Github</a>.
+</div>
+
+<!-- Nav -->
+<header class="site-header">
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">APS Prompt Gallery</a>
+    <div class="nav-links">
+      <div class="nav-group">
+        <button class="nav-group-trigger">Policy Development <span class="nav-chevron">▾</span></button>
+        <div class="nav-dropdown">
+          <a href="/workflows/briefing-note">Briefing Note</a>
+          <a href="/workflows/question-time-brief">QT Brief</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-trigger">Stakeholder Engagement <span class="nav-chevron">▾</span></button>
+        <div class="nav-dropdown">
+          <a href="/workflows/stakeholder-analysis">Stakeholder Analysis</a>
+          <a href="/workflows/plain-language-rewrite">Plain Language Rewrite</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-trigger">General Productivity <span class="nav-chevron">▾</span></button>
+        <div class="nav-dropdown">
+          <a href="/workflows/meeting-preparation">Meeting Preparation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="hero">
+    <h2>Test and refine, not ask and hope.</h2>
+    <p>
+      Most GenAI guidance gives you prompts. This gives you a process. Each workflow
+      breaks a complex APS task into steps, with quality checks built in — claim
+      verification, adversarial review, compliance checking. You bring the expertise
+      and judgment. AI does the drafting and stress-testing.
+    </p>
+    <p>
+      Built for Australian Public Service staff using generative AI tools (Claude, ChatGPT,
+      Copilot). Free, no login required, no information saved.
+    </p>
+
+    <div class="security-notice">
+      <strong>Security reminder:</strong> Only use OFFICIAL information
+      with public AI tools. Do not enter OFFICIAL: Sensitive or higher-classified
+      content into public versions Claude, ChatGPT, or Copilot. If your agency gives you access to higher rated versions, then use those.
+    </div>
+  </div>
+
+  <!-- Methodology section -->
+  <div class="methodology">
+    <h3>How it works: a process, not just a prompt</h3>
+    <p class="subtitle">Every workflow follows the same logic — draft, verify, challenge, refine. Your knowledge improves every step.</p>
+
+    <div class="method-flow">
+      <div class="method-step">
+        <div class="method-icon gen">🔍</div>
+        <div class="method-label">Research</div>
+      </div>
+      <div class="method-arrow">→</div>
+      <div class="method-step">
+        <div class="method-icon gen">✏️</div>
+        <div class="method-label">Draft</div>
+      </div>
+      <div class="method-arrow">→</div>
+      <div class="method-step">
+        <div class="method-icon gate">◈</div>
+        <div class="method-label">Verify Claims</div>
+      </div>
+      <div class="method-arrow">→</div>
+      <div class="method-step">
+        <div class="method-icon gate">🔴</div>
+        <div class="method-label">Red-Team</div>
+      </div>
+      <div class="method-arrow">→</div>
+      <div class="method-step">
+        <div class="method-icon revise">🔁</div>
+        <div class="method-label">Revise</div>
+      </div>
+      <div class="method-arrow">→</div>
+      <div class="method-step">
+        <div class="method-icon done">✓</div>
+        <div class="method-label">Submit</div>
+      </div>
+    </div>
+
+    <div class="method-points">
+      <div class="method-point">
+        <div class="method-point-icon">◈</div>
+        <div>
+          <h4>Built-in quality gates</h4>
+          <p>Claim verification flags what needs fact-checking. Red-team challenge surfaces logic gaps before your reader does. The checks are part of the workflow, not an afterthought.</p>
+        </div>
+      </div>
+      <div class="method-point">
+        <div class="method-point-icon">⚠</div>
+        <div>
+          <h4>Honest about trust levels</h4>
+          <p>Each step tells you exactly how much to trust the output — and what specifically to verify. No pretending AI output is ready to sign off on.</p>
+        </div>
+      </div>
+      <div class="method-point">
+        <div class="method-point-icon">👤</div>
+        <div>
+          <h4>Your expertise stays central</h4>
+          <p>AI doesn't know your minister's priorities, your agency's risk appetite, or the political context. You do. These workflows structure the collaboration so your knowledge improves every draft.</p>
+        </div>
+      </div>
+      <div class="method-point">
+        <div class="method-point-icon">⚡</div>
+        <div>
+          <h4>Stay in your AI tool</h4>
+          <p>Each step builds on the last in a single AI conversation. Copy the prompt, paste it in, keep going. No copying outputs back to this site.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Policy Development -->
+  <div class="section-title">Policy Development</div>
+
+  <a href="/workflows/briefing-note" class="workflow-card">
+    <div class="card-icon">📋</div>
+    <div class="card-body">
+      <div class="card-title">Briefing Note</div>
+      <div class="card-desc">
+        Draft a briefing note on a policy topic for senior executive review. Scope &amp; research,
+        structuring, drafting, claim verification, red-team review, revision, and compliance check.
+      </div>
+      <div class="card-meta">
+        <span class="badge">7 steps</span>
+        <span class="badge">Intermediate</span>
+        <span class="badge">30–45 min</span>
+      </div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="/workflows/question-time-brief" class="workflow-card">
+    <div class="card-icon">❓</div>
+    <div class="card-body">
+      <div class="card-title">Question Time Brief</div>
+      <div class="card-desc">
+        Prepare a QTB for Senate Estimates, a ministerial doorstop, or a stakeholder Q&amp;A.
+        Context analysis, drafting, claim verification, and a parliamentary scrutiny test.
+      </div>
+      <div class="card-meta">
+        <span class="badge">5 steps</span>
+        <span class="badge">Advanced</span>
+        <span class="badge">20–35 min</span>
+        <span class="badge badge-new">New</span>
+      </div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <!-- Stakeholder Engagement -->
+  <div class="section-title">Stakeholder Engagement</div>
+
+  <a href="/workflows/stakeholder-analysis" class="workflow-card">
+    <div class="card-icon">👥</div>
+    <div class="card-body">
+      <div class="card-title">Stakeholder Analysis</div>
+      <div class="card-desc">
+        Map and analyse key stakeholders for a policy initiative or engagement program.
+        Stakeholder mapping, position analysis, and tailored engagement strategy.
+      </div>
+      <div class="card-meta">
+        <span class="badge">4 steps</span>
+        <span class="badge">Intermediate</span>
+        <span class="badge">25–40 min</span>
+        <span class="badge badge-new">New</span>
+      </div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a href="/workflows/plain-language-rewrite" class="workflow-card">
+    <div class="card-icon">✏️</div>
+    <div class="card-body">
+      <div class="card-title">Plain Language Rewrite</div>
+      <div class="card-desc">
+        Convert complex policy or legal text into clear, accessible language for a general audience.
+        Complexity audit, rewrite, and clarity check.
+      </div>
+      <div class="card-meta">
+        <span class="badge">3 steps</span>
+        <span class="badge">Beginner</span>
+        <span class="badge">15–25 min</span>
+        <span class="badge badge-new">New</span>
+      </div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <!-- General Productivity -->
+  <div class="section-title">General Productivity</div>
+
+  <a href="/workflows/meeting-preparation" class="workflow-card">
+    <div class="card-icon">📅</div>
+    <div class="card-body">
+      <div class="card-title">Meeting Preparation</div>
+      <div class="card-desc">
+        Draft an agenda, background brief, and discussion prompts for an upcoming meeting.
+        Works for internal teams, stakeholder briefings, and governance forums.
+      </div>
+      <div class="card-meta">
+        <span class="badge">4 steps</span>
+        <span class="badge">Beginner</span>
+        <span class="badge">15–25 min</span>
+        <span class="badge badge-new">New</span>
+      </div>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <div class="footer">
+    APS GenAI Prompt Gallery · Early release · March 2026 ·
+    Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a>
+  </div>
+</div>
+
+</body>
 </html>

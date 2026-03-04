@@ -1,0 +1,39 @@
+{
+  "id": "BB-PLR-003",
+  "name": "Plain Language: Clarity Check",
+  "description": "Reviews the plain language rewrite against key principles — surfaces remaining problems before the document is used.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "refinement",
+  "domains": ["communications"],
+
+  "prompt_template": "<instructions>\nReview the plain language rewrite we've just produced in this conversation. Check it against these criteria:\n\n**Clarity checklist:**\n1. Does the opening sentence tell the reader exactly what this document is about and why it matters to them?\n2. Is the most important information first, or is it buried mid-document?\n3. Are there any sentences over 25 words? List them.\n4. Are there any remaining jargon words, unexplained acronyms, or bureaucratic phrases? List them.\n5. Are there any passive constructions that could be rewritten actively? List them.\n6. Is there any information that the target audience doesn't need and could be cut?\n7. Does the document use 'you' and 'we' appropriately, or is it impersonal and abstract?\n\n**Meaning check:**\n8. Are there any places where the plain language version changes the meaning of the original, even subtly?\n9. Are there any claims or instructions that could be misunderstood by the target audience?\n\n**Overall assessment:**\n- Is this ready to share with the target audience? Yes / Needs minor work / Needs significant revision\n- Top 3 things to fix before this document is used\n</instructions>",
+
+  "variables": [],
+
+  "trust_level": "high",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Focus on the 'Top 3 things to fix' from the overall assessment. If the model finds long sentences or jargon, ask it to rewrite those specific parts.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "The 'meaning check' questions are the most critical. Plain language that changes the meaning of a policy document is worse than the original dense text.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "After incorporating feedback, consider reading the final version to a colleague who represents the target audience. Their questions are your clearest signal of what still isn't clear.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["plain-language", "quality-gate", "clarity", "communications"],
+  "contributed_by": null,
+  "known_limitations": [
+    "The model is reviewing its own rewrite — it may not catch all the issues it introduced.",
+    "Whether the document works for the actual target audience can only be verified by testing with that audience.",
+    "Legal or regulatory precision checks require a human subject matter expert, not a readability review."
+  ]
+}

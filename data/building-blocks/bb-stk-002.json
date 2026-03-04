@@ -1,0 +1,39 @@
+{
+  "id": "BB-STK-002",
+  "name": "Stakeholder Analysis: Analyse Positions & Interests",
+  "description": "Deepens the analysis of key stakeholders — understanding what drives their position, what they want, and where there's room to find common ground or manage opposition.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "generation",
+  "domains": ["stakeholder_engagement"],
+
+  "prompt_template": "<task>\nContinuing from the stakeholder map we've just developed in this conversation, now deepen the analysis for the highest-priority stakeholders.\n\nFor each Must Engage / High Influence stakeholder (or the top 5–8 if there are many), provide:\n\n1. **Core interest** — what do they fundamentally want from this policy area? (Not just their stated position — the underlying interest)\n2. **Current position and why** — supportive, neutral, or opposed, and the reasons behind that position\n3. **Red lines** — what would cause them to strongly oppose or publicly campaign against this initiative?\n4. **Potential common ground** — where does their interest overlap with the policy objectives?\n5. **What they need to feel heard** — what would a good engagement process look like from their perspective?\n6. **Risk if not engaged** — what happens if this group is ignored or handled poorly?\n\nAfter the deep-dive, provide:\n- **Coalition opportunities** — which stakeholders might naturally align and could be engaged together?\n- **Conflict flashpoints** — which stakeholder pairs have interests that directly conflict?\n- **Biggest risk** — the single stakeholder or dynamic most likely to derail this initiative if not managed well\n</task>",
+
+  "variables": [],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Focus on the 'red lines' and 'risk if not engaged' sections — these are the most operationally useful. The model's read on specific organisations may be wrong; check against your agency's knowledge.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "The 'core interest vs stated position' distinction is the most valuable part of this analysis. Use it to identify engagement approaches that speak to what stakeholders actually care about.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "After reviewing the output, consider running QG-CHALLENGE-001 on this analysis — a sceptical reviewer will surface stakeholder positions or risks you may have missed.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["stakeholder", "analysis", "interests", "engagement", "policy"],
+  "contributed_by": null,
+  "known_limitations": [
+    "The model's understanding of specific organisations' current positions and internal politics is limited and may be outdated.",
+    "Core interests and red lines are inferred from general knowledge — validate against your agency's intelligence and any recent stakeholder interactions.",
+    "Coalition opportunities and conflict dynamics are speculative — real stakeholder relationships are more complex than any model can capture."
+  ]
+}

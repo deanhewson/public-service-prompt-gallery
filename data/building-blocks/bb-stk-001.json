@@ -1,0 +1,68 @@
+{
+  "id": "BB-STK-001",
+  "name": "Stakeholder Analysis: Map Stakeholders",
+  "description": "Identifies and maps all stakeholders relevant to a policy initiative, decision, or engagement program — with an initial read on their likely position.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "generation",
+  "domains": ["stakeholder_engagement"],
+
+  "prompt_template": "<role>\nYou are a senior Australian Public Service policy analyst with expertise in stakeholder engagement, working in {{agency}}.\n</role>\n\n<task>\nWe are preparing a stakeholder analysis for the following initiative.\n\nInitiative: {{initiative}}\nAgency: {{agency}}\nContext: {{context}}\n\n{{#if key_documents}}\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nIdentify and map all relevant stakeholders. For each, provide:\n\n**Group them into categories:**\n- Government (federal, state/territory, local)\n- Industry and peak bodies\n- Community organisations and advocacy groups\n- Affected individuals or population groups\n- Research and expert bodies\n- Media\n- International (if relevant)\n\n**For each stakeholder, note:**\n1. Name/group\n2. Primary interest in this initiative (what they care about most)\n3. Likely position: Supportive / Neutral / Opposed / Unknown\n4. Influence level: High / Medium / Low (their ability to affect outcomes)\n5. Engagement priority: Must engage / Should engage / Monitor\n\nPresent as a structured list grouped by category. After the list, flag:\n- Any stakeholders whose position is uncertain and might surprise us [FLAG]\n- Any groups that are often overlooked in this type of analysis [CONSIDER]\n- Information gaps [VERIFY]\n</task>",
+
+  "variables": [
+    {
+      "name": "agency",
+      "description": "Your agency or portfolio context",
+      "type": "text",
+      "required": true,
+      "examples": ["Department of Social Services", "Department of Infrastructure"]
+    },
+    {
+      "name": "initiative",
+      "description": "The policy initiative, decision, or program being analysed",
+      "type": "text",
+      "required": true,
+      "examples": ["NDIS review implementation", "regional infrastructure fund design", "new aged care standards rollout"]
+    },
+    {
+      "name": "context",
+      "description": "Brief context — what's happening, what's the decision or action",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. We are designing the consultation process for a new aged care standards framework launching mid-year"
+    },
+    {
+      "name": "key_documents",
+      "description": "Paste publicly available background — published policy documents, public consultation submissions, peak body positions. Do not paste OFFICIAL: Sensitive material into public AI tools.",
+      "type": "long_text",
+      "required": false,
+      "placeholder": "Paste relevant publicly available content here..."
+    }
+  ],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "The model's stakeholder map is a starting point — it won't know about local or niche organisations specific to your area. Add any missing groups from your own knowledge before proceeding.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Review the 'influence level' ratings critically — the model may under- or over-rate groups it knows less about. Your direct knowledge of who actually has influence matters here.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Consider running this step from multiple perspectives — for example, from the agency's perspective and from the perspective of the most affected community group — to reveal blind spots.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["stakeholder", "mapping", "engagement", "policy"],
+  "contributed_by": null,
+  "known_limitations": [
+    "The model's knowledge of specific organisations and their current positions may be outdated or inaccurate.",
+    "Local, niche, or recently formed groups are likely to be missed — supplement with your agency's own stakeholder knowledge.",
+    "Influence ratings are estimated from general knowledge, not your agency's specific intelligence about who has real sway in this space."
+  ]
+}

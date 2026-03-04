@@ -1,0 +1,39 @@
+{
+  "id": "BB-STK-003",
+  "name": "Stakeholder Analysis: Engagement Strategy",
+  "description": "Recommends a tailored engagement approach for each priority stakeholder — what to do, when, how, and what success looks like.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "generation",
+  "domains": ["stakeholder_engagement"],
+
+  "prompt_template": "<task>\nContinuing from the stakeholder map and deep-dive analysis we've developed in this conversation, now recommend an engagement strategy.\n\nFor each Must Engage / High Influence stakeholder, recommend:\n\n1. **Engagement approach** — the right method for this relationship (e.g. direct meeting, co-design workshop, written consultation, briefing, reference group membership)\n2. **Timing** — when to engage (before decisions are made, during design, before announcement, ongoing)\n3. **Key messages for this stakeholder** — what to emphasise that speaks to their specific interests\n4. **What to ask them** — what information, input, or expertise can they provide that would genuinely improve the policy?\n5. **Who should lead the engagement** — minister, secretary, SES, working-level team, external facilitator?\n6. **Success indicators** — how will you know this engagement was effective?\n\nAfter the per-stakeholder recommendations, provide:\n- **Sequencing** — suggested order and timing for major engagements (who first, who not until later, and why)\n- **Risk mitigations** — 2–3 specific risks to the engagement process and how to manage them\n- **Quick wins** — 1–2 low-effort, high-trust-building actions to take early\n</task>",
+
+  "variables": [],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "The sequencing recommendation is the most immediately useful part. Who you engage first sends a signal — make sure the order reflects your policy objectives, not just who's easiest to talk to.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Review the 'who should lead' recommendations carefully — the model defaults to SES-level. Your knowledge of what works for specific relationships matters here.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Use this output as a framework, then stress-test it by asking: what could go wrong with this sequence? Which stakeholder, if they reject our approach, changes everything?",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["stakeholder", "engagement", "strategy", "consultation", "policy"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Engagement recommendations are generic — your agency's existing relationships with these organisations will significantly affect what's appropriate.",
+    "Timing recommendations don't account for your specific project timeline, political calendar, or resource constraints.",
+    "The model cannot know which stakeholders have been burned by previous government processes and may require a different approach."
+  ]
+}

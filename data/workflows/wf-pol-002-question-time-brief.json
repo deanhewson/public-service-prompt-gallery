@@ -1,0 +1,164 @@
+{
+  "id": "WF-POL-002",
+  "name": "Question Time Brief",
+  "description": "Prepare a QTB for Senate Estimates, a ministerial doorstop, or a stakeholder Q&A. High-stakes, time-sensitive format with built-in scrutiny testing.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "domain": "policy_development",
+  "task_type": "question_time_brief",
+  "typical_user_level": ["aps6", "el1", "el2"],
+  "complexity": "advanced",
+  "estimated_time": "20–35 minutes with review",
+
+  "inputs_required": [
+    {
+      "name": "topic",
+      "label": "Topic",
+      "description": "The topic the QTB is being prepared for",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. NDIS cost growth, robodebt settlement"
+    },
+    {
+      "name": "forum",
+      "label": "Forum",
+      "description": "Where this will be used",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Senate Estimates, media doorstop, stakeholder Q&A"
+    },
+    {
+      "name": "audience",
+      "label": "Audience",
+      "description": "Who is being briefed",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Minister, Deputy Secretary, SES Band 2"
+    },
+    {
+      "name": "agency",
+      "label": "Agency",
+      "description": "Your agency or portfolio context",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Department of Social Services"
+    },
+    {
+      "name": "policy_area",
+      "label": "Policy area",
+      "description": "The specific policy domain",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. disability policy, aged care"
+    },
+    {
+      "name": "length",
+      "label": "Target length",
+      "description": "How long should the QTB be?",
+      "type": "text",
+      "required": false,
+      "default": "1 page",
+      "placeholder": "1 page"
+    },
+    {
+      "name": "key_documents",
+      "label": "Reference materials (optional)",
+      "description": "Paste in publicly available background — recent media coverage, published reports, Hansard extracts. Do not paste OFFICIAL: Sensitive content into public AI tools.",
+      "type": "long_text",
+      "required": false,
+      "placeholder": "Paste relevant publicly available content here..."
+    }
+  ],
+
+  "steps": [
+    {
+      "order": 1,
+      "id": "step-1",
+      "name": "Context & Likely Questions",
+      "step_type": "generation",
+      "building_block_id": "BB-QTB-001",
+      "description": "Maps the issue, identifies likely question angles, hard questions, and key messages before drafting.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "Review the likely questions and add any from your own knowledge. Your read on what's politically sensitive is more accurate than the model's. Add or remove questions before moving on.",
+      "output_feeds_to": [2]
+    },
+    {
+      "order": 2,
+      "id": "step-2",
+      "name": "Draft QTB",
+      "step_type": "generation",
+      "building_block_id": "BB-QTB-002",
+      "description": "Drafts the full QTB in standard APS format — key messages, background, talking points, what to avoid.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "Read the draft as if you are the reader about to walk into the forum. Does it cover the hard questions? Are the Key Messages actually usable? Note anything that feels wrong or that you couldn't defend.",
+      "output_feeds_to": [3, 4]
+    },
+    {
+      "order": 3,
+      "id": "step-3",
+      "name": "Claim Verification",
+      "step_type": "quality_gate",
+      "quality_gate_id": "QG-TRUST-001",
+      "description": "Extracts and categorises every factual claim in the draft. In a QTB, unverified statistics can cause serious problems under questioning.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "Check every flagged claim against an authoritative source before the brief is used. In a QTB context, a challenged fact mid-session is a serious problem. Resolve all HIGH RISK items.",
+      "output_feeds_to": [5]
+    },
+    {
+      "order": 4,
+      "id": "step-4",
+      "name": "Parliamentary Scrutiny Test",
+      "step_type": "quality_gate",
+      "building_block_id": "BB-QTB-003",
+      "description": "Stress-tests the brief from a hostile questioner's perspective — surfaces gaps in talking points before the reader faces a real one.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "Review the critique. Address the Top 3 fixes. Some issues may not apply to your context — use your judgment. The 'trap question' is the one most worth preparing a response to.",
+      "output_feeds_to": [5]
+    },
+    {
+      "order": 5,
+      "id": "step-5",
+      "name": "Tighten & Finalise",
+      "step_type": "refinement",
+      "building_block_id": "BB-QTB-004",
+      "description": "Revises the QTB incorporating verification and scrutiny feedback. Tightens Key Messages and talking points.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "Do a final read aloud — talking points in particular should sound natural for the reader to say. Resolve any remaining [VERIFY] or [INSERT DATA] items before the brief is used.",
+      "output_feeds_to": []
+    }
+  ],
+
+  "skill_level_guidance": {
+    "beginner": {
+      "recommended_steps": [1, 2, 3, 5],
+      "skip_steps": [4],
+      "notes": "Start with the context analysis and draft, then run claim verification before finalising. The parliamentary scrutiny test adds value but can be done after you're comfortable with the basic workflow."
+    },
+    "intermediate": {
+      "recommended_steps": [1, 2, 3, 4, 5],
+      "skip_steps": [],
+      "notes": "Run the full workflow. Step 4 (scrutiny test) is where the model earns its keep — the critique is usually more useful than the draft itself."
+    },
+    "advanced": {
+      "recommended_steps": [1, 2, 3, 4, 5],
+      "skip_steps": [],
+      "notes": "Run Step 4 multiple times with different personas (opposition senator, crossbencher, journalist). Consider running QG-TRUST-001 on the final revised brief as well as the draft."
+    }
+  },
+
+  "security_classification": "official",
+
+  "tags": ["qtb", "question-time-brief", "parliament", "estimates", "minister", "core"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Cannot know the reader's history with a committee, past commitments, or agency-specific intelligence.",
+    "Statistics, program names, and budget figures are high-risk for hallucination — verify all before any brief is used in a high-stakes forum.",
+    "This workflow produces AI-assisted drafts. You remain the accountable officer for the advice."
+  ]
+}

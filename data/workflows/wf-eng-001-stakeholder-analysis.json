@@ -1,0 +1,128 @@
+{
+  "id": "WF-ENG-001",
+  "name": "Stakeholder Analysis",
+  "description": "Map and analyse key stakeholders for a policy initiative or engagement program. Identifies interests, positions, risks, and recommends a tailored engagement approach.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "domain": "stakeholder_engagement",
+  "task_type": "stakeholder_analysis",
+  "typical_user_level": ["aps5_6", "el1"],
+  "complexity": "intermediate",
+  "estimated_time": "25–40 minutes with review",
+
+  "inputs_required": [
+    {
+      "name": "initiative",
+      "label": "Initiative",
+      "description": "The policy initiative, decision, or program being analysed",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. NDIS review implementation, new aged care standards rollout"
+    },
+    {
+      "name": "agency",
+      "label": "Agency",
+      "description": "Your agency or portfolio context",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Department of Social Services"
+    },
+    {
+      "name": "context",
+      "label": "Context",
+      "description": "Brief description of what's happening and what decision or action is involved",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Designing consultation process for a new framework launching mid-year"
+    },
+    {
+      "name": "key_documents",
+      "label": "Background materials (optional)",
+      "description": "Paste publicly available background — published policy, public submissions, peak body positions. Do not paste OFFICIAL: Sensitive material into public AI tools.",
+      "type": "long_text",
+      "required": false,
+      "placeholder": "Paste relevant publicly available content here..."
+    }
+  ],
+
+  "steps": [
+    {
+      "order": 1,
+      "id": "step-1",
+      "name": "Map Stakeholders",
+      "step_type": "generation",
+      "building_block_id": "BB-STK-001",
+      "description": "Identifies all relevant stakeholders grouped by category, with initial read on position, influence, and engagement priority.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "Review the map critically. Add any groups your agency knows are relevant but the model missed. Adjust influence and position ratings based on your direct knowledge. This is the foundation — getting it right matters.",
+      "output_feeds_to": [2]
+    },
+    {
+      "order": 2,
+      "id": "step-2",
+      "name": "Analyse Positions & Interests",
+      "step_type": "generation",
+      "building_block_id": "BB-STK-002",
+      "description": "Deepens understanding of priority stakeholders — core interests, red lines, common ground, and what happens if they're handled poorly.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "The most valuable output here is 'core interest vs stated position'. Where does the model's read differ from your own knowledge? Note any organisations whose position or red lines you know from direct experience — the model can only draw on public information.",
+      "output_feeds_to": [3, 4]
+    },
+    {
+      "order": 3,
+      "id": "step-3",
+      "name": "Challenge the Analysis",
+      "step_type": "quality_gate",
+      "quality_gate_id": "QG-CHALLENGE-001",
+      "description": "Red-team the stakeholder analysis — who's been missed, what assumptions are hidden, what could go wrong.",
+      "trust_level": "medium",
+      "is_optional": true,
+      "user_action_after": "Review the critique. The most useful challenge is usually around stakeholders who've been missed or underweighted. Add any you agree with to your revised stakeholder map.",
+      "output_feeds_to": [4]
+    },
+    {
+      "order": 4,
+      "id": "step-4",
+      "name": "Engagement Strategy",
+      "step_type": "generation",
+      "building_block_id": "BB-STK-003",
+      "description": "Recommends tailored engagement approaches — method, timing, key messages, and success indicators for each priority stakeholder.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "The sequencing recommendation is the most immediately actionable output. Who you engage first sends a signal — adjust based on your political read and existing relationships. Finalise the strategy with your manager before commencing engagement.",
+      "output_feeds_to": []
+    }
+  ],
+
+  "skill_level_guidance": {
+    "beginner": {
+      "recommended_steps": [1, 2, 4],
+      "skip_steps": [3],
+      "notes": "Start with the stakeholder map and position analysis, then move to the engagement strategy. The red-team challenge adds value but can be done once you're comfortable with the basic workflow."
+    },
+    "intermediate": {
+      "recommended_steps": [1, 2, 3, 4],
+      "skip_steps": [],
+      "notes": "Run the full workflow. The challenge step (Step 3) often surfaces stakeholders or dynamics that were missed — it's worth doing even if the analysis feels solid."
+    },
+    "advanced": {
+      "recommended_steps": [1, 2, 3, 4],
+      "skip_steps": [],
+      "notes": "Consider running Step 1 from two perspectives — once as the agency, once as the most affected community group. The gap between these maps is often where the real engagement risk sits."
+    }
+  },
+
+  "security_classification": "official",
+
+  "tags": ["stakeholder", "engagement", "policy", "consultation"],
+  "contributed_by": null,
+  "known_limitations": [
+    "The model's knowledge of specific organisations and their current positions may be outdated.",
+    "Local, niche, or recently formed groups are likely to be missed — supplement with your agency's stakeholder intelligence.",
+    "The model cannot know your existing relationships with these organisations, which significantly affects what engagement approaches are appropriate.",
+    "This workflow produces AI-assisted analysis. You remain responsible for the quality of stakeholder engagement decisions."
+  ]
+}

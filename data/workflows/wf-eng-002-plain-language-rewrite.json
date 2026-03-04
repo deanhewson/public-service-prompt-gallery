@@ -1,0 +1,117 @@
+{
+  "id": "WF-ENG-002",
+  "name": "Plain Language Rewrite",
+  "description": "Convert complex policy, legal, or administrative text into clear, accessible language for a general audience. Includes a structured audit, rewrite, and clarity check.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "domain": "stakeholder_engagement",
+  "task_type": "plain_language_rewrite",
+  "typical_user_level": ["aps4_5", "aps5_6", "el1"],
+  "complexity": "beginner",
+  "estimated_time": "15–25 minutes with review",
+
+  "inputs_required": [
+    {
+      "name": "source_text",
+      "label": "Source text",
+      "description": "The text to be rewritten. Paste the full text or key sections.",
+      "type": "long_text",
+      "required": true,
+      "placeholder": "Paste the text you want to rewrite here..."
+    },
+    {
+      "name": "audience",
+      "label": "Target audience",
+      "description": "Who will read the plain language version",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. general public, NDIS participants and families, small business owners"
+    },
+    {
+      "name": "purpose",
+      "label": "Purpose",
+      "description": "What the rewritten document needs to do for the reader",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. explain how to apply, summarise key changes, help people understand their rights"
+    },
+    {
+      "name": "length",
+      "label": "Target length",
+      "description": "How long should the rewritten version be?",
+      "type": "text",
+      "required": false,
+      "default": "same length as original or shorter",
+      "placeholder": "e.g. 1 page, 300 words"
+    }
+  ],
+
+  "steps": [
+    {
+      "order": 1,
+      "id": "step-1",
+      "name": "Complexity Audit",
+      "step_type": "generation",
+      "building_block_id": "BB-PLR-001",
+      "description": "Analyses what makes the source text hard to read and sets the objectives for the rewrite.",
+      "trust_level": "high",
+      "is_optional": false,
+      "user_action_after": "Review the jargon list and structure recommendations. Add any technical terms or requirements the model missed. The 'what must be preserved' section is important — note any legal or technical precision that cannot be lost.",
+      "output_feeds_to": [2]
+    },
+    {
+      "order": 2,
+      "id": "step-2",
+      "name": "Plain Language Draft",
+      "step_type": "generation",
+      "building_block_id": "BB-PLR-002",
+      "description": "Produces the plain language rewrite applying the audit findings.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "Read the rewrite aloud. Does it sound natural? Compare it to the source — has any important meaning been lost or changed? Note any sections that still feel dense or unclear.",
+      "output_feeds_to": [3]
+    },
+    {
+      "order": 3,
+      "id": "step-3",
+      "name": "Clarity Check",
+      "step_type": "quality_gate",
+      "building_block_id": "BB-PLR-003",
+      "description": "Reviews the rewrite against plain language principles and checks for meaning changes.",
+      "trust_level": "high",
+      "is_optional": false,
+      "user_action_after": "Address the Top 3 fixes. For any remaining jargon or long sentences, ask the AI to rewrite those specific parts. If the meaning check identifies any subtle changes to meaning, correct them before using the document.",
+      "output_feeds_to": []
+    }
+  ],
+
+  "skill_level_guidance": {
+    "beginner": {
+      "recommended_steps": [1, 2, 3],
+      "skip_steps": [],
+      "notes": "This is one of the most beginner-friendly workflows — the audit and rewrite steps work well even with minimal guidance. The key thing to watch is whether the rewrite changes the meaning of any important content."
+    },
+    "intermediate": {
+      "recommended_steps": [1, 2, 3],
+      "skip_steps": [],
+      "notes": "After the clarity check, consider asking the AI to rewrite any specific sections that still don't meet the standard. Iterating on sections is often more efficient than rewriting the whole document again."
+    },
+    "advanced": {
+      "recommended_steps": [1, 2, 3],
+      "skip_steps": [],
+      "notes": "For high-stakes documents, test the plain language version with a real member of the target audience. Brief them on what you were trying to achieve and ask them to read it cold. Their questions tell you more than any AI review."
+    }
+  },
+
+  "security_classification": "official",
+
+  "tags": ["plain-language", "accessibility", "communications", "policy", "beginner-friendly"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Plain language rewrites can lose technical or legal precision — always compare carefully with the source.",
+    "For documents with legal or regulatory effect, a human expert review and legal disclaimer may be required.",
+    "Whether the rewrite actually works for the target audience can only be confirmed by testing with that audience.",
+    "The model cannot know your agency's specific style guide requirements or any mandatory formatting obligations."
+  ]
+}

@@ -1,0 +1,15 @@
+---
+import WorkflowLayout from '../../layouts/WorkflowLayout.astro';
+import workflow from '../../../data/workflows/wf-eng-002-plain-language-rewrite.json';
+import bbPlr001 from '../../../data/building-blocks/bb-plr-001.json';
+import bbPlr002 from '../../../data/building-blocks/bb-plr-002.json';
+import bbPlr003 from '../../../data/building-blocks/bb-plr-003.json';
+
+const blocks = {
+  'BB-PLR-001': bbPlr001,
+  'BB-PLR-002': bbPlr002,
+  'BB-PLR-003': bbPlr003,
+};
+---
+
+<WorkflowLayout workflow={workflow} blocks={blocks} />

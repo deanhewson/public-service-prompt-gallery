@@ -1,0 +1,17 @@
+---
+import WorkflowLayout from '../../layouts/WorkflowLayout.astro';
+import workflow from '../../../data/workflows/wf-gen-001-meeting-preparation.json';
+import bbMtg001 from '../../../data/building-blocks/bb-mtg-001.json';
+import bbMtg002 from '../../../data/building-blocks/bb-mtg-002.json';
+import bbMtg003 from '../../../data/building-blocks/bb-mtg-003.json';
+import bbMtg004 from '../../../data/building-blocks/bb-mtg-004.json';
+
+const blocks = {
+  'BB-MTG-001': bbMtg001,
+  'BB-MTG-002': bbMtg002,
+  'BB-MTG-003': bbMtg003,
+  'BB-MTG-004': bbMtg004,
+};
+---
+
+<WorkflowLayout workflow={workflow} blocks={blocks} />

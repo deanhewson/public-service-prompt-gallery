@@ -1,0 +1,39 @@
+{
+  "id": "BB-QTB-003",
+  "name": "QTB: Parliamentary Scrutiny Test",
+  "description": "Stress-tests the QTB draft from the perspective of a hostile questioner — surfaces gaps in talking points and anything that could go wrong under pressure.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "refinement",
+  "domains": ["policy_development"],
+
+  "prompt_template": "<instructions>\nYou are a sharp opposition senator on a Senate Estimates committee, or a persistent journalist at a ministerial doorstop. You have read the QTB draft we've just produced in this conversation.\n\nYour job is to probe it hard — not to destroy it, but to find every gap before the reader faces a real questioner.\n\nWork through the draft and identify:\n\n1. **Questions the brief doesn't answer** — what would you ask that the current talking points don't cover?\n2. **Weak or evasive talking points** — which responses sound like a non-answer? What follow-up would expose them?\n3. **Factual vulnerabilities** — any statistic, claim, or date that could be challenged or disproved?\n4. **Framing problems** — any language that could be quoted out of context or used against the speaker?\n5. **What's missing** — any relevant context, program, decision, or recent development that should be acknowledged but isn't?\n6. **The trap question** — what one question, if asked well, would most expose a weakness in this brief?\n\nAfter your critique, provide:\n- **Overall readiness**: Ready for the forum / Needs work on specific areas / Significant gaps remain\n- **Top 3 fixes** before this brief is used\n</instructions>",
+
+  "variables": [],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "This step will feel harsh — it's designed to be. Treat it as useful preparation, not a judgment of your work. Focus on the Top 3 fixes and decide which ones you have time to address.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Pay particular attention to 'weak or evasive talking points' — these are the responses most likely to generate follow-up questions that the brief hasn't prepared for.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "For a high-stakes Estimates appearance, run this step multiple times — once as a hostile opposition senator, once as a crossbencher probing on a different angle. Add the persona in your AI conversation before running this prompt.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["qtb", "red-team", "quality-gate", "parliament", "estimates"],
+  "contributed_by": null,
+  "known_limitations": [
+    "The model's critique is based on general political knowledge, not the specific committee's recent history or agenda.",
+    "Some challenges may not apply to your specific political context — use your judgment on what to address.",
+    "A human read by someone with direct Estimates experience remains essential."
+  ]
+}

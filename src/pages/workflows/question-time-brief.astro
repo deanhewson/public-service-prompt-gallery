@@ -1,0 +1,19 @@
+---
+import WorkflowLayout from '../../layouts/WorkflowLayout.astro';
+import workflow from '../../../data/workflows/wf-pol-002-question-time-brief.json';
+import bbQtb001 from '../../../data/building-blocks/bb-qtb-001.json';
+import bbQtb002 from '../../../data/building-blocks/bb-qtb-002.json';
+import bbQtb003 from '../../../data/building-blocks/bb-qtb-003.json';
+import bbQtb004 from '../../../data/building-blocks/bb-qtb-004.json';
+import qgTrust from '../../../data/quality-gates/qg-trust-001.json';
+
+const blocks = {
+  'BB-QTB-001': bbQtb001,
+  'BB-QTB-002': bbQtb002,
+  'BB-QTB-003': bbQtb003,
+  'BB-QTB-004': bbQtb004,
+  'QG-TRUST-001': qgTrust,
+};
+---
+
+<WorkflowLayout workflow={workflow} blocks={blocks} />

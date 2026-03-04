@@ -1,0 +1,56 @@
+{
+  "id": "BB-MTG-003",
+  "name": "Meeting Prep: Background Brief",
+  "description": "Drafts a background brief for meeting attendees — concise context, key issues, and what they need to know before walking in.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "generation",
+  "domains": ["general_productivity"],
+
+  "prompt_template": "<task>\nContinuing from the meeting context, objectives, and agenda we've developed in this conversation, now draft a short background brief for meeting attendees.\n\nThis brief will be circulated {{circulation_timing}} before the meeting.\n\nThe brief should:\n1. Open with a one-paragraph summary of why this meeting is happening and what attendees need to get from it\n2. Provide 3–5 paragraphs of background on the key issues on the agenda — give attendees what they need to participate meaningfully, without overwhelming them\n3. Flag any decisions that need to be made in the meeting, with a brief summary of the options or considerations\n4. Include a 'reading list' — 2–3 specific documents or sources attendees should review if they want to go deeper (use [INSERT: document name] where specific documents should be referenced)\n5. End with 'What we need from you' — 1–3 specific things attendees should come prepared to contribute\n\nKeep the whole brief under {{brief_length}}. Use plain language. Write for a busy senior officer who will skim, not read carefully.\n\nMark any specific statistics, dates, or program names with [VERIFY] if you are uncertain of their accuracy.\n</task>",
+
+  "variables": [
+    {
+      "name": "circulation_timing",
+      "description": "When will this be sent to attendees?",
+      "type": "text",
+      "required": false,
+      "default": "24-48 hours",
+      "placeholder": "e.g. 24-48 hours, 1 week"
+    },
+    {
+      "name": "brief_length",
+      "description": "Maximum length for the background brief",
+      "type": "text",
+      "required": false,
+      "default": "1 page",
+      "placeholder": "e.g. 1 page, 500 words"
+    }
+  ],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Check any statistics or program names before circulating — a background brief with wrong facts undermines credibility. Check all [VERIFY] flags.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "The 'What we need from you' section is often the most useful — it sets expectations and makes attendees come prepared. Make it specific, not generic.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Tailor the brief for your specific reader — a deputy secretary and a working-level officer need different levels of detail. If there's a range of seniority in the room, write for the most senior.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["meeting", "background-brief", "preparation", "productivity"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Statistics, program details, and factual claims may be inaccurate — check all [VERIFY] flags before circulating.",
+    "The model cannot know your agency's specific history with the issues or attendees' prior knowledge.",
+    "Background briefs should be reviewed by a senior officer before circulation — this is a first draft, not a final document."
+  ]
+}

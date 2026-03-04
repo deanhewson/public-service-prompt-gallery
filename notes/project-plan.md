@@ -5,10 +5,10 @@
 **Goal**: A publicly accessible web app where APS staff can browse, understand, and copy structured AI prompts and multi-step workflows for common public service tasks.
 
 **MVP done when**:
-- [ ] One complete workflow (Briefing Note) is live on Netlify
-- [ ] Workflow shows steps, trust indicators, skill level toggle, and copyable prompts
-- [ ] Classification and platform selectors work
-- [ ] JSON data file validates against the architecture schema
+- [x] One complete workflow (Briefing Note) is live on Netlify
+- [x] Workflow shows steps, trust indicators, skill level toggle, and copyable prompts
+- [x] Platform selector works (classification selector deferred to Phase 2)
+- [x] JSON data file validates against the architecture schema
 - [ ] At least one colleague has used it and given feedback
 
 **v1 done when**:
@@ -22,34 +22,50 @@
 
 ## Phases
 
-### Phase 0 — Foundation (current)
+### Phase 0 — Foundation ✓
 - [x] Project directory, git, GitHub (private repo)
 - [x] Research and architecture documents
 - [x] Obsidian vault in `notes/`
 - [x] CLAUDE.md with project context and conventions
 - [x] .gitignore
 - [x] README.md created (iterate as we go)
-- [ ] Node.js installed
-- [ ] Astro scaffolded
+- [x] Node.js installed
+- [x] Astro scaffolded
 
-### Phase 1 — MVP (Briefing Note workflow)
-- [ ] `data/workflows/wf-pol-001-briefing-note.json` — first data file
-- [ ] Astro site reads JSON and renders workflow steps
+### Phase 1 — MVP (Briefing Note workflow) ✓
+- [x] `data/workflows/wf-pol-001-briefing-note.json` — first data file
+- [x] Astro site reads JSON and renders workflow steps
 - [x] Netlify auto-deploys from GitHub on push to master
-- [ ] Trust indicators visible in UI
-- [ ] Skill level toggle (beginner / intermediate / advanced)
-- [ ] Copy-to-clipboard on prompt text
-- [ ] Classification selector (gates content, injects warnings)
-- [ ] Platform selector (adapts prompt formatting and chain advice)
+- [x] Trust indicators visible in UI
+- [x] Skill level toggle (beginner / intermediate / advanced)
+- [x] Copy-to-clipboard on prompt text
+- [x] Platform selector (Claude/ChatGPT/Copilot — XML strip transform)
+- [x] Progress bar — horizontal, sticky, copy marks step done
+- [x] Netlify feedback form — captures workflow + step context
+- [x] Home page — updated hero, proof of concept framing, contact links
+- [ ] Classification selector (deferred — see Future UI Overhaul below)
+
+### Future UI Overhaul (after MVP feedback)
+- [ ] Auto-open/close steps as user progresses
+- [ ] Trust indicators rolled into prompt content and per-step warnings
+- [ ] Classification selector (gates content, injects warnings, hard stop at PROTECTED)
+- [ ] Mobile/tablet layout
+- [ ] Full visual design pass
+- [ ] Watch for prompt length/overwhelm — check in feedback before acting
+- [ ] Platform-specific tips per step (beyond XML strip — file upload advice, memory/context notes)
 
 ### Phase 2 — Content expansion
-- [ ] Remaining 6 priority workflows (QT Brief, Stakeholder Analysis, Data Summary, Meeting Prep, Compliance Review, Plain Language Rewrite)
+- [ ] Remaining workflows (Data Summary, Compliance Review)
 - [ ] Building block browser
 - [ ] Quality gates browseable separately
+- [ ] Agency-specific guidance per workflow — optional "supercharge it for your agency" callout
+  - QTBs: standard committee phrasing, how to add portfolio/minister context, common question types per committee
+  - Briefing Notes: agency briefing template format, how to add standing background context
+  - Stakeholder Analysis: typical stakeholder registers, how to add relationship history context
+  - General approach: users paste a few lines of standing context once (portfolio, minister, recurring topics) and it flows into all prompts
 
 ### Phase 3 — Discoverability & feedback
 - [ ] Search and filter
-- [ ] Feedback form (Tally.so — see below)
 - [ ] GoatCounter analytics + privacy toggle
 - [ ] Accessibility check
 - [ ] Licence decision and README update
@@ -68,7 +84,7 @@
 | Notes | Obsidian | Vault lives in `notes/`, git-tracked |
 | Prompt template syntax | `{{variable_name}}` | Defined in architecture doc, consistent throughout |
 | Analytics | GoatCounter | Privacy-first (no cookies, respects DNT), free for open source, no cookie banner needed. Upgrade to GA4 later if needed. |
-| Feedback (non-GitHub users) | Tally.so | Clean UX, free, embeddable. Paired with GitHub Issues for technical feedback. |
+| Feedback (non-GitHub users) | Netlify Forms (MVP) | Native to hosting platform, zero config, no external service. Tally.so still an option for Phase 3 if more complex forms needed. |
 
 ---
 
@@ -145,7 +161,8 @@ Priority order (from architecture doc):
 
 **Feedback mechanisms:**
 - **GitHub Issues** — for contributors and technical feedback (GitHub account required)
-- **Tally.so form** — for general users (no account needed, embeds cleanly in the site)
+- **Netlify Forms** — for general users (no account needed, native to hosting). Captures workflow name + step context. Submissions go to Netlify dashboard + email.
+- Per-step "Feedback on this step →" link sets step context before form submission
 - Both linked in README and site footer
 
 ---
@@ -223,7 +240,7 @@ When adding new features or making significant decisions, flag what needs updati
 
 - **Licence**: Decide before going public. Options: CC BY 4.0 (standard for open gov content), MIT + CC BY 4.0 (dual licence for code + content), or CC0 (public domain, maximum adoption).
 - **notes/ visibility when public**: Should project-plan.md be in a separate private repo or scrubbed before going public? Currently contains internal planning context.
-- **Feedback form platform**: Tally.so preferred — set up when Phase 3 begins.
+- **Feedback form platform**: Using Netlify Forms for MVP (native, no external service). Tally.so remains an option for Phase 3 if richer form features are needed.
 - **GoatCounter public dashboard**: Decide whether to make the stats page public (nice for transparency, aligns with open government values).
 - **GovAI Chat**: Monitor April 2026 trial announcement and update platform notes.
 
@@ -244,6 +261,11 @@ When adding new features or making significant decisions, flag what needs updati
 | 2026-03-04 | Governance: owner-only now, PRs when public | Appropriate for solo early-stage project |
 | 2026-03-04 | Plan for public from the start | README created now, notes/ to be reviewed before public launch |
 | 2026-03-04 | Licence: TBD | Decide before public launch |
+| 2026-03-04 | Step chaining: in-conversation, no paste-back | Users stay in their AI tool's conversation. Steps 2+ reference prior responses naturally. No `{{previous_step_output}}` variable. |
+| 2026-03-04 | Platform selector: render-time XML strip transform | Claude keeps XML tags; other platforms strip `<role>`, `<task>`, `<instructions>`, `<draft>`, `<reference_documents>` at render time. |
+| 2026-03-04 | Feedback form: switched from Tally.so to Netlify Forms | Simpler for MVP — no external service, no config, native to hosting platform. |
+| 2026-03-04 | Classification selector deferred | Design exists in project plan; defer build until after MVP feedback and UI overhaul phase. |
+| 2026-03-04 | Prompt length/overwhelm: monitor in feedback | Steps are long — watch for user feedback indicating overwhelm before deciding whether to trim. |
 
 ---
 

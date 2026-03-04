@@ -1,0 +1,85 @@
+{
+  "id": "BB-GEN-003",
+  "name": "Briefing Note: Draft",
+  "description": "Generates the full briefing note draft using the agreed structure, APS writing conventions, and explicit uncertainty flags.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-04",
+
+  "block_type": "generation",
+  "domains": ["policy_development"],
+
+  "prompt_template": "<role>\nYou are a senior APS policy analyst at the EL1 level, working in {{agency}}. You write clear, evidence-based policy advice in standard APS style: direct, impartial, and concise.\n</role>\n\n<task>\nContinuing from the research and structure we've just developed in this conversation, now write the full {{length}} briefing note.\n\nTopic: {{topic}}\nAudience: {{audience}}\nPurpose: {{purpose}}\n{{#if key_documents}}\nI'm also providing these reference documents to draw on:\n\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nWriting requirements:\n- Begin with a clear PURPOSE line (one sentence)\n- Use plain, direct language — avoid jargon unless it is standard for this audience\n- Every paragraph should earn its place; cut anything that doesn't serve the reader\n- Where specific statistics, dates, program details, or legislative references are needed but you are not certain they are accurate, write: [VERIFY: describe what needs checking]\n- Where specific data should be inserted by the officer, write: [INSERT DATA: describe what's needed]\n- End with a clear RECOMMENDATION or NEXT STEPS / ACTION REQUIRED section\n- Do not fabricate specific figures, names, dates, or program details\n\nThis is a working draft for review — flag uncertainty explicitly rather than presenting uncertain content as fact.\n</task>",
+
+  "variables": [
+    {
+      "name": "agency",
+      "description": "The agency or portfolio context",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "topic",
+      "description": "The policy topic for the briefing note",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "audience",
+      "description": "Who will read this briefing note",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "purpose",
+      "description": "What the brief is for",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "length",
+      "description": "Target length of the briefing note",
+      "type": "text",
+      "required": false,
+      "default": "2 pages"
+    },
+    {
+      "name": "key_documents",
+      "description": "Any reference documents to include as context",
+      "type": "long_text",
+      "required": false
+    }
+  ],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Read the draft carefully before trusting it. Look for anything that sounds specific (statistics, names, dates, program amounts) — these need verification. The [VERIFY] and [INSERT DATA] flags are your action items.",
+      "prompt_modification": "Add after 'This is a working draft for review': 'After the draft, list all [VERIFY] and [INSERT DATA] items in a numbered checklist to make them easy to work through.'"
+    },
+    "intermediate": {
+      "notes": "The draft is a starting point. Your domain expertise is the most valuable input at this stage — read critically and identify what feels wrong or missing before moving to quality gates.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Consider providing the agreed structure from Step 2 as context here. If you have access to key documents or data, paste them in — the model produces significantly better drafts when given real reference material.",
+      "prompt_modification": null
+    }
+  },
+
+  "platform_notes": {
+    "claude": "XML tags are processed natively. Use as-is.",
+    "chatgpt": "Remove XML tags and convert to plain instructions. Replace <role>...</role> with 'Act as a senior APS policy analyst...' at the start.",
+    "copilot": "Paste as a single prompt block. Copilot may not follow long system instructions reliably — keep the role instruction brief.",
+    "govai_chat": "Pending — test when available (April 2026 trial)."
+  },
+
+  "tags": ["drafting", "briefing-note", "generation", "core"],
+  "contributed_by": null,
+  "known_limitations": [
+    "The model cannot access current departmental data, internal reports, or classified information.",
+    "Statistics and program details from the model's training data may be outdated or inaccurate — always verify.",
+    "The draft follows general APS conventions but may not match your agency's specific template or style guide.",
+    "The model may produce content that sounds authoritative but is fabricated. [VERIFY] flags are an indicator, not a guarantee."
+  ]
+}

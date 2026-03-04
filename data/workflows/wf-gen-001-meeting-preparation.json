@@ -1,0 +1,145 @@
+{
+  "id": "WF-GEN-001",
+  "name": "Meeting Preparation",
+  "description": "Draft an agenda, background brief, and discussion prompts for an upcoming meeting. Works for internal working groups, stakeholder briefings, and governance forums.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "domain": "general_productivity",
+  "task_type": "meeting_preparation",
+  "typical_user_level": ["aps4_5", "aps5_6", "el1"],
+  "complexity": "beginner",
+  "estimated_time": "15–25 minutes with review",
+
+  "inputs_required": [
+    {
+      "name": "meeting_purpose",
+      "label": "Meeting purpose",
+      "description": "What is this meeting for?",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Quarterly governance review, stakeholder briefing on new regulations"
+    },
+    {
+      "name": "attendees",
+      "label": "Attendees",
+      "description": "Who is attending — names, titles, or organisations",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Deputy Secretary (chair), EL2 Policy Lead, 3 external stakeholder reps"
+    },
+    {
+      "name": "agency",
+      "label": "Agency",
+      "description": "Your agency or portfolio context",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Department of Finance"
+    },
+    {
+      "name": "context",
+      "label": "Context",
+      "description": "Any relevant background — what's the history, why now, what's at stake",
+      "type": "text",
+      "required": false,
+      "placeholder": "e.g. First meeting after a major policy announcement; some attendees have concerns"
+    },
+    {
+      "name": "duration",
+      "label": "Meeting duration",
+      "description": "How long is the meeting?",
+      "type": "text",
+      "required": false,
+      "default": "60 minutes",
+      "placeholder": "e.g. 60 minutes, 90 minutes"
+    },
+    {
+      "name": "key_documents",
+      "label": "Background materials (optional)",
+      "description": "Paste relevant external documents or summaries. External, publicly available documents only — do not paste OFFICIAL: Sensitive material into public AI tools.",
+      "type": "long_text",
+      "required": false,
+      "placeholder": "Paste relevant documents or summaries here..."
+    }
+  ],
+
+  "steps": [
+    {
+      "order": 1,
+      "id": "step-1",
+      "name": "Context & Objectives",
+      "step_type": "generation",
+      "building_block_id": "BB-MTG-001",
+      "description": "Defines what the meeting needs to achieve, key issues, attendee dynamics, and any pre-meeting actions.",
+      "trust_level": "high",
+      "is_optional": false,
+      "user_action_after": "Review the objectives — do they match what you actually need from this meeting? Adjust the attendee analysis based on your direct knowledge of these people. Note any pre-meeting actions that need to happen before you move on.",
+      "output_feeds_to": [2, 3, 4]
+    },
+    {
+      "order": 2,
+      "id": "step-2",
+      "name": "Draft Agenda",
+      "step_type": "generation",
+      "building_block_id": "BB-MTG-002",
+      "description": "Produces a structured agenda ordered to achieve the objectives, with time allocations and item types.",
+      "trust_level": "high",
+      "is_optional": false,
+      "user_action_after": "Check the time allocations against your experience of how long this group takes. Adjust the order if needed. Circulate to a colleague or the chair for sense-check before finalising.",
+      "output_feeds_to": [3, 4]
+    },
+    {
+      "order": 3,
+      "id": "step-3",
+      "name": "Background Brief",
+      "step_type": "generation",
+      "building_block_id": "BB-MTG-003",
+      "description": "Drafts a brief for attendees covering context, key issues, and what they need to come prepared to contribute. Optional for smaller internal meetings.",
+      "trust_level": "medium",
+      "is_optional": true,
+      "user_action_after": "Check all [VERIFY] flags before circulating. Have a senior officer review before it goes out — this represents your agency. Update any [INSERT: document name] placeholders with actual references.",
+      "output_feeds_to": []
+    },
+    {
+      "order": 4,
+      "id": "step-4",
+      "name": "Discussion Prompts",
+      "step_type": "generation",
+      "building_block_id": "BB-MTG-004",
+      "description": "Generates opening questions, deepening prompts, and decision-forcing questions for each agenda item. For the chair or facilitator.",
+      "trust_level": "high",
+      "is_optional": true,
+      "user_action_after": "Select the prompts that feel right for your group — you don't need all of them. Have the decision-forcing questions ready but use them with judgment. Good facilitation reads the room.",
+      "output_feeds_to": []
+    }
+  ],
+
+  "skill_level_guidance": {
+    "beginner": {
+      "recommended_steps": [1, 2],
+      "skip_steps": [3, 4],
+      "notes": "Start with the context analysis and agenda — that's the core of meeting preparation. The background brief and discussion prompts add value for more complex meetings; add them once you're comfortable."
+    },
+    "intermediate": {
+      "recommended_steps": [1, 2, 3, 4],
+      "skip_steps": [],
+      "notes": "Run the full workflow for any meeting that involves external stakeholders or significant decisions. For routine internal meetings, Steps 1 and 2 are usually enough."
+    },
+    "advanced": {
+      "recommended_steps": [1, 2, 3, 4],
+      "skip_steps": [],
+      "notes": "For high-stakes meetings, share the draft agenda with a key attendee in advance and note their reaction. Their instinctive response to the agenda tells you a lot about how the meeting will go."
+    }
+  },
+
+  "security_classification": "official",
+
+  "tags": ["meeting", "agenda", "preparation", "productivity", "beginner-friendly"],
+  "contributed_by": null,
+  "known_limitations": [
+    "The model cannot know the history between specific attendees, recent dynamics, or interpersonal sensitivities.",
+    "Statistics and program details in the background brief may be inaccurate — verify all before circulating.",
+    "Facilitation prompts are generic — adapt to the specific group and communication styles of key attendees.",
+    "This workflow produces AI-assisted drafts. The chair or meeting organiser remains responsible for the quality of the meeting."
+  ]
+}

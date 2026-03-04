@@ -1,0 +1,61 @@
+{
+  "id": "BB-PLR-001",
+  "name": "Plain Language: Complexity Audit",
+  "description": "Analyses the source text to identify what's hard to read, why, and what a plain language rewrite needs to achieve.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "generation",
+  "domains": ["communications"],
+
+  "prompt_template": "<task>\nWe are going to rewrite a policy or government document into plain language. Before drafting, analyse the source text.\n\nSource text:\n{{source_text}}\n\nTarget audience: {{audience}}\nPurpose of the rewrite: {{purpose}}\n\nAnalyse the source text and identify:\n\n1. **Reading level estimate** — approximately what education level does this text assume? (Use the Flesch-Kincaid scale or equivalent as a reference)\n2. **Top 5 readability problems** — list the specific things making this hard to read (e.g. passive voice, undefined jargon, long sentences, abstract nouns, buried action)\n3. **Jargon and technical terms** — list every term that needs to be explained or replaced for this audience. For each, suggest a plain language alternative or brief explanation\n4. **Structure problems** — is the information in the right order? What does a general reader need to know first?\n5. **What must be preserved** — what core meaning or legal/technical precision cannot be lost in translation?\n6. **What can be cut** — any content that doesn't serve the target audience or purpose?\n\nAfter the audit, state: what does a successful plain language rewrite of this text look like? What are the 2–3 things that matter most?\n</task>",
+
+  "variables": [
+    {
+      "name": "source_text",
+      "description": "The text you want to rewrite. Paste the full text or the key sections.",
+      "type": "long_text",
+      "required": true,
+      "placeholder": "Paste the text to be rewritten here..."
+    },
+    {
+      "name": "audience",
+      "description": "Who will read the plain language version",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. general public, NDIS participants and families, small business owners"
+    },
+    {
+      "name": "purpose",
+      "description": "What the rewritten document needs to do",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. help people understand their rights, explain how to apply, summarise the key policy changes"
+    }
+  ],
+
+  "trust_level": "high",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "The jargon list is the most immediately useful output — paste it into the next step so the model knows what to replace. The structure recommendations are worth following; plain language almost always front-loads the key information.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Pay attention to 'what must be preserved' — plain language rewrites sometimes lose important precision. Decide where you can simplify and where the original meaning must hold.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "If the source text has legal or regulatory force, flag sections that carry specific legal meanings before rewriting — these may need separate treatment or a disclaimer.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["plain-language", "readability", "communications", "audit"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Reading level estimates are approximate — validate with a Flesch-Kincaid calculator if precision matters.",
+    "The model's assessment of what can be cut may be over-aggressive — you are responsible for ensuring the final document remains accurate and complete.",
+    "Technical or legal precision requirements are often context-specific — the model cannot know your agency's exact obligations."
+  ]
+}

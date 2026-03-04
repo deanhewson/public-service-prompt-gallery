@@ -39,3 +39,14 @@ visible on Netlify.
 - Ask before adding new npm dependencies or changing the tech stack
 - Don't refactor working code without being asked
 - One thing at a time — small focused changes over big sweeping ones
+
+## Astro conventions (learned in Phase 1)
+- **No TypeScript generic annotations in `.astro` frontmatter.** Astro 5 compiles
+  frontmatter as TSX; generic syntax like `Record<string, string>` or `Array<string>`
+  gets misread as JSX elements and causes cryptic esbuild parse errors. Use plain
+  object literals and let TypeScript infer, or annotate with non-generic types only.
+- **Don't use `define:vars` for complex objects.** Pass server data to client scripts
+  via `<script type="application/json" id="...">` + `set:html={JSON.stringify(...)}`,
+  then read it with `JSON.parse(document.getElementById(...).textContent)`.
+- **Import paths from nested pages.** `data/` is at the project root. From
+  `src/pages/workflows/*.astro`, that's three levels up: `'../../../data/...'`.

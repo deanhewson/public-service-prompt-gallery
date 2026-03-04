@@ -1,0 +1,23 @@
+---
+import WorkflowLayout from '../../layouts/WorkflowLayout.astro';
+import workflow from '../../../data/workflows/wf-pol-001-briefing-note.json';
+import bb001 from '../../../data/building-blocks/bb-gen-001.json';
+import bb002 from '../../../data/building-blocks/bb-gen-002.json';
+import bb003 from '../../../data/building-blocks/bb-gen-003.json';
+import bb004 from '../../../data/building-blocks/bb-gen-004.json';
+import qgTrust from '../../../data/quality-gates/qg-trust-001.json';
+import qgChallenge from '../../../data/quality-gates/qg-challenge-001.json';
+import qgCompliance from '../../../data/quality-gates/qg-compliance-001.json';
+
+const blocks = {
+  'BB-GEN-001': bb001,
+  'BB-GEN-002': bb002,
+  'BB-GEN-003': bb003,
+  'BB-GEN-004': bb004,
+  'QG-TRUST-001': qgTrust,
+  'QG-CHALLENGE-001': qgChallenge,
+  'QG-COMPLIANCE-001': qgCompliance,
+};
+---
+
+<WorkflowLayout workflow={workflow} blocks={blocks} />

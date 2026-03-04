@@ -1,0 +1,17 @@
+---
+import WorkflowLayout from '../../layouts/WorkflowLayout.astro';
+import workflow from '../../../data/workflows/wf-eng-001-stakeholder-analysis.json';
+import bbStk001 from '../../../data/building-blocks/bb-stk-001.json';
+import bbStk002 from '../../../data/building-blocks/bb-stk-002.json';
+import bbStk003 from '../../../data/building-blocks/bb-stk-003.json';
+import qgChallenge from '../../../data/quality-gates/qg-challenge-001.json';
+
+const blocks = {
+  'BB-STK-001': bbStk001,
+  'BB-STK-002': bbStk002,
+  'BB-STK-003': bbStk003,
+  'QG-CHALLENGE-001': qgChallenge,
+};
+---
+
+<WorkflowLayout workflow={workflow} blocks={blocks} />

@@ -1,0 +1,1340 @@
+---
+const { workflow, blocks } = Astro.props;
+
+function getStepContent(step) {
+  if (step.building_block_id) return blocks[step.building_block_id] ?? null;
+  if (step.quality_gate_id) return blocks[step.quality_gate_id] ?? null;
+  return null;
+}
+
+const trustLabels = {
+  high:   { label: 'High trust',   className: 'trust-high' },
+  medium: { label: 'Medium trust', className: 'trust-medium' },
+  low:    { label: 'Low trust',    className: 'trust-low' },
+};
+
+const stepTypeLabels = {
+  generation:   'Generation',
+  quality_gate: 'Quality gate',
+  refinement:   'Refinement',
+  user_input:   'User input',
+};
+
+const complexityLabel = {
+  beginner:     'Beginner',
+  intermediate: 'Intermediate',
+  advanced:     'Advanced',
+};
+
+const domainLabels = {
+  policy_development:     'Policy Development',
+  stakeholder_engagement: 'Stakeholder Engagement',
+  general_productivity:   'General Productivity',
+  communications:         'Communications',
+};
+
+const currentPath = Astro.url.pathname;
+
+const navGroups = [
+  {
+    label: 'Policy Development',
+    workflows: [
+      { label: 'Briefing Note', path: '/workflows/briefing-note' },
+      { label: 'QT Brief',      path: '/workflows/question-time-brief' },
+    ],
+  },
+  {
+    label: 'Stakeholder Engagement',
+    workflows: [
+      { label: 'Stakeholder Analysis',    path: '/workflows/stakeholder-analysis' },
+      { label: 'Plain Language Rewrite',  path: '/workflows/plain-language-rewrite' },
+    ],
+  },
+  {
+    label: 'General Productivity',
+    workflows: [
+      { label: 'Meeting Preparation', path: '/workflows/meeting-preparation' },
+    ],
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" />
+  <title>{workflow.name} — APS Prompt Gallery</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --color-bg: #F7F7FF;
+      --color-surface: #ffffff;
+      --color-border: #dee2e6;
+      --color-text: #212529;
+      --color-muted: #6c757d;
+      --color-primary: #170a1c;
+      --color-primary-light: #DFD9E2;
+      --color-accent: #9C95DC;
+      --color-accent-light: #EEEDF9;
+      --color-alert: #C19AB7;
+      --color-alert-light: #F5EEF3;
+      --color-high: #198754;
+      --color-high-bg: #d1e7dd;
+      --color-medium: #fd7e14;
+      --color-medium-bg: #fff3cd;
+      --color-low: #dc3545;
+      --color-low-bg: #f8d7da;
+      --color-gate: #6f42c1;
+      --color-gate-bg: #ede7f6;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── PoC Banner ─────────────────────────────────── */
+    .poc-banner {
+      background: var(--color-alert-light);
+      border-bottom: 1px solid var(--color-alert);
+      font-size: 0.82rem;
+      color: #3d1a35;
+      padding: 7px 0;
+      text-align: center;
+    }
+    .poc-banner a { color: var(--color-primary); }
+
+    /* ── Site header / nav ──────────────────────────── */
+    .site-header {
+      background: var(--color-primary);
+      color: white;
+      padding: 0 24px;
+    }
+
+    .site-nav {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-height: 48px;
+    }
+
+    .nav-logo {
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      margin-right: 24px;
+      padding: 14px 0;
+      flex-shrink: 0;
+    }
+    .nav-logo:hover { text-decoration: none; opacity: 0.9; }
+
+    .nav-links {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .nav-group {
+      position: relative;
+    }
+
+    .nav-group-trigger {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      font-family: inherit;
+      padding: 14px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      height: 100%;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-group:hover .nav-group-trigger { color: white; }
+    .nav-group-trigger.has-active {
+      color: white;
+      border-bottom-color: rgba(255,255,255,0.7);
+    }
+
+    .nav-chevron {
+      font-size: 0.65rem;
+      transition: transform 0.2s;
+      opacity: 0.7;
+    }
+    .nav-group:hover .nav-chevron { transform: rotate(180deg); }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 190px;
+      background: #2a1432;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      z-index: 200;
+    }
+    .nav-group:hover .nav-dropdown { display: block; }
+
+    .nav-dropdown a {
+      display: block;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+      padding: 10px 16px;
+      white-space: nowrap;
+      transition: color 0.1s, background 0.1s;
+      border-bottom: none;
+    }
+    .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
+    .nav-dropdown a.nav-active { color: white; background: rgba(255,255,255,0.1); font-weight: 600; }
+
+    /* ── Workflow header ────────────────────────────── */
+    .workflow-header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 28px 0 20px;
+    }
+
+    .workflow-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 0;
+      font-size: 0.875rem;
+      color: var(--color-muted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: #e9ecef;
+      color: #495057;
+    }
+    .badge.badge-domain { background: var(--color-primary-light); color: var(--color-primary); }
+
+    /* ── Selectors ──────────────────────────────────── */
+    .platform-section { padding: 24px 0 0; }
+
+    .selectors-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .selector-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .skill-selector {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .skill-btn, .platform-btn {
+      padding: 7px 16px;
+      border: 2px solid var(--color-border);
+      border-radius: 6px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+    .skill-btn:hover, .platform-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+    .skill-btn.active, .platform-btn.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+
+    .skill-note {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: var(--color-alert-light);
+      border-left: 3px solid var(--color-alert);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.875rem;
+      display: none;
+    }
+    .skill-note.visible { display: block; }
+
+    /* ── Progress bar ───────────────────────────────── */
+    .progress-bar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 10px 0;
+      margin-top: 20px;
+      margin-bottom: 24px;
+    }
+
+    .step-progress-bar {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      padding: 0 4px;
+    }
+
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      min-width: 64px;
+      position: relative;
+    }
+
+    .progress-step + .progress-step::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: calc(-50% + 14px);
+      right: calc(50% + 14px);
+      height: 2px;
+      background: var(--color-border);
+      z-index: 0;
+    }
+
+    .progress-step.done + .progress-step::before { background: var(--color-high); }
+
+    .progress-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+      transition: all 0.2s;
+    }
+    .progress-step.active .progress-dot {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+    }
+    .progress-step.done .progress-dot {
+      border-color: var(--color-high);
+      background: var(--color-high);
+      color: white;
+    }
+    .progress-step.done .progress-dot::after { content: '✓'; font-size: 0.75rem; }
+    .progress-step.done .progress-dot-num { display: none; }
+
+    .progress-label {
+      font-size: 0.67rem;
+      color: var(--color-muted);
+      text-align: center;
+      line-height: 1.3;
+      max-width: 80px;
+      word-wrap: break-word;
+    }
+    .progress-step.active .progress-label { color: var(--color-accent); font-weight: 600; }
+    .progress-step.done .progress-label { color: var(--color-high); }
+
+    /* ── Inputs (accordion) ─────────────────────────── */
+    .inputs-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .inputs-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .inputs-summary::-webkit-details-marker { display: none; }
+
+    .inputs-summary-title {
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .inputs-optional-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 20px;
+      background: #e9ecef;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .inputs-summary-hint {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .inputs-chevron {
+      margin-left: auto;
+      color: var(--color-muted);
+      font-size: 0.75rem;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    details[open] .inputs-chevron { transform: rotate(180deg); }
+
+    .inputs-alt-hint {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      font-style: italic;
+      margin: 4px 0 0;
+      padding: 0;
+    }
+
+    .inputs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .input-group.full-width { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    label .optional {
+      font-weight: 400;
+      color: var(--color-muted);
+    }
+
+    input[type="text"], textarea {
+      padding: 8px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      width: 100%;
+      background: var(--color-surface);
+      color: var(--color-text);
+      transition: border-color 0.15s;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(156,149,220,0.18);
+    }
+
+    textarea { resize: vertical; min-height: 80px; }
+
+    .input-desc {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    /* ── Steps ──────────────────────────────────────── */
+    .steps-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .step-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: opacity 0.2s;
+    }
+
+    .step-card.optional-hidden { display: none; }
+
+    .step-card.optional-shown {
+      border-style: dashed;
+      opacity: 0.75;
+    }
+
+    .step-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.1s;
+    }
+
+    .step-head:hover { background: var(--color-bg); }
+
+    .step-head.is-open {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .step-num.gate { background: var(--color-gate); }
+
+    .step-title-group { flex: 1; min-width: 0; }
+
+    .step-name { font-weight: 600; font-size: 1rem; }
+
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin-top: 2px;
+    }
+
+    .step-badges {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    .trust-badge {
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .trust-high   { background: var(--color-high-bg);   color: var(--color-high); }
+    .trust-medium { background: var(--color-medium-bg); color: #7c4200; }
+    .trust-low    { background: var(--color-low-bg);    color: var(--color-low); }
+    .trust-gate   { background: var(--color-gate-bg);   color: var(--color-gate); }
+
+    .optional-badge {
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      background: #e9ecef;
+      color: var(--color-muted);
+    }
+
+    .step-toggle { color: var(--color-muted); font-size: 0.9rem; flex-shrink: 0; }
+
+    .step-body {
+      padding: 20px;
+      display: none;
+    }
+    .step-body.open { display: block; }
+
+    /* ── Prompt box ─────────────────────────────────── */
+    .prompt-box {
+      background: #f8f9fa;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .prompt-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: #e9ecef;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .copy-btn {
+      padding: 4px 12px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .copy-btn:hover { background: #163e80; }
+    .copy-btn.copied { background: var(--color-high); }
+
+    .prompt-text {
+      padding: 14px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #24292e;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .var-highlight {
+      background: #fff3cd;
+      color: #7c4200;
+      border-radius: 3px;
+      padding: 0 2px;
+      font-weight: 600;
+    }
+
+    /* ── Trust explainer ────────────────────────────── */
+    .trust-explainer {
+      display: flex;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+    .trust-explainer.trust-high   { background: var(--color-high-bg);   color: #0a3622; }
+    .trust-explainer.trust-medium { background: var(--color-medium-bg); color: #5a3000; }
+    .trust-explainer.trust-low    { background: var(--color-low-bg);    color: #6d1a20; }
+    .trust-explainer.trust-gate   { background: var(--color-gate-bg);   color: #3a1a6e; }
+
+    .trust-icon { font-size: 1rem; flex-shrink: 0; }
+
+    /* ── User action ────────────────────────────────── */
+    .user-action {
+      border-left: 3px solid var(--color-accent);
+      padding: 12px 14px;
+      background: var(--color-accent-light);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.875rem;
+      margin-top: 12px;
+    }
+
+    .user-action strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-accent);
+    }
+
+    /* ── Per-step feedback link ─────────────────────── */
+    .step-feedback-link {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      text-align: right;
+    }
+    .step-feedback-link:hover { color: var(--color-primary); }
+
+    /* ── Limitations ────────────────────────────────── */
+    details.limitations { margin-top: 16px; }
+    details.limitations summary {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      cursor: pointer;
+    }
+    details.limitations ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    /* ── Feedback form ──────────────────────────────── */
+    .feedback-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .feedback-section h3 { margin: 0 0 4px; font-size: 1rem; }
+
+    .feedback-section p {
+      margin: 0 0 20px;
+      font-size: 0.875rem;
+      color: var(--color-muted);
+    }
+
+    .feedback-radios {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .feedback-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .feedback-textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 72px;
+      margin-bottom: 12px;
+    }
+    .feedback-textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(26,79,160,0.1);
+    }
+
+    .feedback-submit {
+      padding: 8px 20px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .feedback-submit:hover { background: #163e80; }
+
+    .feedback-step-indicator {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      margin-bottom: 12px;
+      min-height: 1.2em;
+    }
+
+    /* ── Workflow limitations notice ─────────────────── */
+    .workflow-limitations {
+      background: var(--color-alert-light);
+      border: 1px solid var(--color-alert);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 20px 0 0;
+    }
+
+    .workflow-limitations h3 {
+      margin: 0 0 8px;
+      font-size: 0.875rem;
+      color: #3d1a35;
+    }
+
+    .workflow-limitations ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.825rem;
+      color: #3d1a35;
+    }
+
+    .workflow-limitations li { margin-bottom: 3px; }
+
+    .hidden { display: none !important; }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 680px) {
+      .inputs-grid { grid-template-columns: 1fr; }
+      .step-badges { display: none; }
+      .selectors-row { flex-direction: column; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PoC banner -->
+<div class="poc-banner">
+  Early release — more workflows on the way. Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a>.
+  Feedback welcome — reach out on <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a>. Help even more welcome - <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">Github</a>.
+</div>
+
+<!-- Nav -->
+<header class="site-header">
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">APS Prompt Gallery</a>
+    <div class="nav-links">
+      {navGroups.map((group) => {
+        const hasActive = group.workflows.some(wf => currentPath === wf.path || currentPath.startsWith(wf.path + '/'));
+        return (
+          <div class="nav-group">
+            <button class={`nav-group-trigger${hasActive ? ' has-active' : ''}`}>
+              {group.label} <span class="nav-chevron">▾</span>
+            </button>
+            <div class="nav-dropdown">
+              {group.workflows.map((wf) => (
+                <a
+                  href={wf.path}
+                  class={currentPath === wf.path || currentPath.startsWith(wf.path + '/') ? 'nav-active' : ''}
+                >{wf.label}</a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </nav>
+</header>
+
+<!-- Workflow header -->
+<div class="workflow-header">
+  <div class="container">
+    <h1 style="margin:0 0 8px;font-size:1.6rem">{workflow.name}</h1>
+    <p style="margin:0;color:var(--color-muted);max-width:680px">{workflow.description}</p>
+    <div class="workflow-meta">
+      {workflow.domain && (
+        <span class="badge badge-domain">{domainLabels[workflow.domain] || workflow.domain}</span>
+      )}
+      {workflow.complexity && (
+        <span class="badge">{complexityLabel[workflow.complexity] || workflow.complexity}</span>
+      )}
+      {workflow.estimated_time && (
+        <span class="badge">{workflow.estimated_time}</span>
+      )}
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Workflow limitations notice -->
+  <div class="workflow-limitations">
+    <h3>Important: limitations of AI-assisted drafting</h3>
+    <ul>
+      {workflow.known_limitations.map((lim) => <li>{lim}</li>)}
+    </ul>
+  </div>
+
+  <!-- Selectors -->
+  <div class="platform-section">
+    <div class="selectors-row">
+      <div class="selector-group">
+        <span class="selector-label">Experience level</span>
+        <div class="skill-selector">
+          <button class="skill-btn" data-level="beginner">Getting started</button>
+          <button class="skill-btn active" data-level="intermediate">Full workflow</button>
+          <button class="skill-btn" data-level="advanced">Expert mode</button>
+        </div>
+      </div>
+      <div class="selector-group">
+        <span class="selector-label">AI tool you're using</span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="platform-btn active" data-platform="claude">Claude</button>
+          <button class="platform-btn" data-platform="chatgpt">ChatGPT</button>
+          <button class="platform-btn" data-platform="copilot">Copilot</button>
+          <button class="platform-btn" data-platform="other">Other</button>
+        </div>
+      </div>
+    </div>
+    <div class="skill-note" id="skill-note-beginner">
+      {workflow.skill_level_guidance.beginner.notes}
+    </div>
+    <div class="skill-note" id="skill-note-intermediate">
+      {workflow.skill_level_guidance.intermediate.notes}
+    </div>
+    <div class="skill-note" id="skill-note-advanced">
+      {workflow.skill_level_guidance.advanced.notes}
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-bar-wrap">
+    <div class="container">
+      <div class="step-progress-bar" id="step-progress-bar">
+        {workflow.steps.map((step) => (
+          <div
+            class="progress-step pending"
+            data-progress-step={step.order}
+            data-optional={step.is_optional ? 'true' : 'false'}
+          >
+            <div class="progress-dot">
+              <span class="progress-dot-num">{step.order}</span>
+            </div>
+            <div class="progress-label">{step.name}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Inputs (starts closed) -->
+  <details class="inputs-section">
+    <summary class="inputs-summary">
+      <span class="inputs-summary-title">
+        Customise prompts <span class="inputs-optional-tag">optional</span>
+        <span class="inputs-chevron">▼</span>
+      </span>
+      <span class="inputs-summary-hint">Fill in your details and the prompts update automatically. Nothing is saved or sent anywhere — it just changes your prompts before you copy them, for convenience.</span>
+    </summary>
+    <p class="inputs-alt-hint">You can do this part entirely in your own AI tool.</p>
+    <div class="inputs-grid">
+      {workflow.inputs_required.map((input) => (
+        <div class={`input-group ${input.type === 'long_text' ? 'full-width' : ''}`}>
+          <label for={`input-${input.name}`}>
+            {input.label}
+            {!input.required && <span class="optional"> (optional)</span>}
+          </label>
+          {input.type === 'long_text' ? (
+            <textarea
+              id={`input-${input.name}`}
+              data-var={input.name}
+              placeholder={input.placeholder || ''}
+              rows="4"
+            ></textarea>
+          ) : (
+            <input
+              type="text"
+              id={`input-${input.name}`}
+              data-var={input.name}
+              placeholder={input.placeholder || (input.default ? input.default : '')}
+              value={input.default || ''}
+            />
+          )}
+          {input.description && <span class="input-desc">{input.description}</span>}
+        </div>
+      ))}
+    </div>
+  </details>
+
+  <!-- Steps -->
+  <div class="steps-header">
+    <h2 style="margin:0">Workflow steps</h2>
+    <span style="font-size:0.8rem;color:var(--color-muted)">{workflow.steps.length} steps total</span>
+  </div>
+
+  {workflow.steps.map((step) => {
+    const content = getStepContent(step);
+    const trust = step.trust_level;
+    const isGate = step.step_type === 'quality_gate';
+    const trustInfo = isGate
+      ? { label: 'Quality gate', className: 'trust-gate' }
+      : (trustLabels[trust] || { label: trust, className: '' });
+
+    const trustMessages = {
+      high:   'High trust output — scan for obvious errors, but this type of content is generally reliable.',
+      medium: 'Medium trust — use as a starting point. Verify key claims before including in an official document.',
+      low:    'Low trust — independently verify every specific claim. Do not rely on this output without checking.',
+    };
+
+    return (
+      <div
+        class={`step-card ${step.is_optional ? 'optional-shown' : ''}`}
+        data-step={step.order}
+        data-optional={step.is_optional ? 'true' : 'false'}
+      >
+        <div class="step-head" data-toggle="step">
+          <div class={`step-num ${isGate ? 'gate' : ''}`}>{step.order}</div>
+          <div class="step-title-group">
+            <div class="step-name">{step.name}</div>
+            <div class="step-desc">{step.description}</div>
+          </div>
+          <div class="step-badges">
+            <span class={`trust-badge ${trustInfo.className}`}>{trustInfo.label}</span>
+            {step.is_optional && <span class="optional-badge">Optional</span>}
+          </div>
+          <span class="step-toggle">▼</span>
+        </div>
+
+        <div class="step-body">
+          <div class={`trust-explainer ${isGate ? 'trust-gate' : `trust-${trust}`}`}>
+            <span class="trust-icon">
+              {isGate ? '◈' : (trust === 'high' ? '✓' : trust === 'medium' ? '⚠' : '✗')}
+            </span>
+            <span>
+              {isGate
+                ? 'Quality gate — this step verifies or challenges the previous output. Run it after completing the step it checks.'
+                : trustMessages[trust]}
+            </span>
+          </div>
+
+          {content && (
+            <div class="prompt-box">
+              <div class="prompt-toolbar">
+                <span>Prompt — {content.name}</span>
+                <button class="copy-btn" data-copy={step.order}>Copy prompt</button>
+              </div>
+              <div class="prompt-text" id={`prompt-${step.order}`} data-template={content.prompt_template}>
+                {content.prompt_template}
+              </div>
+            </div>
+          )}
+
+          {step.user_action_after && (
+            <div class="user-action">
+              <strong>Before you move on</strong>
+              {step.user_action_after}
+            </div>
+          )}
+
+          <a href="#workflow-feedback" class="step-feedback-link"
+             data-feedback-step={`Step ${step.order}: ${step.name}`}>
+            Feedback on this step →
+          </a>
+
+          {content && content.known_limitations && content.known_limitations.length > 0 && (
+            <details class="limitations" open>
+              <summary>Known limitations of this step</summary>
+              <ul>
+                {content.known_limitations.map((lim) => <li>{lim}</li>)}
+              </ul>
+            </details>
+          )}
+        </div>
+      </div>
+    );
+  })}
+
+  <!-- Feedback form -->
+  <div class="feedback-section" id="workflow-feedback">
+    <h3>How did this workflow work for you?</h3>
+    <p>Your feedback helps improve these workflows for APS staff. Takes 30 seconds.</p>
+    <form name="workflow-feedback" data-netlify="true" netlify-honeypot="bot-field" method="POST">
+      <input type="hidden" name="form-name" value="workflow-feedback" />
+      <input type="hidden" name="workflow" value={workflow.name} />
+      <input type="hidden" name="step" id="feedback-step-field" value="" />
+      <p class="hidden"><label>Don't fill this: <input name="bot-field" /></label></p>
+      <div class="feedback-step-indicator" id="feedback-step-indicator"></div>
+      <div class="feedback-radios">
+        <label class="feedback-radio-label">
+          <input type="radio" name="rating" value="Yes" required /> Yes, it worked well
+        </label>
+        <label class="feedback-radio-label">
+          <input type="radio" name="rating" value="Partly" /> Partly — needed adjusting
+        </label>
+        <label class="feedback-radio-label">
+          <input type="radio" name="rating" value="No" /> Not really
+        </label>
+      </div>
+      <textarea class="feedback-textarea" name="feedback"
+        placeholder="What would make it better? (optional)"></textarea>
+      <button type="submit" class="feedback-submit">Send feedback</button>
+    </form>
+  </div>
+
+
+</div>
+
+<script type="application/json" id="page-data" set:html={JSON.stringify({
+  workflowInputs: workflow.inputs_required,
+  skillGuidance:  workflow.skill_level_guidance,
+  stepOrders:     workflow.steps.map((s) => s.order),
+})}></script>
+
+<script>
+  const _pageData = JSON.parse(document.getElementById('page-data').textContent);
+  const workflowInputs = _pageData.workflowInputs;
+  const skillGuidance  = _pageData.skillGuidance;
+  const stepOrders     = _pageData.stepOrders;
+
+  let currentPlatform = localStorage.getItem('preferred_platform') || 'claude';
+
+  // ── Variable substitution ────────────────────────────────────────────────
+  function getVariables() {
+    const vars = {};
+    document.querySelectorAll('[data-var]').forEach(el => {
+      vars[el.getAttribute('data-var')] = el.value.trim();
+    });
+    workflowInputs.forEach(input => {
+      if (!vars[input.name] && input.default) vars[input.name] = input.default;
+    });
+    return vars;
+  }
+
+  function stripXmlTags(text) {
+    return text
+      .replace(/<role>\n?([\s\S]*?)\n?<\/role>/g, '$1')
+      .replace(/<task>\n?([\s\S]*?)\n?<\/task>/gs, '$1')
+      .replace(/<instructions>\n?([\s\S]*?)\n?<\/instructions>/gs, '$1')
+      .replace(/<draft>\n?([\s\S]*?)\n?<\/draft>/gs, '$1')
+      .replace(/<reference_documents>\n?([\s\S]*?)\n?<\/reference_documents>/gs, '$1')
+      .replace(/^\n+/, '').replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  function renderTemplate(template, vars) {
+    let result = template;
+    result = result.replace(/\{\{#if (\w+)\}\}([\s\S]*?)\{\{\/if\}\}/g, (_, v, c) => vars[v] ? c : '');
+    result = result.replace(/\{\{(\w+)\}\}/g, (_, v) => vars[v] || `{{${v}}}`);
+    if (currentPlatform !== 'claude') result = stripXmlTags(result);
+    return result;
+  }
+
+  function renderPromptHTML(template, vars) {
+    let result = template;
+    result = result.replace(/\{\{#if (\w+)\}\}([\s\S]*?)\{\{\/if\}\}/g, (_, v, c) => vars[v] ? c : '');
+    result = result.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    if (currentPlatform !== 'claude') {
+      result = result
+        .replace(/&lt;role&gt;\n?([\s\S]*?)\n?&lt;\/role&gt;/g, '$1')
+        .replace(/&lt;task&gt;\n?([\s\S]*?)\n?&lt;\/task&gt;/gs, '$1')
+        .replace(/&lt;instructions&gt;\n?([\s\S]*?)\n?&lt;\/instructions&gt;/gs, '$1')
+        .replace(/&lt;draft&gt;\n?([\s\S]*?)\n?&lt;\/draft&gt;/gs, '$1')
+        .replace(/&lt;reference_documents&gt;\n?([\s\S]*?)\n?&lt;\/reference_documents&gt;/gs, '$1')
+        .replace(/^\n+/, '').replace(/\n{3,}/g, '\n\n');
+    }
+    result = result.replace(/\{\{(\w+)\}\}/g, (_, v) => {
+      return vars[v] ? vars[v] : `<span class="var-highlight">{{${v}}}</span>`;
+    });
+    return result;
+  }
+
+  function updatePrompts() {
+    const vars = getVariables();
+    document.querySelectorAll('.prompt-text[data-template]').forEach(el => {
+      el.innerHTML = renderPromptHTML(el.getAttribute('data-template'), vars);
+    });
+  }
+
+  document.querySelectorAll('[data-var]').forEach(el => el.addEventListener('input', updatePrompts));
+  updatePrompts();
+
+  // ── Copy to clipboard ────────────────────────────────────────────────────
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const stepNum = btn.getAttribute('data-copy');
+      const promptEl = document.getElementById(`prompt-${stepNum}`);
+      if (!promptEl) return;
+      const plainText = renderTemplate(promptEl.getAttribute('data-template'), getVariables());
+      try {
+        await navigator.clipboard.writeText(plainText);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = plainText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 2000);
+    });
+  });
+
+  // ── Step accordion (one open at a time) ──────────────────────────────────
+  function closeAllSteps() {
+    document.querySelectorAll('.step-body').forEach(body => {
+      body.classList.remove('open');
+    });
+    document.querySelectorAll('.step-head').forEach(head => {
+      head.classList.remove('is-open');
+      const t = head.querySelector('.step-toggle');
+      if (t) t.textContent = '▼';
+    });
+  }
+
+  function openStep(card) {
+    const head = card.querySelector('.step-head');
+    const body = card.querySelector('.step-body');
+    if (!head || !body) return;
+    body.classList.add('open');
+    head.classList.add('is-open');
+    const t = head.querySelector('.step-toggle');
+    if (t) t.textContent = '▲';
+  }
+
+  function openFirstVisibleStep() {
+    const firstCard = document.querySelector('.step-card:not(.optional-hidden)');
+    if (firstCard) openStep(firstCard);
+  }
+
+  document.querySelectorAll('.step-head[data-toggle="step"]').forEach(head => {
+    head.addEventListener('click', () => {
+      const card = head.closest('.step-card');
+      const body = head.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      closeAllSteps();
+      if (!isOpen) openStep(card);
+    });
+  });
+
+  // ── Skill level selector ─────────────────────────────────────────────────
+  let currentSkill = 'intermediate';
+
+  function applySkillLevel(level) {
+    currentSkill = level;
+    const guidance = skillGuidance[level];
+    if (!guidance) return;
+
+    const skipped = guidance.skip_steps || [];
+
+    document.querySelectorAll('.step-card').forEach(card => {
+      const stepNum = parseInt(card.getAttribute('data-step'));
+      const isOptional = card.getAttribute('data-optional') === 'true';
+
+      if (level === 'beginner' && skipped.includes(stepNum)) {
+        card.classList.add('optional-hidden');
+        card.classList.remove('optional-shown');
+      } else {
+        card.classList.remove('optional-hidden');
+        if (isOptional) card.classList.add('optional-shown');
+        else card.classList.remove('optional-shown');
+      }
+    });
+
+    // Sync progress bar dots
+    document.querySelectorAll('.progress-step').forEach(dot => {
+      const stepNum = parseInt(dot.getAttribute('data-progress-step'));
+      const card = document.querySelector(`.step-card[data-step="${stepNum}"]`);
+      dot.style.display = (card && card.classList.contains('optional-hidden')) ? 'none' : '';
+    });
+
+    // Update skill notes
+    document.querySelectorAll('.skill-note').forEach(n => n.classList.remove('visible'));
+    const note = document.getElementById(`skill-note-${level}`);
+    if (note) note.classList.add('visible');
+
+    // Update buttons
+    document.querySelectorAll('.skill-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-level') === level);
+    });
+
+    // Reset accordion to first step
+    closeAllSteps();
+    openFirstVisibleStep();
+    initProgress();
+  }
+
+  document.querySelectorAll('.skill-btn').forEach(btn => {
+    btn.addEventListener('click', () => applySkillLevel(btn.getAttribute('data-level')));
+  });
+
+  // ── Progress bar ─────────────────────────────────────────────────────────
+  function setProgressState(stepNum, state) {
+    const dot = document.querySelector(`.progress-step[data-progress-step="${stepNum}"]`);
+    if (!dot) return;
+    dot.classList.remove('pending', 'active', 'done');
+    dot.classList.add(state);
+  }
+
+  function markStepDone(stepNum) {
+    setProgressState(stepNum, 'done');
+    const visible = Array.from(document.querySelectorAll('.progress-step:not([style*="display: none"])'));
+    const idx = visible.findIndex(el => el.getAttribute('data-progress-step') === String(stepNum));
+    if (idx !== -1 && idx + 1 < visible.length) {
+      const next = visible[idx + 1];
+      if (!next.classList.contains('done')) {
+        setProgressState(next.getAttribute('data-progress-step'), 'active');
+      }
+    }
+  }
+
+  function initProgress() {
+    const visible = Array.from(document.querySelectorAll('.progress-step:not([style*="display: none"])'));
+    visible.forEach((dot, i) => {
+      if (!dot.classList.contains('done')) {
+        setProgressState(dot.getAttribute('data-progress-step'), i === 0 ? 'active' : 'pending');
+      }
+    });
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      markStepDone(parseInt(btn.getAttribute('data-copy')));
+    }, true);
+  });
+
+  // ── Platform selector ────────────────────────────────────────────────────
+  function applyPlatform(platform) {
+    currentPlatform = platform;
+    localStorage.setItem('preferred_platform', platform);
+    document.querySelectorAll('.platform-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-platform') === platform);
+    });
+    updatePrompts();
+  }
+
+  document.querySelectorAll('.platform-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyPlatform(btn.getAttribute('data-platform')));
+  });
+
+  // ── Per-step feedback links ──────────────────────────────────────────────
+  document.querySelectorAll('.step-feedback-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const label = link.getAttribute('data-feedback-step');
+      const field = document.getElementById('feedback-step-field');
+      const indicator = document.getElementById('feedback-step-indicator');
+      if (field) field.value = label;
+      if (indicator) indicator.textContent = `Feedback for: ${label}`;
+    });
+  });
+
+  // ── Initialise ───────────────────────────────────────────────────────────
+  applySkillLevel('intermediate');
+  applyPlatform(currentPlatform);
+</script>
+
+</body>
+</html>

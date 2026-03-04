@@ -1,0 +1,48 @@
+{
+  "id": "BB-PLR-002",
+  "name": "Plain Language: Rewrite",
+  "description": "Produces the plain language version of the source document, applying the audit findings from Step 1.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-05",
+
+  "block_type": "generation",
+  "domains": ["communications"],
+
+  "prompt_template": "<task>\nContinuing from the complexity audit we've just completed in this conversation, now rewrite the source text in plain language.\n\nApply these plain language principles:\n- Put the most important information first\n- Use short sentences (aim for under 20 words average)\n- Use active voice (\"the department will pay\" not \"payment will be made\")\n- Replace jargon with plain alternatives identified in the audit\n- Use 'you' and 'we' where appropriate for the audience\n- Use headings and bullet points to break up dense text\n- Define any technical terms that must be kept\n\nTarget length: {{length}}\n\nAfter the rewrite, provide:\n- **What changed**: the 3–4 biggest changes made and why\n- **What was kept**: any technical terms or precise language retained, and why\n- **Verify**: any claims, statistics, or legal references that should be checked against the source document\n</task>",
+
+  "variables": [
+    {
+      "name": "length",
+      "description": "Target length for the rewritten document",
+      "type": "text",
+      "required": false,
+      "default": "same length as the original or shorter",
+      "placeholder": "e.g. 1 page, 300 words, or 'same as original'"
+    }
+  ],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Read the rewrite aloud — if it sounds natural, that's a good sign. Plain language should be easy to say, not just easy to read. If any section sounds odd, rewrite that part yourself.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Check the 'What was kept' section carefully. If the model retained technical terms that should have been simplified, note them and ask for alternatives in your next message.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "For high-stakes documents (consumer rights, legal obligations, medical information), have a subject matter expert review the plain language version to confirm no meaning was lost or changed.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["plain-language", "rewrite", "communications", "accessibility"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Plain language rewrites can sometimes lose technical precision — compare carefully with the source document.",
+    "The model may introduce grammatical errors or awkward phrasing — always do a human read before publishing.",
+    "For documents with legal or regulatory effect, plain language versions may need a legal review and should carry a note that the original document governs."
+  ]
+}

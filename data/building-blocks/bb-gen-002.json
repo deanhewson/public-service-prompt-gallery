@@ -1,0 +1,70 @@
+{
+  "id": "BB-GEN-002",
+  "name": "Briefing Note: Structure",
+  "description": "Proposes a briefing note structure using APS conventions, tailored to the specific audience and purpose.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-04",
+
+  "block_type": "generation",
+  "domains": ["policy_development"],
+
+  "prompt_template": "<role>\nYou are a senior APS policy analyst preparing a briefing note for {{audience}} in {{agency}}.\n</role>\n\n<task>\nContinuing from the research and key issues we've just developed, now propose a structure for a {{length}} briefing note on: {{topic}}\n\nAudience: {{audience}}\nPurpose: {{purpose}}\n\nFrom the issues list above, pay particular attention to anything flagged as a sensitivity or information gap — these will shape where the brief needs to be most careful.\n\nUse standard APS briefing note conventions. Typical sections include:\n- Purpose (1–2 sentences: why this brief exists)\n- Background (concise context the reader needs)\n- Key issues / Analysis (the substance of the brief)\n- Options or Recommendations (if the purpose calls for a decision)\n- Next steps / Action required\n\nAdapt the structure to suit this specific audience and purpose. For each proposed section:\n- Provide the section heading\n- Write 2–3 sentences on what it will cover and why it matters\n- Note the approximate word count or length\n\nKeep the total proposed brief within {{length}}.\n</task>",
+
+  "variables": [
+    {
+      "name": "agency",
+      "description": "The agency or portfolio context",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "topic",
+      "description": "The policy topic for the briefing note",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "audience",
+      "description": "Who will read this briefing note",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "purpose",
+      "description": "What the brief is for",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "length",
+      "description": "Target length of the briefing note",
+      "type": "text",
+      "required": false,
+      "default": "2 pages"
+    }
+  ],
+
+  "trust_level": "high",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Skip this step if you're in a hurry — jump straight from research to drafting. The structure step is most useful when you need to present a complex topic that requires a non-standard layout.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Confirm the proposed structure before drafting. Adjust headings or emphasis based on what you know about your reader's preferences.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Use the structure step to get explicit sign-off from your supervisor on the approach before investing time in a full draft.",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["structure", "briefing-note", "generation", "planning"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Structure suggestions follow general APS conventions — your agency may have a specific template that takes precedence.",
+    "The model doesn't know your reader's personal preferences or communication style."
+  ]
+}
