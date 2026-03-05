@@ -46,6 +46,7 @@ Current state as of March 2026. Live at public-service-prompt-gallery.netlify.ap
 ### Selectors
 - [x] Experience level selector — Getting started / Full workflow / Expert mode
 - [x] AI platform selector — Claude / ChatGPT / Copilot / Other
+- [ ] Custom instructions section — collapsible, platform-aware; shows suggested persistent instructions (system prompt / custom instructions / background context) for the selected AI tool, tailored to the specific workflow; includes setup guidance and copy button
 - [x] Both selections persist in localStorage across page loads
 - [x] Skill level note shown below selectors (guidance for selected level)
 
@@ -119,6 +120,7 @@ Current state as of March 2026. Live at public-service-prompt-gallery.netlify.ap
 
 ## Data / prompts
 
+- [ ] `custom_instructions` field in all workflow JSON files — platform-specific content (claude / chatgpt / copilot / other) varying by workflow domain and task type; format and tone suited to each platform's custom instructions mechanism
 - [x] All prompt templates use in-conversation step chaining (no paste-back of previous output)
 - [x] Steps 2+ reference prior responses naturally ("continuing from the analysis we've just developed...")
 - [x] External docs guidance in relevant steps — specifies publicly available docs only, not OFFICIAL: Sensitive
@@ -145,6 +147,7 @@ Current state as of March 2026. Live at public-service-prompt-gallery.netlify.ap
 - [ ] Compliance Review workflow
 - [ ] Building block browser (browse blocks independently)
 - [ ] Quality gates browseable separately
+- [ ] Custom instructions — `custom_instructions` data field + collapsible UI section per workflow, platform-specific
 
 ### Phase 3 — Discoverability
 - [ ] Search and filter by domain, complexity, time

@@ -63,6 +63,7 @@
 - [ ] Remaining workflows (Data Summary, Compliance Review)
 - [ ] Building block browser
 - [ ] Quality gates browseable separately
+- [ ] Custom instructions per workflow — add `custom_instructions` field to each workflow JSON, with platform-specific content (Claude / ChatGPT / Copilot / Other) suited to each workflow's domain and output type; display in a collapsible section on workflow pages with copy button and setup guidance
 - [ ] Agency-specific guidance per workflow — optional "supercharge it for your agency" callout
   - QTBs: standard committee phrasing, how to add portfolio/minister context, common question types per committee
   - Briefing Notes: agency briefing template format, how to add standing background context
