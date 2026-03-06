@@ -322,7 +322,33 @@ A complete end-to-end sequence composed of building blocks and quality gates.
     "Cannot access current departmental data, internal reports, or classified information.",
     "Statistics and program details may be outdated or fabricated — always verify.",
     "The draft will follow general APS conventions but may not match your agency's specific template or style guide."
-  ]
+  ],
+
+  "custom_instructions": {
+    "description": "Suggested persistent instructions to configure in the user's AI tool before starting this workflow. Reduces the need to re-establish context at each step. Content and format vary by platform.",
+    "by_platform": {
+      "claude": {
+        "format": "Project Instructions (Claude.ai Projects) or system prompt",
+        "setup_guidance": "In Claude.ai, create a Project for this workflow type and paste these instructions into the Project Instructions field. They will apply to every conversation in the project.",
+        "content": "{{workflow-specific system prompt for Claude — e.g., APS policy analyst persona, PGPA accountability framing, APS writing conventions}}"
+      },
+      "chatgpt": {
+        "format": "Custom Instructions — 'How would you like ChatGPT to respond?'",
+        "setup_guidance": "Go to Settings → Custom Instructions and paste this into the second field ('How would you like ChatGPT to respond?'). This will apply to all your ChatGPT conversations until changed.",
+        "content": "{{workflow-specific custom instructions for ChatGPT — plain prose, no XML, adapted to ChatGPT's instruction style}}"
+      },
+      "copilot": {
+        "format": "Session context — paste at the start of a new Copilot chat",
+        "setup_guidance": "Microsoft Copilot (M365) does not support persistent custom instructions. Paste this at the start of each new chat session to establish context.",
+        "content": "{{workflow-specific context block for Copilot — plain markdown, reference org files where relevant}}"
+      },
+      "other": {
+        "format": "Session context — paste at the start of a new conversation",
+        "setup_guidance": "Paste this at the beginning of each new session with your AI tool to establish context and constraints for the workflow.",
+        "content": "{{plain-text workflow context for generic tools — no platform-specific formatting}}"
+      }
+    }
+  }
 }
 ```
 
