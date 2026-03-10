@@ -100,6 +100,8 @@ The atomic unit. A single reusable prompt that can be composed into workflows.
   
   "tags": ["role", "policy", "reusable", "prefix"],
   "contributed_by": null,
+  "source": "upstream",
+  "status": "published",
   "known_limitations": [
     "Role assignment improves tone and framing but does not give the model actual APS experience or access to internal knowledge.",
     "The model may still produce content that sounds authoritative but is fabricated — role prompts increase this risk if not paired with verification steps."
@@ -152,6 +154,9 @@ A specialised building block designed to verify, challenge, or validate output f
   },
   
   "tags": ["verification", "trust", "factual", "essential"],
+  "contributed_by": null,
+  "source": "upstream",
+  "status": "published",
   "known_limitations": [
     "The model is checking its own work — it may not catch its own hallucinations. This gate surfaces claims for HUMAN verification, not AI self-verification.",
     "Cannot actually verify claims against external sources in a standard chat interface. The value is in making claims explicit so the officer can check them."
@@ -318,6 +323,8 @@ A complete end-to-end sequence composed of building blocks and quality gates.
   
   "tags": ["policy", "briefing", "core", "popular"],
   "contributed_by": null,
+  "source": "upstream",
+  "status": "published",
   "known_limitations": [
     "Cannot access current departmental data, internal reports, or classified information.",
     "Statistics and program details may be outdated or fabricated — always verify.",
@@ -628,7 +635,9 @@ CREATE TABLE building_blocks (
     last_reviewed DATE,
     known_limitations TEXT[],     -- array of strings
     tags TEXT[],
-    contributed_by TEXT
+    contributed_by TEXT,
+    status TEXT DEFAULT 'published',  -- 'draft' | 'published' | 'archived'
+    source TEXT DEFAULT 'upstream'    -- 'upstream' | 'agency'
 );
 
 CREATE TABLE quality_gates (
@@ -642,7 +651,9 @@ CREATE TABLE quality_gates (
     version TEXT DEFAULT '1.0',
     last_reviewed DATE,
     known_limitations TEXT[],
-    tags TEXT[]
+    tags TEXT[],
+    status TEXT DEFAULT 'published',  -- 'draft' | 'published' | 'archived'
+    source TEXT DEFAULT 'upstream'    -- 'upstream' | 'agency'
 );
 
 CREATE TABLE workflows (
@@ -658,7 +669,9 @@ CREATE TABLE workflows (
     last_reviewed DATE,
     known_limitations TEXT[],
     tags TEXT[],
-    contributed_by TEXT
+    contributed_by TEXT,
+    status TEXT DEFAULT 'published',  -- 'draft' | 'published' | 'archived'
+    source TEXT DEFAULT 'upstream'    -- 'upstream' | 'agency'
 );
 
 CREATE TABLE workflow_steps (

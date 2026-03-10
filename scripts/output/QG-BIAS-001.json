@@ -1,0 +1,53 @@
+{
+  "id": "QG-BIAS-001",
+  "name": "Balance and Perspectives",
+  "description": "Checks for missing stakeholder perspectives, imbalance, or assumptions in a draft. Ensures that the content is balanced and considers multiple viewpoints.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-10",
+  "gate_type": "bias_balance",
+  "severity": "recommended",
+  "prompt_template": "<instructions>\nReview the following draft for balance, ensuring that it considers multiple stakeholder perspectives and avoids assumptions or biases. Identify any missing viewpoints and highlight areas where additional context would improve the content.\n\nFor each issue identified, provide a brief explanation of why it is important to address and suggest how to incorporate the missing perspective.\n\nPresent your findings in a table format with columns: Issue | Explanation | Suggested Improvement\n\nAt the end, provide an OVERALL BALANCE ASSESSMENT:\n- Overall balance level: LOW / MEDIUM / HIGH\n- Key areas for improvement: (list)\n</instructions>\n\n<draft>\n{{draft_content}}\n</draft>",
+  "variables": [
+    {
+      "name": "draft_content",
+      "description": "The draft text to review for balance and perspectives.",
+      "type": "long_text",
+      "required": true
+    }
+  ],
+  "trust_pattern": "review_and_suggest",
+  "compliance_frameworks": [],
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Use this gate to ensure that the draft considers multiple perspectives. Focus on identifying any obvious imbalances or missing viewpoints.",
+      "prompt_modification": "Add to the end of the prompt: 'If you find no issues, state clearly why the content is balanced and well-rounded.'"
+    },
+    "intermediate": {
+      "notes": "In addition to finding imbalances, suggest specific ways to improve the balance. This may involve adding new sections or rephrasing existing ones.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Combine with other quality gates for a comprehensive review. Consider running this gate multiple times as you revise and refine the draft, ensuring that each iteration improves the balance.",
+      "prompt_modification": null
+    }
+  },
+  "platform_notes": {
+    "claude": "XML tags are processed natively. Use as-is.",
+    "chatgpt": "Remove the <instructions> and <draft> XML tags. Paste instructions as plain text followed by the draft.",
+    "copilot": "Paste instructions as plain text. The <draft> section can be replaced with: 'Here is the draft to review:' followed by the content.",
+    "govai_chat": "Pending — test when available (April 2026 trial)."
+  },
+  "tags": [
+    "balance",
+    "perspectives",
+    "verification",
+    "essential"
+  ],
+  "contributed_by": null,
+  "source": "upstream",
+  "status": "draft",
+  "known_limitations": [
+    "The model may not always identify all stakeholder perspectives, especially if they are complex or nuanced.",
+    "It is important to verify the suggested improvements with stakeholders to ensure that their viewpoints are accurately represented."
+  ]
+}

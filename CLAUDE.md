@@ -15,8 +15,37 @@ Primary output: a web app deployed to Netlify with static JSON data files.
 See architecture doc for JSON schemas, enums, and data model.
 
 ## Current Phase
-MVP: Build one complete end-to-end workflow (Briefing Note) as proof of concept,
-visible on Netlify.
+**5 workflows live.** Moving toward contribution-ready v1.
+
+Live workflows: Briefing Note, QT Brief, Stakeholder Analysis, Plain Language Rewrite,
+Meeting Preparation. Full UI built: trust indicators, skill level toggle, platform
+selector, progress bar, per-step limitations, Netlify feedback forms.
+
+See `notes/feature-list.md` for complete current feature state.
+
+**Weekend sprint priorities (in order):**
+1. Public site credibility — landing page doing real work, one fully navigable worked example
+2. Contribution process — GitHub issue template (non-technical) + CONTRIBUTING.md (technical)
+3. Seed content — 2-3 more building blocks and quality gates fully populated in JSON
+4. Schema documentation for contributors
+
+**Next data priority:** Review and move `scripts/output/` building blocks and quality gates
+into `data/` after human editing pass. `custom_instructions` field is Phase 2 — design
+is in the architecture doc, build after going public.
+
+## Multi-Agency Architecture
+The project is designed as a shared public upstream library that agencies can fork and
+extend with their own private content.
+
+**Schema additions (not yet in data files — schema docs only for now):**
+- `source` field on all entities: `"upstream"` | `"agency"` — default `"upstream"` for this repo
+- `status` field on all entities: `"draft"` | `"published"` | `"archived"` — default `"published"` for existing content
+
+Do not add these fields to existing workflow JSON files yet. Add to schema docs
+(`notes/aps-genai-prompt-library-architecture.md`) first. Apply to new data files going forward.
+
+**Agency deployment path:** Azure Static Web Apps (Entra ID auth, Australian data
+residency, low attack surface for read-only static site).
 
 ## Tech Stack
 - **Frontend**: Astro (static site generator)
@@ -25,11 +54,21 @@ visible on Netlify.
 - **Notes**: Obsidian vault in `notes/`
 - **Prompt templates**: `{{variable_name}}` syntax throughout
 
+## Tooling Split
+- **Claude Projects** (this project) — planning, architecture decisions, content strategy
+- **Claude Code** — implementation: code, JSON data files, config, file edits
+- **LM Studio** — batch content generation (building blocks, prompt drafts, seed data)
+
+**Local LLM setup:** LM Studio running Qwen 2.5 14B Instruct (Q4_K_M) via
+OpenAI-compatible API at `http://localhost:1234/v1`. Used for content generation tasks
+separate from Claude Code sessions. Not used for code.
+
 ## Key Files & Structure
 - `notes/aps-genai-prompt-library-research-1.md` — Research, gap analysis, trust model, skill matrix
 - `notes/aps-genai-prompt-library-architecture.md` — JSON schemas, seed data, UI/UX patterns
 - `notes/project-plan.md` — Planning doc, decisions log, open questions
-- `data/` — JSON content files (to be created)
+- `notes/feature-list.md` — Complete current feature state (authoritative)
+- `data/` — JSON content files
 - `CLAUDE.md` — This file: project context for Claude Code sessions
 
 ## Conventions

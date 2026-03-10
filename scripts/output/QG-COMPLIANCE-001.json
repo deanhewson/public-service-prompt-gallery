@@ -1,0 +1,58 @@
+{
+  "id": "QG-COMPLIANCE-001",
+  "name": "PGPA/PSPF/Privacy Check",
+  "description": "Checks a draft against PGPA Act, PSPF, Privacy Act, and APS Values obligations.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-10",
+  "gate_type": "compliance",
+  "severity": "required",
+  "prompt_template": "<instructions>\nReview the following draft against the Public Governance, Performance and Accountability Act (PGPA), the Protective Security Policy Framework (PSPF), the Privacy Act, and APS Values. Ensure it complies with all relevant obligations.\n\nProvide a structured output:\n1. **Compliance Issues**: List any identified issues or areas of non-compliance.\n2. **Recommendations for Correction**: Provide actionable steps to address each issue.\n3. **Risk Assessment**: Assign a risk level (Low, Medium, High) to the compliance issues based on potential impact and likelihood.\n4. **Additional Notes**: Any other relevant observations or considerations.\n\n<draft>\n{{draft_content}}\n</draft>",
+  "variables": [
+    {
+      "name": "draft_content",
+      "description": "The draft text to review for compliance.",
+      "type": "long_text",
+      "required": true
+    }
+  ],
+  "trust_pattern": "structured_review_and_feedback",
+  "compliance_frameworks": [
+    "pgpa_act",
+    "pspf",
+    "privacy_act",
+    "aps_values"
+  ],
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Use this gate to ensure basic compliance checks are met. Focus on high-level issues and common areas of non-compliance.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Incorporate more detailed checks, especially for specific sections or clauses within the PGPA Act, PSPF, Privacy Act, and APS Values.",
+      "prompt_modification": "Add to the prompt: 'Provide a detailed analysis of each identified issue, including relevant legislation excerpts.'"
+    },
+    "advanced": {
+      "notes": "For comprehensive reviews, specify the particular legislative provisions most relevant to your content area. The model can analyse more precisely when told which sections apply.",
+      "prompt_modification": "Add to the prompt: 'Pay particular attention to {{specific_provisions}} and flag any tension between them and the draft's intent or language.'"
+    }
+  },
+  "platform_notes": {
+    "claude": "XML tags are processed natively. Use as-is.",
+    "chatgpt": "Remove XML tags and convert to plain instructions: 'Review the following draft for PGPA Act, PSPF, Privacy Act, and APS Values compliance...'",
+    "copilot": "Use as system-level instructions where possible, or prefix to your prompt.",
+    "govai_chat": "Pending — test when available (April 2026 trial)."
+  },
+  "tags": [
+    "compliance",
+    "pgpa_act",
+    "privacy",
+    "aps_values"
+  ],
+  "known_limitations": [
+    "The model's understanding of legislation and policies is based on its training data, which may not be up-to-date with the latest amendments.",
+    "The review does not replace human oversight or legal advice. It provides a preliminary check that should be verified by an officer."
+  ],
+  "contributed_by": null,
+  "source": "upstream",
+  "status": "draft"
+}

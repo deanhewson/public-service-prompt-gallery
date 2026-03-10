@@ -1,0 +1,52 @@
+{
+  "id": "QG-COMPLETE-001",
+  "name": "Completeness Check",
+  "description": "Verifies all required elements of a document or analysis are present, ensuring no critical sections or data points are missing.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-10",
+  "gate_type": "completeness",
+  "severity": "recommended",
+  "prompt_template": "<instructions>\nReview the following draft to ensure all required elements are included. These typically include:\n\n1. Executive Summary or Introduction\n2. Objectives/Scope\n3. Methodology/Data Collection\n4. Analysis of Findings\n5. Recommendations\n6. Conclusion\n7. References/Bibliography\n8. Appendices (if applicable)\n\nFor each section, indicate whether it is present and complete ('Yes'/'No'). If 'No', briefly explain what is missing.\n\nPresent your findings in a table format:\n| Section | Present? | Notes |\n|---------|----------|-------|\n\nAt the end, provide an OVERALL COMPLETENESS SCORE out of 10 and a brief summary of any critical issues that need addressing before final approval.\n</instructions>\n\n<draft>\n{{draft_content}}\n</draft>",
+  "variables": [
+    {
+      "name": "draft_content",
+      "description": "The draft text to review for completeness.",
+      "type": "long_text",
+      "required": true
+    }
+  ],
+  "trust_pattern": "structured_review_and_scoring",
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Use this gate as a checklist. It helps ensure no major sections are overlooked, even for simpler documents.",
+      "prompt_modification": "Add to the end of your prompt: 'Please also note if any section is incomplete but can be easily filled in with minimal effort.'"
+    },
+    "intermediate": {
+      "notes": "Use after initial review. Focus on ensuring all critical sections are present and adequately detailed.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Chain this gate with the Factual Accuracy Gate for comprehensive verification. Consider running it twice — once before, once after revisions — to catch omissions introduced during editing.",
+      "prompt_modification": "Add to the end of your prompt: 'Please also evaluate if any additional sections or data points are recommended based on best practices in {{domain}}.'"
+    }
+  },
+  "platform_notes": {
+    "claude": "XML tags are processed natively. Use as-is.",
+    "chatgpt": "Remove the <instructions> and <draft> XML tags. Paste instructions as plain text followed by the draft.",
+    "copilot": "Paste instructions as plain text. The <draft> section can be replaced with: 'Here is the draft to review:' followed by the content.",
+    "govai_chat": "Pending — test when available (April 2026 trial)."
+  },
+  "tags": [
+    "verification",
+    "completeness",
+    "essential",
+    "review"
+  ],
+  "contributed_by": null,
+  "source": "upstream",
+  "status": "draft",
+  "known_limitations": [
+    "The gate may not catch subtle omissions or sections that are technically present but lack depth.",
+    "It relies on the user to specify the required elements accurately. Misalignment between expectations and what's checked can lead to false positives."
+  ]
+}

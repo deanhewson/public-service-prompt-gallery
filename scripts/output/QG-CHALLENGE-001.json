@@ -1,0 +1,77 @@
+{
+  "id": "QG-CHALLENGE-001",
+  "name": "Red-Team Challenge",
+  "description": "Sceptical senior executive review — stress-tests a draft from an adversarial perspective, identifying weaknesses and potential issues.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-10",
+  "gate_type": "challenge",
+  "severity": "recommended",
+  "prompt_template": "<instructions>\nYou are a senior executive with extensive experience in {{agency}} and {{policy_area}}, known for your critical thinking and scepticism. Your task is to rigorously challenge the following draft from an adversarial perspective. Identify potential weaknesses, inconsistencies, or areas that could be exploited. Consider political, legal, operational, and public relations implications.\n\nProvide a detailed critique with the following sections:\n1. **Summary of Concerns**: A concise overview of your main issues.\n2. **Detailed Critique**: Break down each section of the draft into points where you see potential weaknesses or areas that need further justification/support.\n3. **Recommendations for Improvement**: Specific actionable suggestions to strengthen the document.\n4. **Risk Assessment**: Evaluate the overall risk level (Low/Medium/High) and justify your assessment.\n\n<draft>\n{{draft_content}}\n</draft>",
+  "variables": [
+    {
+      "name": "agency",
+      "description": "The agency or portfolio context",
+      "type": "text",
+      "required": true,
+      "examples": [
+        "Department of Social Services",
+        "Department of Finance",
+        "Department of Health and Aged Care"
+      ]
+    },
+    {
+      "name": "policy_area",
+      "description": "The specific policy domain",
+      "type": "text",
+      "required": true,
+      "examples": [
+        "aged care reform",
+        "digital government",
+        "Indigenous affairs"
+      ]
+    },
+    {
+      "name": "draft_content",
+      "description": "The draft text to challenge",
+      "type": "long_text",
+      "required": true
+    }
+  ],
+  "trust_pattern": "adversarial_review",
+  "compliance_frameworks": [
+    "pgpa_act"
+  ],
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "For users new to GenAI — this gate provides a structured approach to identifying potential weaknesses in your draft. It's useful for initial reviews or when you're short on time.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Use after any substantive drafting step. Pay particular attention to the Risk Assessment section and consider how it impacts your broader strategy or project goals.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Chain this with other quality gates like Factual Accuracy and Bias for comprehensive verification. Consider running this gate twice — once on the draft, once on the revised version — to catch introduced errors.",
+      "prompt_modification": "Add at the end of the prompt: 'Also consider how your critique might be perceived by stakeholders or opponents. Provide suggestions for addressing any potential backlash.'"
+    }
+  },
+  "platform_notes": {
+    "claude": "XML tags are processed natively. Use as-is.",
+    "chatgpt": "Remove the <instructions> and <draft> XML tags. Paste instructions as plain text followed by the draft.",
+    "copilot": "Paste instructions as system-level comments or prefix to your prompt, with 'Here is the draft to review:' before the content.",
+    "govai_chat": "Pending — test when available (April 2026 trial)."
+  },
+  "tags": [
+    "challenge",
+    "red-team",
+    "adversarial",
+    "essential"
+  ],
+  "contributed_by": null,
+  "source": "upstream",
+  "status": "draft",
+  "known_limitations": [
+    "The model is simulating an adversarial review — it may not catch all real-world issues or nuances that a human red-team expert would.",
+    "This gate provides a critique but does not replace the need for human oversight and final sign-off."
+  ]
+}

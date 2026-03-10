@@ -1,0 +1,53 @@
+{
+  "id": "QG-TONE-001",
+  "name": "Audience Fit",
+  "description": "Validates tone, jargon level, and appropriateness for the intended reader to ensure communication is effective and accessible.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-10",
+  "gate_type": "tone_audience",
+  "severity": "recommended",
+  "prompt_template": "<instructions>\nReview the following draft for tone, jargon level, and appropriateness for the intended audience. Provide a detailed assessment with specific examples.\n\nFor each of these aspects, categorise as follows:\n- **MATCHES**: The content aligns well with the target reader's expectations.\n- **NEEDS ADJUSTMENT**: Minor changes needed to improve clarity or tone.\n- **REQUIRES SIGNIFICANT REVISION**: Major adjustments required for better fit.\n\nProvide a summary of your findings and recommendations, including specific areas that need improvement.\n</instructions>\n\n<draft_content>{{draft_content}}</draft_content>",
+  "variables": [
+    {
+      "name": "draft_content",
+      "description": "The draft text to review.",
+      "type": "long_text",
+      "required": true
+    }
+  ],
+  "trust_pattern": "structured_review",
+  "compliance_frameworks": [],
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Beginners should focus on identifying obvious mismatches in tone or jargon. Use the output to guide simple adjustments.",
+      "prompt_modification": "Add: 'If you find any issues, suggest straightforward changes that can be implemented immediately.'"
+    },
+    "intermediate": {
+      "notes": "Intermediate users should provide nuanced feedback and consider how different sections of the text might impact various readers within the target audience.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "Advanced users should conduct a thorough review, including testing with real or hypothetical members of the intended audience to refine recommendations.",
+      "prompt_modification": "Add: 'Consider how different sections might impact various readers within the target audience. Provide specific examples and actionable steps for improvement.'"
+    }
+  },
+  "platform_notes": {
+    "claude": "XML tags are processed natively. Use as-is.",
+    "chatgpt": "Remove XML tags and convert to plain instructions: 'Review the following draft...'",
+    "copilot": "Use as system-level instructions where possible, or prefix to your prompt.",
+    "govai_chat": "Pending — test when available (April 2026 trial)."
+  },
+  "tags": [
+    "audience",
+    "tone",
+    "compliance",
+    "essential"
+  ],
+  "known_limitations": [
+    "The model's understanding of 'appropriate' tone may not perfectly align with APS guidelines or specific agency conventions.",
+    "This gate does not replace human review, especially for sensitive content that requires expert judgment."
+  ],
+  "contributed_by": null,
+  "source": "upstream",
+  "status": "draft"
+}
