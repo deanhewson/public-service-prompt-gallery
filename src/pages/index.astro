@@ -148,13 +148,6 @@
       padding: 48px 0 40px;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-
     .hero h2 {
       font-size: 1.7rem;
       margin: 0 0 16px;
@@ -168,31 +161,61 @@
     }
 
     .hero-howto {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--color-border);
     }
 
     .hero-howto h4 {
-      margin: 0 0 12px;
-      font-size: 0.9rem;
+      margin: 0 0 14px;
+      font-size: 0.75rem;
       font-weight: 700;
-    }
-
-    .hero-howto ol {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    .hero-howto li {
-      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--color-muted);
-      margin-bottom: 10px;
-      line-height: 1.55;
     }
 
-    .hero-howto li:last-child { margin-bottom: 0; }
+    .howto-steps {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .howto-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .howto-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .howto-step p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      line-height: 1.45;
+    }
+
+    .howto-arrow {
+      color: var(--color-border);
+      font-size: 1rem;
+      flex-shrink: 0;
+      padding: 4px 4px 0;
+    }
 
     .security-notice {
       background: var(--color-primary-light);
@@ -402,7 +425,9 @@
     @media (max-width: 680px) {
       .method-points { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hero-grid { grid-template-columns: 1fr; }
+      .howto-steps { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .howto-arrow { display: none; }
+      .howto-step { flex-direction: row; text-align: left; }
     }
   </style>
 </head>
@@ -445,33 +470,45 @@
 
 <div class="container">
   <div class="hero">
-    <div class="hero-grid">
-      <div class="hero-main">
-        <h2>Test and refine, not ask and hope.</h2>
-        <p>
-          Most GenAI guidance gives you prompts. This gives you a process. Each workflow
-          breaks a complex APS task into steps, with quality checks built in: claim
-          verification, adversarial review, compliance checking. You bring the expertise
-          and judgment. AI does the drafting and stress-testing.
-        </p>
-        <p>
-          Built for Australian Public Service staff using generative AI tools (Claude, ChatGPT,
-          Copilot). Free, no login required, no information saved.
-        </p>
-      </div>
-      <div class="hero-howto">
-        <h4>How to use this site</h4>
-        <ol>
-          <li>Pick a workflow below that matches your task.</li>
-          <li>At the top of the workflow page, choose your experience level and AI tool.</li>
-          <li>Read the first step, then copy its prompt into your AI tool.</li>
-          <li>Review the output, copy the next step's prompt, and keep going in the same conversation.</li>
-        </ol>
-      </div>
-    </div>
+    <h2>Test and refine, not ask and hope.</h2>
+    <p>
+      Most GenAI guidance gives you prompts. This gives you a process. Each workflow
+      breaks a complex APS task into steps, with quality checks built in: claim
+      verification, adversarial review, compliance checking. You bring the expertise
+      and judgment. AI does the drafting and stress-testing.
+    </p>
+    <p>
+      Built for Australian Public Service staff using generative AI tools (Claude, ChatGPT,
+      Copilot). Free, no login required, no information saved.
+    </p>
 
     <div class="security-notice">
-      <strong>About AI tools and classification:</strong> Follow agency guidance on what information classification you can use in public or agency provided AI tools.
+      <strong>About AI tools and classification:</strong> Follow agency guidance on what information classification you can use in public or agency-provided AI tools.
+    </div>
+
+    <div class="hero-howto">
+      <h4>How to use this site</h4>
+      <div class="howto-steps">
+        <div class="howto-step">
+          <span class="howto-num">1</span>
+          <p>Pick a workflow below that matches your task.</p>
+        </div>
+        <div class="howto-arrow">→</div>
+        <div class="howto-step">
+          <span class="howto-num">2</span>
+          <p>At the top of the workflow page, choose your experience level and AI tool.</p>
+        </div>
+        <div class="howto-arrow">→</div>
+        <div class="howto-step">
+          <span class="howto-num">3</span>
+          <p>Read the first step, then copy its prompt into your AI tool.</p>
+        </div>
+        <div class="howto-arrow">→</div>
+        <div class="howto-step">
+          <span class="howto-num">4</span>
+          <p>Review the output, copy the next step's prompt, and keep going in the same conversation.</p>
+        </div>
+      </div>
     </div>
   </div>
 
