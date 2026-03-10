@@ -138,7 +138,7 @@ The maintainer will review contributions against these criteria before merging:
 - Known limitations listed honestly — if the AI tends to hallucinate in this domain, say so
 - A `user_action_after` on every step — this is what makes it actionable, not just a prompt dump
 - At least one worked example scenario in the description or notes (can be fictitious)
-- Compliance frameworks tagged where relevant (PGPA Act is relevant to almost everything)
+- Compliance frameworks to consider tagged where relevant 
 
 **A good building block has:**
 - A single, reusable purpose (if it's doing two things, split it into two blocks)
