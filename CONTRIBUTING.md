@@ -159,7 +159,7 @@ The maintainer will review contributions against these criteria before merging:
 3. They may ask questions or request changes (especially around trust levels, limitations, and compliance tagging)
 4. On approval, it gets merged to `master` and goes live on the site automatically via Netlify
 
-There's no formal SLA on review time — this is a small project. If you haven't heard back in a week, feel free to comment on your issue or PR.
+There's no formal SLA on review time: this is a small project. If you haven't heard back in a week, feel free to comment on your issue or PR.
 
 ---
 
