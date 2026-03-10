@@ -1,6 +1,6 @@
 # Contributing to the APS GenAI Prompt Gallery
 
-Thank you for your interest in contributing. This library exists to help Australian Public Service staff use AI tools more effectively and responsibly. Every contribution — a workflow, a building block, or a quality gate — makes it more useful for more people.
+Thank you for your interest in contributing. This library exists to help Australian Public Service staff use AI tools more effectively and responsibly. Every contribution (a workflow, a building block, or a quality gate) makes it more useful for more people.
 
 ---
 
@@ -12,7 +12,7 @@ The library is most valuable when it reflects real APS work. Contributors bring 
 
 ## Two ways to contribute
 
-### Path 1 — Non-technical: submit via GitHub issue
+### Path 1: Non-technical - submit via GitHub issue
 
 You don't need to know how to code or write JSON. If you have an idea for a workflow or building block, open a GitHub issue using one of the templates below:
 
@@ -21,7 +21,7 @@ You don't need to know how to code or write JSON. If you have an idea for a work
 
 Fill in the fields as best you can. The maintainer will review it, may ask questions, and will handle turning it into a JSON file if it's accepted.
 
-### Path 2 — Technical: fork, add JSON, open a PR
+### Path 2: Technical - fork, add JSON, open a PR
 
 If you're comfortable editing JSON files:
 
@@ -165,7 +165,7 @@ There's no formal SLA on review time — this is a small project. If you haven't
 
 ## Licence
 
-The licence for this project is TBD — a decision will be made before the repository goes public. The likely choice is CC BY 4.0 (Creative Commons Attribution), which allows anyone to use, share, and adapt the content as long as they credit the source. By contributing, you agree that your contribution may be published under whatever open licence is chosen.
+This project is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) (Creative Commons Attribution). You are free to use, share, and adapt the content as long as you credit the source. By contributing, you agree that your contribution will be published under CC BY 4.0.
 
 ---
 
