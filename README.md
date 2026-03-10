@@ -1,8 +1,9 @@
 # APS GenAI Prompt Gallery
 
-A structured prompt library for Australian Public Service staff, designed to help you use generative AI tools more effectively and safely.
+A structured prompt library for Australian Public Service staff, designed to help you use generative AI tools more effectively and safely. Note: this is very early in development and all aspects need more work. The key purpose at this stage is to demonstrate the potential of structured workflows in this domain.
 
 **Live site:** [public-service-prompt-gallery.netlify.app](https://public-service-prompt-gallery.netlify.app)
+
 
 ---
 
