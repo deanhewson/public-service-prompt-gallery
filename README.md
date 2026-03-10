@@ -4,6 +4,7 @@ A structured prompt library for Australian Public Service staff, designed to hel
 
 **Live site:** [public-service-prompt-gallery.netlify.app](https://public-service-prompt-gallery.netlify.app)
 
+Note: this is very early in development and all aspects need more work. The key purpose at this stage is to demonstrate the potential of structured workflows in this domain.
 ---
 
 ## What is this?
