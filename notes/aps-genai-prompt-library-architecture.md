@@ -458,6 +458,17 @@ These are the valid values for key fields. Useful for dropdowns, filters, and va
     { "id": "high", "label": "High Trust", "description": "Output type where GenAI is generally reliable (e.g., structuring, formatting, brainstorming)" },
     { "id": "medium", "label": "Medium Trust", "description": "Output useful as a starting point but needs verification (e.g., drafting, analysis summaries)" },
     { "id": "low", "label": "Low Trust", "description": "Output likely to contain errors — always verify (e.g., specific statistics, legislative references, current events)" }
+  ],
+
+  "status_values": [
+    { "id": "draft", "label": "Draft", "description": "Content is under development or awaiting review. Not shown publicly on the live site.", "default": false },
+    { "id": "published", "label": "Published", "description": "Content is live and available to users. Default for all upstream content in this repo.", "default": true },
+    { "id": "archived", "label": "Archived", "description": "Content has been superseded or withdrawn. Hidden from browse/search but preserved in data files for reference." }
+  ],
+
+  "source_values": [
+    { "id": "upstream", "label": "Upstream", "description": "Content from this shared public library. Default for all content in this repo.", "default": true },
+    { "id": "agency", "label": "Agency", "description": "Content added by an agency in their own fork. Agency-specific content should not be submitted to the upstream repo." }
   ]
 }
 ```
