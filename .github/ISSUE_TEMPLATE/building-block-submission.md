@@ -1,6 +1,6 @@
 ---
 name: Submit a building block or quality gate
-about: Suggest a reusable prompt component for the library. A building block is a single prompt designed to do one thing well. A quality gate is a verification or challenge prompt. No technical knowledge required.
+about: Suggest a reusable building block or quality gate prompt. No technical knowledge required.
 title: "[BLOCK] Your building block name here"
 assignees: ''
 ---
