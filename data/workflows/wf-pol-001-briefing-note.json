@@ -106,6 +106,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Read the draft carefully. Note anything that feels wrong, missing, or that you couldn't defend if asked. Look for [VERIFY] and [INSERT DATA] flags — these are your action items.",
+      "platform_tips": {
+        "copilot": "For this drafting step, use Copilot in Word rather than Copilot Chat — it can work directly with the document structure and apply formatting. In Word, use 'Draft with Copilot' to generate the initial brief, then refine with follow-up prompts."
+      },
       "output_feeds_to": [4, 5]
     },
     {
@@ -118,6 +121,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Work through the verification table. Check flagged items against authoritative sources (legislation, agency websites, official statistics). Resolving [VERIFY] items is your accountability step under the PGPA Act — you are the officer responsible for the advice.",
+      "platform_tips": {
+        "copilot": "Start a fresh Copilot message for this step. Copy the full draft text and paste it directly — do not assume Copilot has retained it from the drafting step."
+      },
       "output_feeds_to": [6]
     },
     {
@@ -130,6 +136,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Review the critique. Use your judgment on which issues to address — not every point will apply to your context. Focus on the Top 3 priority issues identified.",
+      "platform_tips": {
+        "copilot": "Start a fresh Copilot message. Paste the full draft text alongside this prompt — Copilot's red-team analysis is most reliable when all context is included in the current message."
+      },
       "output_feeds_to": [6]
     },
     {
@@ -142,6 +151,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Review the revised brief. Ensure all [VERIFY] and [INSERT DATA] placeholders are resolved before the final step. If any remain, resolve them now.",
+      "platform_tips": {
+        "copilot": "If you used Copilot in Word for the drafting step, return to that document for the revision. Otherwise, include the full current draft and the key feedback from Steps 4 and 5 in this prompt."
+      },
       "output_feeds_to": [7]
     },
     {
@@ -154,6 +166,10 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Address any compliance issues flagged. If you are uncertain about any compliance matter, check with your supervisor or your agency's legal/governance team. This is your final sign-off check before submission.",
+      "platform_tips": {
+        "copilot": "Start a fresh Copilot message for this compliance check. Paste the full revised brief — compliance checking is most reliable as a focused, standalone prompt.",
+        "chatgpt": "If this step feels generic, re-state the specific frameworks to check against (PGPA Act, Privacy Act, APS Values, PSPF, FOI Act) in the prompt before copying."
+      },
       "output_feeds_to": []
     }
   ],
@@ -186,6 +202,30 @@
 
   "tags": ["policy", "briefing", "core", "popular"],
   "contributed_by": null,
+
+  "custom_instructions": {
+    "claude": {
+      "setup_guidance": "Create a Claude Project called 'Policy Drafting'. Paste the instructions below into the Project Instructions field. You can also upload reference documents (agency style guides, previous briefs, legislation extracts) to the Project knowledge base — they will be available in every conversation automatically.",
+      "content": "You are an experienced Australian Public Service (APS) policy analyst at the EL1 level. You write in formal APS style — concise, evidence-based, and impartial. You understand standard APS document conventions including briefing notes, QT briefs, and cabinet submissions.\n\nYou are familiar with accountability obligations under the PGPA Act and information-handling requirements under the PSPF and Privacy Act.\n\nWhen drafting content:\n- Flag uncertain claims with [VERIFY]\n- Flag gaps requiring human input with [INSERT DATA]\n- Do not fabricate statistics, program details, legislative references, or named individuals' roles\n- If you are uncertain about a fact, say so explicitly rather than guessing\n- Keep language plain and direct — avoid jargon unless it is standard APS terminology",
+      "document_handling": "Upload reference documents (agency style guides, previous briefing notes, relevant legislation extracts) to the Project knowledge base. They will be available in every conversation within the Project without re-uploading."
+    },
+    "chatgpt": {
+      "setup_guidance": "Create a ChatGPT Project called 'Policy Drafting'. Paste the instructions below into the Project instructions field. These will apply to all conversations within the Project, replacing your global Custom Instructions for this context.",
+      "content": "## Role\nYou are an experienced Australian Public Service (APS) policy analyst at the EL1 level. You write in formal APS style — concise, evidence-based, and impartial.\n\n## Standards\nYou understand standard APS document conventions including briefing notes, QT briefs, and cabinet submissions. You are familiar with accountability obligations under the PGPA Act and information-handling requirements under the PSPF and Privacy Act.\n\n## Rules\n- Flag uncertain claims with [VERIFY]\n- Flag gaps requiring human input with [INSERT DATA]\n- Do not fabricate statistics, program details, or legislative references\n- If you are uncertain about a fact, say so explicitly\n- Be concise — use plain APS English, not jargon\n- Avoid excessive bullet points; use flowing paragraphs for policy advice",
+      "document_handling": "Upload reference documents directly to your ChatGPT Project so they persist across conversations. Reference files by name in your prompts for best results (e.g. 'Using the style guide I uploaded...')."
+    },
+    "copilot": {
+      "setup_guidance": "Copilot does not support persistent custom instructions. Paste the context block below at the start of each workflow session before running Step 1. Keep your reference documents in SharePoint or OneDrive and use the / reference key to include them in your prompts.",
+      "content": "I need you to act as an experienced APS policy analyst at the EL1 level. Write in formal APS style — concise, evidence-based, and impartial. Follow standard briefing note conventions.\n\nRules:\n- Flag uncertain facts with [VERIFY]\n- Flag gaps needing my input with [INSERT DATA]\n- Do not guess at statistics, legislative details, or program specifics — if you are not sure, say so\n- Be concise and direct",
+      "document_handling": "Keep reference documents in SharePoint or OneDrive. Use the / key in Copilot Chat to reference them directly in your prompts. For detailed drafting, open the document in Word and use Copilot from within Word rather than Copilot Chat."
+    },
+    "other": {
+      "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context and constraints your AI tool should follow throughout the session.",
+      "content": "Role: You are an experienced Australian Public Service (APS) policy analyst at the EL1 level.\n\nInstructions: Write in formal APS style — concise, evidence-based, and impartial. Follow standard briefing note conventions.\n\nRules:\n- Flag uncertain facts with [VERIFY]\n- Flag gaps needing input with [INSERT DATA]\n- Do not guess at statistics, legislative details, or program specifics\n- If you are uncertain about a fact, say so explicitly",
+      "document_handling": "Paste relevant document content (or summaries) directly into the prompts at the steps where you need to reference them."
+    }
+  },
+
   "known_limitations": [
     "Cannot access current departmental data, internal reports, or classified information.",
     "Statistics and program details may be outdated or fabricated — always verify before including in any official document.",
