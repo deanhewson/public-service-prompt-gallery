@@ -15,23 +15,25 @@ Primary output: a web app deployed to Netlify with static JSON data files.
 See architecture doc for JSON schemas, enums, and data model.
 
 ## Current Phase
-**5 workflows live.** Moving toward contribution-ready v1.
+**5 workflows live with full platform-aware UI.** Moving toward contribution-ready v1.
 
 Live workflows: Briefing Note, QT Brief, Stakeholder Analysis, Plain Language Rewrite,
-Meeting Preparation. Full UI built: trust indicators, skill level toggle, platform
-selector, progress bar, per-step limitations, Netlify feedback forms.
+Meeting Preparation.
+
+**UI features complete:**
+- Trust indicators, skill level toggle, platform selector, progress bar, per-step limitations, Netlify feedback forms
+- Platform prompt reformatter: Claude (XML intact), ChatGPT (## headers), Copilot (plain prose), Other (labelled)
+- Step 0 setup card: platform-specific custom instructions, collapsible, teal styling, above workflow steps
+- Per-step platform tips: base type×platform table in code + step-specific JSON additions; dark blue badge icon
+- Platform transition notes between steps (non-Claude platforms)
+- `custom_instructions` populated for all 5 workflows × 4 platforms
 
 See `notes/feature-list.md` for complete current feature state.
 
-**Weekend sprint priorities (in order):**
-1. Public site credibility — landing page doing real work, one fully navigable worked example
-2. Contribution process — GitHub issue template (non-technical) + CONTRIBUTING.md (technical)
-3. Seed content — 2-3 more building blocks and quality gates fully populated in JSON
-4. Schema documentation for contributors
-
-**Next data priority:** Review and move `scripts/output/` building blocks and quality gates
-into `data/` after human editing pass. `custom_instructions` field is Phase 2 — design
-is in the architecture doc, build after going public.
+**Next priorities:**
+- Contribution process — GitHub issue template + CONTRIBUTING.md
+- Seed content — review `scripts/output/` building blocks and quality gates, move to `data/` after editing pass
+- Add `platform_tips` to remaining 4 workflows (step-specific tips currently seeded for Briefing Note only)
 
 ## Multi-Agency Architecture
 The project is designed as a shared public upstream library that agencies can fork and
@@ -79,7 +81,7 @@ separate from Claude Code sessions. Not used for code.
 - Don't refactor working code without being asked
 - One thing at a time — small focused changes over big sweeping ones
 
-## Astro conventions (learned in Phase 1)
+## Astro conventions (learned in Phase 1+)
 - **No TypeScript generic annotations in `.astro` frontmatter.** Astro 5 compiles
   frontmatter as TSX; generic syntax like `Record<string, string>` or `Array<string>`
   gets misread as JSX elements and causes cryptic esbuild parse errors. Use plain
@@ -89,3 +91,8 @@ separate from Claude Code sessions. Not used for code.
   then read it with `JSON.parse(document.getElementById(...).textContent)`.
 - **Import paths from nested pages.** `data/` is at the project root. From
   `src/pages/workflows/*.astro`, that's three levels up: `'../../../data/...'`.
+- **Use `:global()` for dynamically-injected CSS.** Astro scopes CSS with data
+  attributes at build time. Elements inserted via `innerHTML` in JavaScript don't
+  get those attributes, so scoped styles won't apply. Wrap CSS rules targeting
+  JS-injected content in `:global(.classname) { ... }`. Example: step-zero body
+  elements and `.tip-icon-badge` in `WorkflowLayout.astro`.
