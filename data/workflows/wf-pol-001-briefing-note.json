@@ -215,9 +215,9 @@
       "document_handling": "Upload reference documents directly to your ChatGPT Project so they persist across conversations. Reference files by name in your prompts for best results (e.g. 'Using the style guide I uploaded...')."
     },
     "copilot": {
-      "setup_guidance": "Copilot does not support persistent custom instructions. Paste the context block below at the start of each workflow session before running Step 1. Keep your reference documents in SharePoint or OneDrive and use the / reference key to include them in your prompts.",
-      "content": "I need you to act as an experienced APS policy analyst at the EL1 level. Write in formal APS style — concise, evidence-based, and impartial. Follow standard briefing note conventions.\n\nRules:\n- Flag uncertain facts with [VERIFY]\n- Flag gaps needing my input with [INSERT DATA]\n- Do not guess at statistics, legislative details, or program specifics — if you are not sure, say so\n- Be concise and direct",
-      "document_handling": "Keep reference documents in SharePoint or OneDrive. Use the / key in Copilot Chat to reference them directly in your prompts. For detailed drafting, open the document in Word and use Copilot from within Word rather than Copilot Chat."
+      "setup_guidance": "Go to Settings > Personalization > Custom Instructions and paste the preferences below. These persist across all Copilot conversations. Custom Instructions work best for role and tone preferences -- for detailed workflow constraints, paste them at the top of your first message. Stay in a single conversation for the full workflow.",
+      "content": "I am an APS policy officer. Write in formal APS style -- concise, evidence-based, and impartial. Flag uncertain claims with [VERIFY] and data gaps with [INSERT DATA]. Do not invent statistics, program details, or legislative references.",
+      "document_handling": "Keep reference documents in SharePoint or OneDrive. Use the / key in Copilot Chat to reference them in your prompts. For detailed drafting, open the document in Word and use Copilot from within Word rather than Copilot Chat. Stay in a single conversation for all workflow steps -- Copilot does not retain context across separate chats."
     },
     "other": {
       "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context and constraints your AI tool should follow throughout the session.",

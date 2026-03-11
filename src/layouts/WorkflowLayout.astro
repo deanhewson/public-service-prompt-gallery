@@ -871,18 +871,23 @@ const navGroups = [
     details.step-zero-card[open] .step-zero-chevron { transform: rotate(180deg); }
 
     .step-zero-body {
-      padding: 0 18px 18px;
+      padding: 14px 18px 18px;
       border-top: 1px solid #b8dce8;
     }
 
-    .step-zero-guidance {
+    /* Dynamically-injected step-zero body content — must use :global() to escape Astro CSS scoping */
+    :global(.step-zero-guidance) {
+      border-left: 3px solid #4a9db5;
+      padding: 10px 12px;
+      background: #d4eef7;
+      border-radius: 0 6px 6px 0;
       font-size: 0.875rem;
       color: #0d4a5c;
-      margin: 14px 0 10px;
+      margin: 0 0 12px;
       line-height: 1.5;
     }
 
-    .step-zero-instructions-box {
+    :global(.step-zero-instructions-box) {
       background: #f0f9fc;
       border: 1px solid #b8dce8;
       border-radius: 6px;
@@ -890,63 +895,89 @@ const navGroups = [
       margin-bottom: 12px;
     }
 
-    .step-zero-toolbar {
+    :global(.step-zero-toolbar) {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 12px;
+      padding: 8px 12px;
       background: #d4eef7;
       border-bottom: 1px solid #b8dce8;
-      font-size: 0.78rem;
+    }
+
+    :global(.step-zero-toolbar span) {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: #0d4a5c;
     }
 
-    .step-zero-copy-btn {
-      padding: 3px 10px;
+    :global(.step-zero-copy-btn) {
+      padding: 4px 12px;
       background: #1a7a96;
       color: white;
       border: none;
       border-radius: 4px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       cursor: pointer;
       font-family: inherit;
       transition: background 0.15s;
     }
-    .step-zero-copy-btn:hover { background: #0d5a72; }
-    .step-zero-copy-btn.copied { background: var(--color-high); }
+    :global(.step-zero-copy-btn:hover) { background: #0d5a72; }
+    :global(.step-zero-copy-btn.copied) { background: var(--color-high); }
 
-    .step-zero-content {
+    :global(.step-zero-content) {
       padding: 12px;
       font-family: var(--font-mono);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       line-height: 1.55;
       white-space: pre-wrap;
       word-break: break-word;
       color: #24292e;
-      max-height: 200px;
+      max-height: 240px;
       overflow-y: auto;
     }
 
-    .step-zero-doc-note {
+    :global(.step-zero-doc-note) {
       font-size: 0.82rem;
       color: #0d4a5c;
-      padding: 8px 12px;
+      padding: 10px 12px;
       background: #d4eef7;
-      border-radius: 6px;
+      border-radius: 0 6px 6px 0;
       border-left: 3px solid #4a9db5;
     }
 
     /* ── Platform tip callout ─────────────────────── */
     .platform-tip-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
       background: #eef3f8;
       border: 1px solid #c5d5e8;
-      border-left: 3px solid #4a7fb5;
+      border-left: 3px solid #1a4f7c;
       border-radius: 0 6px 6px 0;
       padding: 10px 14px;
       font-size: 0.84rem;
       color: #1a3a5c;
       margin-bottom: 12px;
       line-height: 1.5;
+    }
+
+    /* Tip icon badge is injected via innerHTML — needs :global() */
+    :global(.tip-icon-badge) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1a4f7c;
+      color: white;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     /* ── Platform transition note ─────────────────── */
@@ -1643,7 +1674,7 @@ const navGroups = [
           let tipText = '';
           if (baseTip && stepTip) tipText = baseTip + ' ' + stepTip;
           else tipText = baseTip || stepTip;
-          tipEl.innerHTML = 'ℹ ' + tipText;
+          tipEl.innerHTML = '<span class="tip-icon-badge">i</span><span>' + tipText + '</span>';
           tipEl.style.display = '';
         } else {
           tipEl.style.display = 'none';
