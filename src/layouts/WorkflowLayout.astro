@@ -1,4 +1,5 @@
 ---
+import FontHead from '../components/FontHead.astro';
 const { workflow, blocks } = Astro.props;
 
 function getStepContent(step) {
@@ -65,9 +66,7 @@ const navGroups = [
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
+  <FontHead />
   <title>{workflow.name} — APS Prompt Gallery</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
