@@ -59,7 +59,7 @@ A library of reusable prompt components is in development. Schema and seed data 
 3. Read the first step, then copy its prompt into your AI tool.
 4. Review the output, copy the next step's prompt, and keep going in the same conversation.
 
-**About classification:** These workflows are designed for OFFICIAL-level work using public AI tools. Do not use public AI tools (Claude, ChatGPT, Copilot) for OFFICIAL: Sensitive or higher-classified content without checking your agency's policy first.
+
 
 ---
 
