@@ -1,0 +1,45 @@
+{
+  "id": "BB-CAREER-003",
+  "name": "Monthly Check-in: Behaviours & Values Reflection",
+  "description": "Prompts structured reflection on how the officer worked — collaboration, accountability, adaptability, communication, and development mindset — aligned to the APSC Performance Framework's behaviours dimension.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-18",
+
+  "block_type": "generation",
+  "domains": ["career_performance"],
+
+  "prompt_template": "<task>\nNow I want to reflect on how I worked this month — my behaviours, not just my outputs. The APSC non-SES Performance Framework assesses behaviours as equally important to outcomes.\n\nBased on my activity inventory and your knowledge of the APS Values and Secretaries Charter of Leadership Behaviours, prompt me to reflect on these dimensions:\n\n1. COLLABORATION & RELATIONSHIPS — How did I work with others? Did I contribute to psychological safety in my team? Were there any difficult interactions, and how did I handle them?\n\n2. ACCOUNTABILITY & OWNERSHIP — Did I take responsibility for my work? Were there things I should have escalated earlier or handled differently? Did I meet my commitments?\n\n3. ADAPTABILITY & PROBLEM-SOLVING — How did I respond to unexpected challenges or changing priorities? Did I get stuck on anything?\n\n4. COMMUNICATION — Was my communication clear, timely, and appropriate? Did I keep the right people informed?\n\n5. DEVELOPMENT MINDSET — Did I seek feedback? Did I learn from mistakes? Did I help others develop?\n\nFor each dimension, give me a brief prompt question based on what you know about my month's activities, then wait for my response before moving to the next one.\n\nAfter all five, summarise my self-assessment into a concise behaviours reflection (3-5 sentences capturing the key themes).\n</task>\n\n<framework_note>\n{{agency_performance_framework}}\nIf the officer's agency has specific behavioural frameworks beyond the APS Values (e.g., Defence Values and Behaviours, ATO Leadership Model), incorporate those here.\n</framework_note>",
+
+  "variables": [
+    {
+      "name": "agency_performance_framework",
+      "description": "Agency-specific performance framework elements beyond the APSC default",
+      "type": "text",
+      "required": false
+    }
+  ],
+
+  "trust_level": "medium",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "This step is optional for your first month. Behavioural reflection is harder than listing achievements — it's easy to default to 'everything was fine.' If you try it, push yourself to give specific examples rather than general statements.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "If the summary feels generic, go back and push yourself to be more specific. The value of this step compounds over months — patterns in your behavioural reflections become visible at end-of-cycle.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "If you manage staff, consider adding a sixth dimension: LEADERSHIP & DEVELOPMENT — How did I support my team's growth? Did I give useful feedback? Were my supervision conversations productive?",
+      "prompt_modification": "Add after dimension 5: '6. LEADERSHIP & DEVELOPMENT — How did I support my team members\\' growth this month? Did I give useful feedback? Were my supervision conversations productive and future-focused?'"
+    }
+  },
+
+  "tags": ["career", "performance", "behaviours", "aps-values", "reflection"],
+  "contributed_by": null,
+  "known_limitations": [
+    "Behavioural reflection is only as honest as the officer makes it. The AI will prompt and challenge, but it can't verify how you actually behaved.",
+    "The AI's prompt questions are based on the activity inventory you provided, which may be incomplete. Make sure your activity list is reasonably complete before running this step."
+  ]
+}

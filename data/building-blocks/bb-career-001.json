@@ -1,0 +1,71 @@
+{
+  "id": "BB-CAREER-001",
+  "name": "Monthly Check-in: Activity Inventory",
+  "description": "Builds a comprehensive list of what the officer actually did during the month. Uses guided recall questions for Claude/ChatGPT/Other, and M365 data access for Copilot.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-18",
+
+  "block_type": "generation",
+  "domains": ["career_performance"],
+
+  "prompt_template": "<role>You are helping an APS officer build a comprehensive activity inventory for their monthly performance check-in.</role>\n\n<task>\nI need to recall what I did during {{month_period}}. Help me build a structured activity list by walking me through these recall prompts. I'll answer each one, then you'll compile a structured inventory.\n\nAsk me these questions one at a time, waiting for my response to each:\n\n1. What were the main things you worked on or delivered this month? (reports, briefings, submissions, analysis, presentations, correspondence)\n2. What significant meetings did you attend or lead? What was your role?\n3. Did you collaborate with other teams, agencies, or external stakeholders? On what?\n4. Were there any problems you solved, risks you managed, or issues you escalated?\n5. Did you do any training, learning, mentoring, or professional development?\n6. Is there anything you spent significant time on that doesn't fit the above categories?\n\nAfter I've answered all questions, compile my responses into a structured list with these categories:\n- KEY DELIVERABLES\n- MEETINGS & ENGAGEMENT\n- COLLABORATION\n- PROCESS & OPERATIONAL\n- DEVELOPMENT\n\nFor each item, note a brief description and approximate timing.\n</task>\n\n<context>\nAgency: {{agency}}\nTeam: {{team_or_branch}}\nLevel: {{aps_level}}\nPeriod: {{month_period}}\n</context>",
+
+  "platform_prompts": {
+    "copilot": "<task>\nSearch my sent emails, calendar events, Teams messages, and recently edited documents from {{month_period}} to build a comprehensive activity inventory for my monthly performance check-in.\n\nOrganise what you find into these categories:\n1. KEY DELIVERABLES — documents, briefings, reports, or products I completed or substantially contributed to\n2. MEETINGS & ENGAGEMENT — significant meetings I attended or led, stakeholder interactions\n3. COLLABORATION — cross-team or cross-agency work, contributions to others' work\n4. PROCESS & OPERATIONAL — routine but important operational tasks, approvals, reviews\n5. DEVELOPMENT — training, learning, mentoring (given or received), conferences, reading\n\nFor each item, note:\n- Brief description (1 sentence)\n- Approximate date or week\n- Who it was for or with (use roles, not names — e.g., \"branch director\", \"policy team\", \"external stakeholders\")\n\nDo not include:\n- Personal emails or calendar items\n- HR or personnel matters involving other staff\n- Items at OFFICIAL: Sensitive or above\n\nPresent as a structured list I can review and edit.\n</task>\n\n<context>\nAgency: {{agency}}\nTeam: {{team_or_branch}}\nLevel: {{aps_level}}\nPeriod: {{month_period}}\n</context>"
+  },
+
+  "variables": [
+    {
+      "name": "month_period",
+      "description": "The month being reflected on",
+      "type": "text",
+      "required": true,
+      "examples": ["February 2026", "March 2026"]
+    },
+    {
+      "name": "agency",
+      "description": "The officer's agency or department",
+      "type": "text",
+      "required": true,
+      "examples": ["Department of Finance", "Services Australia"]
+    },
+    {
+      "name": "team_or_branch",
+      "description": "The officer's team, branch, or division",
+      "type": "text",
+      "required": true,
+      "examples": ["Budget Policy Branch", "Digital Delivery Team"]
+    },
+    {
+      "name": "aps_level",
+      "description": "The officer's APS classification level",
+      "type": "text",
+      "required": true,
+      "examples": ["APS 6", "EL1", "APS 4"]
+    }
+  ],
+
+  "trust_level": "high",
+
+  "skill_adaptations": {
+    "beginner": {
+      "notes": "Answer each question as it comes — don't worry about being comprehensive the first time. You can add items at the end. The AI will compile your answers into a structured list you can edit.",
+      "prompt_modification": null
+    },
+    "intermediate": {
+      "notes": "Before you start, quickly scan your calendar for the month so you have a rough list in mind. This prevents forgetting significant items during the conversation.",
+      "prompt_modification": null
+    },
+    "advanced": {
+      "notes": "If you manage staff, consider running this step twice — once for your own deliverables, once specifically for your leadership activities (supervision, development conversations, stakeholder management on behalf of your team).",
+      "prompt_modification": null
+    }
+  },
+
+  "tags": ["career", "performance", "reflection", "activity-inventory"],
+  "contributed_by": null,
+  "known_limitations": [
+    "For Claude, ChatGPT, and Other tools: the AI can only work with what you tell it. If you forget to mention something, it won't appear in the inventory. Review the final list carefully before moving on.",
+    "For Copilot M365: the AI searches your accessible M365 data but may miss items in channels or folders it can't access, or activities that weren't documented digitally."
+  ]
+}

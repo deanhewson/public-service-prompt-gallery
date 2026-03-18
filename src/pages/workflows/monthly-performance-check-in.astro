@@ -1,0 +1,19 @@
+---
+import WorkflowLayout from '../../layouts/WorkflowLayout.astro';
+import workflow from '../../../data/workflows/wf-career-001-monthly-performance-check-in.json';
+import bbCareer001 from '../../../data/building-blocks/bb-career-001.json';
+import bbCareer002 from '../../../data/building-blocks/bb-career-002.json';
+import bbCareer003 from '../../../data/building-blocks/bb-career-003.json';
+import bbCareer004 from '../../../data/building-blocks/bb-career-004.json';
+import bbCareer005 from '../../../data/building-blocks/bb-career-005.json';
+
+const blocks = {
+  'BB-CAREER-001': bbCareer001,
+  'BB-CAREER-002': bbCareer002,
+  'BB-CAREER-003': bbCareer003,
+  'BB-CAREER-004': bbCareer004,
+  'BB-CAREER-005': bbCareer005,
+};
+---
+
+<WorkflowLayout workflow={workflow} blocks={blocks} />
