@@ -98,3 +98,8 @@ separate from Claude Code sessions. Not used for code.
   get those attributes, so scoped styles won't apply. Wrap CSS rules targeting
   JS-injected content in `:global(.classname) { ... }`. Example: step-zero body
   elements and `.tip-icon-badge` in `WorkflowLayout.astro`.
+
+## Schema notes
+- **New compliance framework value:** `apsc_performance_framework` — added for the Career & Performance domain. Represents the APSC non-SES Performance Framework (commenced January 2026). Needs to be added to the canonical enum in the architecture doc when that's next updated.
+- **Paste-back placeholders:** BB-CAREER-002 and BB-CAREER-004 contain literal placeholders (`[Paste or reference the output from Step 1]` and `[Full output from Steps 1-3]`) instead of template variables. This is intentional for the current copy-paste UX. If paste-back or chaining functionality is built, add `{{activity_inventory}}` and `{{check_in_content}}` variables to these building blocks and wire them into the step output flow.
+- **Career building blocks:** BB-CAREER-001 through BB-CAREER-005 were created alongside the WF-CAREER-001 workflow (one per step). The original proposal intended three reusable blocks (BB-ROLE-007, BB-CTX-CAREER-001, BB-FMT-CAREER-001) plus QG-CAREER-001. The per-step approach works but reduces cross-workflow composability. When building WF-CAREER-002+, consider whether to refactor toward the proposal's reusable block model.

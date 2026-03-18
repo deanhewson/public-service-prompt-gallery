@@ -1,0 +1,216 @@
+{
+  "id": "WF-CAREER-001",
+  "name": "Monthly Performance Check-in",
+  "description": "A structured monthly reflection on achievements, goal alignment, behaviours, and development. Produces a personal record and optional supervisor conversation prep. Builds a 12-month narrative to draw from at end-of-cycle review.",
+  "version": "1.0",
+  "last_reviewed": "2026-03-18",
+
+  "domain": "career_performance",
+  "task_type": "performance_reflection",
+  "typical_user_level": ["aps3_4", "aps5_6", "el1", "el2"],
+  "complexity": "beginner",
+  "estimated_time": "20–30 minutes",
+
+  "inputs_required": [
+    {
+      "name": "agency",
+      "label": "Agency",
+      "description": "Your agency or department",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Department of Finance"
+    },
+    {
+      "name": "team_or_branch",
+      "label": "Team or branch",
+      "description": "Your team, branch, or division",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. Budget Policy Branch"
+    },
+    {
+      "name": "aps_level",
+      "label": "APS level",
+      "description": "Your APS classification level",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. APS 6"
+    },
+    {
+      "name": "month_period",
+      "label": "Month",
+      "description": "The month you're reflecting on",
+      "type": "text",
+      "required": true,
+      "placeholder": "e.g. March 2026"
+    },
+    {
+      "name": "performance_goals",
+      "label": "Performance agreement goals",
+      "description": "Your current performance agreement goals or KPIs (paste or summarise)",
+      "type": "long_text",
+      "required": true,
+      "placeholder": "Paste or summarise your current performance goals here..."
+    },
+    {
+      "name": "team_goals",
+      "label": "Team priorities (optional)",
+      "description": "Your team or branch priorities for this period, if known",
+      "type": "long_text",
+      "required": false,
+      "default": "Not provided — will focus on individual goals",
+      "placeholder": "Optional: paste or summarise your team's priorities..."
+    },
+    {
+      "name": "development_goals",
+      "label": "Development goals (optional)",
+      "description": "Your current development plan or professional goals",
+      "type": "long_text",
+      "required": false,
+      "default": "Not yet established",
+      "placeholder": "Optional: note any development goals or learning priorities..."
+    },
+    {
+      "name": "agency_performance_framework",
+      "label": "Agency performance framework (optional)",
+      "description": "If your agency has specific performance framework elements beyond the APSC default, note them here",
+      "type": "text",
+      "required": false,
+      "default": "APSC non-SES Performance Framework (default)",
+      "placeholder": "e.g. ATO Leadership Model, Defence Values and Behaviours"
+    },
+    {
+      "name": "previous_check_in",
+      "label": "Previous check-in (optional)",
+      "description": "Paste the output from your previous month's check-in to enable pattern analysis",
+      "type": "long_text",
+      "required": false,
+      "default": "First check-in",
+      "placeholder": "Optional: paste last month's check-in output here..."
+    }
+  ],
+
+  "steps": [
+    {
+      "order": 1,
+      "id": "step-1",
+      "name": "Activity Inventory",
+      "step_type": "generation",
+      "building_block_id": "BB-CAREER-001",
+      "description": "Build a comprehensive list of what you actually did this month. For Copilot M365 users, the AI searches your emails, calendar, Teams, and documents. For all other tools, the AI guides you through structured recall questions.",
+      "trust_level": "high",
+      "is_optional": false,
+      "user_action_after": "Review the activity inventory carefully. Add anything the AI missed — it can only work with what you told it or what Copilot found. Remove anything trivial. This list is the foundation for the rest of the workflow.",
+      "output_feeds_to": [2]
+    },
+    {
+      "order": 2,
+      "id": "step-2",
+      "name": "Alignment Analysis",
+      "step_type": "generation",
+      "building_block_id": "BB-CAREER-002",
+      "description": "Map your activities against your performance agreement goals, team priorities, and development objectives. Surface gaps and unexpected priorities.",
+      "trust_level": "medium",
+      "is_optional": false,
+      "user_action_after": "This is where your judgement matters most. The AI can only assess alignment based on what you told it — it doesn't know if a goal is actually on track behind the scenes, or if your 'unaligned work' was a critical emerging priority your supervisor asked you to handle. Correct the assessment where needed.",
+      "output_feeds_to": [3, 4]
+    },
+    {
+      "order": 3,
+      "id": "step-3",
+      "name": "Behaviours & Values Reflection",
+      "step_type": "generation",
+      "building_block_id": "BB-CAREER-003",
+      "description": "Reflect on HOW you worked, not just WHAT you delivered. The APSC framework weights behaviours equally with outcomes. The AI prompts you through five dimensions: collaboration, accountability, adaptability, communication, and development mindset.",
+      "trust_level": "medium",
+      "is_optional": true,
+      "user_action_after": "Behavioural reflection is harder than listing achievements — it's easy to default to 'everything was fine.' If the summary feels generic or avoidant, push yourself to be more specific. The value of this step compounds over months.",
+      "output_feeds_to": [4]
+    },
+    {
+      "order": 4,
+      "id": "step-4",
+      "name": "Completeness & Honesty Check",
+      "step_type": "quality_gate",
+      "building_block_id": "BB-CAREER-004",
+      "quality_gate_id": "QG-CAREER-001",
+      "description": "Challenge whether the reflection is thorough and honest, not just flattering. Checks for missing areas, superficial self-assessment, and forward-looking gaps. Outputs THOROUGH / ADEQUATE / NEEDS MORE DEPTH.",
+      "trust_level": "medium",
+      "is_optional": true,
+      "user_action_after": "If the gate flags areas as needing more depth, go back and add to them. The point isn't a perfect document — it's to make sure you've actually thought about the things that matter. If something is flagged that you genuinely don't want to document, that's fine — just make a private mental note.",
+      "output_feeds_to": [5]
+    },
+    {
+      "order": 5,
+      "id": "step-5",
+      "name": "Compile & Determine Actions",
+      "step_type": "generation",
+      "building_block_id": "BB-CAREER-005",
+      "description": "Produce the final monthly record in a consistent, accumulation-friendly format. Identifies recommended actions and optionally drafts talking points for supervisor conversations.",
+      "trust_level": "high",
+      "is_optional": false,
+      "user_action_after": "Save this output somewhere you'll find it at end-of-cycle. The value of this workflow compounds — month 1 is useful, month 6 is powerful, month 12 gives you a complete performance narrative to draw from. If you flagged items to raise with your supervisor, consider bringing them to your next performance conversation.",
+      "output_feeds_to": []
+    }
+  ],
+
+  "skill_level_guidance": {
+    "beginner": {
+      "recommended_steps": [1, 2, 5],
+      "skip_steps": [3, 4],
+      "notes": "Start with the activity inventory, alignment check, and final compilation. The behaviours reflection (Step 3) and completeness gate (Step 4) add depth but aren't essential for your first month. Try adding them from month 2 onwards."
+    },
+    "intermediate": {
+      "recommended_steps": [1, 2, 3, 4, 5],
+      "skip_steps": [],
+      "notes": "Run the full workflow. The behaviours reflection is where the most professional growth comes from — don't rush it. Use the completeness gate to push yourself."
+    },
+    "advanced": {
+      "recommended_steps": [1, 2, 3, 4, 5],
+      "skip_steps": [],
+      "notes": "Consider running Step 2 twice — once against your personal goals, once against your team's business plan or branch strategy. Feed both into Step 5 for a richer alignment picture. If you manage staff, consider adapting the workflow to also reflect on your leadership behaviours and how you supported your team's development."
+    }
+  },
+
+  "compliance_frameworks": ["aps_values", "apsc_performance_framework", "privacy_act"],
+  "security_classification": "official",
+
+  "worked_example": {
+    "scenario": "APS 6 policy officer in the Department of Finance completing their monthly check-in for March 2026, with three active performance goals and one development goal.",
+    "note": "This is a fictitious scenario. Keep inputs general when using public AI tools — do not include names of colleagues or sensitive HR details."
+  },
+
+  "tags": ["career", "performance", "reflection", "monthly", "apsc-framework"],
+  "contributed_by": null,
+
+  "custom_instructions": {
+    "claude": {
+      "setup_guidance": "Create a Claude Project called 'Performance Reflections'. Paste the instructions below into the Project Instructions field. Consider uploading your performance agreement as a reference document so you don't need to paste your goals each month.",
+      "content": "You are helping an Australian Public Service officer with a structured monthly performance reflection. Your role is to help them think clearly about what they achieved, how they worked, and where they're heading — not to evaluate them or produce HR documentation.\n\nKey context:\n- The APSC non-SES Performance Framework (commenced January 2026) assesses both OUTCOMES (what was delivered) and BEHAVIOURS (how it was delivered, aligned to APS Values)\n- APS Values: Impartial, Committed to service, Accountable, Respectful, Ethical\n- The Secretaries Charter of Leadership Behaviours provides the behavioural benchmark across the APS. While formally assessed at SES level, its expectations inform behavioural standards for all officers\n\nYour tone should be supportive but honest. If the officer's self-assessment seems superficial or avoids difficult areas, gently probe further. Do not fabricate achievements or inflate the officer's contributions.\n\nIMPORTANT: Do not include names of other staff members in your outputs. Keep all references to colleagues generic (e.g., \"your supervisor\", \"a team member\", \"stakeholders\").\nKeep all inputs at OFFICIAL level. Do not include information classified OFFICIAL: Sensitive or above.",
+      "document_handling": "Upload your performance agreement to the Project knowledge base so it's available in every conversation without re-pasting. Previous check-in outputs can also be uploaded for pattern analysis across months."
+    },
+    "chatgpt": {
+      "setup_guidance": "Create a ChatGPT Project called 'Performance Reflections'. Paste the instructions below into the Project instructions field. These will apply to all conversations within the Project.",
+      "content": "## Role\nYou are helping an Australian Public Service officer with a structured monthly performance reflection. Help them think clearly about what they achieved, how they worked, and where they're heading — not to evaluate them or produce HR documentation.\n\n## Context\nThe APSC non-SES Performance Framework (commenced January 2026) assesses both outcomes (deliverables) and behaviours (how work was done, aligned to APS Values: Impartial, Committed to service, Accountable, Respectful, Ethical).\n\n## Rules\n- Be supportive but honest — gently probe if self-assessment seems superficial\n- Do not fabricate achievements or inflate contributions\n- Do not include names of other staff — use generic references (\"your supervisor\", \"a team member\")\n- Keep responses focused and structured — avoid lengthy preamble\n- Keep all inputs at OFFICIAL level — do not include information classified OFFICIAL: Sensitive or above",
+      "document_handling": "Upload your performance agreement directly to the ChatGPT Project so it persists across conversations. Reference it by name in your prompts (e.g., 'Using my performance agreement I uploaded...')."
+    },
+    "copilot": {
+      "setup_guidance": "Go to Settings > Personalization > Custom Instructions and paste the preferences below. For the activity inventory step (Step 1), Copilot will search your M365 data — stay in a single conversation for the full workflow so context carries through.",
+      "content": "I am an APS officer doing a structured monthly performance reflection aligned to the APSC non-SES Performance Framework. Help me reflect on what I achieved (outcomes) and how I worked (behaviours aligned to APS Values). Be supportive but honest — push back if my self-assessment seems too vague or avoids difficult areas. Do not include names of colleagues in your outputs — use generic references only.",
+      "document_handling": "Keep your performance agreement in SharePoint or OneDrive. Use the / key in Copilot Chat to reference it directly. Stay in a single conversation for all workflow steps — Copilot does not retain context across separate chats."
+    },
+    "other": {
+      "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context your AI tool should follow throughout the session.",
+      "content": "Role: You are helping an Australian Public Service officer with a structured monthly performance reflection.\n\nContext: The APSC non-SES Performance Framework assesses both outcomes (what was delivered) and behaviours (how work was done, aligned to APS Values: Impartial, Committed to service, Accountable, Respectful, Ethical).\n\nInstructions:\n- Be supportive but honest — gently probe if self-assessment seems superficial or avoids difficult areas\n- Do not fabricate achievements or inflate the officer's contributions\n- Do not include names of other staff — use generic references (e.g., 'your supervisor', 'a team member')\n- Keep all inputs at OFFICIAL level — do not include information classified OFFICIAL: Sensitive or above",
+      "document_handling": "Paste relevant content (your performance agreement, previous check-in) directly into the prompts at the steps where you need to reference them."
+    }
+  },
+
+  "known_limitations": [
+    "The AI cannot access your actual performance agreement, HR system, or internal documents (except via Copilot M365). You need to paste or summarise your goals.",
+    "Behavioural reflection is only as honest as the officer makes it. The AI will prompt and challenge, but it can't verify how you actually behaved.",
+    "The completeness gate checks for thoroughness, not accuracy. It can't know if you've omitted important context.",
+    "This workflow produces a personal reflection document, not a formal HR artefact. It's designed to inform your performance conversations, not replace them.",
+    "The AI may suggest patterns or themes that aren't actually meaningful. Your judgement about what matters is final."
+  ]
+}

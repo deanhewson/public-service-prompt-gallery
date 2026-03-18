@@ -31,6 +31,7 @@ const domainLabels = {
   stakeholder_engagement: 'Stakeholder Engagement',
   general_productivity:   'General Productivity',
   communications:         'Communications',
+  career_performance:     'Career & Performance',
 };
 
 const currentPath = Astro.url.pathname;
@@ -54,6 +55,12 @@ const navGroups = [
     label: 'General Productivity',
     workflows: [
       { label: 'Meeting Preparation', path: '/workflows/meeting-preparation' },
+    ],
+  },
+  {
+    label: 'Career & Performance',
+    workflows: [
+      { label: 'Monthly Performance Check-in', path: '/workflows/monthly-performance-check-in' },
     ],
   },
 ];
@@ -1284,7 +1291,7 @@ const navGroups = [
                 <span>Prompt — {content.name}</span>
                 <button class="copy-btn" data-copy={step.order}>Copy prompt</button>
               </div>
-              <div class="prompt-text" id={`prompt-${step.order}`} data-template={content.prompt_template}>
+              <div class="prompt-text" id={`prompt-${step.order}`} data-template={content.prompt_template} data-platform-prompts={JSON.stringify(content.platform_prompts ?? {})}>
                 {content.prompt_template}
               </div>
             </div>
@@ -1501,10 +1508,15 @@ const navGroups = [
     return result;
   }
 
+  function getEffectiveTemplate(el) {
+    const platformPrompts = JSON.parse(el.getAttribute('data-platform-prompts') || '{}');
+    return platformPrompts[currentPlatform] || el.getAttribute('data-template');
+  }
+
   function updatePrompts() {
     const vars = getVariables();
     document.querySelectorAll('.prompt-text[data-template]').forEach(el => {
-      el.innerHTML = renderPromptHTML(el.getAttribute('data-template'), vars);
+      el.innerHTML = renderPromptHTML(getEffectiveTemplate(el), vars);
     });
   }
 
@@ -1517,7 +1529,7 @@ const navGroups = [
       const stepNum = btn.getAttribute('data-copy');
       const promptEl = document.getElementById(`prompt-${stepNum}`);
       if (!promptEl) return;
-      const plainText = renderTemplate(promptEl.getAttribute('data-template'), getVariables());
+      const plainText = renderTemplate(getEffectiveTemplate(promptEl), getVariables());
       try {
         await navigator.clipboard.writeText(plainText);
       } catch {
