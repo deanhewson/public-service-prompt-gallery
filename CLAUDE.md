@@ -31,9 +31,11 @@ Meeting Preparation.
 See `notes/feature-list.md` for complete current feature state.
 
 **Next priorities:**
-- Contribution process — GitHub issue template + CONTRIBUTING.md
 - Seed content — review `scripts/output/` building blocks and quality gates, move to `data/` after editing pass
 - Add `platform_tips` to remaining 4 workflows (step-specific tips currently seeded for Briefing Note only)
+
+**Done (contribution-ready v1):**
+- Contribution process — CONTRIBUTING.md + `.github/ISSUE_TEMPLATE/` (workflow-submission.md, building-block-submission.md)
 
 ## Multi-Agency Architecture
 The project is designed as a shared public upstream library that agencies can fork and
