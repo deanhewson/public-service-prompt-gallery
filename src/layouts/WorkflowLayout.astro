@@ -557,6 +557,13 @@ const navGroups = [
       margin-bottom: 12px;
     }
 
+    /* ── Accordion scroll offset (accounts for sticky progress bar) ──────── */
+    .step-card,
+    .inputs-section,
+    .step-zero-card {
+      scroll-margin-top: var(--sticky-offset, 80px);
+    }
+
     .step-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
@@ -1368,6 +1375,20 @@ const navGroups = [
   const skillGuidance  = _pageData.skillGuidance;
   const stepOrders     = _pageData.stepOrders;
 
+  // ── Sticky offset: keeps scroll target visible below the progress bar ────
+  function updateStickyOffset() {
+    const bar = document.querySelector('.progress-bar-wrap');
+    if (!bar) return;
+    const h = bar.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--sticky-offset', `${h + 8}px`);
+  }
+  updateStickyOffset();
+  window.addEventListener('resize', updateStickyOffset);
+
+  function scrollToAccordion(el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   let currentPlatform = localStorage.getItem('preferred_platform') || 'claude';
 
   // ── Platform constants ────────────────────────────────────────────────────
@@ -1579,7 +1600,17 @@ const navGroups = [
       const body = head.nextElementSibling;
       const isOpen = body.classList.contains('open');
       closeAllSteps();
-      if (!isOpen) openStep(card);
+      if (!isOpen) {
+        openStep(card);
+        scrollToAccordion(card);
+      }
+    });
+  });
+
+  // ── Scroll to top of <details> accordions on open ────────────────────────
+  document.querySelectorAll('details.inputs-section, details.step-zero-card').forEach(details => {
+    details.addEventListener('toggle', () => {
+      if (details.open) scrollToAccordion(details);
     });
   });
 
