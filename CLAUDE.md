@@ -15,10 +15,10 @@ Primary output: a web app deployed to Netlify with static JSON data files.
 See architecture doc for JSON schemas, enums, and data model.
 
 ## Current Phase
-**5 workflows live with full platform-aware UI.** Moving toward contribution-ready v1.
+**v1 sprint shipped. 6 workflows live with full platform-aware UI + analytics.**
 
 Live workflows: Briefing Note, QT Brief, Stakeholder Analysis, Plain Language Rewrite,
-Meeting Preparation.
+Meeting Preparation, Monthly Performance Check-in (Career & Performance).
 
 **UI features complete:**
 - Trust indicators, skill level toggle, platform selector, progress bar, per-step limitations, Netlify feedback forms
@@ -26,16 +26,21 @@ Meeting Preparation.
 - Step 0 setup card: platform-specific custom instructions, collapsible, teal styling, above workflow steps
 - Per-step platform tips: base type×platform table in code + step-specific JSON additions; dark blue badge icon
 - Platform transition notes between steps (non-Claude platforms)
-- `custom_instructions` populated for all 5 workflows × 4 platforms
+- `custom_instructions` populated for all 6 workflows × 4 platforms
+- `platform_tips` populated for all 5 core workflows (WF-POL-001 through WF-GEN-001)
+- Yellow flash on "what to do next" callout when copy button clicked
+- GoatCounter analytics: pageview + custom events (copy-prompt, platform-select) + privacy toggle
+- /roadmap page — live workflows, upcoming items, ecosystem callout; linked from nav + banner
 
 See `notes/feature-list.md` for complete current feature state.
 
 **Next priorities:**
 - Seed content — review `scripts/output/` building blocks and quality gates, move to `data/` after editing pass
-- Add `platform_tips` to remaining 4 workflows (step-specific tips currently seeded for Briefing Note only)
+- Post-training analytics review (after training session)
 
 **Done (contribution-ready v1):**
 - Contribution process — CONTRIBUTING.md + `.github/ISSUE_TEMPLATE/` (workflow-submission.md, building-block-submission.md)
+- Build CI — GitHub Actions runs `astro build` on push + PR
 
 ## Multi-Agency Architecture
 The project is designed as a shared public upstream library that agencies can fork and

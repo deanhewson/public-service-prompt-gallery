@@ -1,6 +1,6 @@
 # APS GenAI Prompt Gallery
 
-A structured prompt library for Australian Public Service staff, designed to help you use generative AI tools more effectively and safely. Note: this is very early in development and all aspects need more work. The key purpose at this stage is to demonstrate the potential of structured workflows in this domain.
+A structured prompt library for Australian Public Service staff, designed to help you use generative AI tools more effectively and safely. Early release — 6 workflows live and tested, with more in development.
 
 **Live site:** [public-service-prompt-gallery.netlify.app](https://public-service-prompt-gallery.netlify.app)
 
@@ -36,7 +36,7 @@ Works with **Claude**, **ChatGPT**, and **Microsoft Copilot (M365)**.
 
 ## What's available
 
-### Workflows (5 live)
+### Workflows (6 live)
 
 | Name | Domain | Level |
 |---|---|---|
@@ -45,6 +45,7 @@ Works with **Claude**, **ChatGPT**, and **Microsoft Copilot (M365)**.
 | Stakeholder Analysis | Stakeholder Engagement | Intermediate |
 | Plain Language Rewrite | Stakeholder Engagement | Beginner |
 | Meeting Preparation | General Productivity | Beginner |
+| Monthly Performance Check-in | Career & Performance | Beginner |
 
 ### Building blocks and quality gates
 
@@ -90,18 +91,16 @@ Feedback without a GitHub account: use the feedback form on any workflow page on
 
 ## Roadmap
 
-The current site is a working proof of concept with 5 workflows live. Future directions, roughly in priority order:
+The current site is an early release with 6 workflows live. See the [roadmap page](https://public-service-prompt-gallery.netlify.app/roadmap) for the full picture. Future directions, roughly in priority order:
 
 **Short term**
+- More workflows: Data Summary, Compliance Review
 - Building blocks and quality gates browseable in the UI
-- Worked example added to at least one workflow page
-- README, licence, and repo description finalised for public launch
+- Search and filter by domain, task type, and APS level
 
 **Medium term**
-- Custom instructions per workflow and AI tool, to help users configure their AI environment before starting a workflow
-- More workflows: Data Summary, Compliance Review
-- Search and filter by domain, task type, and APS level
-- Privacy-respecting analytics (GoatCounter)
+- More platform-specific tips and worked examples
+- Contribution tooling for non-GitHub users
 
 **Longer term, depending on interest**
 - Agency self-hosting: deploy as an Azure Static Web Apps instance inside your agency tenant, with Entra ID authentication and Australian data residency. Agencies can extend the library with their own workflows and building blocks without affecting the shared upstream resource.
