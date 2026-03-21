@@ -757,6 +757,12 @@ const navGroups = [
       color: var(--color-accent);
     }
 
+    @keyframes user-action-flash {
+      0%   { background: #fef9c3; }
+      100% { background: var(--color-accent-light); }
+    }
+    .user-action.flash { animation: user-action-flash 1.6s ease-out forwards; }
+
     /* ── Per-step feedback link ─────────────────────── */
     .step-feedback-link {
       display: block;
@@ -1582,6 +1588,12 @@ const navGroups = [
       btn.textContent = 'Copied!';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 2000);
+      const userAction = btn.closest('.step-card')?.querySelector('.user-action');
+      if (userAction) {
+        userAction.classList.remove('flash');
+        void userAction.offsetWidth; // force reflow so re-clicks re-trigger the animation
+        userAction.classList.add('flash');
+      }
     });
   });
 
