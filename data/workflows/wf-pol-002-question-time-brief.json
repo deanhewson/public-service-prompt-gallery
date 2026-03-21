@@ -82,6 +82,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Review the likely questions and add any from your own knowledge. Your read on what's politically sensitive is more accurate than the model's. Add or remove questions before moving on.",
+      "platform_tips": {
+        "copilot": "Include all your context in this first message — topic, forum, audience, and any reference materials. Copilot does not retain context between sessions, so everything it needs for the full workflow should be here."
+      },
       "output_feeds_to": [2]
     },
     {
@@ -94,6 +97,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Read the draft as if you are the reader about to walk into the forum. Does it cover the hard questions? Are the Key Messages actually usable? Note anything that feels wrong or that you couldn't defend.",
+      "platform_tips": {
+        "copilot": "Stay in the same conversation from Step 1 so Copilot has the full context for the draft. If you're starting a new session, paste the context summary and the questions list from Step 1 at the top of your message."
+      },
       "output_feeds_to": [3, 4]
     },
     {
@@ -106,6 +112,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Check every flagged claim against an authoritative source before the brief is used. In a QTB context, a challenged fact mid-session is a serious problem. Resolve all HIGH RISK items.",
+      "platform_tips": {
+        "copilot": "Start a fresh Copilot message for this step. Paste the full QTB draft directly — do not assume Copilot has retained it from the drafting step."
+      },
       "output_feeds_to": [5]
     },
     {
@@ -118,6 +127,10 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Review the critique. Address the Top 3 fixes. Some issues may not apply to your context — use your judgment. The 'trap question' is the one most worth preparing a response to.",
+      "platform_tips": {
+        "copilot": "Start a fresh Copilot message. Paste the full QTB draft at the top — the scrutiny test is most useful when Copilot has the complete text in front of it rather than relying on conversation history.",
+        "chatgpt": "If using a standalone conversation rather than a Project, paste the full QTB draft alongside this prompt. GPT-4 produces more reliable adversarial analysis when all context is in the current message."
+      },
       "output_feeds_to": [5]
     },
     {
@@ -130,6 +143,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Do a final read aloud — talking points in particular should sound natural for the reader to say. Resolve any remaining [VERIFY] or [INSERT DATA] items before the brief is used.",
+      "platform_tips": {
+        "copilot": "Start a fresh Copilot message. Include the current draft and a brief summary of the key feedback from Steps 3 and 4 — Copilot won't have retained the critique from those earlier steps."
+      },
       "output_feeds_to": []
     }
   ],

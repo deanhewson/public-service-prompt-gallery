@@ -57,6 +57,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Review the map critically. Add any groups your agency knows are relevant but the model missed. Adjust influence and position ratings based on your direct knowledge. This is the foundation — getting it right matters.",
+      "platform_tips": {
+        "copilot": "Include all your context in this first message — the initiative, agency, and any background materials. If you have a stakeholder register in SharePoint or OneDrive, use the / key to reference it here."
+      },
       "output_feeds_to": [2]
     },
     {
@@ -69,6 +72,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "The most valuable output here is 'core interest vs stated position'. Where does the model's read differ from your own knowledge? Note any organisations whose position or red lines you know from direct experience — the model can only draw on public information.",
+      "platform_tips": {
+        "copilot": "Stay in the same conversation from Step 1. When you run this prompt, Copilot will use the stakeholder map above. If it doesn't, paste the Step 1 output at the top of your message."
+      },
       "output_feeds_to": [3, 4]
     },
     {
@@ -81,6 +87,9 @@
       "trust_level": "medium",
       "is_optional": true,
       "user_action_after": "Review the critique. The most useful challenge is usually around stakeholders who've been missed or underweighted. Add any you agree with to your revised stakeholder map.",
+      "platform_tips": {
+        "copilot": "Start a fresh Copilot message. Paste the stakeholder map from Step 1 and the position analysis from Step 2 — Copilot needs both to produce a useful challenge."
+      },
       "output_feeds_to": [4]
     },
     {
@@ -93,6 +102,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "The sequencing recommendation is the most immediately actionable output. Who you engage first sends a signal — adjust based on your political read and existing relationships. Finalise the strategy with your manager before commencing engagement.",
+      "platform_tips": {
+        "copilot": "If you ran Step 3, start a fresh message and paste the revised stakeholder analysis as your input. If you skipped Step 3, continue in the same conversation and reference the earlier analysis."
+      },
       "output_feeds_to": []
     }
   ],
