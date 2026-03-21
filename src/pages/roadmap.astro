@@ -121,11 +121,11 @@
       font-size: 0.85rem;
       padding: 14px 12px;
       white-space: nowrap;
-      border-bottom: 3px solid white;
       display: flex;
       align-items: center;
     }
     .nav-link-flat:hover { color: white; text-decoration: none; }
+    .nav-link-flat-active { color: white; border-bottom: 3px solid white; }
 
     /* ── Hamburger / mobile menu ─────────────────────── */
     .nav-hamburger {
@@ -279,7 +279,7 @@
           <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
         </div>
       </div>
-      <a href="/roadmap" class="nav-link-flat">What's coming</a>
+      <a href="/roadmap" class="nav-link-flat nav-link-flat-active">What's coming</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
   </nav>
