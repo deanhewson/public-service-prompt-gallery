@@ -99,6 +99,11 @@ separate from Claude Code sessions. Not used for code.
   JS-injected content in `:global(.classname) { ... }`. Example: step-zero body
   elements and `.tip-icon-badge` in `WorkflowLayout.astro`.
 
+## gstack
+- Use `/browse` from gstack for all web browsing — never use `mcp__claude-in-chrome__*` tools
+- Available skills: `/office-hours`, `/plan-ceo-review`, `/plan-eng-review`, `/plan-design-review`, `/design-consultation`, `/review`, `/ship`, `/browse`, `/qa`, `/qa-only`, `/design-review`, `/setup-browser-cookies`, `/retro`, `/investigate`, `/document-release`, `/codex`, `/careful`, `/freeze`, `/guard`, `/unfreeze`, `/gstack-upgrade`
+- After any `/office-hours` session, copy the design doc from `~/.gstack/projects/deanhewson-public-service-prompt-gallery/` to `notes/sprint-review-design-{YYYYMMDD}.md` and add it to `.gitignore` under the `notes/sprint-review-design-*.md` pattern (already added — just ensure new files match that pattern).
+
 ## Schema notes
 - **New compliance framework value:** `apsc_performance_framework` — added for the Career & Performance domain. Represents the APSC non-SES Performance Framework (commenced January 2026). Needs to be added to the canonical enum in the architecture doc when that's next updated.
 - **Paste-back placeholders:** BB-CAREER-002 and BB-CAREER-004 contain literal placeholders (`[Paste or reference the output from Step 1]` and `[Full output from Steps 1-3]`) instead of template variables. This is intentional for the current copy-paste UX. If paste-back or chaining functionality is built, add `{{activity_inventory}}` and `{{check_in_content}}` variables to these building blocks and wire them into the step output flow.
