@@ -227,6 +227,17 @@ const navGroups = [
     .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
     .nav-dropdown a.nav-active { color: white; background: rgba(255,255,255,0.1); font-weight: 600; }
 
+    .nav-link-flat {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      padding: 14px 12px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link-flat:hover { color: white; text-decoration: none; }
+    .nav-link-flat-active { color: white !important; border-bottom: 3px solid white; }
+
     /* ── Hamburger / mobile menu ─────────────────────── */
     .nav-hamburger {
       display: none;
@@ -1087,6 +1098,7 @@ const navGroups = [
           </div>
         );
       })}
+      <a href="/roadmap" class={`nav-link-flat${currentPath === '/roadmap' ? ' nav-link-flat-active' : ''}`}>What's coming</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
   </nav>
@@ -1102,6 +1114,10 @@ const navGroups = [
         ))}
       </div>
     ))}
+    <div>
+      <div class="nav-mobile-group-label">What's coming</div>
+      <a href="/roadmap">Roadmap</a>
+    </div>
   </div>
 </header>
 

@@ -136,6 +136,16 @@
     }
     .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
 
+    .nav-link-flat {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      padding: 14px 12px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link-flat:hover { color: white; text-decoration: none; }
+
     /* ── Hamburger / mobile menu ─────────────────────── */
     .nav-hamburger {
       display: none;
@@ -542,6 +552,7 @@
           <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
         </div>
       </div>
+      <a href="/roadmap" class="nav-link-flat">What's coming</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
   </nav>
@@ -564,6 +575,10 @@
       <div class="nav-mobile-group-label">Career &amp; Performance</div>
       <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
     </div>
+    <div>
+      <div class="nav-mobile-group-label">What's coming</div>
+      <a href="/roadmap">Roadmap</a>
+    </div>
   </div>
 </header>
 
@@ -572,8 +587,8 @@
     <h2>Test and refine, not ask and hope.</h2>
     <p>
       Most of us have found AI useful for simple tasks. The harder problem is using it
-      consistently for complex APS work — briefings, stakeholder analysis, plain language
-      rewrites — in a way that's repeatable and gets better over time.
+      consistently for complex work — briefings, stakeholder analysis, plain language
+      rewrites — in a way that's repeatable and can get better over time.
       That's what this library is for.
     </p>
     <p>
