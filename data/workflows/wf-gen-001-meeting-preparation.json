@@ -74,6 +74,9 @@
       "trust_level": "high",
       "is_optional": false,
       "user_action_after": "Review the objectives — do they match what you actually need from this meeting? Adjust the attendee analysis based on your direct knowledge of these people. Note any pre-meeting actions that need to happen before you move on.",
+      "platform_tips": {
+        "copilot": "Include all meeting context in this first message — purpose, attendees, duration, and any background. Copilot does not retain context between sessions, so everything needed for the workflow should be here from the start."
+      },
       "output_feeds_to": [2, 3, 4]
     },
     {
@@ -86,6 +89,9 @@
       "trust_level": "high",
       "is_optional": false,
       "user_action_after": "Check the time allocations against your experience of how long this group takes. Adjust the order if needed. Circulate to a colleague or the chair for sense-check before finalising.",
+      "platform_tips": {
+        "copilot": "Stay in the same conversation from Step 1. Copilot will use the objectives and context above when drafting the agenda. If it doesn't reference them, note 'use the meeting context from above' in your message."
+      },
       "output_feeds_to": [3, 4]
     },
     {
@@ -98,6 +104,10 @@
       "trust_level": "medium",
       "is_optional": true,
       "user_action_after": "Check all [VERIFY] flags before circulating. Have a senior officer review before it goes out — this represents your agency. Update any [INSERT: document name] placeholders with actual references.",
+      "platform_tips": {
+        "copilot": "For a substantial background brief, consider drafting this in Copilot in Word rather than Copilot Chat — it can apply formatting directly and you can share the output as an attachment.",
+        "chatgpt": "If the brief will be circulated to attendees, pay extra attention to [VERIFY] flags — factual errors in pre-read materials undermine the meeting before it starts."
+      },
       "output_feeds_to": []
     },
     {
@@ -110,6 +120,9 @@
       "trust_level": "high",
       "is_optional": true,
       "user_action_after": "Select the prompts that feel right for your group — you don't need all of them. Have the decision-forcing questions ready but use them with judgment. Good facilitation reads the room.",
+      "platform_tips": {
+        "copilot": "This step can be run as a fresh conversation if needed. Paste the agenda from Step 2 at the top of your message to give Copilot the context it needs to generate relevant discussion prompts."
+      },
       "output_feeds_to": []
     }
   ],

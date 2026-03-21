@@ -136,6 +136,17 @@
     }
     .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
 
+    .nav-link-flat {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      padding: 14px 12px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link-flat:hover { color: white; text-decoration: none; }
+    .nav-link-flat-active { color: white; border-bottom: 3px solid white; }
+
     /* ── Hamburger / mobile menu ─────────────────────── */
     .nav-hamburger {
       display: none;
@@ -449,6 +460,37 @@
       padding-top: 10px;
     }
 
+    /* ── Agency callout ──────────────────────────────── */
+    .agency-callout {
+      margin: 40px 0 0;
+      padding: 20px 24px;
+      background: #f0f4f8;
+      border: 1px solid #c8d8e8;
+      border-left: 4px solid var(--color-primary);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .agency-callout-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .agency-callout h4 {
+      margin: 0 0 4px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .agency-callout p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+    }
+    .agency-callout a { color: var(--color-primary); }
+
     /* ── Footer ──────────────────────────────────────── */
     .footer {
       margin: 48px 0 32px;
@@ -473,10 +515,11 @@
 </head>
 <body>
 
-<!-- PoC banner -->
+<!-- Status banner -->
 <div class="poc-banner">
-  Proof of concept only, much more to do. Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a>.
-  Feedback welcome: reach out on <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a>. Help even more welcome: <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">Github</a>.
+  Early release — 6 workflows live and tested. More coming. <a href="/roadmap">See what's planned →</a> &nbsp;·&nbsp;
+  Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a> &nbsp;·&nbsp;
+  Feedback: <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">GitHub</a>
 </div>
 
 <!-- Nav -->
@@ -510,6 +553,7 @@
           <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
         </div>
       </div>
+      <a href="/roadmap" class="nav-link-flat">What's coming</a>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
   </nav>
@@ -532,6 +576,10 @@
       <div class="nav-mobile-group-label">Career &amp; Performance</div>
       <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
     </div>
+    <div>
+      <div class="nav-mobile-group-label">What's coming</div>
+      <a href="/roadmap">Roadmap</a>
+    </div>
   </div>
 </header>
 
@@ -539,14 +587,14 @@
   <div class="hero">
     <h2>Test and refine, not ask and hope.</h2>
     <p>
-      Most GenAI guidance gives you prompts. This gives you a process. Each workflow
-      breaks a complex APS task into steps, with quality checks built in: claim
-      verification, adversarial review, compliance checking. You bring the expertise
-      and judgment. AI does the drafting and stress-testing.
+      Most of us have found AI useful for simple tasks. The harder problem is using it
+      consistently for complex work — briefings, stakeholder analysis, plain language
+      rewrites — in a way that's repeatable and can get better over time.
+      That's what this library is for.
     </p>
     <p>
-      Built for Australian Public Service staff using generative AI tools (Claude, ChatGPT,
-      Copilot). Free, no login required, no information saved.
+      Step-by-step workflows for Australian Public Service staff, built for Claude, ChatGPT,
+      and Copilot. Free, no login required, no information saved.
     </p>
 
     <div class="security-notice">
@@ -645,6 +693,19 @@
           <p>These workflows are designed to help you work with any AI tool that you're already using. No sign-up, no new platform.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Agency callout -->
+  <div class="agency-callout">
+    <div class="agency-callout-icon">🏛️</div>
+    <div>
+      <h4>Using this in your agency?</h4>
+      <p>
+        This library is designed to be forked. Agencies can maintain a private version with
+        their own workflows and branding while contributing improvements back to the shared upstream.
+        <a href="https://github.com/deanhewson/public-service-prompt-gallery/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">See the contribution guide →</a>
+      </p>
     </div>
   </div>
 

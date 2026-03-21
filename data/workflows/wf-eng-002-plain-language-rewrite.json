@@ -58,6 +58,9 @@
       "trust_level": "high",
       "is_optional": false,
       "user_action_after": "Review the jargon list and structure recommendations. Add any technical terms or requirements the model missed. The 'what must be preserved' section is important — note any legal or technical precision that cannot be lost.",
+      "platform_tips": {
+        "copilot": "Paste your source text and target audience in this first message. Keep this in a single conversation for the full workflow — the audit findings will feed the drafting step."
+      },
       "output_feeds_to": [2]
     },
     {
@@ -70,6 +73,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Read the rewrite aloud. Does it sound natural? Compare it to the source — has any important meaning been lost or changed? Note any sections that still feel dense or unclear.",
+      "platform_tips": {
+        "copilot": "Stay in the same conversation from Step 1 so Copilot can use the audit findings. If you made significant changes to the audit output, note what changed at the top of your message."
+      },
       "output_feeds_to": [3]
     },
     {
@@ -82,6 +88,10 @@
       "trust_level": "high",
       "is_optional": false,
       "user_action_after": "Address the Top 3 fixes. For any remaining jargon or long sentences, ask the AI to rewrite those specific parts. If the meaning check identifies any subtle changes to meaning, correct them before using the document.",
+      "platform_tips": {
+        "copilot": "Stay in the same conversation. If the rewritten text is long, paste it in full at the top of your message — do not rely on Copilot to remember the exact draft from Step 2.",
+        "chatgpt": "Paste the full rewritten text at the top of this message. Do not assume the Project has retained the exact draft — including it explicitly produces more accurate meaning checks."
+      },
       "output_feeds_to": []
     }
   ],

@@ -1,0 +1,450 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
+  <title>What's coming — APS GenAI Prompt Gallery</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --color-primary: #170a1c;
+      --color-primary-light: #DFD9E2;
+      --color-bg: #F7F7FF;
+      --color-surface: #ffffff;
+      --color-border: #dee2e6;
+      --color-text: #212529;
+      --color-muted: #6c757d;
+      --radius: 8px;
+      --font-heading: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-body: 'Atkinson Hyperlegible Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+
+    /* ── Status banner ───────────────────────────────── */
+    .poc-banner {
+      background: #F5EEF3;
+      border-bottom: 1px solid #C19AB7;
+      font-size: 0.82rem;
+      color: #3d1a35;
+      padding: 7px 0;
+      text-align: center;
+    }
+    .poc-banner a { color: var(--color-primary); }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    .site-header {
+      background: var(--color-primary);
+      color: white;
+      padding: 0 24px;
+    }
+    .site-nav {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+    }
+    .nav-logo {
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      margin-right: 24px;
+      padding: 14px 0;
+      flex-shrink: 0;
+    }
+    .nav-logo:hover { text-decoration: none; opacity: 0.9; }
+    .nav-links { display: flex; align-items: stretch; }
+    .nav-group { position: relative; }
+    .nav-group-trigger {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      font-family: inherit;
+      padding: 14px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      height: 100%;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-group:hover .nav-group-trigger { color: white; }
+    .nav-chevron { font-size: 0.65rem; transition: transform 0.2s; opacity: 0.7; }
+    .nav-group:hover .nav-chevron { transform: rotate(180deg); }
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 190px;
+      background: #2a1432;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      z-index: 200;
+    }
+    .nav-group:hover .nav-dropdown { display: block; }
+    .nav-dropdown a {
+      display: block;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+      padding: 10px 16px;
+      white-space: nowrap;
+      transition: color 0.1s, background 0.1s;
+    }
+    .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
+    .nav-link-flat {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      padding: 14px 12px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link-flat:hover { color: white; text-decoration: none; }
+    .nav-link-flat-active { color: white; border-bottom: 3px solid white; }
+
+    /* ── Hamburger / mobile menu ─────────────────────── */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px 4px;
+      margin-left: auto;
+      line-height: 1;
+    }
+    .nav-mobile-menu { display: none; background: #2a1432; border-top: 1px solid rgba(255,255,255,0.1); }
+    .nav-mobile-menu.is-open { display: block; }
+    .nav-mobile-group-label {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 12px 20px 4px;
+    }
+    .nav-mobile-menu a {
+      display: block;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+    }
+    .nav-mobile-menu a:hover { color: white; background: rgba(255,255,255,0.08); }
+    .nav-mobile-menu a.nav-active { color: white; font-weight: 600; background: rgba(255,255,255,0.08); }
+
+    /* ── Container ───────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── Page header ─────────────────────────────────── */
+    .page-header {
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 40px;
+    }
+    .page-header h1 { margin: 0 0 10px; font-size: 1.8rem; }
+    .page-header p { margin: 0; color: var(--color-muted); max-width: 620px; }
+
+    /* ── Section headings ────────────────────────────── */
+    .section-heading {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-muted);
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* ── Status rows ─────────────────────────────────── */
+    .roadmap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .roadmap-item:last-child { border-bottom: none; }
+    .roadmap-status {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+    .status-live { background: #d1fae5; color: #065f46; }
+    .status-next { background: #dbeafe; color: #1e40af; }
+    .status-planned { background: #f3f4f6; color: #374151; }
+    .roadmap-item-body h4 { margin: 0 0 3px; font-size: 0.95rem; }
+    .roadmap-item-body p { margin: 0; font-size: 0.85rem; color: var(--color-muted); }
+
+    /* ── Ecosystem section ───────────────────────────── */
+    .ecosystem-box {
+      margin: 40px 0 0;
+      padding: 24px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+    }
+    .ecosystem-box h3 { margin: 0 0 10px; font-size: 1.05rem; }
+    .ecosystem-box p { margin: 0 0 10px; font-size: 0.9rem; color: var(--color-muted); }
+    .ecosystem-box p:last-child { margin-bottom: 0; }
+    .ecosystem-box a { color: var(--color-primary); }
+
+    /* ── Footer ──────────────────────────────────────── */
+    .footer {
+      margin: 48px 0 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+    }
+  </style>
+  <script data-goatcounter="https://deanhewson.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<!-- Status banner -->
+<div class="poc-banner">
+  Early release — 6 workflows live and tested. More coming. <a href="/roadmap">See what's planned →</a> &nbsp;·&nbsp;
+  Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a> &nbsp;·&nbsp;
+  Feedback: <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">GitHub</a>
+</div>
+
+<!-- Nav -->
+<header class="site-header">
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">APS Prompt Gallery</a>
+    <div class="nav-links">
+      <div class="nav-group">
+        <button class="nav-group-trigger">Policy Development <span class="nav-chevron">▾</span></button>
+        <div class="nav-dropdown">
+          <a href="/workflows/briefing-note">Briefing Note</a>
+          <a href="/workflows/question-time-brief">QT Brief</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-trigger">Stakeholder Engagement <span class="nav-chevron">▾</span></button>
+        <div class="nav-dropdown">
+          <a href="/workflows/stakeholder-analysis">Stakeholder Analysis</a>
+          <a href="/workflows/plain-language-rewrite">Plain Language Rewrite</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-trigger">General Productivity <span class="nav-chevron">▾</span></button>
+        <div class="nav-dropdown">
+          <a href="/workflows/meeting-preparation">Meeting Preparation</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-trigger">Career &amp; Performance <span class="nav-chevron">▾</span></button>
+        <div class="nav-dropdown">
+          <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
+        </div>
+      </div>
+      <a href="/roadmap" class="nav-link-flat nav-link-flat-active">What's coming</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </nav>
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <div>
+      <div class="nav-mobile-group-label">Policy Development</div>
+      <a href="/workflows/briefing-note">Briefing Note</a>
+      <a href="/workflows/question-time-brief">QT Brief</a>
+    </div>
+    <div>
+      <div class="nav-mobile-group-label">Stakeholder Engagement</div>
+      <a href="/workflows/stakeholder-analysis">Stakeholder Analysis</a>
+      <a href="/workflows/plain-language-rewrite">Plain Language Rewrite</a>
+    </div>
+    <div>
+      <div class="nav-mobile-group-label">General Productivity</div>
+      <a href="/workflows/meeting-preparation">Meeting Preparation</a>
+    </div>
+    <div>
+      <div class="nav-mobile-group-label">Career &amp; Performance</div>
+      <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
+    </div>
+    <div>
+      <div class="nav-mobile-group-label">What's coming</div>
+      <a href="/roadmap" class="nav-active">Roadmap</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="page-header">
+    <h1>What's coming</h1>
+    <p>Where the project is today, what's being built next, and the longer-term direction.</p>
+  </div>
+
+  <!-- Live now -->
+  <div class="section-heading">Live now — 6 workflows</div>
+
+  <div class="roadmap-item">
+    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-body">
+      <h4>Briefing Note</h4>
+      <p>7-step workflow for drafting ministerial briefing notes with claim verification and red-team review.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-body">
+      <h4>Question Time Brief</h4>
+      <p>5-step workflow for Senate Estimates and ministerial Q&amp;A preparation with parliamentary scrutiny test.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-body">
+      <h4>Stakeholder Analysis</h4>
+      <p>4-step workflow for mapping and analysing stakeholders for policy initiatives and engagement programs.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-body">
+      <h4>Plain Language Rewrite</h4>
+      <p>3-step workflow for converting complex policy or legal text into clear, accessible language.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-body">
+      <h4>Meeting Preparation</h4>
+      <p>4-step workflow for drafting agendas, background briefs, and discussion prompts.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-body">
+      <h4>Monthly Performance Check-in</h4>
+      <p>5-step workflow for structured monthly reflection aligned to the APSC performance framework.</p>
+    </div>
+  </div>
+
+  <!-- Up next -->
+  <div class="section-heading">Up next</div>
+
+  <div class="roadmap-item">
+    <span class="roadmap-status status-next">Next</span>
+    <div class="roadmap-item-body">
+      <h4>Data Summary &amp; Visualisation Brief</h4>
+      <p>Workflow for summarising data findings and preparing a brief for decision-makers.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-next">Next</span>
+    <div class="roadmap-item-body">
+      <h4>Compliance Review</h4>
+      <p>Workflow for checking draft documents against PGPA, Privacy Act, and APS Values requirements.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-next">Next</span>
+    <div class="roadmap-item-body">
+      <h4>More platform tips across all workflows</h4>
+      <p>Step-specific guidance for ChatGPT, Copilot, and other platforms is being added to all workflows.</p>
+    </div>
+  </div>
+
+  <!-- Longer term -->
+  <div class="section-heading">Longer term</div>
+
+  <div class="roadmap-item">
+    <span class="roadmap-status status-planned">Planned</span>
+    <div class="roadmap-item-body">
+      <h4>Building block browser</h4>
+      <p>Browse and reuse individual prompt components — role setups, output formats, quality gates — across workflows.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-planned">Planned</span>
+    <div class="roadmap-item-body">
+      <h4>Search and filter</h4>
+      <p>Find workflows by task type, skill level, time available, or compliance framework.</p>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <span class="roadmap-status status-planned">Planned</span>
+    <div class="roadmap-item-body">
+      <h4>Easier contribution for non-GitHub users</h4>
+      <p>A way to submit new workflows or suggest edits without needing to use git.</p>
+    </div>
+  </div>
+
+  <!-- Ecosystem -->
+  <div class="ecosystem-box">
+    <h3>🏛️ Built for agencies to fork and extend</h3>
+    <p>
+      This library is designed as a shared public upstream that agencies can fork privately.
+      An agency version can add its own workflows, branding, and internal guidance while
+      pulling improvements from the shared base.
+    </p>
+    <p>
+      The intended agency deployment path is <strong>Azure Static Web Apps</strong> — Entra ID authentication,
+      Australian data residency, and a low attack surface for a read-only static site.
+    </p>
+    <p>
+      Interested in forking this for your agency, or contributing a workflow back?
+      <a href="https://github.com/deanhewson/public-service-prompt-gallery/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">See the contribution guide →</a>
+    </p>
+  </div>
+
+  <div class="footer">
+    APS GenAI Prompt Gallery · Early release · March 2026 ·
+    Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('nav-mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      hamburger.textContent = isOpen ? '✕' : '☰';
+    });
+  }
+</script>
+</body>
+</html>
