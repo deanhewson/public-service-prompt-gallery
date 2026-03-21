@@ -1069,6 +1069,28 @@ const navGroups = [
       .nav-links { display: none; }
       .nav-hamburger { display: block; }
     }
+
+    /* ── Analytics footer ────────────────────────────── */
+    .analytics-footer {
+      text-align: center;
+      padding: 16px 0 24px;
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .gc-toggle-btn {
+      background: none;
+      border: none;
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+    .gc-toggle-btn:hover { color: var(--color-text); }
   </style>
   <script data-goatcounter="https://deanhewson.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
@@ -1385,6 +1407,11 @@ const navGroups = [
 
 </div>
 
+<div class="analytics-footer">
+  <span id="gc-toggle-label">Visits to this site are counted anonymously.</span>
+  <button id="gc-toggle-btn" class="gc-toggle-btn"></button>
+</div>
+
 <script type="application/json" id="page-data" set:html={JSON.stringify({
   workflowInputs:    workflow.inputs_required,
   skillGuidance:     workflow.skill_level_guidance,
@@ -1588,6 +1615,7 @@ const navGroups = [
       btn.textContent = 'Copied!';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }, 2000);
+      gcEvent(`/event/copy-prompt/step-${stepNum}`, `Copy prompt: step ${stepNum}`);
       const userAction = btn.closest('.step-card')?.querySelector('.user-action');
       if (userAction) {
         userAction.classList.remove('flash');
@@ -1832,7 +1860,11 @@ const navGroups = [
   }
 
   document.querySelectorAll('.platform-btn').forEach(btn => {
-    btn.addEventListener('click', () => applyPlatform(btn.getAttribute('data-platform')));
+    btn.addEventListener('click', () => {
+      const platform = btn.getAttribute('data-platform');
+      applyPlatform(platform);
+      gcEvent(`/event/platform-select/${platform}`, `Platform selected: ${platform}`);
+    });
   });
 
   // ── Per-step feedback links ──────────────────────────────────────────────
@@ -1845,6 +1877,35 @@ const navGroups = [
       if (indicator) indicator.textContent = `Feedback for: ${label}`;
     });
   });
+
+  // ── GoatCounter custom events ────────────────────────────────────────────
+  function gcEvent(path, title) {
+    if (localStorage.getItem('goatcounter-ignore') === 't') return;
+    if (typeof window.goatcounter?.count !== 'function') return;
+    window.goatcounter.count({ path, title, event: true });
+  }
+
+  // ── Privacy toggle ───────────────────────────────────────────────────────
+  const gcToggleBtn = document.getElementById('gc-toggle-btn');
+  const gcToggleLabel = document.getElementById('gc-toggle-label');
+  function updatePrivacyUI() {
+    const ignored = localStorage.getItem('goatcounter-ignore') === 't';
+    gcToggleLabel.textContent = ignored
+      ? 'Analytics off — your visits are not counted.'
+      : 'Visits to this site are counted anonymously.';
+    gcToggleBtn.textContent = ignored ? 'Turn analytics on' : "Don't count my visits";
+  }
+  if (gcToggleBtn) {
+    updatePrivacyUI();
+    gcToggleBtn.addEventListener('click', () => {
+      if (localStorage.getItem('goatcounter-ignore') === 't') {
+        localStorage.removeItem('goatcounter-ignore');
+      } else {
+        localStorage.setItem('goatcounter-ignore', 't');
+      }
+      updatePrivacyUI();
+    });
+  }
 
   // ── Initialise ───────────────────────────────────────────────────────────
   applySkillLevel('intermediate');
