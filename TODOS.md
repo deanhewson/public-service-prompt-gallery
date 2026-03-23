@@ -6,13 +6,17 @@ Deferred work captured during /plan-eng-review on 2026-03-21 (branch: feature/v1
 
 ## Roadmap page content + navbar issues
 
-**What:** Review and fix issues with the /roadmap page content and the navigation bar — deferred from v1 sprint for a bigger focused task.
+**What:** Review and fix known issues with the /roadmap page and navigation bar.
 
-**Why:** Known issues exist but were deprioritised to keep the sprint moving. Should be resolved before any institutional demo.
+Known issues to address:
+- Roadmap content: priority bucketing should be reviewed — "Building blocks browser" appears as "short term" in README but "longer term" on the page (README now fixed; verify page matches intent)
+- Roadmap content: descriptions of upcoming workflows need review for accuracy
+- Navbar: specific issues not yet documented — note them here when discovered during next review session
+- Roadmap page has no "last updated" indicator — visitors can't tell if it's current
 
-**Context:** User flagged both nav and roadmap content as needing work but wanted to defer to a dedicated task rather than fix piecemeal mid-sprint.
+**Why:** Deferred from v1 sprint to avoid scope creep. Should be resolved before any GovAI/AI CoLab demo or institutional handoff.
 
-**Depends on / blocked by:** v1 sprint complete.
+**Depends on / blocked by:** v1 sprint shipped.
 
 ---
 

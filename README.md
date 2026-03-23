@@ -91,21 +91,17 @@ Feedback without a GitHub account: use the feedback form on any workflow page on
 
 ## Roadmap
 
-The current site is an early release with 6 workflows live. See the [roadmap page](https://public-service-prompt-gallery.netlify.app/roadmap) for the full picture. Future directions, roughly in priority order:
+The current site is an early release with 6 workflows live. See the [live roadmap](https://public-service-prompt-gallery.netlify.app/roadmap) for the full picture. Short summary:
 
-**Short term**
+**Up next**
 - More workflows: Data Summary, Compliance Review
-- Building blocks and quality gates browseable in the UI
-- Search and filter by domain, task type, and APS level
-
-**Medium term**
 - More platform-specific tips and worked examples
-- Contribution tooling for non-GitHub users
 
-**Longer term, depending on interest**
-- Agency self-hosting: deploy as an Azure Static Web Apps instance inside your agency tenant, with Entra ID authentication and Australian data residency. Agencies can extend the library with their own workflows and building blocks without affecting the shared upstream resource.
-- Classification-aware mode: prompts that adapt based on the classification of information you are working with, with appropriate guardrails
-- Structured contribution pipeline for community-submitted workflows
+**Longer term**
+- Building block browser and quality gate library browseable in the UI
+- Search and filter by domain, task type, and APS level
+- Contribution tooling for non-GitHub users
+- Agency self-hosting via Azure Static Web Apps (Entra ID auth, Australian data residency)
 
 If you are interested in contributing workflows, self-hosting inside your agency, or anything else, open an issue or reach out via [LinkedIn](https://www.linkedin.com/in/deanhewson).
 

@@ -77,14 +77,14 @@ The key fields for a workflow. See the full schema in `notes/aps-genai-prompt-li
 
 | Field | Options |
 |---|---|
-| `domain` | `policy_development`, `program_delivery`, `stakeholder_engagement`, `data_analysis`, `compliance_governance`, `general_productivity` |
+| `domain` | `policy_development`, `program_delivery`, `stakeholder_engagement`, `data_analysis`, `compliance_governance`, `general_productivity`, `career_performance` |
 | `complexity` | `beginner`, `intermediate`, `advanced` |
 | `typical_user_level` | `aps3_4`, `aps5_6`, `el1`, `el2`, `ses` |
 | `step_type` | `generation`, `quality_gate`, `refinement`, `user_input` |
 | `trust_level` | `high`, `medium`, `low` |
 | `status` | `draft`, `published`, `archived` |
 | `source` | `upstream`, `agency` |
-| `compliance_frameworks` | `pgpa_act`, `pspf`, `privacy_act`, `aps_values`, `foi_act`, `pspf_ai_advisory` |
+| `compliance_frameworks` | `pgpa_act`, `pspf`, `privacy_act`, `aps_values`, `foi_act`, `pspf_ai_advisory`, `apsc_performance_framework` |
 
 ---
 
