@@ -397,6 +397,11 @@ These are the valid values for key fields. Useful for dropdowns, filters, and va
       "id": "general_productivity",
       "label": "General Productivity",
       "description": "Meetings, emails, document review, agendas, onboarding"
+    },
+    {
+      "id": "career_performance",
+      "label": "Career & Performance",
+      "description": "Performance check-ins, capability development, career planning, performance conversations aligned to the APSC Performance Framework"
     }
   ],
 
@@ -437,7 +442,8 @@ These are the valid values for key fields. Useful for dropdowns, filters, and va
     { "id": "privacy_act", "label": "Privacy Act", "description": "Privacy Act 1988, Australian Privacy Principles — personal information handling" },
     { "id": "aps_values", "label": "APS Values", "description": "Impartial, committed to service, accountable, respectful, ethical" },
     { "id": "foi_act", "label": "FOI Act", "description": "Freedom of Information Act 1982 — document discoverability" },
-    { "id": "pspf_ai_advisory", "label": "PSPF AI Advisory", "description": "Policy Advisory 001-2025 on OFFICIAL Information Use with Generative AI" }
+    { "id": "pspf_ai_advisory", "label": "PSPF AI Advisory", "description": "Policy Advisory 001-2025 on OFFICIAL Information Use with Generative AI" },
+    { "id": "apsc_performance_framework", "label": "APSC Performance Framework", "description": "APSC non-SES Performance Framework (commenced January 2026) — performance conversations, check-ins, capability development" }
   ],
 
   "security_classifications": [

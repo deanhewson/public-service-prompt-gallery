@@ -151,6 +151,7 @@ architecture doc (`notes/aps-genai-prompt-library-architecture.md`) first.
 - `aps_values`
 - `foi_act`
 - `pspf_ai_advisory`
+- `apsc_performance_framework`
 
 **Gate severity** (quality gates only)
 - `required` — must be run before output is finalised
