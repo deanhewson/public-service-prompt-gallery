@@ -31,6 +31,19 @@ const complexityLabel = {
   advanced:     'Advanced',
 };
 
+const maturityLabel: Record<string, string> = {
+  draft:     'Draft',
+  tested:    'Tested',
+  reviewed:  'Reviewed',
+  validated: 'Validated',
+};
+const maturityClass: Record<string, string> = {
+  draft:     'badge-maturity-draft',
+  tested:    'badge-maturity-tested',
+  reviewed:  'badge-maturity-reviewed',
+  validated: 'badge-maturity-validated',
+};
+
 const domainLabels = {
   policy_development:     'Policy Development',
   stakeholder_engagement: 'Stakeholder Engagement',
@@ -138,6 +151,17 @@ const domainLabels = {
       color: #495057;
     }
     .badge.badge-domain { background: var(--color-primary-light); color: var(--color-primary); }
+    .badge-maturity-draft     { background: #e9ecef; color: #495057; }
+    .badge-maturity-tested    { background: #fff3cd; color: #664d03; }
+    .badge-maturity-reviewed  { background: #d1e7dd; color: #0f5132; }
+    .badge-maturity-validated { background: #ede7f6; color: #4a235a; }
+
+    .maturity-note {
+      margin: 8px 0 0;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+    .maturity-date { color: var(--color-muted); }
 
     /* ── Selectors ──────────────────────────────────── */
     .platform-section { padding: 24px 0 0; }
@@ -955,7 +979,20 @@ const domainLabels = {
       {workflow.estimated_time && (
         <span class="badge">{workflow.estimated_time}</span>
       )}
+      {workflow.maturity && (
+        <span class={`badge ${maturityClass[workflow.maturity] ?? 'badge-maturity-draft'}`}>
+          {maturityLabel[workflow.maturity] ?? workflow.maturity}
+        </span>
+      )}
     </div>
+    {workflow.maturity_note && (
+      <p class="maturity-note">
+        <strong>Maturity:</strong> {workflow.maturity_note}
+        {workflow.maturity_updated && (
+          <span class="maturity-date"> · Updated {workflow.maturity_updated}</span>
+        )}
+      </p>
+    )}
   </div>
 </div>
 
