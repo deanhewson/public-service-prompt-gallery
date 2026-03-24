@@ -1,0 +1,31 @@
+---
+import TopNav from '../components/nav/TopNav.astro';
+import WorkflowNav from '../components/nav/WorkflowNav.astro';
+import MobileMenu from '../components/nav/MobileMenu.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
+  <title>About — APS Prompt Gallery</title>
+  <style>
+    body { font-family: 'Atkinson Hyperlegible Next', sans-serif; background: #F7F7FF; margin: 0; }
+    .container { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
+    h1 { font-family: 'Lexend', sans-serif; color: #170a1c; margin: 0 0 16px; }
+    p { color: #6c757d; }
+  </style>
+</head>
+<body>
+  <TopNav />
+  <WorkflowNav />
+  <MobileMenu />
+  <div class="container">
+    <h1>About</h1>
+    <p>Content coming soon. This page will explain the project, how it works, and the trust model behind prompt design for Australian Public Service staff.</p>
+  </div>
+</body>
+</html>

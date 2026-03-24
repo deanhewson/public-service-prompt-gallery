@@ -1,0 +1,59 @@
+---
+// No props needed — reads query params client-side for active state
+---
+
+<nav class="workflow-nav">
+  <div class="workflow-nav-inner">
+    <a href="/workflows/" class="wf-nav-link" data-match="all">All Workflows</a>
+    <a href="/workflows/?domain=policy_development"     class="wf-nav-link" data-domain="policy_development">Policy Development</a>
+    <a href="/workflows/?domain=stakeholder_engagement" class="wf-nav-link" data-domain="stakeholder_engagement">Stakeholder Engagement</a>
+    <a href="/workflows/?domain=general_productivity"   class="wf-nav-link" data-domain="general_productivity">General Productivity</a>
+    <a href="/workflows/?domain=career_performance"     class="wf-nav-link" data-domain="career_performance">Career & Performance</a>
+    <a href="/workflows/" class="wf-nav-link" data-match="building-blocks">Building Blocks</a>
+  </div>
+</nav>
+
+<style>
+  .workflow-nav {
+    background: #1e0d26;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 0 24px;
+    overflow-x: auto;
+  }
+
+  .workflow-nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+  }
+
+  .wf-nav-link {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.82rem;
+    padding: 10px 12px;
+    white-space: nowrap;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s;
+  }
+  .wf-nav-link:hover { color: white; text-decoration: none; }
+  .wf-nav-link.active { color: white; border-bottom-color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 680px) {
+    .workflow-nav { display: none; }
+  }
+</style>
+
+<script>
+  // Highlight the link matching the current ?domain= query param
+  const params = new URLSearchParams(window.location.search);
+  const domain = params.get('domain');
+  if (domain) {
+    const link = document.querySelector(`.wf-nav-link[data-domain="${domain}"]`);
+    if (link) link.classList.add('active');
+  } else if (window.location.pathname === '/workflows/' || window.location.pathname === '/workflows') {
+    const allLink = document.querySelector('.wf-nav-link[data-match="all"]');
+    if (allLink) allLink.classList.add('active');
+  }
+</script>
