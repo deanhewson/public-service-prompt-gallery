@@ -115,6 +115,55 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
       color: var(--color-muted);
     }
 
+    /* ── Maturity model section ──────────────────────────── */
+    .maturity-intro {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin: 0 0 20px;
+      max-width: 640px;
+    }
+    .maturity-stages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .maturity-stage-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .maturity-stage-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .ms-draft     { background: #e9ecef; color: #495057; }
+    .ms-tested    { background: #fff3cd; color: #664d03; }
+    .ms-reviewed  { background: #d1e7dd; color: #0f5132; }
+    .ms-validated { background: #ede7f6; color: #4a235a; }
+    .maturity-stage-desc {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .maturity-status-note {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      margin-bottom: 8px;
+    }
+
   </style>
   <script data-goatcounter="https://deanhewson.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
@@ -175,6 +224,37 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
       <h4>Monthly Performance Check-in</h4>
       <p>5-step workflow for structured monthly reflection aligned to the APSC performance framework.</p>
     </div>
+  </div>
+
+  <!-- Maturity model -->
+  <div class="section-heading">Workflow maturity</div>
+  <p class="maturity-intro">
+    Each workflow carries a maturity stage that tells you how much confidence you can place in its design.
+    This is separate from whether a workflow is published — it tracks how thoroughly it's been tested and reviewed.
+  </p>
+
+  <div class="maturity-stages">
+    <div class="maturity-stage-card">
+      <span class="maturity-stage-label ms-draft">Draft</span>
+      <p class="maturity-stage-desc">Structure and prompts exist but haven't been tested against real APS tasks. Use with extra scrutiny.</p>
+    </div>
+    <div class="maturity-stage-card">
+      <span class="maturity-stage-label ms-tested">Tested</span>
+      <p class="maturity-stage-desc">Run through representative scenarios. Prompt sequences work and outputs are usable. No independent review yet.</p>
+    </div>
+    <div class="maturity-stage-card">
+      <span class="maturity-stage-label ms-reviewed">Reviewed</span>
+      <p class="maturity-stage-desc">Reviewed by at least one subject-matter practitioner outside the original author. Confirmed sound for stated domain.</p>
+    </div>
+    <div class="maturity-stage-card">
+      <span class="maturity-stage-label ms-validated">Validated</span>
+      <p class="maturity-stage-desc">Tested by practitioners across multiple agencies, with feedback incorporated. Represents genuine cross-agency confidence.</p>
+    </div>
+  </div>
+
+  <div class="maturity-status-note">
+    <strong>Current status:</strong> All 6 live workflows are at <strong>Draft</strong> stage — initial implementations not yet formally tested or reviewed.
+    As the project grows toward a community of contributors, workflows will progress through testing and peer review.
   </div>
 
   <!-- Up next -->
