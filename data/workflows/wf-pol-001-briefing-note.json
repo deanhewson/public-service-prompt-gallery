@@ -5,6 +5,9 @@
   "description": "Produce a draft briefing note on a policy topic for senior executive review. Follows standard APS briefing note conventions with built-in quality checks for factual accuracy, sceptical review, and compliance.",
   "version": "1.0",
   "last_reviewed": "2026-03-04",
+  "maturity": "draft",
+  "maturity_note": "Initial implementation, March 2026. Not yet tested against real briefing scenarios.",
+  "maturity_updated": "2026-03-25",
 
   "domain": "policy_development",
   "task_type": "briefing_note",

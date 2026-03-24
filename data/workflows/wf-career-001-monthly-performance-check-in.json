@@ -5,6 +5,9 @@
   "description": "A structured monthly reflection on achievements, goal alignment, behaviours, and development. Produces a personal record and optional supervisor conversation prep. Builds a 12-month narrative to draw from at end-of-cycle review.",
   "version": "1.0",
   "last_reviewed": "2026-03-18",
+  "maturity": "draft",
+  "maturity_note": "Initial implementation, March 2026. Not yet tested against real APSC performance check-in scenarios.",
+  "maturity_updated": "2026-03-25",
 
   "domain": "career_performance",
   "task_type": "performance_reflection",
