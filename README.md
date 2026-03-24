@@ -1,4 +1,4 @@
-# APS GenAI Prompt Gallery
+# APS Prompt Gallery
 
 A structured prompt library for Australian Public Service staff, designed to help you use generative AI tools more effectively and safely. Early release — 6 workflows live and tested, with more in development.
 
@@ -9,7 +9,7 @@ A structured prompt library for Australian Public Service staff, designed to hel
 
 ## What is this?
 
-Most GenAI guidance focuses on individual prompts. This library goes further: it provides **structured workflows**, multi-step sequences of prompts that produce better outputs than a single prompt can, with quality checks built in at each stage.
+Most generative AI guidance focuses on individual prompts. This library goes further: it provides **structured workflows**, multi-step sequences of prompts that produce better outputs than a single prompt can, with quality checks built in at each stage.
 
 Three types of content:
 
