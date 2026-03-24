@@ -9,7 +9,13 @@ const currentPath = Astro.url.pathname;
       <a href="/"        class={`nav-link-flat${currentPath === '/' ? ' nav-link-flat-active' : ''}`}>Home</a>
       <a href="/about"   class={`nav-link-flat${currentPath === '/about' ? ' nav-link-flat-active' : ''}`}>About</a>
       <a href="/roadmap" class={`nav-link-flat${currentPath === '/roadmap' ? ' nav-link-flat-active' : ''}`}>Roadmap</a>
-      <a href="https://github.com/deanhewson/public-service-prompt-gallery" class="nav-link-flat" target="_blank" rel="noopener">Contribute</a>
+      <div class="nav-group">
+        <a href="/workflow-guide" class={`nav-link-flat${currentPath === '/workflow-guide' ? ' nav-link-flat-active' : ''}`}>Contribute <span class="nav-chevron">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="/workflow-guide" class="nav-dropdown-link">Understand workflow structure</a>
+          <a href="https://github.com/deanhewson/public-service-prompt-gallery" class="nav-dropdown-link" target="_blank" rel="noopener">GitHub Repository</a>
+        </div>
+      </div>
       <button class="nav-search-btn" id="nav-search-btn" aria-label="Search workflows">🔍</button>
     </div>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
@@ -64,6 +70,58 @@ const currentPath = Astro.url.pathname;
   }
   .nav-link-flat:hover { color: white; text-decoration: none; }
   .nav-link-flat-active { color: white; border-bottom-color: rgba(255,255,255,0.7); }
+
+  .nav-group {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .nav-chevron {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    transition: transform 0.2s;
+    margin-left: 3px;
+  }
+  .nav-group:hover .nav-chevron { transform: rotate(180deg); }
+
+  /* Invisible bridge closes any gap between trigger and dropdown */
+  .nav-group::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: transparent;
+  }
+
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #170a1c;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    min-width: 180px;
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .nav-group:hover .nav-dropdown { display: block; }
+
+  .nav-dropdown-link {
+    display: block;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    padding: 9px 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-dropdown-link:last-child { border-bottom: none; }
+  .nav-dropdown-link:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
 
   .nav-search-btn {
     background: none;

@@ -1,5 +1,6 @@
-# Superpowers plans (internal to Claude Code sessions — not for public repo)
+# Superpowers (internal to Claude Code sessions — not for public repo)
 docs/superpowers/plans/
+.superpowers/
 
 # Private notes (internal planning docs — not for public repo)
 notes/project-plan.md
