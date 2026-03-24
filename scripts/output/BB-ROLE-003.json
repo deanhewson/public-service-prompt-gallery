@@ -39,8 +39,7 @@
   "platform_notes": {
     "claude": "XML tags are processed natively. Use as-is.",
     "chatgpt": "Remove XML tags and convert to plain instructions: 'Act as an experienced APS communications adviser...'",
-    "copilot": "Use as system-level instructions where possible, or prefix to your prompt.",
-    "govai_chat": "Pending — test when available (April 2026 trial)."
+    "copilot": "Use as system-level instructions where possible, or prefix to your prompt."
   },
   "tags": [
     "role",

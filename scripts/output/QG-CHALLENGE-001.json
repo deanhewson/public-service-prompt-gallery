@@ -58,8 +58,7 @@
   "platform_notes": {
     "claude": "XML tags are processed natively. Use as-is.",
     "chatgpt": "Remove the <instructions> and <draft> XML tags. Paste instructions as plain text followed by the draft.",
-    "copilot": "Paste instructions as system-level comments or prefix to your prompt, with 'Here is the draft to review:' before the content.",
-    "govai_chat": "Pending — test when available (April 2026 trial)."
+    "copilot": "Paste instructions as system-level comments or prefix to your prompt, with 'Here is the draft to review:' before the content."
   },
   "tags": [
     "challenge",

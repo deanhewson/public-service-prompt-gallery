@@ -70,8 +70,7 @@
   "platform_notes": {
     "claude": "XML tags are processed natively. Use as-is.",
     "chatgpt": "Remove XML tags and convert to plain instructions. Replace <role>...</role> with 'Act as a senior APS policy analyst...' at the start.",
-    "copilot": "Paste as a single prompt block. Copilot may not follow long system instructions reliably — keep the role instruction brief.",
-    "govai_chat": "Pending — test when available (April 2026 trial)."
+    "copilot": "Paste as a single prompt block. Copilot may not follow long system instructions reliably — keep the role instruction brief."
   },
 
   "tags": ["drafting", "briefing-note", "generation", "core"],
