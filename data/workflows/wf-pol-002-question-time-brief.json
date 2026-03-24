@@ -5,6 +5,9 @@
   "description": "Prepare a QTB for Senate Estimates, a ministerial doorstop, or a stakeholder Q&A. High-stakes, time-sensitive format with built-in scrutiny testing.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
+  "maturity": "draft",
+  "maturity_note": "Initial implementation, March 2026. Not yet tested against real Senate Estimates preparation.",
+  "maturity_updated": "2026-03-25",
 
   "domain": "policy_development",
   "task_type": "question_time_brief",

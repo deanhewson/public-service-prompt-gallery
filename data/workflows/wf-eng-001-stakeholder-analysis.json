@@ -5,6 +5,9 @@
   "description": "Map and analyse key stakeholders for a policy initiative or engagement program. Identifies interests, positions, risks, and recommends a tailored engagement approach.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
+  "maturity": "draft",
+  "maturity_note": "Initial implementation, March 2026. Not yet tested against real stakeholder mapping scenarios.",
+  "maturity_updated": "2026-03-25",
 
   "domain": "stakeholder_engagement",
   "task_type": "stakeholder_analysis",

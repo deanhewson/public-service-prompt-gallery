@@ -11,11 +11,14 @@ interface Props {
   estimated_time: string;
   description: string;
   is_new?: boolean;
+  maturity?: string;
 }
 
-const { id, icon, name, url, domain, domain_label, complexity, step_count, estimated_time, description, is_new = false } = Astro.props;
+const { id, icon, name, url, domain, domain_label, complexity, step_count, estimated_time, description, is_new = false, maturity = 'draft' } = Astro.props;
 
 const complexityLabel = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+const maturityLabel: Record<string, string> = { draft: 'Draft', tested: 'Tested', reviewed: 'Reviewed', validated: 'Validated' };
+const maturityClass: Record<string, string> = { draft: 'maturity-draft', tested: 'maturity-tested', reviewed: 'maturity-reviewed', validated: 'maturity-validated' };
 ---
 
 {/* Filter JS hides/shows cards via .hidden class — defined globally in browse page */}
@@ -25,6 +28,7 @@ const complexityLabel = { beginner: 'Beginner', intermediate: 'Intermediate', ad
   data-id={id}
   data-domain={domain}
   data-complexity={complexity}
+  data-maturity={maturity}
 >
   <div class="card-top">
     <span class="card-icon">{icon}</span>
@@ -32,6 +36,9 @@ const complexityLabel = { beginner: 'Beginner', intermediate: 'Intermediate', ad
     {is_new && <span class="card-new-badge">New</span>}
   </div>
   <span class="card-domain-badge">{domain_label}</span>
+  <span class={`card-maturity-badge ${maturityClass[maturity] ?? 'maturity-draft'}`}>
+    {maturityLabel[maturity] ?? maturity}
+  </span>
   <div class="card-meta">
     {step_count} steps · {complexityLabel[complexity] ?? complexity} · {estimated_time}
   </div>
@@ -84,6 +91,22 @@ const complexityLabel = { beginner: 'Beginner', intermediate: 'Intermediate', ad
     border-radius: 20px;
     margin-bottom: 8px;
   }
+
+  .card-maturity-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    margin-left: 6px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .maturity-draft    { background: #e9ecef; color: #495057; }
+  .maturity-tested   { background: #fff3cd; color: #664d03; }
+  .maturity-reviewed { background: #d1e7dd; color: #0f5132; }
+  .maturity-validated { background: #ede7f6; color: #4a235a; }
 
   .card-meta {
     font-size: 0.82rem;

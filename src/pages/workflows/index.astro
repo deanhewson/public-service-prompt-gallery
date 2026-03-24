@@ -93,6 +93,7 @@ const domainLabels = {
           estimated_time={wf.estimated_time ?? ''}
           description={wf.description ?? ''}
           is_new={wf.is_new ?? false}
+          maturity={wf.maturity ?? 'draft'}
         />
       ))}
     </div>
@@ -104,6 +105,7 @@ const domainLabels = {
     // ── Filter + Search state ──────────────────────────────────────────────
     let activeDomain = '';
     let activeComplexities: string[] = [];
+    let activeMaturity: string[] = [];
     let fuseInstance: any = null;
     let fuseMatchIds: Set<string> | null = null; // null = no search active; Set = matched IDs
 
@@ -121,8 +123,9 @@ const domainLabels = {
       cards.forEach(card => {
         const domainMatch = !activeDomain || card.dataset.domain === activeDomain;
         const complexityMatch = activeComplexities.length === 0 || activeComplexities.includes(card.dataset.complexity ?? '');
+        const maturityMatch = activeMaturity.length === 0 || activeMaturity.includes(card.dataset.maturity ?? '');
         const searchMatch = fuseMatchIds === null || fuseMatchIds.has(card.dataset.id ?? '');
-        const show = domainMatch && complexityMatch && searchMatch;
+        const show = domainMatch && complexityMatch && maturityMatch && searchMatch;
         card.classList.toggle('hidden', !show);
         if (show) visibleCount++;
       });
@@ -172,6 +175,23 @@ const domainLabels = {
           pill.setAttribute('aria-pressed', 'false');
         } else {
           activeComplexities.push(c);
+          pill.classList.add('active');
+          pill.setAttribute('aria-pressed', 'true');
+        }
+        applyFilters();
+      });
+    });
+
+    // ── Maturity pills ────────────────────────────────────────────────────
+    document.querySelectorAll<HTMLElement>('#maturity-pills .pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const m = pill.dataset.maturity ?? '';
+        if (activeMaturity.includes(m)) {
+          activeMaturity = activeMaturity.filter(x => x !== m);
+          pill.classList.remove('active');
+          pill.setAttribute('aria-pressed', 'false');
+        } else {
+          activeMaturity.push(m);
           pill.classList.add('active');
           pill.setAttribute('aria-pressed', 'true');
         }

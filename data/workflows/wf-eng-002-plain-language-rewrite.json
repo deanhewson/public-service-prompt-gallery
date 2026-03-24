@@ -5,6 +5,9 @@
   "description": "Convert complex policy, legal, or administrative text into clear, accessible language for a general audience. Includes a structured audit, rewrite, and clarity check.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
+  "maturity": "draft",
+  "maturity_note": "Initial implementation, March 2026. Not yet tested against real plain language editing scenarios.",
+  "maturity_updated": "2026-03-25",
 
   "domain": "stakeholder_engagement",
   "task_type": "plain_language_rewrite",

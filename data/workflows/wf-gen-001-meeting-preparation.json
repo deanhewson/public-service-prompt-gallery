@@ -5,6 +5,9 @@
   "description": "Draft an agenda, background brief, and discussion prompts for an upcoming meeting. Works for internal working groups, stakeholder briefings, and governance forums.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
+  "maturity": "draft",
+  "maturity_note": "Initial implementation, March 2026. Not yet tested against real meeting preparation scenarios.",
+  "maturity_updated": "2026-03-25",
 
   "domain": "general_productivity",
   "task_type": "meeting_preparation",

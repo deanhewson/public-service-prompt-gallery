@@ -76,6 +76,13 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
       border-bottom: 1px solid var(--color-border);
     }
     .roadmap-item:last-child { border-bottom: none; }
+    .roadmap-item-status {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      flex-shrink: 0;
+    }
     .roadmap-status {
       flex-shrink: 0;
       font-size: 0.72rem;
@@ -115,6 +122,23 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
       color: var(--color-muted);
     }
 
+    /* ── Maturity badges (inline on workflow items) ──────── */
+    .maturity-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+    .ms-draft     { background: #e9ecef; color: #495057; }
+    .ms-tested    { background: #fff3cd; color: #664d03; }
+    .ms-reviewed  { background: #d1e7dd; color: #0f5132; }
+    .ms-validated { background: #ede7f6; color: #4a235a; }
+
   </style>
   <script data-goatcounter="https://deanhewson.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
@@ -135,42 +159,60 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
   <div class="section-heading">Live now — 6 workflows</div>
 
   <div class="roadmap-item">
-    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-status">
+      <span class="roadmap-status status-live">Live</span>
+      <span class="maturity-badge ms-draft">Draft</span>
+    </div>
     <div class="roadmap-item-body">
       <h4>Briefing Note</h4>
       <p>7-step workflow for drafting ministerial briefing notes with claim verification and red-team review.</p>
     </div>
   </div>
   <div class="roadmap-item">
-    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-status">
+      <span class="roadmap-status status-live">Live</span>
+      <span class="maturity-badge ms-draft">Draft</span>
+    </div>
     <div class="roadmap-item-body">
       <h4>Question Time Brief</h4>
       <p>5-step workflow for Senate Estimates and ministerial Q&amp;A preparation with parliamentary scrutiny test.</p>
     </div>
   </div>
   <div class="roadmap-item">
-    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-status">
+      <span class="roadmap-status status-live">Live</span>
+      <span class="maturity-badge ms-draft">Draft</span>
+    </div>
     <div class="roadmap-item-body">
       <h4>Stakeholder Analysis</h4>
       <p>4-step workflow for mapping and analysing stakeholders for policy initiatives and engagement programs.</p>
     </div>
   </div>
   <div class="roadmap-item">
-    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-status">
+      <span class="roadmap-status status-live">Live</span>
+      <span class="maturity-badge ms-draft">Draft</span>
+    </div>
     <div class="roadmap-item-body">
       <h4>Plain Language Rewrite</h4>
       <p>3-step workflow for converting complex policy or legal text into clear, accessible language.</p>
     </div>
   </div>
   <div class="roadmap-item">
-    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-status">
+      <span class="roadmap-status status-live">Live</span>
+      <span class="maturity-badge ms-draft">Draft</span>
+    </div>
     <div class="roadmap-item-body">
       <h4>Meeting Preparation</h4>
       <p>4-step workflow for drafting agendas, background briefs, and discussion prompts.</p>
     </div>
   </div>
   <div class="roadmap-item">
-    <span class="roadmap-status status-live">Live</span>
+    <div class="roadmap-item-status">
+      <span class="roadmap-status status-live">Live</span>
+      <span class="maturity-badge ms-draft">Draft</span>
+    </div>
     <div class="roadmap-item-body">
       <h4>Monthly Performance Check-in</h4>
       <p>5-step workflow for structured monthly reflection aligned to the APSC performance framework.</p>

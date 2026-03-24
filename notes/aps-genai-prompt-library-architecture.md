@@ -175,7 +175,10 @@ A complete end-to-end sequence composed of building blocks and quality gates.
   "description": "Produce a draft briefing note on a policy topic for senior executive review. Follows standard APS briefing note conventions with built-in quality checks.",
   "version": "1.0",
   "last_reviewed": "2026-03-01",
-  
+  "maturity": "draft",
+  "maturity_note": "Initial implementation, not yet tested against representative scenarios",
+  "maturity_updated": "2026-03-25",
+
   "domain": "policy_development",
   "task_type": "briefing_note",
   "typical_user_level": ["aps6", "el1"],
@@ -475,6 +478,13 @@ These are the valid values for key fields. Useful for dropdowns, filters, and va
   "source_values": [
     { "id": "upstream", "label": "Upstream", "description": "Content from this shared public library. Default for all content in this repo.", "default": true },
     { "id": "agency", "label": "Agency", "description": "Content added by an agency in their own fork. Agency-specific content should not be submitted to the upstream repo." }
+  ],
+
+  "maturity_levels": [
+    { "id": "draft", "label": "Draft", "description": "Initial version. Workflow structure and prompts exist but haven't been systematically tested against real APS tasks. Use with extra scrutiny." },
+    { "id": "tested", "label": "Tested", "description": "Run through representative scenarios with outputs reviewed for quality. Prompt sequences work, quality gates catch what they should. Not yet independently reviewed." },
+    { "id": "reviewed", "label": "Reviewed", "description": "Reviewed by at least one subject-matter practitioner other than the original author. Confirmed sound for stated domain and audience." },
+    { "id": "validated", "label": "Validated", "description": "Tested by multiple practitioners across agencies or contexts, with feedback incorporated. Represents cross-agency confidence." }
   ]
 }
 ```
@@ -688,7 +698,10 @@ CREATE TABLE workflows (
     tags TEXT[],
     contributed_by TEXT,
     status TEXT DEFAULT 'published',  -- 'draft' | 'published' | 'archived'
-    source TEXT DEFAULT 'upstream'    -- 'upstream' | 'agency'
+    source TEXT DEFAULT 'upstream',   -- 'upstream' | 'agency'
+    maturity TEXT DEFAULT 'draft',    -- 'draft' | 'tested' | 'reviewed' | 'validated'
+    maturity_note TEXT,
+    maturity_updated DATE
 );
 
 CREATE TABLE workflow_steps (
