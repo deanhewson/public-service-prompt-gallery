@@ -1,5 +1,6 @@
 {
   "id": "WF-ENG-002",
+  "slug": "plain-language-rewrite",
   "name": "Plain Language Rewrite",
   "description": "Convert complex policy, legal, or administrative text into clear, accessible language for a general audience. Includes a structured audit, rewrite, and clarity check.",
   "version": "1.0",

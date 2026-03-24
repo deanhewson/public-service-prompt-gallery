@@ -1,0 +1,103 @@
+---
+interface Props {
+  id: string;
+  icon: string;
+  name: string;
+  url: string;
+  domain: string;
+  domain_label: string;
+  complexity: string;
+  step_count: number;
+  estimated_time: string;
+  description: string;
+  is_new?: boolean;
+}
+
+const { id, icon, name, url, domain, domain_label, complexity, step_count, estimated_time, description, is_new = false } = Astro.props;
+
+const complexityLabel = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
+---
+
+{/* Filter JS hides/shows cards via .hidden class — defined globally in browse page */}
+<a
+  href={url}
+  class="workflow-card"
+  data-id={id}
+  data-domain={domain}
+  data-complexity={complexity}
+>
+  <div class="card-top">
+    <span class="card-icon">{icon}</span>
+    <span class="card-name">{name}</span>
+    {is_new && <span class="card-new-badge">New</span>}
+  </div>
+  <span class="card-domain-badge">{domain_label}</span>
+  <div class="card-meta">
+    {step_count} steps · {complexityLabel[complexity] ?? complexity} · {estimated_time}
+  </div>
+  <p class="card-description">{description}</p>
+</a>
+
+<style>
+  .workflow-card {
+    display: block;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+    color: #212529;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .workflow-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #170a1c;
+    text-decoration: none;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .card-icon { font-size: 1.2rem; }
+  .card-name { font-weight: 600; font-size: 1rem; color: #170a1c; flex: 1; }
+  .card-new-badge {
+    background: #198754;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .card-domain-badge {
+    display: inline-block;
+    background: #DFD9E2;
+    color: #170a1c;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  .card-meta {
+    font-size: 0.82rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+  }
+
+  .card-description {
+    font-size: 0.875rem;
+    color: #495057;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

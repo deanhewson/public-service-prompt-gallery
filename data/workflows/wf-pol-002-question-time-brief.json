@@ -1,5 +1,6 @@
 {
   "id": "WF-POL-002",
+  "slug": "question-time-brief",
   "name": "Question Time Brief",
   "description": "Prepare a QTB for Senate Estimates, a ministerial doorstop, or a stakeholder Q&A. High-stakes, time-sensitive format with built-in scrutiny testing.",
   "version": "1.0",

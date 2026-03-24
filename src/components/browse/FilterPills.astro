@@ -1,0 +1,76 @@
+---
+// No props — active state managed client-side via JS + URLSearchParams
+---
+
+<div class="filter-area">
+  <div class="filter-row" id="domain-pills">
+    <button type="button" class="pill active" data-domain="" aria-pressed="true">All</button>
+    <button type="button" class="pill" data-domain="policy_development" aria-pressed="false">Policy Development</button>
+    <button type="button" class="pill" data-domain="stakeholder_engagement" aria-pressed="false">Stakeholder Engagement</button>
+    <button type="button" class="pill" data-domain="general_productivity" aria-pressed="false">General Productivity</button>
+    <button type="button" class="pill" data-domain="career_performance" aria-pressed="false">Career & Performance</button>
+  </div>
+
+  <div class="filter-more-row">
+    <button type="button" class="filter-toggle" id="filter-toggle">+ More filters</button>
+  </div>
+
+  <div class="filter-secondary hidden" id="filter-secondary">
+    <span class="filter-label">Complexity:</span>
+    <div class="pill-group" id="complexity-pills">
+      <button type="button" class="pill" data-complexity="beginner" aria-pressed="false">Beginner</button>
+      <button type="button" class="pill" data-complexity="intermediate" aria-pressed="false">Intermediate</button>
+      <button type="button" class="pill" data-complexity="advanced" aria-pressed="false">Advanced</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .filter-area { margin-bottom: 20px; }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .pill {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    color: #495057;
+    font-size: 0.82rem;
+    padding: 5px 14px;
+    cursor: pointer;
+    transition: background 0.1s, color 0.1s, border-color 0.1s;
+    font-family: inherit;
+  }
+  .pill:hover { border-color: #170a1c; color: #170a1c; }
+  .pill.active { background: #170a1c; color: white; border-color: #170a1c; }
+
+  .filter-more-row { margin-bottom: 8px; }
+
+  .filter-toggle {
+    background: none;
+    border: none;
+    color: #6c757d;
+    font-size: 0.82rem;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+  }
+  .filter-toggle:hover { color: #170a1c; }
+
+  .filter-secondary {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 0;
+  }
+  .filter-secondary.hidden { display: none; }
+
+  .filter-label { font-size: 0.82rem; color: #6c757d; }
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+</style>
