@@ -7,7 +7,7 @@
     <a href="/workflows/" class="wf-nav-link" data-match="all">All Workflows</a>
 
     <div class="nav-group">
-      <a href="/workflows/?domain=policy_development" class="wf-nav-link" data-domain="policy_development">Policy Development</a>
+      <a href="/workflows/?domain=policy_development" class="wf-nav-link" data-domain="policy_development">Policy Development <span class="nav-chevron">▾</span></a>
       <div class="nav-dropdown">
         <a href="/workflows/briefing-note" class="nav-dropdown-link">Briefing Note</a>
         <a href="/workflows/question-time-brief" class="nav-dropdown-link">Question Time Brief</a>
@@ -15,14 +15,14 @@
     </div>
 
     <div class="nav-group">
-      <a href="/workflows/?domain=stakeholder_engagement" class="wf-nav-link" data-domain="stakeholder_engagement">Stakeholder Engagement</a>
+      <a href="/workflows/?domain=stakeholder_engagement" class="wf-nav-link" data-domain="stakeholder_engagement">Stakeholder Engagement <span class="nav-chevron">▾</span></a>
       <div class="nav-dropdown">
         <a href="/workflows/stakeholder-analysis" class="nav-dropdown-link">Stakeholder Analysis</a>
       </div>
     </div>
 
     <div class="nav-group">
-      <a href="/workflows/?domain=general_productivity" class="wf-nav-link" data-domain="general_productivity">General Productivity</a>
+      <a href="/workflows/?domain=general_productivity" class="wf-nav-link" data-domain="general_productivity">General Productivity <span class="nav-chevron">▾</span></a>
       <div class="nav-dropdown">
         <a href="/workflows/plain-language-rewrite" class="nav-dropdown-link">Plain Language Rewrite</a>
         <a href="/workflows/meeting-preparation" class="nav-dropdown-link">Meeting Preparation</a>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="nav-group">
-      <a href="/workflows/?domain=career_performance" class="wf-nav-link" data-domain="career_performance">Career &amp; Performance</a>
+      <a href="/workflows/?domain=career_performance" class="wf-nav-link" data-domain="career_performance">Career &amp; Performance <span class="nav-chevron">▾</span></a>
       <div class="nav-dropdown">
         <a href="/workflows/monthly-performance-check-in" class="nav-dropdown-link">Monthly Performance Check-in</a>
       </div>
@@ -43,7 +43,7 @@
     background: #1e0d26;
     border-top: 1px solid rgba(255,255,255,0.1);
     padding: 0 24px;
-    overflow-x: auto;
+    overflow: visible;
   }
 
   .workflow-nav-inner {
@@ -64,6 +64,14 @@
   }
   .wf-nav-link:hover { color: white; text-decoration: none; }
   .wf-nav-link.active { color: white; border-bottom-color: rgba(255,255,255,0.6); }
+
+  .nav-chevron {
+    font-size: 0.65rem;
+    opacity: 0.7;
+    transition: transform 0.2s;
+    margin-left: 2px;
+  }
+  .nav-group:hover .nav-chevron { transform: rotate(180deg); }
 
   .nav-group {
     position: relative;
