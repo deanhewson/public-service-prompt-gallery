@@ -15,10 +15,83 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <title>About — APS Prompt Gallery</title>
   <style>
-    body { font-family: 'Atkinson Hyperlegible Next', sans-serif; background: #F7F7FF; margin: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --color-primary: #170a1c;
+      --color-primary-light: #DFD9E2;
+      --color-bg: #F7F7FF;
+      --color-surface: #ffffff;
+      --color-border: #dee2e6;
+      --color-text: #212529;
+      --color-muted: #6c757d;
+      --radius: 8px;
+      --font-heading: 'Lexend', sans-serif;
+      --font-body: 'Atkinson Hyperlegible Next', sans-serif;
+    }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); margin: 0; line-height: 1.6; }
+    h1, h2, h3 { font-family: var(--font-heading); }
     .container { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
-    h1 { font-family: 'Lexend', sans-serif; color: #170a1c; margin: 0 0 16px; }
-    p { color: #6c757d; }
+    h1 { color: var(--color-primary); margin: 0 0 16px; font-size: 1.8rem; }
+    .lead { color: var(--color-muted); max-width: 620px; margin: 0 0 48px; }
+
+    .section-heading {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-muted);
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* ── Maturity model ──────────────────────────────────── */
+    .maturity-intro {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin: 0 0 20px;
+      max-width: 640px;
+    }
+    .maturity-stages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .maturity-stage-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .maturity-stage-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .ms-draft     { background: #e9ecef; color: #495057; }
+    .ms-tested    { background: #fff3cd; color: #664d03; }
+    .ms-reviewed  { background: #d1e7dd; color: #0f5132; }
+    .ms-validated { background: #ede7f6; color: #4a235a; }
+    .maturity-stage-desc {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .maturity-governance-note {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+    }
   </style>
 </head>
 <body>
@@ -27,7 +100,39 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
   <MobileMenu />
   <div class="container">
     <h1>About</h1>
-    <p>Content coming soon. This page will explain the project, how it works, and the trust model behind prompt design for Australian Public Service staff.</p>
+    <p class="lead">Content coming soon. This page will explain the project, how it works, and the trust model behind prompt design for Australian Public Service staff.</p>
+
+    <div class="section-heading">Workflow maturity</div>
+    <p class="maturity-intro">
+      Each workflow carries a maturity stage that tells you how much confidence you can place in its design.
+      This is separate from whether a workflow is published — it tracks how thoroughly it's been tested and reviewed.
+      You'll see the maturity badge on each workflow card and at the top of each workflow page.
+    </p>
+
+    <div class="maturity-stages">
+      <div class="maturity-stage-card">
+        <span class="maturity-stage-label ms-draft">Draft</span>
+        <p class="maturity-stage-desc">Structure and prompts exist but haven't been systematically tested against real APS tasks. Use with extra scrutiny.</p>
+      </div>
+      <div class="maturity-stage-card">
+        <span class="maturity-stage-label ms-tested">Tested</span>
+        <p class="maturity-stage-desc">Run through representative scenarios by the maintainer or early users. Prompt sequences work and outputs are usable. No independent review yet.</p>
+      </div>
+      <div class="maturity-stage-card">
+        <span class="maturity-stage-label ms-reviewed">Reviewed</span>
+        <p class="maturity-stage-desc">Reviewed by at least one subject-matter practitioner outside the original author. Confirmed sound for its stated domain and audience.</p>
+      </div>
+      <div class="maturity-stage-card">
+        <span class="maturity-stage-label ms-validated">Validated</span>
+        <p class="maturity-stage-desc">Tested by practitioners across multiple agencies, with feedback incorporated. Represents genuine cross-agency confidence.</p>
+      </div>
+    </div>
+
+    <p class="maturity-governance-note">
+      Maturity progresses as the project grows: Draft and Tested are sole-maintainer stages.
+      Reviewed requires a trusted practitioner reviewer. Validated requires feedback from multiple agencies.
+      <a href="/roadmap">See where each workflow currently sits →</a>
+    </p>
   </div>
 <SearchOverlay />
 </body>
