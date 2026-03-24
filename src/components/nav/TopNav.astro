@@ -26,6 +26,10 @@ const currentPath = Astro.url.pathname;
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: transform 0.25s ease;
+  }
+  .site-header.nav-hide {
+    transform: translateY(-100%);
   }
 
   .site-nav {
@@ -115,4 +119,17 @@ const currentPath = Astro.url.pathname;
       window.dispatchEvent(new CustomEvent(isOpen ? 'close-mobile-menu' : 'open-mobile-menu'));
     });
   }
+
+  // Auto-hide nav on scroll down, show on scroll up
+  let lastScrollY = 0;
+  const siteHeader = document.querySelector('.site-header');
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    if (current > lastScrollY && current > 80) {
+      siteHeader?.classList.add('nav-hide');
+    } else {
+      siteHeader?.classList.remove('nav-hide');
+    }
+    lastScrollY = current;
+  }, { passive: true });
 </script>
