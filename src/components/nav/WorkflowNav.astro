@@ -1,0 +1,120 @@
+---
+// No props needed — reads query params client-side for active state
+---
+
+<nav class="workflow-nav">
+  <div class="workflow-nav-inner">
+    <a href="/workflows/" class="wf-nav-link" data-match="all">All Workflows</a>
+
+    <div class="nav-group">
+      <a href="/workflows/?domain=policy_development" class="wf-nav-link" data-domain="policy_development">Policy Development</a>
+      <div class="nav-dropdown">
+        <a href="/workflows/briefing-note" class="nav-dropdown-link">Briefing Note</a>
+        <a href="/workflows/question-time-brief" class="nav-dropdown-link">Question Time Brief</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <a href="/workflows/?domain=stakeholder_engagement" class="wf-nav-link" data-domain="stakeholder_engagement">Stakeholder Engagement</a>
+      <div class="nav-dropdown">
+        <a href="/workflows/stakeholder-analysis" class="nav-dropdown-link">Stakeholder Analysis</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <a href="/workflows/?domain=general_productivity" class="wf-nav-link" data-domain="general_productivity">General Productivity</a>
+      <div class="nav-dropdown">
+        <a href="/workflows/plain-language-rewrite" class="nav-dropdown-link">Plain Language Rewrite</a>
+        <a href="/workflows/meeting-preparation" class="nav-dropdown-link">Meeting Preparation</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <a href="/workflows/?domain=career_performance" class="wf-nav-link" data-domain="career_performance">Career &amp; Performance</a>
+      <div class="nav-dropdown">
+        <a href="/workflows/monthly-performance-check-in" class="nav-dropdown-link">Monthly Performance Check-in</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .workflow-nav {
+    background: #1e0d26;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 0 24px;
+    overflow-x: auto;
+  }
+
+  .workflow-nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+  }
+
+  .wf-nav-link {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.82rem;
+    padding: 10px 12px;
+    white-space: nowrap;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s;
+  }
+  .wf-nav-link:hover { color: white; text-decoration: none; }
+  .wf-nav-link.active { color: white; border-bottom-color: rgba(255,255,255,0.6); }
+
+  .nav-group {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #170a1c;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    min-width: 200px;
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .nav-group:hover .nav-dropdown {
+    display: block;
+  }
+
+  .nav-dropdown-link {
+    display: block;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    padding: 9px 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-dropdown-link:last-child { border-bottom: none; }
+  .nav-dropdown-link:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
+
+  @media (max-width: 680px) {
+    .workflow-nav { display: none; }
+  }
+</style>
+
+<script>
+  // Highlight the link matching the current ?domain= query param
+  const params = new URLSearchParams(window.location.search);
+  const domain = params.get('domain');
+  if (domain) {
+    const link = document.querySelector(`.wf-nav-link[data-domain="${domain}"]`);
+    if (link) link.classList.add('active');
+  } else if (window.location.pathname === '/workflows/' || window.location.pathname === '/workflows') {
+    const allLink = document.querySelector('.wf-nav-link[data-match="all"]');
+    if (allLink) allLink.classList.add('active');
+  }
+</script>

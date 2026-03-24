@@ -1,0 +1,116 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">APS Prompt Gallery</a>
+    <div class="nav-links">
+      <a href="/"        class={`nav-link-flat${currentPath === '/' ? ' nav-link-flat-active' : ''}`}>Home</a>
+      <a href="/about"   class={`nav-link-flat${currentPath === '/about' ? ' nav-link-flat-active' : ''}`}>About</a>
+      <a href="/roadmap" class={`nav-link-flat${currentPath === '/roadmap' ? ' nav-link-flat-active' : ''}`}>Roadmap</a>
+      <a href="https://github.com/deanhewson/public-service-prompt-gallery" class="nav-link-flat" target="_blank" rel="noopener">Contribute</a>
+      <button class="nav-search-btn" id="nav-search-btn" aria-label="Search workflows">🔍</button>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </nav>
+</header>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .site-header {
+    background: #170a1c;
+    color: white;
+    padding: 0 24px;
+  }
+
+  .site-nav {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+  }
+
+  .nav-logo {
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    margin-right: 24px;
+    padding: 14px 0;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .nav-logo:hover { opacity: 0.9; }
+
+  .nav-links {
+    display: flex;
+    align-items: stretch;
+    margin-left: auto;
+    gap: 0;
+  }
+
+  .nav-link-flat {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.85rem;
+    padding: 14px 12px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-link-flat:hover { color: white; text-decoration: none; }
+  .nav-link-flat-active { color: white; border-bottom-color: rgba(255,255,255,0.7); }
+
+  .nav-search-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    padding: 14px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .nav-search-btn:hover { color: white; }
+
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px 4px;
+    margin-left: auto;
+    line-height: 1;
+  }
+
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: block; }
+  }
+</style>
+
+<script>
+  const searchBtn = document.getElementById('nav-search-btn');
+  if (searchBtn) {
+    searchBtn.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('open-search'));
+    });
+  }
+
+  const hamburger = document.getElementById('nav-hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+      hamburger.textContent = isOpen ? '☰' : '✕';
+      window.dispatchEvent(new CustomEvent(isOpen ? 'close-mobile-menu' : 'open-mobile-menu'));
+    });
+  }
+
+</script>

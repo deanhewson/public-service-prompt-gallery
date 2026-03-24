@@ -1,0 +1,238 @@
+---
+import TopNav from '../../components/nav/TopNav.astro';
+import WorkflowNav from '../../components/nav/WorkflowNav.astro';
+import MobileMenu from '../../components/nav/MobileMenu.astro';
+import SearchOverlay from '../../components/nav/SearchOverlay.astro';
+import WorkflowCard from '../../components/browse/WorkflowCard.astro';
+import FilterPills from '../../components/browse/FilterPills.astro';
+import SearchBar from '../../components/browse/SearchBar.astro';
+import NoResults from '../../components/browse/NoResults.astro';
+
+// Load all workflow JSONs at build time
+const modules = import.meta.glob('../../../data/workflows/*.json', { eager: true });
+const workflows = Object.values(modules) as any[];
+
+// Sort by domain then name for consistent ordering
+workflows.sort((a, b) => a.domain.localeCompare(b.domain) || a.name.localeCompare(b.name));
+
+const domainLabels = {
+  policy_development:     'Policy Development',
+  stakeholder_engagement: 'Stakeholder Engagement',
+  general_productivity:   'General Productivity',
+  career_performance:     'Career & Performance',
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
+  <!-- Fuse.js for fuzzy search -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <title>Browse Workflows — APS Prompt Gallery</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --color-bg: #F7F7FF;
+      --color-primary: #170a1c;
+      --font-heading: 'Lexend', sans-serif;
+      --font-body: 'Atkinson Hyperlegible Next', sans-serif;
+    }
+    body { font-family: var(--font-body); background: var(--color-bg); margin: 0; color: #212529; }
+    h1, h2 { font-family: var(--font-heading); }
+    a { color: var(--color-primary); }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .page-header { padding: 32px 0 24px; }
+    .page-header h1 { margin: 0 0 6px; font-size: 1.6rem; color: var(--color-primary); }
+    .page-header p { margin: 0; color: #6c757d; }
+
+    .results-count { font-size: 0.85rem; color: #6c757d; margin-bottom: 16px; }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 600px) { .workflow-grid { grid-template-columns: 1fr; } }
+
+    :global(.hidden) { display: none !important; }
+  </style>
+</head>
+<body>
+  <TopNav />
+  <WorkflowNav />
+  <MobileMenu />
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Browse Workflows</h1>
+      <p>Find AI-assisted workflows for your work in the Australian Public Service.</p>
+    </div>
+
+    <SearchBar />
+    <FilterPills />
+
+    <div class="results-count" id="results-count">Showing {workflows.length} workflows</div>
+
+    <div class="workflow-grid" id="workflow-grid">
+      {workflows.map((wf) => (
+        <WorkflowCard
+          id={wf.id}
+          icon={wf.icon ?? '📋'}
+          name={wf.name}
+          url={`/workflows/${wf.slug}`}
+          domain={wf.domain}
+          domain_label={domainLabels[wf.domain] ?? wf.domain}
+          complexity={wf.complexity}
+          step_count={Array.isArray(wf.steps) ? wf.steps.length : 0}
+          estimated_time={wf.estimated_time ?? ''}
+          description={wf.description ?? ''}
+          is_new={wf.is_new ?? false}
+        />
+      ))}
+    </div>
+
+    <NoResults />
+  </div>
+
+  <script>
+    // ── Filter + Search state ──────────────────────────────────────────────
+    let activeDomain = '';
+    let activeComplexities: string[] = [];
+    let fuseInstance: any = null;
+    let fuseMatchIds: Set<string> | null = null; // null = no search active; Set = matched IDs
+
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.workflow-card'));
+    const countEl = document.getElementById('results-count');
+    const noResults = document.getElementById('no-results');
+
+    // Read initial ?domain= param on load
+    const params = new URLSearchParams(window.location.search);
+    activeDomain = params.get('domain') ?? '';
+
+    // ── Visibility logic ──────────────────────────────────────────────────
+    function applyFilters() {
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const domainMatch = !activeDomain || card.dataset.domain === activeDomain;
+        const complexityMatch = activeComplexities.length === 0 || activeComplexities.includes(card.dataset.complexity ?? '');
+        const searchMatch = fuseMatchIds === null || fuseMatchIds.has(card.dataset.id ?? '');
+        const show = domainMatch && complexityMatch && searchMatch;
+        card.classList.toggle('hidden', !show);
+        if (show) visibleCount++;
+      });
+      if (countEl) countEl.textContent = `Showing ${visibleCount} workflow${visibleCount !== 1 ? 's' : ''}`;
+      if (noResults) noResults.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    // ── Run filters on load (handles ?domain= from Tier 2 nav) ───────────
+    if (activeDomain) {
+      const pill = document.querySelector(`#domain-pills .pill[data-domain="${activeDomain}"]`);
+      if (pill) {
+        document.querySelectorAll('#domain-pills .pill').forEach(p => {
+          p.classList.remove('active');
+          p.setAttribute('aria-pressed', 'false');
+        });
+        pill.classList.add('active');
+        pill.setAttribute('aria-pressed', 'true');
+      }
+    }
+    applyFilters();
+
+    // ── Domain pills ──────────────────────────────────────────────────────
+    document.querySelectorAll<HTMLElement>('#domain-pills .pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        activeDomain = pill.dataset.domain ?? '';
+        document.querySelectorAll('#domain-pills .pill').forEach(p => {
+          p.classList.remove('active');
+          p.setAttribute('aria-pressed', 'false');
+        });
+        pill.classList.add('active');
+        pill.setAttribute('aria-pressed', 'true');
+        const url = new URL(window.location.href);
+        if (activeDomain) url.searchParams.set('domain', activeDomain);
+        else url.searchParams.delete('domain');
+        history.replaceState(null, '', url.toString());
+        applyFilters();
+      });
+    });
+
+    // ── Complexity pills ──────────────────────────────────────────────────
+    document.querySelectorAll<HTMLElement>('#complexity-pills .pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const c = pill.dataset.complexity ?? '';
+        if (activeComplexities.includes(c)) {
+          activeComplexities = activeComplexities.filter(x => x !== c);
+          pill.classList.remove('active');
+          pill.setAttribute('aria-pressed', 'false');
+        } else {
+          activeComplexities.push(c);
+          pill.classList.add('active');
+          pill.setAttribute('aria-pressed', 'true');
+        }
+        applyFilters();
+      });
+    });
+
+    // ── More filters toggle ───────────────────────────────────────────────
+    document.getElementById('filter-toggle')?.addEventListener('click', function() {
+      const secondary = document.getElementById('filter-secondary');
+      if (!secondary) return;
+      secondary.classList.toggle('hidden');
+      (this as HTMLButtonElement).textContent = secondary.classList.contains('hidden') ? '+ More filters' : '− Fewer filters';
+    });
+
+    // ── Fuse.js search (fetches from endpoint) ────────────────────────────
+    async function initFuse() {
+      if (fuseInstance) return;
+      try {
+        const res = await fetch('/search-index.json');
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        if (!(window as any).Fuse) {
+          console.error('Fuse.js not loaded');
+          return;
+        }
+        fuseInstance = new (window as any).Fuse(data, {
+          keys: [
+            { name: 'name', weight: 3 },
+            { name: 'search_text', weight: 1 },
+            { name: 'tags', weight: 2 },
+            { name: 'domain_label', weight: 1.5 },
+          ],
+          threshold: 0.4,
+          distance: 100,
+          includeScore: true,
+          minMatchCharLength: 2,
+        });
+      } catch (e) {
+        console.error('Search index failed to load', e);
+      }
+    }
+
+    let searchTimer: ReturnType<typeof setTimeout> | null = null;
+    document.getElementById('browse-search')?.addEventListener('input', function() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(async () => {
+        const query = (this as HTMLInputElement).value.trim();
+        if (!query) {
+          fuseMatchIds = null;
+          applyFilters();
+          return;
+        }
+        await initFuse();
+        if (!fuseInstance) return;
+        const results = fuseInstance.search(query);
+        fuseMatchIds = new Set(results.map((r: any) => r.item.id));
+        applyFilters();
+      }, 150);
+    });
+  </script>
+<SearchOverlay />
+</body>
+</html>

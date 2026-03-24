@@ -1,5 +1,6 @@
 {
   "id": "WF-CAREER-001",
+  "slug": "monthly-performance-check-in",
   "name": "Monthly Performance Check-in",
   "description": "A structured monthly reflection on achievements, goal alignment, behaviours, and development. Produces a personal record and optional supervisor conversation prep. Builds a 12-month narrative to draw from at end-of-cycle review.",
   "version": "1.0",

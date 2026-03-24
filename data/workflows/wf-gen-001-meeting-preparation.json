@@ -1,5 +1,6 @@
 {
   "id": "WF-GEN-001",
+  "slug": "meeting-preparation",
   "name": "Meeting Preparation",
   "description": "Draft an agenda, background brief, and discussion prompts for an upcoming meeting. Works for internal working groups, stakeholder briefings, and governance forums.",
   "version": "1.0",

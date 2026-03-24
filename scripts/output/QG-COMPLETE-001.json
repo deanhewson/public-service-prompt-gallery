@@ -33,8 +33,7 @@
   "platform_notes": {
     "claude": "XML tags are processed natively. Use as-is.",
     "chatgpt": "Remove the <instructions> and <draft> XML tags. Paste instructions as plain text followed by the draft.",
-    "copilot": "Paste instructions as plain text. The <draft> section can be replaced with: 'Here is the draft to review:' followed by the content.",
-    "govai_chat": "Pending — test when available (April 2026 trial)."
+    "copilot": "Paste instructions as plain text. The <draft> section can be replaced with: 'Here is the draft to review:' followed by the content."
   },
   "tags": [
     "verification",

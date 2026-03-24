@@ -1,5 +1,6 @@
 {
   "id": "WF-POL-001",
+  "slug": "briefing-note",
   "name": "Briefing Note",
   "description": "Produce a draft briefing note on a policy topic for senior executive review. Follows standard APS briefing note conventions with built-in quality checks for factual accuracy, sceptical review, and compliance.",
   "version": "1.0",

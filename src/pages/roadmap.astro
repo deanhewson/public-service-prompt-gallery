@@ -1,4 +1,8 @@
 ---
+import TopNav from '../components/nav/TopNav.astro';
+import WorkflowNav from '../components/nav/WorkflowNav.astro';
+import MobileMenu from '../components/nav/MobileMenu.astro';
+import SearchOverlay from '../components/nav/SearchOverlay.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <title>What's coming — APS GenAI Prompt Gallery</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -37,127 +42,6 @@
     a { color: var(--color-primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
     h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
-
-    /* ── Status banner ───────────────────────────────── */
-    .poc-banner {
-      background: #F5EEF3;
-      border-bottom: 1px solid #C19AB7;
-      font-size: 0.82rem;
-      color: #3d1a35;
-      padding: 7px 0;
-      text-align: center;
-    }
-    .poc-banner a { color: var(--color-primary); }
-
-    /* ── Nav ─────────────────────────────────────────── */
-    .site-header {
-      background: var(--color-primary);
-      color: white;
-      padding: 0 24px;
-    }
-    .site-nav {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      min-height: 48px;
-    }
-    .nav-logo {
-      color: white;
-      font-weight: 700;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      margin-right: 24px;
-      padding: 14px 0;
-      flex-shrink: 0;
-    }
-    .nav-logo:hover { text-decoration: none; opacity: 0.9; }
-    .nav-links { display: flex; align-items: stretch; }
-    .nav-group { position: relative; }
-    .nav-group-trigger {
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
-      color: rgba(255,255,255,0.8);
-      font-size: 0.85rem;
-      font-family: inherit;
-      padding: 14px 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      white-space: nowrap;
-      height: 100%;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .nav-group:hover .nav-group-trigger { color: white; }
-    .nav-chevron { font-size: 0.65rem; transition: transform 0.2s; opacity: 0.7; }
-    .nav-group:hover .nav-chevron { transform: rotate(180deg); }
-    .nav-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 190px;
-      background: #2a1432;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-top: none;
-      border-radius: 0 0 var(--radius) var(--radius);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-      z-index: 200;
-    }
-    .nav-group:hover .nav-dropdown { display: block; }
-    .nav-dropdown a {
-      display: block;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.85rem;
-      padding: 10px 16px;
-      white-space: nowrap;
-      transition: color 0.1s, background 0.1s;
-    }
-    .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
-    .nav-link-flat {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.85rem;
-      padding: 14px 12px;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-    }
-    .nav-link-flat:hover { color: white; text-decoration: none; }
-    .nav-link-flat-active { color: white; border-bottom: 3px solid white; }
-
-    /* ── Hamburger / mobile menu ─────────────────────── */
-    .nav-hamburger {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 8px 4px;
-      margin-left: auto;
-      line-height: 1;
-    }
-    .nav-mobile-menu { display: none; background: #2a1432; border-top: 1px solid rgba(255,255,255,0.1); }
-    .nav-mobile-menu.is-open { display: block; }
-    .nav-mobile-group-label {
-      color: rgba(255,255,255,0.45);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 12px 20px 4px;
-    }
-    .nav-mobile-menu a {
-      display: block;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.9rem;
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      text-decoration: none;
-    }
-    .nav-mobile-menu a:hover { color: white; background: rgba(255,255,255,0.08); }
-    .nav-mobile-menu a.nav-active { color: white; font-weight: 600; background: rgba(255,255,255,0.08); }
 
     /* ── Container ───────────────────────────────────── */
     .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
@@ -231,83 +115,15 @@
       color: var(--color-muted);
     }
 
-    @media (max-width: 680px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: block; }
-    }
   </style>
   <script data-goatcounter="https://deanhewson.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
-<!-- Status banner -->
-<div class="poc-banner">
-  Early release — 6 workflows live and tested. More coming. <a href="/roadmap">See what's planned →</a> &nbsp;·&nbsp;
-  Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a> &nbsp;·&nbsp;
-  Feedback: <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">GitHub</a>
-</div>
-
-<!-- Nav -->
-<header class="site-header">
-  <nav class="site-nav">
-    <a href="/" class="nav-logo">APS Prompt Gallery</a>
-    <div class="nav-links">
-      <div class="nav-group">
-        <button class="nav-group-trigger">Policy Development <span class="nav-chevron">▾</span></button>
-        <div class="nav-dropdown">
-          <a href="/workflows/briefing-note">Briefing Note</a>
-          <a href="/workflows/question-time-brief">QT Brief</a>
-        </div>
-      </div>
-      <div class="nav-group">
-        <button class="nav-group-trigger">Stakeholder Engagement <span class="nav-chevron">▾</span></button>
-        <div class="nav-dropdown">
-          <a href="/workflows/stakeholder-analysis">Stakeholder Analysis</a>
-          <a href="/workflows/plain-language-rewrite">Plain Language Rewrite</a>
-        </div>
-      </div>
-      <div class="nav-group">
-        <button class="nav-group-trigger">General Productivity <span class="nav-chevron">▾</span></button>
-        <div class="nav-dropdown">
-          <a href="/workflows/meeting-preparation">Meeting Preparation</a>
-        </div>
-      </div>
-      <div class="nav-group">
-        <button class="nav-group-trigger">Career &amp; Performance <span class="nav-chevron">▾</span></button>
-        <div class="nav-dropdown">
-          <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
-        </div>
-      </div>
-      <a href="/roadmap" class="nav-link-flat nav-link-flat-active">What's coming</a>
-    </div>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
-  </nav>
-  <div class="nav-mobile-menu" id="nav-mobile-menu">
-    <div>
-      <div class="nav-mobile-group-label">Policy Development</div>
-      <a href="/workflows/briefing-note">Briefing Note</a>
-      <a href="/workflows/question-time-brief">QT Brief</a>
-    </div>
-    <div>
-      <div class="nav-mobile-group-label">Stakeholder Engagement</div>
-      <a href="/workflows/stakeholder-analysis">Stakeholder Analysis</a>
-      <a href="/workflows/plain-language-rewrite">Plain Language Rewrite</a>
-    </div>
-    <div>
-      <div class="nav-mobile-group-label">General Productivity</div>
-      <a href="/workflows/meeting-preparation">Meeting Preparation</a>
-    </div>
-    <div>
-      <div class="nav-mobile-group-label">Career &amp; Performance</div>
-      <a href="/workflows/monthly-performance-check-in">Monthly Performance Check-in</a>
-    </div>
-    <div>
-      <div class="nav-mobile-group-label">What's coming</div>
-      <a href="/roadmap" class="nav-active">Roadmap</a>
-    </div>
-  </div>
-</header>
+<TopNav />
+<WorkflowNav />
+<MobileMenu />
 
 <div class="container">
   <div class="page-header">
@@ -435,16 +251,6 @@
   </div>
 </div>
 
-<script>
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileMenu = document.getElementById('nav-mobile-menu');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('is-open');
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-      hamburger.textContent = isOpen ? '✕' : '☰';
-    });
-  }
-</script>
+<SearchOverlay />
 </body>
 </html>

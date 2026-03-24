@@ -1,4 +1,9 @@
 ---
+import TopNav from '../components/nav/TopNav.astro';
+import WorkflowNav from '../components/nav/WorkflowNav.astro';
+import MobileMenu from '../components/nav/MobileMenu.astro';
+import SearchOverlay from '../components/nav/SearchOverlay.astro';
+
 const { workflow, blocks } = Astro.props;
 
 function getStepContent(step) {
@@ -34,36 +39,6 @@ const domainLabels = {
   career_performance:     'Career & Performance',
 };
 
-const currentPath = Astro.url.pathname;
-
-const navGroups = [
-  {
-    label: 'Policy Development',
-    workflows: [
-      { label: 'Briefing Note', path: '/workflows/briefing-note' },
-      { label: 'QT Brief',      path: '/workflows/question-time-brief' },
-    ],
-  },
-  {
-    label: 'Stakeholder Engagement',
-    workflows: [
-      { label: 'Stakeholder Analysis',    path: '/workflows/stakeholder-analysis' },
-      { label: 'Plain Language Rewrite',  path: '/workflows/plain-language-rewrite' },
-    ],
-  },
-  {
-    label: 'General Productivity',
-    workflows: [
-      { label: 'Meeting Preparation', path: '/workflows/meeting-preparation' },
-    ],
-  },
-  {
-    label: 'Career & Performance',
-    workflows: [
-      { label: 'Monthly Performance Check-in', path: '/workflows/monthly-performance-check-in' },
-    ],
-  },
-];
 ---
 
 <!DOCTYPE html>
@@ -134,147 +109,6 @@ const navGroups = [
       text-align: center;
     }
     .poc-banner a { color: var(--color-primary); }
-
-    /* ── Site header / nav ──────────────────────────── */
-    .site-header {
-      background: var(--color-primary);
-      color: white;
-      padding: 0 24px;
-    }
-
-    .site-nav {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 0;
-      min-height: 48px;
-    }
-
-    .nav-logo {
-      color: white;
-      font-weight: 700;
-      font-size: 0.95rem;
-      white-space: nowrap;
-      margin-right: 24px;
-      padding: 14px 0;
-      flex-shrink: 0;
-    }
-    .nav-logo:hover { text-decoration: none; opacity: 0.9; }
-
-    .nav-links {
-      display: flex;
-      align-items: stretch;
-    }
-
-    .nav-group {
-      position: relative;
-    }
-
-    .nav-group-trigger {
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
-      color: rgba(255,255,255,0.8);
-      font-size: 0.85rem;
-      font-family: inherit;
-      padding: 14px 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      white-space: nowrap;
-      height: 100%;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .nav-group:hover .nav-group-trigger { color: white; }
-    .nav-group-trigger.has-active {
-      color: white;
-      border-bottom-color: rgba(255,255,255,0.7);
-    }
-
-    .nav-chevron {
-      font-size: 0.65rem;
-      transition: transform 0.2s;
-      opacity: 0.7;
-    }
-    .nav-group:hover .nav-chevron { transform: rotate(180deg); }
-
-    .nav-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 190px;
-      background: #2a1432;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-top: none;
-      border-radius: 0 0 var(--radius) var(--radius);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-      z-index: 200;
-    }
-    .nav-group:hover .nav-dropdown { display: block; }
-
-    .nav-dropdown a {
-      display: block;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.85rem;
-      padding: 10px 16px;
-      white-space: nowrap;
-      transition: color 0.1s, background 0.1s;
-      border-bottom: none;
-    }
-    .nav-dropdown a:hover { color: white; background: rgba(255,255,255,0.08); text-decoration: none; }
-    .nav-dropdown a.nav-active { color: white; background: rgba(255,255,255,0.1); font-weight: 600; }
-
-    .nav-link-flat {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.85rem;
-      padding: 14px 12px;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-    }
-    .nav-link-flat:hover { color: white; text-decoration: none; }
-    .nav-link-flat-active { color: white; border-bottom: 3px solid white; }
-
-    /* ── Hamburger / mobile menu ─────────────────────── */
-    .nav-hamburger {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 8px 4px;
-      margin-left: auto;
-      line-height: 1;
-    }
-
-    .nav-mobile-menu {
-      display: none;
-      background: #2a1432;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    .nav-mobile-menu.is-open { display: block; }
-
-    .nav-mobile-group-label {
-      color: rgba(255,255,255,0.45);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 12px 20px 4px;
-    }
-    :global(.nav-mobile-menu) a {
-      display: block;
-      color: rgba(255,255,255,0.85);
-      font-size: 0.9rem;
-      padding: 12px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      text-decoration: none;
-    }
-    :global(.nav-mobile-menu) a:hover { color: white; background: rgba(255,255,255,0.08); }
-    :global(.nav-mobile-menu) a.nav-active { color: white; font-weight: 600; background: rgba(255,255,255,0.1); }
 
     /* ── Workflow header ────────────────────────────── */
     .workflow-header {
@@ -1066,8 +900,6 @@ const navGroups = [
       .inputs-grid { grid-template-columns: 1fr; }
       .step-badges { display: none; }
       .selectors-row { flex-direction: column; }
-      .nav-links { display: none; }
-      .nav-hamburger { display: block; }
     }
 
     /* ── Analytics footer ────────────────────────────── */
@@ -1094,6 +926,7 @@ const navGroups = [
   </style>
   <script data-goatcounter="https://deanhewson.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 </head>
 <body>
 
@@ -1103,51 +936,9 @@ const navGroups = [
   Feedback welcome: reach out on <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a>. Help even more welcome: <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">Github</a>.
 </div>
 
-<!-- Nav -->
-<header class="site-header">
-  <nav class="site-nav">
-    <a href="/" class="nav-logo">APS Prompt Gallery</a>
-    <div class="nav-links">
-      {navGroups.map((group) => {
-        const hasActive = group.workflows.some(wf => currentPath === wf.path || currentPath.startsWith(wf.path + '/'));
-        return (
-          <div class="nav-group">
-            <button class={`nav-group-trigger${hasActive ? ' has-active' : ''}`}>
-              {group.label} <span class="nav-chevron">▾</span>
-            </button>
-            <div class="nav-dropdown">
-              {group.workflows.map((wf) => (
-                <a
-                  href={wf.path}
-                  class={currentPath === wf.path || currentPath.startsWith(wf.path + '/') ? 'nav-active' : ''}
-                >{wf.label}</a>
-              ))}
-            </div>
-          </div>
-        );
-      })}
-      <a href="/roadmap" class={`nav-link-flat${currentPath === '/roadmap' ? ' nav-link-flat-active' : ''}`}>What's coming</a>
-    </div>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">☰</button>
-  </nav>
-  <div class="nav-mobile-menu" id="nav-mobile-menu">
-    {navGroups.map((group) => (
-      <div>
-        <div class="nav-mobile-group-label">{group.label}</div>
-        {group.workflows.map((wf) => (
-          <a
-            href={wf.path}
-            class={currentPath === wf.path || currentPath.startsWith(wf.path + '/') ? 'nav-active' : ''}
-          >{wf.label}</a>
-        ))}
-      </div>
-    ))}
-    <div>
-      <div class="nav-mobile-group-label">What's coming</div>
-      <a href="/roadmap">Roadmap</a>
-    </div>
-  </div>
-</header>
+<TopNav />
+<WorkflowNav />
+<MobileMenu />
 
 <!-- Workflow header -->
 <div class="workflow-header">
@@ -1911,17 +1702,8 @@ const navGroups = [
   applySkillLevel('intermediate');
   applyPlatform(currentPlatform);
 
-  // ── Mobile hamburger ─────────────────────────────────────────────────────
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileMenu = document.getElementById('nav-mobile-menu');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('is-open');
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-      hamburger.textContent = isOpen ? '✕' : '☰';
-    });
-  }
 </script>
 
+<SearchOverlay />
 </body>
 </html>

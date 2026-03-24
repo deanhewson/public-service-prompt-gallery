@@ -1,0 +1,128 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-top">
+    <input
+      type="search"
+      id="mobile-search-input"
+      class="mobile-search-input"
+      placeholder="Search workflows…"
+      autocomplete="off"
+    />
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">✕</button>
+  </div>
+
+  <div class="mobile-section-label">Navigate</div>
+  <a href="/"        class={currentPath === '/' ? 'mobile-link active' : 'mobile-link'}>Home</a>
+  <a href="/about"   class={currentPath === '/about' ? 'mobile-link active' : 'mobile-link'}>About</a>
+  <a href="/roadmap" class={currentPath === '/roadmap' ? 'mobile-link active' : 'mobile-link'}>Roadmap</a>
+  <a href="https://github.com/deanhewson/public-service-prompt-gallery" class="mobile-link" target="_blank" rel="noopener">Contribute ↗</a>
+
+  <div class="mobile-divider"></div>
+
+  <div class="mobile-section-label">Workflows</div>
+  <a href="/workflows/" class="mobile-link">All Workflows</a>
+  <a href="/workflows/?domain=policy_development"     class="mobile-link">Policy Development</a>
+  <a href="/workflows/?domain=stakeholder_engagement" class="mobile-link">Stakeholder Engagement</a>
+  <a href="/workflows/?domain=general_productivity"   class="mobile-link">General Productivity</a>
+  <a href="/workflows/?domain=career_performance"     class="mobile-link">Career & Performance</a>
+</div>
+
+<style>
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #1e0d26;
+    z-index: 300;
+    overflow-y: auto;
+    flex-direction: column;
+  }
+  .mobile-menu.is-open { display: flex; }
+
+  .mobile-menu-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .mobile-search-input {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: white;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    outline: none;
+  }
+  .mobile-search-input::placeholder { color: rgba(255,255,255,0.45); }
+
+  .mobile-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .mobile-section-label {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 20px 4px;
+  }
+
+  .mobile-link {
+    display: block;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none;
+  }
+  .mobile-link:hover { color: white; background: rgba(255,255,255,0.08); }
+  .mobile-link.active { color: white; font-weight: 600; }
+
+  .mobile-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    margin: 8px 0;
+  }
+</style>
+
+<script>
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('mobile-close');
+  const searchInput = document.getElementById('mobile-search-input');
+
+  function openMenu() {
+    menu.classList.add('is-open');
+    menu.setAttribute('aria-hidden', 'false');
+  }
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+  }
+
+  window.addEventListener('open-mobile-menu', openMenu);
+  window.addEventListener('close-mobile-menu', closeMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu();
+  });
+
+  // Mobile search input opens the search overlay
+  searchInput?.addEventListener('focus', () => {
+    closeMenu();
+    window.dispatchEvent(new CustomEvent('open-search'));
+  });
+</script>
