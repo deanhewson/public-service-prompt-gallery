@@ -2,6 +2,7 @@
 import TopNav from '../components/nav/TopNav.astro';
 import WorkflowNav from '../components/nav/WorkflowNav.astro';
 import MobileMenu from '../components/nav/MobileMenu.astro';
+import SearchOverlay from '../components/nav/SearchOverlay.astro';
 ---
 
 <!DOCTYPE html>
@@ -11,6 +12,7 @@ import MobileMenu from '../components/nav/MobileMenu.astro';
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <title>About — APS Prompt Gallery</title>
   <style>
     body { font-family: 'Atkinson Hyperlegible Next', sans-serif; background: #F7F7FF; margin: 0; }
@@ -27,5 +29,6 @@ import MobileMenu from '../components/nav/MobileMenu.astro';
     <h1>About</h1>
     <p>Content coming soon. This page will explain the project, how it works, and the trust model behind prompt design for Australian Public Service staff.</p>
   </div>
+<SearchOverlay />
 </body>
 </html>

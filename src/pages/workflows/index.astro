@@ -2,6 +2,7 @@
 import TopNav from '../../components/nav/TopNav.astro';
 import WorkflowNav from '../../components/nav/WorkflowNav.astro';
 import MobileMenu from '../../components/nav/MobileMenu.astro';
+import SearchOverlay from '../../components/nav/SearchOverlay.astro';
 import WorkflowCard from '../../components/browse/WorkflowCard.astro';
 import FilterPills from '../../components/browse/FilterPills.astro';
 import SearchBar from '../../components/browse/SearchBar.astro';
@@ -232,5 +233,6 @@ const domainLabels = {
       }, 150);
     });
   </script>
+<SearchOverlay />
 </body>
 </html>

@@ -2,6 +2,7 @@
 import TopNav from '../components/nav/TopNav.astro';
 import WorkflowNav from '../components/nav/WorkflowNav.astro';
 import MobileMenu from '../components/nav/MobileMenu.astro';
+import SearchOverlay from '../components/nav/SearchOverlay.astro';
 
 const { workflow, blocks } = Astro.props;
 
@@ -925,6 +926,7 @@ const domainLabels = {
   </style>
   <script data-goatcounter="https://deanhewson.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 </head>
 <body>
 
@@ -1702,5 +1704,6 @@ const domainLabels = {
 
 </script>
 
+<SearchOverlay />
 </body>
 </html>
