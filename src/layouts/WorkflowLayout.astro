@@ -1275,13 +1275,13 @@ const domainLabels = {
 
   const PLATFORM_BASE_TIPS = {
     generation: {
-      copilot: 'Copilot works best with focused, single-task prompts. If this step\'s prompt feels long, consider splitting the role/context from the task instructions into two separate messages.',
+      copilot: 'Copilot works best with focused, single-task prompts.',
       chatgpt: 'ChatGPT tends to produce verbose output. If the response is too long, add "Be concise – maximum X paragraphs" to the prompt before copying.',
       claude:  null,
       other:   null,
     },
     quality_gate: {
-      copilot: 'For verification steps, start a fresh Copilot message. Paste the draft output directly into this prompt rather than relying on conversation history.',
+      copilot: 'For verification steps, it is usually best to start a fresh Copilot message. Paste the draft output directly into this prompt rather than relying on conversation history.',
       chatgpt: null,
       claude:  null,
       other:   null,
