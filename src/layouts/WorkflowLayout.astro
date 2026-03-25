@@ -146,7 +146,10 @@ const domainLabels = {
     .badge-maturity-validated { background: #ede7f6; color: #4a235a; }
 
     .maturity-note {
-      margin: 8px 0 0;
+      margin: 12px 0 0;
+    }
+    .maturity-note p {
+      margin: 6px 0 0;
       font-size: 0.8rem;
       color: var(--color-muted);
     }
@@ -963,19 +966,21 @@ const domainLabels = {
       {workflow.estimated_time && (
         <span class="badge">{workflow.estimated_time}</span>
       )}
-      {workflow.maturity && (
-        <span class={`badge ${maturityClass[workflow.maturity] ?? 'badge-maturity-draft'}`}>
-          {maturityLabel[workflow.maturity] ?? workflow.maturity}
-        </span>
-      )}
     </div>
     {workflow.maturity_note && (
-      <p class="maturity-note">
-        <strong>Maturity:</strong> {workflow.maturity_note}
-        {workflow.maturity_updated && (
-          <span class="maturity-date"> · Updated {workflow.maturity_updated}</span>
+      <div class="maturity-note">
+        {workflow.maturity && (
+          <span class={`badge ${maturityClass[workflow.maturity] ?? 'badge-maturity-draft'}`}>
+            {maturityLabel[workflow.maturity] ?? workflow.maturity}
+          </span>
         )}
-      </p>
+        <p>
+          {workflow.maturity_note}
+          {workflow.maturity_updated && (
+            <span class="maturity-date"> · Updated {workflow.maturity_updated}</span>
+          )}
+        </p>
+      </div>
     )}
   </div>
 </div>
