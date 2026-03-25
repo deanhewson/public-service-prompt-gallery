@@ -178,6 +178,7 @@
   },
 
   "known_limitations": [
+    "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "The model cannot know the history between specific attendees, recent dynamics, or interpersonal sensitivities.",
     "Statistics and program details in the background brief may be inaccurate — verify all before circulating.",
     "Facilitation prompts are generic — adapt to the specific group and communication styles of key attendees.",

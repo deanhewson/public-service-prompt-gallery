@@ -33,7 +33,7 @@
   "tags": ["verification", "trust", "factual", "essential", "quality-gate"],
   "known_limitations": [
     "The model is checking its own work — it may not catch its own hallucinations. This gate surfaces claims for HUMAN verification, not AI self-verification.",
-    "Cannot actually verify claims against external sources. The value is in making claims explicit so the officer can check them.",
+    "Cannot actually verify claims against external sources. The value is in making claims explicit so you can check them.",
     "The model may miss some claims or miscategorise them. Review the full list critically."
   ]
 }

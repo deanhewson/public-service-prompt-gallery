@@ -160,6 +160,7 @@
   },
 
   "known_limitations": [
+    "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "The model's knowledge of specific organisations and their current positions may be outdated.",
     "Local, niche, or recently formed groups are likely to be missed — supplement with your agency's stakeholder intelligence.",
     "The model cannot know your existing relationships with these organisations, which significantly affects what engagement approaches are appropriate.",

@@ -147,6 +147,7 @@
   },
 
   "known_limitations": [
+    "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "Plain language rewrites can lose technical or legal precision — always compare carefully with the source.",
     "For documents with legal or regulatory effect, a human expert review and legal disclaimer may be required.",
     "Whether the rewrite actually works for the target audience can only be confirmed by testing with that audience.",

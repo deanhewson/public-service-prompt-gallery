@@ -211,6 +211,7 @@
   },
 
   "known_limitations": [
+    "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "The AI cannot access your actual performance agreement, HR system, or internal documents (except via Copilot M365). You need to paste or summarise your goals.",
     "Behavioural reflection is only as honest as the officer makes it. The AI will prompt and challenge, but it can't verify how you actually behaved.",
     "The completeness gate checks for thoroughness, not accuracy. It can't know if you've omitted important context.",
