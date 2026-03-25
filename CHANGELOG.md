@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1.0] - 2026-03-25
+
+### Added
+- Monthly Performance Check-in workflow (WF-CAREER-001) marked as `tested` maturity with updated maturity note
+- `key_documents` description field propagated to all building blocks
+- AI use policy `known_limitations` propagated to all 6 workflows
+
+### Changed
+- Briefing note workflow (WF-POL-001) iterated toward tested status — steps tightened and improved
+- Roadmap page updated with live workflow sections and contribute links in mobile menu
+- Em dashes standardised to en dashes throughout all user-visible content (data/, src/)
+- Abbreviations standardised: `e.g.` → `eg`, `i.e.` → `ie` throughout all user-visible content
+- `.gitignore` updated with workflow iteration log and logo working files
+
 ## [0.1.0.0] - 2026-03-21
 
 ### Added
