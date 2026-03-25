@@ -35,6 +35,8 @@
         <a href="/workflows/monthly-performance-check-in" class="nav-dropdown-link">Monthly Performance Check-in</a>
       </div>
     </div>
+
+    <a href="/building-blocks/" class="wf-nav-link" data-match="building-blocks">Building Blocks</a>
   </div>
 </nav>
 
@@ -124,5 +126,8 @@
   } else if (window.location.pathname === '/workflows/' || window.location.pathname === '/workflows') {
     const allLink = document.querySelector('.wf-nav-link[data-match="all"]');
     if (allLink) allLink.classList.add('active');
+  } else if (window.location.pathname.startsWith('/building-blocks')) {
+    const bbLink = document.querySelector('.wf-nav-link[data-match="building-blocks"]');
+    if (bbLink) bbLink.classList.add('active');
   }
 </script>
