@@ -48,7 +48,7 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "Skip this step if you're in a hurry — jump straight from research to drafting. The structure step is most useful when you need to present a complex topic that requires a non-standard layout.",
+      "notes": "Use this step if you're not confident about how to structure the brief — it will give you a clear plan before you start drafting. Skip it only if your agency already has a mandatory template or your supervisor has specified the structure.",
       "prompt_modification": null
     },
     "intermediate": {
