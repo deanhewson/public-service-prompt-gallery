@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["policy_development"],
 
-  "prompt_template": "<task>\nContinuing from the topic context and question analysis we've just developed in this conversation, now draft a Question Time Brief (QTB) in standard APS format.\n\nTarget length: {{length}}\n\nThe QTB should use this structure:\n\n**[TOPIC]** — state the topic clearly at the top\n\n**KEY MESSAGES** (3–5 dot points)\n— The core points the reader must land. Plain language. No jargon.\n— Each dot point should be a complete, standalone sentence.\n— Lead with the most important point.\n\n**BACKGROUND**\nTwo to four short paragraphs covering: what the issue is, what the government's position or action has been, any relevant recent developments.\n\n**TALKING POINTS**\nA numbered list of 6–10 talking points for the most likely questions identified in Step 1. For each, give:\n- The anticipated question or topic\n- 2–3 sentences the speaker can use in response\n\n**WHAT TO AVOID**\nA short list (3–5 items) of framings, phrases, or commitments to avoid.\n\n**VERIFICATION REQUIRED**\nList any specific facts, statistics, dates, or program names used in the brief that should be verified before use. Flag each as [VERIFY: description].\n\nWrite in plain, direct APS style. Avoid hedging language and passive constructions where possible. The brief should be usable as-is — not a template to fill in later.\n</task>",
+  "prompt_template": "<task>\nContinuing from the topic context and question analysis we've just developed in this conversation, now draft a Question Time Brief (QTB) in standard APS format.\n\nTarget length: {{length}}\n\nThe QTB should use this structure:\n\n**[TOPIC]** – state the topic clearly at the top\n\n**KEY MESSAGES** (3–5 dot points)\n– The core points the reader must land. Plain language. No jargon.\n– Each dot point should be a complete, standalone sentence.\n– Lead with the most important point.\n\n**BACKGROUND**\nTwo to four short paragraphs covering: what the issue is, what the government's position or action has been, any relevant recent developments.\n\n**TALKING POINTS**\nA numbered list of 6–10 talking points for the most likely questions identified in Step 1. For each, give:\n- The anticipated question or topic\n- 2–3 sentences the speaker can use in response\n\n**WHAT TO AVOID**\nA short list (3–5 items) of framings, phrases, or commitments to avoid.\n\n**VERIFICATION REQUIRED**\nList any specific facts, statistics, dates, or program names used in the brief that should be verified before use. Flag each as [VERIFY: description].\n\nWrite in plain, direct APS style. Avoid hedging language and passive constructions where possible. The brief should be usable as-is – not a template to fill in later.\n</task>",
 
   "variables": [
     {
@@ -25,7 +25,7 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "Read the draft carefully. The talking points are the most likely to contain errors or outdated information — check each one. The Key Messages section is usually more reliable but double-check any statistics.",
+      "notes": "Read the draft carefully. The talking points are the most likely to contain errors or outdated information – check each one. The Key Messages section is usually more reliable but double-check any statistics.",
       "prompt_modification": null
     },
     "intermediate": {
@@ -33,7 +33,7 @@
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "After drafting, run QG-TRUST-001 (claim verification) immediately — QTBs contain high-stakes specific facts that are often misremembered or hallucinated.",
+      "notes": "After drafting, run QG-TRUST-001 (claim verification) immediately – QTBs contain high-stakes specific facts that are often misremembered or hallucinated.",
       "prompt_modification": null
     }
   },
@@ -41,8 +41,8 @@
   "tags": ["qtb", "question-time-brief", "draft", "parliament", "estimates"],
   "contributed_by": null,
   "known_limitations": [
-    "Statistics, program names, dates, and budget figures are high-risk for hallucination in QTBs — verify all before use.",
+    "Statistics, program names, dates, and budget figures are high-risk for hallucination in QTBs – verify all before use.",
     "The model cannot know the minister's personal style, past statements, or commitments made in previous Estimates hearings.",
-    "Talking points may be too general — supplement with the reader's specific briefing intelligence."
+    "Talking points may be too general – supplement with the reader's specific briefing intelligence."
   ]
 }

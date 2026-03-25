@@ -1,14 +1,14 @@
 {
   "id": "QG-TRUST-001",
   "name": "Claim Verification Gate",
-  "description": "Extracts every factual claim from a draft and categorises each by verifiability. Designed to make the trust boundary visible — what can you rely on vs. what needs human verification.",
+  "description": "Extracts every factual claim from a draft and categorises each by verifiability. Designed to make the trust boundary visible – what can you rely on vs. what needs human verification.",
   "version": "1.0",
   "last_reviewed": "2026-03-04",
 
   "gate_type": "factual_accuracy",
   "severity": "required",
 
-  "prompt_template": "<instructions>\nReview the briefing note draft above and extract every specific factual claim — statistics, dates, program names, legislative references, organisational details, and causal assertions.\n\nFor each claim, categorise it as:\n\n1. **VERIFIABLE** — A specific, checkable fact (provide suggested verification source)\n2. **PLAUSIBLE BUT UNVERIFIED** — Sounds reasonable but uncertain — needs human verification\n3. **INFERRED** — A conclusion drawn from context, not a direct fact\n4. **POTENTIALLY FABRICATED** — A specific detail (name, number, date, amount) that may be hallucinated\n\nPresent as a numbered table with columns: Claim | Category | Verification Action\n\nAt the end, provide a TRUST SUMMARY:\n- Total claims: X\n- Verifiable/low risk: X\n- Needs human checking: X\n- High risk (potentially fabricated): X\n- Overall risk level: LOW / MEDIUM / HIGH\n</instructions>",
+  "prompt_template": "<instructions>\nReview the briefing note draft above and extract every specific factual claim – statistics, dates, program names, legislative references, organisational details, and causal assertions.\n\nFor each claim, categorise it as:\n\n1. **VERIFIABLE** – A specific, checkable fact (provide suggested verification source)\n2. **PLAUSIBLE BUT UNVERIFIED** – Sounds reasonable but uncertain – needs human verification\n3. **INFERRED** – A conclusion drawn from context, not a direct fact\n4. **POTENTIALLY FABRICATED** – A specific detail (name, number, date, amount) that may be hallucinated\n\nPresent as a numbered table with columns: Claim | Category | Verification Action\n\nAt the end, provide a TRUST SUMMARY:\n- Total claims: X\n- Verifiable/low risk: X\n- Needs human checking: X\n- High risk (potentially fabricated): X\n- Overall risk level: LOW / MEDIUM / HIGH\n</instructions>",
 
   "variables": [],
 
@@ -21,7 +21,7 @@
       "prompt_modification": "Add to the end of the prompt: 'Explain each categorisation in plain language so I can understand why you flagged it.'"
     },
     "intermediate": {
-      "notes": "Pay particular attention to POTENTIALLY FABRICATED items — these are the highest risk for an APS document. Check each one against an authoritative source before the next step.",
+      "notes": "Pay particular attention to POTENTIALLY FABRICATED items – these are the highest risk for an APS document. Check each one against an authoritative source before the next step.",
       "prompt_modification": null
     },
     "advanced": {
@@ -32,8 +32,8 @@
 
   "tags": ["verification", "trust", "factual", "essential", "quality-gate"],
   "known_limitations": [
-    "The model is checking its own work — it may not catch its own hallucinations. This gate surfaces claims for HUMAN verification, not AI self-verification.",
-    "Cannot actually verify claims against external sources. The value is in making claims explicit so the officer can check them.",
+    "The model is checking its own work – it may not catch its own hallucinations. This gate surfaces claims for HUMAN verification, not AI self-verification.",
+    "Cannot actually verify claims against external sources. The value is in making claims explicit so you can check them.",
     "The model may miss some claims or miscategorise them. Review the full list critically."
   ]
 }

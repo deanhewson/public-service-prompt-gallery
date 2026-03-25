@@ -13,6 +13,7 @@ notes/aps-prompt-gallery-contribution-standard.md
 notes/aps-prompt-gallery-expansion-research.md
 notes/sprint-review-design-*.md
 notes/design-*.md
+notes/workflow-iteration-log.md
 notes/pitch.md
 
 # Obsidian
@@ -36,3 +37,8 @@ desktop.ini
 # Environment / secrets
 .env
 .env.local
+
+# Logo working files
+logo1.gh
+logo1.svg
+.gstack/

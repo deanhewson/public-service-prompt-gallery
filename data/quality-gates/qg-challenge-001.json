@@ -8,7 +8,7 @@
   "gate_type": "challenge",
   "severity": "recommended",
 
-  "prompt_template": "<instructions>\nYou are a sceptical Deputy Secretary reviewing the briefing note draft above. Your job is to stress-test it before it reaches the reader. Be genuinely critical — not destructive, but rigorous.\n\nReview the draft and identify:\n\n1. **Logic gaps** — Where does the argument not hold together? Where is causation assumed without evidence?\n2. **Missing perspectives** — Whose view is absent? Which stakeholder would push back on this, and why?\n3. **Assumptions exposed** — What is this brief assuming that may not be true?\n4. **Questions you'd ask** — What would you ask the author if they were in the room presenting this?\n5. **What could go wrong** — If this advice is acted on, what could go wrong or backfire?\n6. **Executive red flags** — Anything that would cause a senior executive to lose confidence in this brief (overstatement, hedging, unclear recommendations, jargon)?\n\nAfter listing the issues, provide an OVERALL ASSESSMENT:\n- Is this brief ready for senior review? Yes / Needs minor work / Needs significant revision\n- Top 3 priority issues to address before submission\n</instructions>",
+  "prompt_template": "<instructions>\nYou are a sceptical Deputy Secretary reviewing the briefing note draft above. Your job is to stress-test it before it reaches the reader. Be genuinely critical – not destructive, but rigorous.\n\nReview the draft and identify:\n\n1. **Logic gaps** – Where does the argument not hold together? Where is causation assumed without evidence?\n2. **Missing perspectives** – Whose view is absent? Which stakeholder would push back on this, and why?\n3. **Assumptions exposed** – What is this brief assuming that may not be true?\n4. **Questions you'd ask** – What would you ask the author if they were in the room presenting this?\n5. **What could go wrong** – If this advice is acted on, what could go wrong or backfire?\n6. **Executive red flags** – Anything that would cause a senior executive to lose confidence in this brief (overstatement, hedging, unclear recommendations, jargon)?\n\nAfter listing the issues, provide an OVERALL ASSESSMENT:\n- Is this brief ready for senior review? Yes / Needs minor work / Needs significant revision\n- Justify your assessment.\n- Top 3 priority issues to address before submission\n</instructions>",
 
   "variables": [],
 
@@ -17,7 +17,7 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "This step can feel harsh — it's designed to be critical. Treat the output as useful feedback, not a judgment of your work. You don't have to act on every point raised.",
+      "notes": "This step can feel harsh – it's designed to be critical. Treat the output as useful feedback, not a judgment of your work. You don't have to act on every point raised.",
       "prompt_modification": null
     },
     "intermediate": {
@@ -25,7 +25,7 @@
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "Consider running this step with a specific stakeholder persona — e.g., 'You are a Deputy Secretary from the Department of Finance' — for a more targeted challenge.",
+      "notes": "Consider running this step with a specific stakeholder persona – eg, 'You are a Deputy Secretary from the Department of Finance' – for a more targeted challenge.",
       "prompt_modification": "Replace 'You are a sceptical Deputy Secretary' with: 'You are a sceptical {{reviewer_role}} reviewing this brief from {{reviewer_perspective}}.'"
     }
   },
@@ -33,7 +33,7 @@
   "tags": ["challenge", "red-team", "quality-gate", "review"],
   "known_limitations": [
     "The model's critique is based on general reasoning, not knowledge of your agency's specific context or the reader's preferences.",
-    "Some challenges may not apply to your specific situation — use your judgment on what to address.",
+    "Some challenges may not apply to your specific situation – use your judgment on what to address.",
     "A rigorous human peer review remains essential even after running this gate."
   ]
 }

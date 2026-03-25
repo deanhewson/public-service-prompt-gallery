@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["career_performance"],
 
-  "prompt_template": "<task>\nNow I want to assess how my activities from {{month_period}} align to my goals. Below are my current performance agreement goals, team priorities, and development objectives.\n\nFor each of my performance goals, identify:\n1. ACTIVITIES THAT CONTRIBUTED — which items from my activity inventory directly supported this goal\n2. PROGRESS ASSESSMENT — based on what I did this month, is this goal on track / needs attention / at risk? (Note: this is your assessment based only on what I've told you — I'll verify)\n3. GAPS — are there goals where I did little or no work this month? Flag them honestly.\n\nThen do the same for team priorities (if provided) and development goals (if provided).\n\nFinally, flag any UNALIGNED WORK — activities that consumed significant time but don't map to any stated goal. This isn't necessarily bad (reactive work, emerging priorities, BAU) but it should be visible.\n\nPresent as a structured alignment map, not a wall of text.\n</task>\n\n<performance_goals>\n{{performance_goals}}\n</performance_goals>\n\n<team_goals>\n{{team_goals}}\n</team_goals>\n\n<development_goals>\n{{development_goals}}\n</development_goals>\n\n<activity_inventory>\n[Paste or reference the output from Step 1]\n</activity_inventory>\n\n<framework_context>\nThe APSC non-SES Performance Framework assesses both outcomes (what was delivered) and behaviours (how it was delivered). APS Values to consider: Impartial, Committed to service, Accountable, Respectful, Ethical. {{agency_performance_framework}}\n</framework_context>",
+  "prompt_template": "<task>\nNow I want to assess how my activities from {{month_period}} align to my goals. Below are my current performance agreement goals, team priorities, and development objectives.\n\nFor each of my performance goals, identify:\n1. ACTIVITIES THAT CONTRIBUTED – which items from my activity inventory directly supported this goal\n2. PROGRESS ASSESSMENT – based on what I did this month, is this goal on track / needs attention / at risk? (Note: this is your assessment based only on what I've told you – I'll verify)\n3. GAPS – are there goals where I did little or no work this month? Flag them honestly.\n\nThen do the same for team priorities (if provided) and development goals (if provided).\n\nFinally, flag any UNALIGNED WORK – activities that consumed significant time but don't map to any stated goal. This isn't necessarily bad (reactive work, emerging priorities, BAU) but it should be visible.\n\nPresent as a structured alignment map, not a wall of text.\n</task>\n\n<performance_goals>\n{{performance_goals}}\n</performance_goals>\n\n<team_goals>\n{{team_goals}}\n</team_goals>\n\n<development_goals>\n{{development_goals}}\n</development_goals>\n\n<activity_inventory>\n[Paste or reference the output from Step 1]\n</activity_inventory>\n\n<framework_context>\nThe APSC non-SES Performance Framework assesses both outcomes (what was delivered) and behaviours (how it was delivered). APS Values to consider: Impartial, Committed to service, Accountable, Respectful, Ethical. {{agency_performance_framework}}\n</framework_context>",
 
   "variables": [
     {
@@ -47,7 +47,7 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "Pay particular attention to goals flagged as 'needs attention' or 'at risk'. Do you agree with the assessment? The AI can only judge based on what you told it — your knowledge of the full picture matters.",
+      "notes": "Pay particular attention to goals flagged as 'needs attention' or 'at risk'. Do you agree with the assessment? The AI can only judge based on what you told it – your knowledge of the full picture matters.",
       "prompt_modification": null
     },
     "intermediate": {
@@ -55,7 +55,7 @@
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "Consider running this step twice — once against your personal goals, once against your team's business plan or branch strategy. Feed both into Step 5 for a richer alignment picture.",
+      "notes": "Consider running this step twice – once against your personal goals, once against your team's business plan or branch strategy. Feed both into Step 5 for a richer alignment picture.",
       "prompt_modification": null
     }
   },
@@ -63,7 +63,7 @@
   "tags": ["career", "performance", "alignment", "goal-tracking"],
   "contributed_by": null,
   "known_limitations": [
-    "Alignment assessments are based only on what you've told the AI. Verify the assessment against your own knowledge — the AI doesn't know about context you haven't shared.",
+    "Alignment assessments are based only on what you've told the AI. Verify the assessment against your own knowledge – the AI doesn't know about context you haven't shared.",
     "Progress ratings (on track / needs attention / at risk) are the AI's inference from limited information. Treat them as prompts for reflection, not judgements."
   ]
 }

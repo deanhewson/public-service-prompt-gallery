@@ -30,7 +30,7 @@
       "description": "Who will read the plain language version",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. general public, NDIS participants and families, small business owners"
+      "placeholder": "eg general public, NDIS participants and families, small business owners"
     },
     {
       "name": "purpose",
@@ -38,7 +38,7 @@
       "description": "What the rewritten document needs to do for the reader",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. explain how to apply, summarise key changes, help people understand their rights"
+      "placeholder": "eg explain how to apply, summarise key changes, help people understand their rights"
     },
     {
       "name": "length",
@@ -47,7 +47,7 @@
       "type": "text",
       "required": false,
       "default": "same length as original or shorter",
-      "placeholder": "e.g. 1 page, 300 words"
+      "placeholder": "eg 1 page, 300 words"
     }
   ],
 
@@ -61,9 +61,9 @@
       "description": "Analyses what makes the source text hard to read and sets the objectives for the rewrite.",
       "trust_level": "high",
       "is_optional": false,
-      "user_action_after": "Review the jargon list and structure recommendations. Add any technical terms or requirements the model missed. The 'what must be preserved' section is important — note any legal or technical precision that cannot be lost.",
+      "user_action_after": "Review the jargon list and structure recommendations. Add any technical terms or requirements the model missed. The 'what must be preserved' section is important – note any legal or technical precision that cannot be lost.",
       "platform_tips": {
-        "copilot": "Paste your source text and target audience in this first message. Keep this in a single conversation for the full workflow — the audit findings will feed the drafting step."
+        "copilot": "Paste your source text and target audience in this first message. Keep this in a single conversation for the full workflow – the audit findings will feed the drafting step."
       },
       "output_feeds_to": [2]
     },
@@ -76,7 +76,7 @@
       "description": "Produces the plain language rewrite applying the audit findings.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Read the rewrite aloud. Does it sound natural? Compare it to the source — has any important meaning been lost or changed? Note any sections that still feel dense or unclear.",
+      "user_action_after": "Read the rewrite aloud. Does it sound natural? Compare it to the source – has any important meaning been lost or changed? Note any sections that still feel dense or unclear.",
       "platform_tips": {
         "copilot": "Stay in the same conversation from Step 1 so Copilot can use the audit findings. If you made significant changes to the audit output, note what changed at the top of your message."
       },
@@ -93,8 +93,8 @@
       "is_optional": false,
       "user_action_after": "Address the Top 3 fixes. For any remaining jargon or long sentences, ask the AI to rewrite those specific parts. If the meaning check identifies any subtle changes to meaning, correct them before using the document.",
       "platform_tips": {
-        "copilot": "Stay in the same conversation. If the rewritten text is long, paste it in full at the top of your message — do not rely on Copilot to remember the exact draft from Step 2.",
-        "chatgpt": "Paste the full rewritten text at the top of this message. Do not assume the Project has retained the exact draft — including it explicitly produces more accurate meaning checks."
+        "copilot": "Stay in the same conversation. If the rewritten text is long, paste it in full at the top of your message – do not rely on Copilot to remember the exact draft from Step 2.",
+        "chatgpt": "Paste the full rewritten text at the top of this message. Do not assume the Project has retained the exact draft – including it explicitly produces more accurate meaning checks."
       },
       "output_feeds_to": []
     }
@@ -104,7 +104,7 @@
     "beginner": {
       "recommended_steps": [1, 2, 3],
       "skip_steps": [],
-      "notes": "This is one of the most beginner-friendly workflows — the audit and rewrite steps work well even with minimal guidance. The key thing to watch is whether the rewrite changes the meaning of any important content."
+      "notes": "This is one of the most beginner-friendly workflows – the audit and rewrite steps work well even with minimal guidance. The key thing to watch is whether the rewrite changes the meaning of any important content."
     },
     "intermediate": {
       "recommended_steps": [1, 2, 3],
@@ -147,7 +147,8 @@
   },
 
   "known_limitations": [
-    "Plain language rewrites can lose technical or legal precision — always compare carefully with the source.",
+    "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
+    "Plain language rewrites can lose technical or legal precision – always compare carefully with the source.",
     "For documents with legal or regulatory effect, a human expert review and legal disclaimer may be required.",
     "Whether the rewrite actually works for the target audience can only be confirmed by testing with that audience.",
     "The model cannot know your agency's specific style guide requirements or any mandatory formatting obligations."

@@ -4,12 +4,11 @@
   "description": "Revises the briefing note draft based on verification findings and red-team challenge feedback.",
   "version": "1.0",
   "last_reviewed": "2026-03-04",
-
   "block_type": "refinement",
-  "domains": ["policy_development"],
-
-  "prompt_template": "<task>\nWe've now worked through the briefing note draft, the claim verification table, and the red-team challenge in this conversation. Please revise the brief incorporating both sets of feedback.\n\nInstructions for revision:\n1. Address all HIGH RISK or POTENTIALLY FABRICATED claims from the verification table — either remove them, qualify with caveats, or mark [VERIFY: ...] for me to check\n2. Consider the challenge feedback and address the most important issues raised — focus on logic gaps and the top priority issues identified\n3. Do not fabricate replacement data — use [INSERT DATA: description] where I need to add verified data\n4. Keep the revised brief within {{length}}\n5. Maintain APS writing style — clear, direct, evidence-based, impartial\n\nAfter the revised brief, provide a brief CHANGE SUMMARY:\n- Main changes made and why\n- Any [VERIFY] or [INSERT DATA] items still requiring my action\n- Any challenge feedback you chose not to address, and why\n</task>",
-
+  "domains": [
+    "policy_development"
+  ],
+  "prompt_template": "<role>\nYou are a senior APS policy analyst at the EL1 level writing in formal APS style.\n</role>\n\n<task>\nWe've now worked through the briefing note draft, the claim verification table, and the red-team challenge in this conversation. Please revise the brief incorporating both sets of feedback.\n\nInstructions for revision:\n1. Address all HIGH RISK or POTENTIALLY FABRICATED claims from the verification table – either remove them, qualify with caveats, or mark [VERIFY: ...] for me to check\n2. Consider the challenge feedback and address the most important issues raised – focus on logic gaps and the top priority issues identified\n3. Do not fabricate replacement data – use [INSERT DATA: description] where I need to add verified data\n4. Keep the revised brief within {{length}}\n5. Maintain APS writing style – clear, direct, evidence-based, impartial\n\nAfter the revised brief, provide a brief CHANGE SUMMARY:\n- Main changes made and why\n- Any [VERIFY] or [INSERT DATA] items still requiring my action\n- Any challenge feedback you chose not to address, and why\n</task>",
   "variables": [
     {
       "name": "length",
@@ -19,16 +18,14 @@
       "default": "2 pages"
     }
   ],
-
   "trust_level": "medium",
-
   "skill_adaptations": {
     "beginner": {
-      "notes": "Before running this step, resolve any [VERIFY] items you can — replace them with real data or remove the claims. Paste the verification table and challenge critique into the relevant fields.",
+      "notes": "Before running this step, resolve any [VERIFY] items you can – replace them with real data or remove the claims. Paste the verification table and challenge critique into the relevant fields.",
       "prompt_modification": null
     },
     "intermediate": {
-      "notes": "Use your judgement on which challenge feedback to action. Not every critique needs to be addressed — some may not apply to your specific context or reader.",
+      "notes": "Use your judgement on which challenge feedback to action. Not every critique needs to be addressed – some may not apply to your specific context or reader.",
       "prompt_modification": null
     },
     "advanced": {
@@ -36,11 +33,15 @@
       "prompt_modification": null
     }
   },
-
-  "tags": ["revision", "refinement", "briefing-note"],
+  "tags": [
+    "revision",
+    "refinement",
+    "briefing-note"
+  ],
   "contributed_by": null,
   "known_limitations": [
-    "Revision may introduce new errors — always run a final human review before submission.",
-    "The model cannot verify claims itself — [VERIFY] items must still be checked by the officer against authoritative sources."
+    "This step relies on the draft and feedback from Steps 3–5 being available in the conversation. If context has been lost, paste in the current draft and key findings before running this prompt.",
+    "Revision may introduce new errors – always run a final human review before submission.",
+    "The model cannot verify claims itself – [VERIFY] items must still be checked by the officer against authoritative sources."
   ]
 }

@@ -22,7 +22,7 @@
       "description": "The policy initiative, decision, or program being analysed",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. NDIS review implementation, new aged care standards rollout"
+      "placeholder": "eg NDIS review implementation, new aged care standards rollout"
     },
     {
       "name": "agency",
@@ -30,7 +30,7 @@
       "description": "Your agency or portfolio context",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Department of Social Services"
+      "placeholder": "eg Department of Social Services"
     },
     {
       "name": "context",
@@ -38,12 +38,12 @@
       "description": "Brief description of what's happening and what decision or action is involved",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Designing consultation process for a new framework launching mid-year"
+      "placeholder": "eg Designing consultation process for a new framework launching mid-year"
     },
     {
       "name": "key_documents",
       "label": "Background materials (optional)",
-      "description": "Paste publicly available background — published policy, public submissions, peak body positions. Do not paste OFFICIAL: Sensitive material into public AI tools.",
+      "description": "Paste publicly available background – published policy, public submissions, peak body positions. Do not paste OFFICIAL: Sensitive material into public AI tools.",
       "type": "long_text",
       "required": false,
       "placeholder": "Paste relevant publicly available content here..."
@@ -60,9 +60,9 @@
       "description": "Identifies all relevant stakeholders grouped by category, with initial read on position, influence, and engagement priority.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Review the map critically. Add any groups your agency knows are relevant but the model missed. Adjust influence and position ratings based on your direct knowledge. This is the foundation — getting it right matters.",
+      "user_action_after": "Review the map critically. Add any groups your agency knows are relevant but the model missed. Adjust influence and position ratings based on your direct knowledge. This is the foundation – getting it right matters.",
       "platform_tips": {
-        "copilot": "Include all your context in this first message — the initiative, agency, and any background materials. If you have a stakeholder register in SharePoint or OneDrive, use the / key to reference it here."
+        "copilot": "Include all your context in this first message – the initiative, agency, and any background materials. If you have a stakeholder register in SharePoint or OneDrive, use the / key to reference it here."
       },
       "output_feeds_to": [2]
     },
@@ -72,10 +72,10 @@
       "name": "Analyse Positions & Interests",
       "step_type": "generation",
       "building_block_id": "BB-STK-002",
-      "description": "Deepens understanding of priority stakeholders — core interests, red lines, common ground, and what happens if they're handled poorly.",
+      "description": "Deepens understanding of priority stakeholders – core interests, red lines, common ground, and what happens if they're handled poorly.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "The most valuable output here is 'core interest vs stated position'. Where does the model's read differ from your own knowledge? Note any organisations whose position or red lines you know from direct experience — the model can only draw on public information.",
+      "user_action_after": "The most valuable output here is 'core interest vs stated position'. Where does the model's read differ from your own knowledge? Note any organisations whose position or red lines you know from direct experience – the model can only draw on public information.",
       "platform_tips": {
         "copilot": "Stay in the same conversation from Step 1. When you run this prompt, Copilot will use the stakeholder map above. If it doesn't, paste the Step 1 output at the top of your message."
       },
@@ -87,12 +87,12 @@
       "name": "Challenge the Analysis",
       "step_type": "quality_gate",
       "quality_gate_id": "QG-CHALLENGE-001",
-      "description": "Red-team the stakeholder analysis — who's been missed, what assumptions are hidden, what could go wrong.",
+      "description": "Red-team the stakeholder analysis – who's been missed, what assumptions are hidden, what could go wrong.",
       "trust_level": "medium",
       "is_optional": true,
       "user_action_after": "Review the critique. The most useful challenge is usually around stakeholders who've been missed or underweighted. Add any you agree with to your revised stakeholder map.",
       "platform_tips": {
-        "copilot": "Start a fresh Copilot message. Paste the stakeholder map from Step 1 and the position analysis from Step 2 — Copilot needs both to produce a useful challenge."
+        "copilot": "Start a fresh Copilot message. Paste the stakeholder map from Step 1 and the position analysis from Step 2 – Copilot needs both to produce a useful challenge."
       },
       "output_feeds_to": [4]
     },
@@ -102,10 +102,10 @@
       "name": "Engagement Strategy",
       "step_type": "generation",
       "building_block_id": "BB-STK-003",
-      "description": "Recommends tailored engagement approaches — method, timing, key messages, and success indicators for each priority stakeholder.",
+      "description": "Recommends tailored engagement approaches – method, timing, key messages, and success indicators for each priority stakeholder.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "The sequencing recommendation is the most immediately actionable output. Who you engage first sends a signal — adjust based on your political read and existing relationships. Finalise the strategy with your manager before commencing engagement.",
+      "user_action_after": "The sequencing recommendation is the most immediately actionable output. Who you engage first sends a signal – adjust based on your political read and existing relationships. Finalise the strategy with your manager before commencing engagement.",
       "platform_tips": {
         "copilot": "If you ran Step 3, start a fresh message and paste the revised stakeholder analysis as your input. If you skipped Step 3, continue in the same conversation and reference the earlier analysis."
       },
@@ -122,12 +122,12 @@
     "intermediate": {
       "recommended_steps": [1, 2, 3, 4],
       "skip_steps": [],
-      "notes": "Run the full workflow. The challenge step (Step 3) often surfaces stakeholders or dynamics that were missed — it's worth doing even if the analysis feels solid."
+      "notes": "Run the full workflow. The challenge step (Step 3) often surfaces stakeholders or dynamics that were missed – it's worth doing even if the analysis feels solid."
     },
     "advanced": {
       "recommended_steps": [1, 2, 3, 4],
       "skip_steps": [],
-      "notes": "Consider running Step 1 from two perspectives — once as the agency, once as the most affected community group. The gap between these maps is often where the real engagement risk sits."
+      "notes": "Consider running Step 1 from two perspectives – once as the agency, once as the most affected community group. The gap between these maps is often where the real engagement risk sits."
     }
   },
 
@@ -160,8 +160,9 @@
   },
 
   "known_limitations": [
+    "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "The model's knowledge of specific organisations and their current positions may be outdated.",
-    "Local, niche, or recently formed groups are likely to be missed — supplement with your agency's stakeholder intelligence.",
+    "Local, niche, or recently formed groups are likely to be missed – supplement with your agency's stakeholder intelligence.",
     "The model cannot know your existing relationships with these organisations, which significantly affects what engagement approaches are appropriate.",
     "This workflow produces AI-assisted analysis. You remain responsible for the quality of stakeholder engagement decisions."
   ]

@@ -22,15 +22,15 @@
       "description": "What is this meeting for?",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Quarterly governance review, stakeholder briefing on new regulations"
+      "placeholder": "eg Quarterly governance review, stakeholder briefing on new regulations"
     },
     {
       "name": "attendees",
       "label": "Attendees",
-      "description": "Who is attending — names, titles, or organisations",
+      "description": "Who is attending – names, titles, or organisations",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Deputy Secretary (chair), EL2 Policy Lead, 3 external stakeholder reps"
+      "placeholder": "eg Deputy Secretary (chair), EL2 Policy Lead, 3 external stakeholder reps"
     },
     {
       "name": "agency",
@@ -38,15 +38,15 @@
       "description": "Your agency or portfolio context",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Department of Finance"
+      "placeholder": "eg Department of Finance"
     },
     {
       "name": "context",
       "label": "Context",
-      "description": "Any relevant background — what's the history, why now, what's at stake",
+      "description": "Any relevant background – what's the history, why now, what's at stake",
       "type": "text",
       "required": false,
-      "placeholder": "e.g. First meeting after a major policy announcement; some attendees have concerns"
+      "placeholder": "eg First meeting after a major policy announcement; some attendees have concerns"
     },
     {
       "name": "duration",
@@ -55,12 +55,12 @@
       "type": "text",
       "required": false,
       "default": "60 minutes",
-      "placeholder": "e.g. 60 minutes, 90 minutes"
+      "placeholder": "eg 60 minutes, 90 minutes"
     },
     {
       "name": "key_documents",
       "label": "Background materials (optional)",
-      "description": "Paste relevant external documents or summaries. External, publicly available documents only — do not paste OFFICIAL: Sensitive material into public AI tools.",
+      "description": "Paste relevant external documents or summaries. External, publicly available documents only – do not paste OFFICIAL: Sensitive material into public AI tools.",
       "type": "long_text",
       "required": false,
       "placeholder": "Paste relevant documents or summaries here..."
@@ -77,9 +77,9 @@
       "description": "Defines what the meeting needs to achieve, key issues, attendee dynamics, and any pre-meeting actions.",
       "trust_level": "high",
       "is_optional": false,
-      "user_action_after": "Review the objectives — do they match what you actually need from this meeting? Adjust the attendee analysis based on your direct knowledge of these people. Note any pre-meeting actions that need to happen before you move on.",
+      "user_action_after": "Review the objectives – do they match what you actually need from this meeting? Adjust the attendee analysis based on your direct knowledge of these people. Note any pre-meeting actions that need to happen before you move on.",
       "platform_tips": {
-        "copilot": "Include all meeting context in this first message — purpose, attendees, duration, and any background. Copilot does not retain context between sessions, so everything needed for the workflow should be here from the start."
+        "copilot": "Include all meeting context in this first message – purpose, attendees, duration, and any background. Copilot does not retain context between sessions, so everything needed for the workflow should be here from the start."
       },
       "output_feeds_to": [2, 3, 4]
     },
@@ -107,10 +107,10 @@
       "description": "Drafts a brief for attendees covering context, key issues, and what they need to come prepared to contribute. Optional for smaller internal meetings.",
       "trust_level": "medium",
       "is_optional": true,
-      "user_action_after": "Check all [VERIFY] flags before circulating. Have a senior officer review before it goes out — this represents your agency. Update any [INSERT: document name] placeholders with actual references.",
+      "user_action_after": "Check all [VERIFY] flags before circulating. Have a senior officer review before it goes out – this represents your agency. Update any [INSERT: document name] placeholders with actual references.",
       "platform_tips": {
-        "copilot": "For a substantial background brief, consider drafting this in Copilot in Word rather than Copilot Chat — it can apply formatting directly and you can share the output as an attachment.",
-        "chatgpt": "If the brief will be circulated to attendees, pay extra attention to [VERIFY] flags — factual errors in pre-read materials undermine the meeting before it starts."
+        "copilot": "For a substantial background brief, consider drafting this in Copilot in Word rather than Copilot Chat – it can apply formatting directly and you can share the output as an attachment.",
+        "chatgpt": "If the brief will be circulated to attendees, pay extra attention to [VERIFY] flags – factual errors in pre-read materials undermine the meeting before it starts."
       },
       "output_feeds_to": []
     },
@@ -123,7 +123,7 @@
       "description": "Generates opening questions, deepening prompts, and decision-forcing questions for each agenda item. For the chair or facilitator.",
       "trust_level": "high",
       "is_optional": true,
-      "user_action_after": "Select the prompts that feel right for your group — you don't need all of them. Have the decision-forcing questions ready but use them with judgment. Good facilitation reads the room.",
+      "user_action_after": "Select the prompts that feel right for your group – you don't need all of them. Have the decision-forcing questions ready but use them with judgment. Good facilitation reads the room.",
       "platform_tips": {
         "copilot": "This step can be run as a fresh conversation if needed. Paste the agenda from Step 2 at the top of your message to give Copilot the context it needs to generate relevant discussion prompts."
       },
@@ -135,7 +135,7 @@
     "beginner": {
       "recommended_steps": [1, 2],
       "skip_steps": [3, 4],
-      "notes": "Start with the context analysis and agenda — that's the core of meeting preparation. The background brief and discussion prompts add value for more complex meetings; add them once you're comfortable."
+      "notes": "Start with the context analysis and agenda – that's the core of meeting preparation. The background brief and discussion prompts add value for more complex meetings; add them once you're comfortable."
     },
     "intermediate": {
       "recommended_steps": [1, 2, 3, 4],
@@ -178,9 +178,10 @@
   },
 
   "known_limitations": [
+    "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "The model cannot know the history between specific attendees, recent dynamics, or interpersonal sensitivities.",
-    "Statistics and program details in the background brief may be inaccurate — verify all before circulating.",
-    "Facilitation prompts are generic — adapt to the specific group and communication styles of key attendees.",
+    "Statistics and program details in the background brief may be inaccurate – verify all before circulating.",
+    "Facilitation prompts are generic – adapt to the specific group and communication styles of key attendees.",
     "This workflow produces AI-assisted drafts. The chair or meeting organiser remains responsible for the quality of the meeting."
   ]
 }

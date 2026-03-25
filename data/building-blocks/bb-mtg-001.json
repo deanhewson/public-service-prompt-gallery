@@ -4,72 +4,73 @@
   "description": "Defines what the meeting needs to achieve, who's attending and why, and the key issues that must be addressed.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
-
   "block_type": "generation",
-  "domains": ["general_productivity"],
-
-  "prompt_template": "<role>\nYou are a senior Australian Public Service policy adviser helping to prepare for an upcoming meeting.\n</role>\n\n<task>\nHere is the context for the meeting we need to prepare for.\n\nMeeting purpose: {{meeting_purpose}}\nAttendees: {{attendees}}\nAgency: {{agency}}\nAdditional context: {{context}}\n\n{{#if key_documents}}\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nBased on this, identify:\n\n1. **What this meeting needs to achieve** — list 2–4 specific outcomes. What does success look like at the end of this meeting?\n2. **Key issues to address** — what are the 3–6 substantive issues or questions this meeting must work through?\n3. **Attendee analysis** — for each attendee group or key individual, what are they likely to want from this meeting? What might they push back on?\n4. **Risks and sensitivities** — what could go wrong? Any political sensitivities, conflicting interests among attendees, or difficult history?\n5. **Pre-meeting actions** — what should be done before the meeting to make it productive? (e.g. circulate reading, resolve a question, get a decision from a senior officer)\n6. **Decisions needed** — what decisions, if any, need to come out of this meeting?\n</task>",
-
+  "domains": [
+    "general_productivity"
+  ],
+  "prompt_template": "<role>\nYou are a senior Australian Public Service policy adviser helping to prepare for an upcoming meeting.\n</role>\n\n<task>\nHere is the context for the meeting we need to prepare for.\n\nMeeting purpose: {{meeting_purpose}}\nAttendees: {{attendees}}\nAgency: {{agency}}\nAdditional context: {{context}}\n\n{{#if key_documents}}\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nBased on this, identify:\n\n1. **What this meeting needs to achieve** – list 2–4 specific outcomes. What does success look like at the end of this meeting?\n2. **Key issues to address** – what are the 3–6 substantive issues or questions this meeting must work through?\n3. **Attendee analysis** – for each attendee group or key individual, what are they likely to want from this meeting? What might they push back on?\n4. **Risks and sensitivities** – what could go wrong? Any political sensitivities, conflicting interests among attendees, or difficult history?\n5. **Pre-meeting actions** – what should be done before the meeting to make it productive? (eg circulate reading, resolve a question, get a decision from a senior officer)\n6. **Decisions needed** – what decisions, if any, need to come out of this meeting?\n</task>",
   "variables": [
     {
       "name": "meeting_purpose",
       "description": "What is this meeting for?",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Quarterly governance review, stakeholder briefing on new regulations, team planning session"
+      "placeholder": "eg Quarterly governance review, stakeholder briefing on new regulations, team planning session"
     },
     {
       "name": "attendees",
       "description": "Who is attending (names/titles/organisations)",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Deputy Secretary (chair), EL2 Policy Lead, 3 external stakeholder reps"
+      "placeholder": "eg Deputy Secretary (chair), EL2 Policy Lead, 3 external stakeholder reps"
     },
     {
       "name": "agency",
       "description": "Your agency or portfolio context",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Department of Finance"
+      "placeholder": "eg Department of Finance"
     },
     {
       "name": "context",
-      "description": "Any relevant background — what's the history, why now, what's at stake",
+      "description": "Any relevant background – what's the history, why now, what's at stake",
       "type": "text",
       "required": false,
-      "placeholder": "e.g. First meeting after a major policy announcement; some stakeholders are unhappy about consultation process"
+      "placeholder": "eg First meeting after a major policy announcement; some stakeholders are unhappy about consultation process"
     },
     {
       "name": "key_documents",
-      "description": "Paste any relevant background reading or context documents. External, publicly available documents only — do not paste OFFICIAL: Sensitive material into public AI tools.",
+      "description": "Externally available documents only – eg published annual reports, public policy documents, ABS/AIHW statistics, publicly available evaluations. Do not paste OFFICIAL: Sensitive or classified material into AI tools not approved for that classification. If your agency permits it for the AI tool you're using, you can also reference or upload internal documents directly in the tool rather than pasting them here.",
       "type": "long_text",
       "required": false,
-      "placeholder": "Paste relevant documents or summaries here..."
+      "placeholder": "Paste excerpts from available reference documents here – eg relevant sections of an annual report, published evaluation, or public statistics..."
     }
   ],
-
   "trust_level": "high",
-
   "skill_adaptations": {
     "beginner": {
-      "notes": "The 'what this meeting needs to achieve' section is the most important — if you can't answer what success looks like, the meeting probably isn't ready to happen. Review this section before moving on.",
+      "notes": "The 'what this meeting needs to achieve' section is the most important – if you can't answer what success looks like, the meeting probably isn't ready to happen. Review this section before moving on.",
       "prompt_modification": null
     },
     "intermediate": {
-      "notes": "The attendee analysis is only as good as what the model knows about those people — add your own knowledge of their likely positions and concerns before finalising the agenda.",
+      "notes": "The attendee analysis is only as good as what the model knows about those people – add your own knowledge of their likely positions and concerns before finalising the agenda.",
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "If there are conflicting interests among attendees, use the risks and sensitivities section to inform how you design the agenda — some issues should come before others to set the right tone.",
+      "notes": "If there are conflicting interests among attendees, use the risks and sensitivities section to inform how you design the agenda – some issues should come before others to set the right tone.",
       "prompt_modification": null
     }
   },
-
-  "tags": ["meeting", "preparation", "agenda", "productivity"],
+  "tags": [
+    "meeting",
+    "preparation",
+    "agenda",
+    "productivity"
+  ],
   "contributed_by": null,
   "known_limitations": [
     "The model cannot know the history between specific attendees, recent dynamics, or interpersonal sensitivities.",
-    "Attendee analysis is based on general knowledge of roles and organisations — your direct knowledge of individuals matters more here.",
+    "Attendee analysis is based on general knowledge of roles and organisations – your direct knowledge of individuals matters more here.",
     "Pre-meeting action recommendations may not account for your specific timeline or available resources."
   ]
 }

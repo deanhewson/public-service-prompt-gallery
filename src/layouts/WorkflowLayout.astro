@@ -63,7 +63,7 @@ const domainLabels = {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
-  <title>{workflow.name} — APS Prompt Gallery</title>
+  <title>{workflow.name} – APS Prompt Gallery</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
 
@@ -802,7 +802,7 @@ const domainLabels = {
       border-top: 1px solid #b8dce8;
     }
 
-    /* Dynamically-injected step-zero body content — must use :global() to escape Astro CSS scoping */
+    /* Dynamically-injected step-zero body content – must use :global() to escape Astro CSS scoping */
     :global(.step-zero-guidance) {
       border-left: 3px solid #4a9db5;
       padding: 10px 12px;
@@ -890,7 +890,7 @@ const domainLabels = {
       line-height: 1.5;
     }
 
-    /* Tip icon badge is injected via innerHTML — needs :global() */
+    /* Tip icon badge is injected via innerHTML – needs :global() */
     :global(.tip-icon-badge) {
       display: inline-flex;
       align-items: center;
@@ -1064,7 +1064,7 @@ const domainLabels = {
       <span class="step-zero-badge">Step 0</span>
       <div class="step-zero-summary-text">
         <span class="step-zero-title" id="step-zero-title">Set up your AI tool for this workflow</span>
-        <span class="step-zero-teaser">Paste these instructions before starting — takes 2 minutes and saves time on every step.</span>
+        <span class="step-zero-teaser">Paste these instructions before starting – takes 2 minutes and saves time on every step.</span>
       </div>
       <span class="step-zero-chevron">▼</span>
     </summary>
@@ -1080,7 +1080,7 @@ const domainLabels = {
         Customise prompts <span class="inputs-optional-tag">optional</span>
         <span class="inputs-chevron">▼</span>
       </span>
-      <span class="inputs-summary-hint">Fill in your details and the prompts update automatically. Nothing is saved or sent anywhere — it just changes your prompts before you copy them, for convenience.</span>
+      <span class="inputs-summary-hint">Fill in your details and the prompts update automatically. Nothing is saved or sent anywhere – it just changes your prompts before you copy them, for convenience.</span>
     </summary>
     <p class="inputs-alt-hint">You can do this part entirely in your own AI tool.</p>
     <div class="inputs-grid">
@@ -1127,9 +1127,9 @@ const domainLabels = {
       : (trustLabels[trust] || { label: trust, className: '' });
 
     const trustMessages = {
-      high:   'High trust output — scan for obvious errors, but this type of content is generally reliable.',
-      medium: 'Medium trust — use as a starting point. Verify key claims before including in an official document.',
-      low:    'Low trust — independently verify every specific claim. Do not rely on this output without checking.',
+      high:   'High trust output – scan for obvious errors, but this type of content is generally reliable.',
+      medium: 'Medium trust – use as a starting point. Verify key claims before including in an official document.',
+      low:    'Low trust – independently verify every specific claim. Do not rely on this output without checking.',
     };
 
     return (
@@ -1159,7 +1159,7 @@ const domainLabels = {
             </span>
             <span>
               {isGate
-                ? 'Quality gate — this step verifies or challenges the previous output. Run it after completing the step it checks.'
+                ? 'Quality gate – this step verifies or challenges the previous output. Run it after completing the step it checks.'
                 : trustMessages[trust]}
             </span>
           </div>
@@ -1169,7 +1169,7 @@ const domainLabels = {
           {content && (
             <div class="prompt-box">
               <div class="prompt-toolbar">
-                <span>Prompt — {content.name}</span>
+                <span>Prompt – {content.name}</span>
                 <button class="copy-btn" data-copy={step.order}>Copy prompt</button>
               </div>
               <div class="prompt-text" id={`prompt-${step.order}`} data-template={content.prompt_template} data-platform-prompts={JSON.stringify(content.platform_prompts ?? {})}>
@@ -1220,7 +1220,7 @@ const domainLabels = {
           <input type="radio" name="rating" value="Yes" required /> Yes, it worked well
         </label>
         <label class="feedback-radio-label">
-          <input type="radio" name="rating" value="Partly" /> Partly — needed adjusting
+          <input type="radio" name="rating" value="Partly" /> Partly – needed adjusting
         </label>
         <label class="feedback-radio-label">
           <input type="radio" name="rating" value="No" /> Not really
@@ -1280,14 +1280,14 @@ const domainLabels = {
 
   const PLATFORM_TRANSITION_NOTES = {
     chatgpt: 'Tip: If output quality or formatting drifts on later steps, re-state the role definition at the top of your next prompt.',
-    copilot: 'Tip: Copy the full output before proceeding — Copilot may not retain earlier context in the next turn. Include key output as context in your next prompt.',
+    copilot: 'Tip: Stay in the same Copilot conversation for all workflow steps – context is retained within a session. If you need to continue in a new chat, paste in the key output from where you left off.',
     other:   'Tip: Copy the output and paste it as context alongside the next step\'s prompt to maintain continuity.',
   };
 
   const PLATFORM_BASE_TIPS = {
     generation: {
       copilot: 'Copilot works best with focused, single-task prompts. If this step\'s prompt feels long, consider splitting the role/context from the task instructions into two separate messages.',
-      chatgpt: 'ChatGPT tends to produce verbose output. If the response is too long, add "Be concise — maximum X paragraphs" to the prompt before copying.',
+      chatgpt: 'ChatGPT tends to produce verbose output. If the response is too long, add "Be concise – maximum X paragraphs" to the prompt before copying.',
       claude:  null,
       other:   null,
     },
@@ -1298,7 +1298,7 @@ const domainLabels = {
       other:   null,
     },
     refinement: {
-      copilot: 'Include the full draft text in this prompt — don\'t assume Copilot remembers the previous output from earlier in the conversation.',
+      copilot: 'Include the full draft text in this prompt – don\'t assume Copilot remembers the previous output from earlier in the conversation.',
       chatgpt: null,
       claude:  null,
       other:   null,
@@ -1719,7 +1719,7 @@ const domainLabels = {
   function updatePrivacyUI() {
     const ignored = localStorage.getItem('goatcounter-ignore') === 't';
     gcToggleLabel.textContent = ignored
-      ? 'Analytics off — your visits are not counted.'
+      ? 'Analytics off – your visits are not counted.'
       : 'Visits to this site are counted anonymously.';
     gcToggleBtn.textContent = ignored ? 'Turn analytics on' : "Don't count my visits";
   }

@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["policy_development"],
 
-  "prompt_template": "<role>\nYou are a senior Australian Public Service policy analyst with expertise in {{policy_area}}, working in {{agency}}.\n</role>\n\n<task>\nIdentify the key issues, considerations, and context relevant to a briefing note on the following topic.\n\nTopic: {{topic}}\nAudience: {{audience}}\nPurpose: {{purpose}}\n{{#if key_documents}}\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nProduce a structured list covering:\n\n1. **Key issues** — the main points that must be addressed in the brief (5–8 items, in priority order)\n2. **Background context** — essential context the reader needs to understand the topic\n3. **Stakeholders affected** — who has a stake in this topic and their likely positions\n4. **Potential sensitivities** — political, legal, or operational risks the brief should acknowledge\n5. **Information gaps** — what information you would ideally have but don't; mark these [VERIFY]\n\nBe specific to the APS context. Use plain language. Where a claim requires verification, write [VERIFY: description].\n</task>",
+  "prompt_template": "<role>\nYou are a senior Australian Public Service policy analyst with expertise in {{policy_area}}, working in {{agency}}.\n</role>\n\n<task>\nIdentify the key issues, considerations, and context relevant to a briefing note on the following topic.\n\nTopic: {{topic}}\nAudience: {{audience}}\nPurpose: {{purpose}}\n{{#if key_documents}}\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nProduce a structured list covering:\n\n1. **Key issues** – the main points that must be addressed in the brief (5–8 items, in priority order)\n2. **Background context** – essential context the reader needs to understand the topic\n3. **Stakeholders affected** – who has a stake in this topic and their likely positions\n4. **Potential sensitivities** – political, legal, or operational risks the brief should acknowledge\n5. **Information gaps** – what information you would ideally have but don't; mark these [VERIFY]\n\nBe specific to the APS context. Use plain language. Where a claim requires verification, write [VERIFY: description].\n</task>",
 
   "variables": [
     {
@@ -48,10 +48,10 @@
     },
     {
       "name": "key_documents",
-      "description": "External reference documents only — e.g. published annual reports, public policy documents, ABS/AIHW statistics, publicly available evaluations. Do not paste OFFICIAL: Sensitive or classified material into public AI tools.",
+      "description": "Externally available documents only – eg published annual reports, public policy documents, ABS/AIHW statistics, publicly available evaluations. Do not paste OFFICIAL: Sensitive or classified material into AI tools not approved for that classification. If your agency permits it for the AI tool you're using, you can also reference or upload internal documents directly in the tool rather than pasting them here.",
       "type": "long_text",
       "required": false,
-      "placeholder": "Paste excerpts from publicly available documents here, e.g. relevant sections of an annual report, published evaluation, or public statistics..."
+      "placeholder": "Paste excerpts from available reference documents here – eg relevant sections of an annual report, published evaluation, or public statistics..."
     }
   ],
 
@@ -67,15 +67,15 @@
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "Consider running this step multiple times from different perspectives (e.g., policy, legal, financial) to build a richer issues list before structuring the brief.",
-      "prompt_modification": "Add before </task>: 'Also identify: **Legal/regulatory dimensions** — relevant legislation, regulations, or court decisions; **Economic dimensions** — budget, cost, or economic impact considerations.'"
+      "notes": "Consider running this step multiple times from different perspectives (eg, policy, legal, financial) to build a richer issues list before structuring the brief.",
+      "prompt_modification": "Add before </task>: 'Also identify: **Legal/regulatory dimensions** – relevant legislation, regulations, or court decisions; **Economic dimensions** – budget, cost, or economic impact considerations.'"
     }
   },
 
   "tags": ["research", "scoping", "briefing-note", "generation"],
   "contributed_by": null,
   "known_limitations": [
-    "The model's knowledge has a cutoff date — current events, recent policy changes, and the latest data will not be included.",
+    "The model's knowledge has a cutoff date – current events, recent policy changes, and the latest data will not be included.",
     "Stakeholder positions and sensitivities are inferred from general knowledge, not your agency's specific intelligence.",
     "Always review the issues list against your own knowledge before proceeding."
   ]

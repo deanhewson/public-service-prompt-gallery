@@ -17,7 +17,7 @@
       "type": "text",
       "required": false,
       "default": "same length as the original or shorter",
-      "placeholder": "e.g. 1 page, 300 words, or 'same as original'"
+      "placeholder": "eg 1 page, 300 words, or 'same as original'"
     }
   ],
 
@@ -25,7 +25,7 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "Read the rewrite aloud — if it sounds natural, that's a good sign. Plain language should be easy to say, not just easy to read. If any section sounds odd, rewrite that part yourself.",
+      "notes": "Read the rewrite aloud – if it sounds natural, that's a good sign. Plain language should be easy to say, not just easy to read. If any section sounds odd, rewrite that part yourself.",
       "prompt_modification": null
     },
     "intermediate": {
@@ -41,8 +41,8 @@
   "tags": ["plain-language", "rewrite", "communications", "accessibility"],
   "contributed_by": null,
   "known_limitations": [
-    "Plain language rewrites can sometimes lose technical precision — compare carefully with the source document.",
-    "The model may introduce grammatical errors or awkward phrasing — always do a human read before publishing.",
+    "Plain language rewrites can sometimes lose technical precision – compare carefully with the source document.",
+    "The model may introduce grammatical errors or awkward phrasing – always do a human read before publishing.",
     "For documents with legal or regulatory effect, plain language versions may need a legal review and should carry a note that the original document governs."
   ]
 }
