@@ -4,59 +4,75 @@
   "description": "Maps the issue, likely question angles, and key points the minister or officer needs to know before drafting.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
-
   "block_type": "generation",
-  "domains": ["policy_development"],
-
+  "domains": [
+    "policy_development"
+  ],
   "prompt_template": "<role>\nYou are a senior Australian Public Service policy adviser preparing a minister or senior official for a parliamentary or stakeholder session. You work in {{agency}} on {{policy_area}}.\n</role>\n\n<task>\nWe are preparing a Question Time Brief (QTB) on the following topic.\n\nTopic: {{topic}}\nForum: {{forum}}\nAudience: {{audience}}\n\n{{#if key_documents}}\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nBefore drafting the brief, identify:\n\n1. **Background in 3–5 sentences** — the essential context the reader needs to understand the issue immediately\n2. **Likely question angles** — what specific questions are most likely to come up? List 4–6 probable questions a senator, journalist, or committee member might ask, from most to least likely\n3. **The hard questions** — which 1–2 questions would be most politically difficult or awkward to answer? Why?\n4. **Key messages the reader must land** — the 3–4 points that absolutely must come through clearly\n5. **Things to avoid saying** — phrases, framings, or commitments that could cause problems\n6. **Information gaps** — what information would help but is currently unknown or uncertain? Flag each as [VERIFY]\n</task>",
-
   "variables": [
     {
       "name": "agency",
       "description": "Your agency or portfolio context",
       "type": "text",
       "required": true,
-      "examples": ["Department of Finance", "Department of Health and Aged Care"]
+      "examples": [
+        "Department of Finance",
+        "Department of Health and Aged Care"
+      ]
     },
     {
       "name": "policy_area",
       "description": "The specific policy domain",
       "type": "text",
       "required": true,
-      "examples": ["aged care funding", "digital government", "regional infrastructure"]
+      "examples": [
+        "aged care funding",
+        "digital government",
+        "regional infrastructure"
+      ]
     },
     {
       "name": "topic",
       "description": "The topic the QTB is being prepared for",
       "type": "text",
       "required": true,
-      "examples": ["NDIS cost growth", "robodebt program closure", "infrastructure fund outcomes"]
+      "examples": [
+        "NDIS cost growth",
+        "robodebt program closure",
+        "infrastructure fund outcomes"
+      ]
     },
     {
       "name": "forum",
       "description": "Where this will be used (e.g. Senate Estimates, doorstop, stakeholder Q&A)",
       "type": "text",
       "required": true,
-      "examples": ["Senate Estimates", "media doorstop", "stakeholder roundtable Q&A"]
+      "examples": [
+        "Senate Estimates",
+        "media doorstop",
+        "stakeholder roundtable Q&A"
+      ]
     },
     {
       "name": "audience",
       "description": "Who is being briefed",
       "type": "text",
       "required": true,
-      "examples": ["Minister", "Deputy Secretary", "SES Band 2 appearing before Estimates"]
+      "examples": [
+        "Minister",
+        "Deputy Secretary",
+        "SES Band 2 appearing before Estimates"
+      ]
     },
     {
       "name": "key_documents",
-      "description": "External reference documents only — published reports, public data, recent media coverage. Do not paste OFFICIAL: Sensitive or classified material into public AI tools.",
+      "description": "Externally available documents only — eg published annual reports, public policy documents, ABS/AIHW statistics, publicly available evaluations. Do not paste OFFICIAL: Sensitive or classified material into AI tools not approved for that classification. If your agency permits it for the AI tool you're using, you can also reference or upload internal documents directly in the tool rather than pasting them here.",
       "type": "long_text",
       "required": false,
-      "placeholder": "Paste relevant publicly available content here — media articles, published reports, Hansard extracts..."
+      "placeholder": "Paste excerpts from available reference documents here — eg published reports, Hansard extracts, recent media coverage, or public data..."
     }
   ],
-
   "trust_level": "medium",
-
   "skill_adaptations": {
     "beginner": {
       "notes": "This step sets up the whole brief. Spend time reviewing the likely questions — add any you know from your own knowledge that the model missed. Your context is more accurate than the model's.",
@@ -71,8 +87,13 @@
       "prompt_modification": null
     }
   },
-
-  "tags": ["qtb", "question-time-brief", "research", "parliament", "estimates"],
+  "tags": [
+    "qtb",
+    "question-time-brief",
+    "research",
+    "parliament",
+    "estimates"
+  ],
   "contributed_by": null,
   "known_limitations": [
     "The model cannot know the current political dynamics, recent media coverage, or the reader's specific history with a committee.",
