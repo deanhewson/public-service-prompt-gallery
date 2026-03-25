@@ -44,17 +44,6 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
     a:hover { text-decoration: underline; }
     h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 
-    /* ── PoC Banner ──────────────────────────────────── */
-    .poc-banner {
-      background: #F5EEF3;
-      border-bottom: 1px solid #C19AB7;
-      font-size: 0.82rem;
-      color: #3d1a35;
-      padding: 7px 0;
-      text-align: center;
-    }
-    .poc-banner a { color: var(--color-primary); }
-
     /* ── Container ───────────────────────────────────── */
     .container {
       max-width: 900px;
@@ -384,13 +373,6 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 </head>
 <body>
-
-<!-- Status banner -->
-<div class="poc-banner">
-  Early release – 6 workflows live and tested. More coming. <a href="/roadmap">See what's planned →</a> &nbsp;·&nbsp;
-  Built by <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">Dean Hewson</a> &nbsp;·&nbsp;
-  Feedback: <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">GitHub</a>
-</div>
 
 <TopNav />
 <WorkflowNav />
