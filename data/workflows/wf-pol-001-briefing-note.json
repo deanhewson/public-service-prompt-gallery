@@ -5,16 +5,17 @@
   "description": "Produce a draft briefing note on a policy topic for senior executive review. Follows standard briefing note conventions with built-in quality checks for factual accuracy, sceptical review, and compliance.",
   "version": "1.0",
   "last_reviewed": "2026-03-04",
-  "maturity": "draft",
-  "maturity_note": "Initial implementation, March 2026. Not yet tested against real briefing scenarios.",
+  "maturity": "tested",
+  "maturity_note": "Reviewed and iterated against real demo use case (PBO, Copilot 365). All 7 steps checked: prompts, platform tips, known limitations, compliance reflection rewritten. Not yet independently reviewed by external practitioner.",
   "maturity_updated": "2026-03-25",
-
   "domain": "policy_development",
   "task_type": "briefing_note",
-  "typical_user_level": ["aps5_6", "el1"],
+  "typical_user_level": [
+    "aps5_6",
+    "el1"
+  ],
   "complexity": "intermediate",
   "estimated_time": "30–45 minutes with review",
-
   "inputs_required": [
     {
       "name": "topic",
@@ -74,7 +75,6 @@
       "placeholder": "Paste document text or a summary here..."
     }
   ],
-
   "steps": [
     {
       "order": 1,
@@ -86,7 +86,9 @@
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Review the issues list critically. Remove items that don't apply to your context. Add anything missing based on your own knowledge — your domain expertise matters most at this stage.",
-      "output_feeds_to": [2]
+      "output_feeds_to": [
+        2
+      ]
     },
     {
       "order": 2,
@@ -101,7 +103,9 @@
       "trust_level": "high",
       "is_optional": true,
       "user_action_after": "Confirm the structure works for your audience and purpose. Adjust headings or emphasis as needed. This is worth checking with your supervisor if you're unsure.",
-      "output_feeds_to": [3]
+      "output_feeds_to": [
+        3
+      ]
     },
     {
       "order": 3,
@@ -116,7 +120,10 @@
       "platform_tips": {
         "copilot": "If you're in a new chat or returning to this workflow later, paste in the key issues list from Step 1 and your agreed structure from Step 2 (or any structure you've been given) before sending this prompt — Copilot doesn't carry context across separate conversations. For detailed drafting, Copilot in Word can also work directly with your document structure."
       },
-      "output_feeds_to": [4, 5]
+      "output_feeds_to": [
+        4,
+        5
+      ]
     },
     {
       "order": 4,
@@ -131,7 +138,9 @@
       "platform_tips": {
         "copilot": "If you're in the same conversation as the drafting step, the draft is already available — just send the prompt. If you've started a new chat, paste in the full draft before running this prompt."
       },
-      "output_feeds_to": [6]
+      "output_feeds_to": [
+        6
+      ]
     },
     {
       "order": 5,
@@ -146,7 +155,9 @@
       "platform_tips": {
         "copilot": "If you're in the same conversation as the drafting step, the draft is already available — just send the prompt. If you've started a new chat, paste in the full draft before running this prompt."
       },
-      "output_feeds_to": [6]
+      "output_feeds_to": [
+        6
+      ]
     },
     {
       "order": 6,
@@ -161,7 +172,9 @@
       "platform_tips": {
         "copilot": "If you're in the same conversation as the previous steps, all context is already available — just send the prompt. If you've started a new chat, paste in the current draft and the key findings from Steps 4 and 5 before sending this prompt."
       },
-      "output_feeds_to": [7]
+      "output_feeds_to": [
+        7
+      ]
     },
     {
       "order": 7,
@@ -179,36 +192,67 @@
       "output_feeds_to": []
     }
   ],
-
   "skill_level_guidance": {
     "beginner": {
-      "recommended_steps": [1, 3, 4, 7],
-      "skip_steps": [2, 5, 6],
+      "recommended_steps": [
+        1,
+        3,
+        4,
+        7
+      ],
+      "skip_steps": [
+        2,
+        5,
+        6
+      ],
       "notes": "Start with research, drafting, and claim verification. The structure and red-team steps add value but increase complexity — try them once you're comfortable."
     },
     "intermediate": {
-      "recommended_steps": [1, 2, 3, 4, 5, 6, 7],
+      "recommended_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
       "skip_steps": [],
       "notes": "Run the all steps. The user actions after each step are where your expertise adds the most value — read them carefully."
     },
     "advanced": {
-      "recommended_steps": [1, 2, 3, 4, 5, 6, 7],
+      "recommended_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
       "skip_steps": [],
       "notes": "Consider adding parallel analysis chains (economic, legal, social perspectives) after Step 1. Customise the role definitions for your specific branch. Run the claim verification gate on both the initial and revised drafts."
     }
   },
-
-  "compliance_frameworks": ["pgpa_act", "pspf", "privacy_act", "aps_values", "foi_act"],
+  "compliance_frameworks": [
+    "pgpa_act",
+    "pspf",
+    "privacy_act",
+    "aps_values",
+    "foi_act"
+  ],
   "security_classification": "official",
-
   "worked_example": {
     "scenario": "APS 6 policy officer in the Department of Social Services preparing a briefing note on NDIS participant satisfaction trends for a First Assistant Secretary ahead of a stakeholder roundtable.",
     "note": "This is a fictitious scenario using publicly available information only."
   },
-
-  "tags": ["policy", "briefing", "core", "popular"],
+  "tags": [
+    "policy",
+    "briefing",
+    "core",
+    "popular"
+  ],
   "contributed_by": null,
-
   "custom_instructions": {
     "claude": {
       "setup_guidance": "Create a Claude Project called 'Policy Drafting' or similar. Paste the instructions below into the Project Instructions field. You can also upload reference documents (agency style guides, previous briefs, legislation extracts) to the Project knowledge base if allowed by your agency for this tool — they will be available in every conversation automatically.",
@@ -231,7 +275,6 @@
       "document_handling": "If your agency permits it for this tool, paste relevant document content (or summaries) directly into the prompts at the steps where you need to reference them."
     }
   },
-
   "known_limitations": [
     "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "Statistics and program details may be outdated or fabricated - always verify before including in any official document.",
