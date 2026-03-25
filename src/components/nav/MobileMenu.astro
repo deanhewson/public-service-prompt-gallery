@@ -18,7 +18,9 @@ const currentPath = Astro.url.pathname;
   <a href="/"        class={currentPath === '/' ? 'mobile-link active' : 'mobile-link'}>Home</a>
   <a href="/about"   class={currentPath === '/about' ? 'mobile-link active' : 'mobile-link'}>About</a>
   <a href="/roadmap" class={currentPath === '/roadmap' ? 'mobile-link active' : 'mobile-link'}>Roadmap</a>
-  <a href="https://github.com/deanhewson/public-service-prompt-gallery" class="mobile-link" target="_blank" rel="noopener">Contribute ↗</a>
+  <div class="mobile-section-label" style="padding-top:8px">Contribute</div>
+  <a href="/workflow-guide" class={currentPath === '/workflow-guide' ? 'mobile-link active' : 'mobile-link'}>Understand workflow structure</a>
+  <a href="https://github.com/deanhewson/public-service-prompt-gallery" class="mobile-link" target="_blank" rel="noopener">GitHub Repository ↗</a>
 
   <div class="mobile-divider"></div>
 
