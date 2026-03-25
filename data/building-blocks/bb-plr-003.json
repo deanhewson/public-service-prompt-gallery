@@ -1,7 +1,7 @@
 {
   "id": "BB-PLR-003",
   "name": "Plain Language: Clarity Check",
-  "description": "Reviews the plain language rewrite against key principles — surfaces remaining problems before the document is used.",
+  "description": "Reviews the plain language rewrite against key principles – surfaces remaining problems before the document is used.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
 
@@ -32,7 +32,7 @@
   "tags": ["plain-language", "quality-gate", "clarity", "communications"],
   "contributed_by": null,
   "known_limitations": [
-    "The model is reviewing its own rewrite — it may not catch all the issues it introduced.",
+    "The model is reviewing its own rewrite – it may not catch all the issues it introduced.",
     "Whether the document works for the actual target audience can only be verified by testing with that audience.",
     "Legal or regulatory precision checks require a human subject matter expert, not a readability review."
   ]

@@ -8,7 +8,7 @@
   "block_type": "refinement",
   "domains": ["policy_development"],
 
-  "prompt_template": "<task>\nWe've now worked through the QTB draft, the claim verification table, and the parliamentary scrutiny test in this conversation. Please revise and finalise the brief.\n\nInstructions:\n1. Address the Top 3 issues from the scrutiny test\n2. Remove or replace any HIGH RISK / POTENTIALLY FABRICATED claims from the verification table — use [VERIFY: description] where I still need to check something\n3. Do not invent replacement data — use [INSERT DATA] where verified data is needed\n4. Tighten the Key Messages — they should be punchy, quotable, and under 25 words each\n5. Check talking points are direct and avoid evasive language\n6. Keep within {{length}}\n\nAfter the revised QTB, provide a short CHANGE SUMMARY:\n- What was changed and why\n- Any [VERIFY] or [INSERT DATA] items still needing action\n- Any scrutiny feedback you didn't address and why\n</task>",
+  "prompt_template": "<task>\nWe've now worked through the QTB draft, the claim verification table, and the parliamentary scrutiny test in this conversation. Please revise and finalise the brief.\n\nInstructions:\n1. Address the Top 3 issues from the scrutiny test\n2. Remove or replace any HIGH RISK / POTENTIALLY FABRICATED claims from the verification table – use [VERIFY: description] where I still need to check something\n3. Do not invent replacement data – use [INSERT DATA] where verified data is needed\n4. Tighten the Key Messages – they should be punchy, quotable, and under 25 words each\n5. Check talking points are direct and avoid evasive language\n6. Keep within {{length}}\n\nAfter the revised QTB, provide a short CHANGE SUMMARY:\n- What was changed and why\n- Any [VERIFY] or [INSERT DATA] items still needing action\n- Any scrutiny feedback you didn't address and why\n</task>",
 
   "variables": [
     {
@@ -25,11 +25,11 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "Before running this step, resolve as many [VERIFY] items as you can — replace with real figures or remove the claims. Don't submit a brief with unverified statistics.",
+      "notes": "Before running this step, resolve as many [VERIFY] items as you can – replace with real figures or remove the claims. Don't submit a brief with unverified statistics.",
       "prompt_modification": null
     },
     "intermediate": {
-      "notes": "Read the Key Messages aloud — if they don't sound natural for the reader to say, rewrite them yourself. The model writes plausible language, not the reader's actual voice.",
+      "notes": "Read the Key Messages aloud – if they don't sound natural for the reader to say, rewrite them yourself. The model writes plausible language, not the reader's actual voice.",
       "prompt_modification": null
     },
     "advanced": {
@@ -41,7 +41,7 @@
   "tags": ["qtb", "revision", "refinement", "parliament"],
   "contributed_by": null,
   "known_limitations": [
-    "Revision may introduce new errors — always do a final human read before the brief is used.",
-    "The model cannot verify claims — all [VERIFY] items require human action before submission."
+    "Revision may introduce new errors – always do a final human read before the brief is used.",
+    "The model cannot verify claims – all [VERIFY] items require human action before submission."
   ]
 }

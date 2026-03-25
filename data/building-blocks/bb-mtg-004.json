@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["general_productivity"],
 
-  "prompt_template": "<task>\nContinuing from the meeting context, objectives, and agenda we've developed in this conversation, now generate discussion prompts for the chair or facilitator.\n\nFor each substantive agenda item, provide:\n\n1. **Opening question** — a question to start discussion that gets the right people talking\n2. **Deepening questions** — 2–3 follow-up prompts if discussion stalls or stays at surface level\n3. **Decision-forcing question** — if a decision needs to be made at this item, a direct question to bring it to a point (e.g. 'Based on what we've discussed, is the group comfortable proceeding with Option A?')\n4. **Wrap-up prompt** — a question to check alignment and confirm next steps before moving on\n\nAlso provide:\n- **Ice-breaker** (optional): a brief opening prompt to help attendees get comfortable if this is a new or mixed group\n- **Difficult conversation prompts**: if there's a potentially contentious item, 1–2 questions to surface disagreement constructively rather than letting it fester\n- **Energy-check prompt**: a simple question to use if the meeting is losing focus or running long\n</task>",
+  "prompt_template": "<task>\nContinuing from the meeting context, objectives, and agenda we've developed in this conversation, now generate discussion prompts for the chair or facilitator.\n\nFor each substantive agenda item, provide:\n\n1. **Opening question** – a question to start discussion that gets the right people talking\n2. **Deepening questions** – 2–3 follow-up prompts if discussion stalls or stays at surface level\n3. **Decision-forcing question** – if a decision needs to be made at this item, a direct question to bring it to a point (eg 'Based on what we've discussed, is the group comfortable proceeding with Option A?')\n4. **Wrap-up prompt** – a question to check alignment and confirm next steps before moving on\n\nAlso provide:\n- **Ice-breaker** (optional): a brief opening prompt to help attendees get comfortable if this is a new or mixed group\n- **Difficult conversation prompts**: if there's a potentially contentious item, 1–2 questions to surface disagreement constructively rather than letting it fester\n- **Energy-check prompt**: a simple question to use if the meeting is losing focus or running long\n</task>",
 
   "variables": [],
 
@@ -16,11 +16,11 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "Don't try to use every prompt — pick the 2–3 that feel most useful for each agenda item. Good facilitation is knowing which question to ask, not asking all of them.",
+      "notes": "Don't try to use every prompt – pick the 2–3 that feel most useful for each agenda item. Good facilitation is knowing which question to ask, not asking all of them.",
       "prompt_modification": null
     },
     "intermediate": {
-      "notes": "The decision-forcing questions are the most valuable for keeping meetings on track. Have them ready but don't force them — use when the discussion is going in circles.",
+      "notes": "The decision-forcing questions are the most valuable for keeping meetings on track. Have them ready but don't force them – use when the discussion is going in circles.",
       "prompt_modification": null
     },
     "advanced": {
@@ -32,8 +32,8 @@
   "tags": ["meeting", "facilitation", "discussion", "productivity"],
   "contributed_by": null,
   "known_limitations": [
-    "Prompts are generic — adapt them to the specific people and dynamics in your meeting.",
-    "The most effective facilitation questions often come from the facilitator's direct knowledge of the group — use these as a starting point, not a script.",
-    "Some prompts may not work in high-formality settings (e.g. ministerial meetings) — adjust for context."
+    "Prompts are generic – adapt them to the specific people and dynamics in your meeting.",
+    "The most effective facilitation questions often come from the facilitator's direct knowledge of the group – use these as a starting point, not a script.",
+    "Some prompts may not work in high-formality settings (eg ministerial meetings) – adjust for context."
   ]
 }

@@ -10,7 +10,7 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/favicon.ico" />
-<title>Workflow Guide — APS Prompt Gallery</title>
+<title>Workflow Guide – APS Prompt Gallery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -301,7 +301,7 @@ strong{color:var(--text);font-weight:600}
 </nav>
 
 <!-- ═══════════════════════════════════════════════════════
-     MODULE 1 — THE BIG PICTURE
+     MODULE 1 – THE BIG PICTURE
 ═══════════════════════════════════════════════════════ -->
 <section class="module" id="module-1" style="background:var(--bg)">
 <div class="module-content">
@@ -315,8 +315,8 @@ strong{color:var(--text);font-weight:600}
   <!-- Screen 1: What is this app -->
   <section class="screen animate-in">
     <h2 class="screen-heading">What is the APS Prompt Gallery?</h2>
-    <p>It's a web app where public servants can find <span class="tt" data-tip="A multi-step AI-assisted process — like a recipe that uses AI at each step — rather than a single one-off prompt.">workflows</span> that walk them through complex tasks using AI. Think of it as a structured recipe book: each recipe (workflow) tells you what to do, in what order, with what AI prompts.</p>
-    <p>Behind the scenes, it's a <span class="tt" data-tip="A website where all the HTML files are pre-built at deploy time — no server computing happens when visitors load pages. Fast, cheap, and secure.">static site</span> built with <span class="tt" data-tip="A JavaScript framework for building fast static websites. It pre-builds pages during deployment so visitors get plain HTML files — no waiting for a server.">Astro</span>, hosted on <span class="tt" data-tip="A web hosting platform that automatically rebuilds and redeploys your site every time you push code to GitHub. Free tier works fine for this project.">Netlify</span>, with all content stored in <span class="tt" data-tip="JavaScript Object Notation — a text-based format for storing structured data. It looks like labelled fields in curly braces. Easy to read and edit.">JSON</span> files.</p>
+    <p>It's a web app where public servants can find <span class="tt" data-tip="A multi-step AI-assisted process – like a recipe that uses AI at each step – rather than a single one-off prompt.">workflows</span> that walk them through complex tasks using AI. Think of it as a structured recipe book: each recipe (workflow) tells you what to do, in what order, with what AI prompts.</p>
+    <p>Behind the scenes, it's a <span class="tt" data-tip="A website where all the HTML files are pre-built at deploy time – no server computing happens when visitors load pages. Fast, cheap, and secure.">static site</span> built with <span class="tt" data-tip="A JavaScript framework for building fast static websites. It pre-builds pages during deployment so visitors get plain HTML files – no waiting for a server.">Astro</span>, hosted on <span class="tt" data-tip="A web hosting platform that automatically rebuilds and redeploys your site every time you push code to GitHub. Free tier works fine for this project.">Netlify</span>, with all content stored in <span class="tt" data-tip="JavaScript Object Notation – a text-based format for storing structured data. It looks like labelled fields in curly braces. Easy to read and edit.">JSON</span> files.</p>
 
     <div class="actor-grid stagger-children">
       <div class="actor-card animate-in">
@@ -346,19 +346,19 @@ strong{color:var(--text);font-weight:600}
     </div>
   </section>
 
-  <!-- Screen 2: Group Chat — what happens when a page loads -->
+  <!-- Screen 2: Group Chat – what happens when a page loads -->
   <section class="screen animate-in">
     <h2 class="screen-heading">What happens when someone opens "Briefing Note"?</h2>
     <p>Imagine the four components having a quick conversation every time Netlify <span class="tt" data-tip="The process of converting your source code files into the final HTML/CSS/JS files that browsers can display. Astro does this at deploy time, not when visitors load pages.">builds</span> the site:</p>
 
     <div class="chat-window" id="chat-1">
-      <div class="chat-header">⚡ Build time — what happens when code is deployed</div>
+      <div class="chat-header">⚡ Build time – what happens when code is deployed</div>
 
       <div class="chat-msg" data-delay="0">
         <div class="msg-avatar">🌐</div>
         <div class="msg-bubble">
           <span class="msg-sender" style="color:var(--a3)">Astro Page (briefing-note.astro)</span>
-          Hey WorkflowLayout — I've got a workflow and 7 building blocks. Here they all are.
+          Hey WorkflowLayout – I've got a workflow and 7 building blocks. Here they all are.
         </div>
       </div>
       <div class="chat-msg" data-delay="600">
@@ -386,7 +386,7 @@ strong{color:var(--text);font-weight:600}
         <div class="msg-avatar" style="background:var(--accent-l)">🏗️</div>
         <div class="msg-bubble">
           <span class="msg-sender" style="color:var(--a2);text-align:right;display:block">WorkflowLayout</span>
-          Perfect. I'll wire up the platform selector, copy buttons, and trust badges — then hand back the finished HTML page.
+          Perfect. I'll wire up the platform selector, copy buttons, and trust badges – then hand back the finished HTML page.
         </div>
       </div>
 
@@ -394,7 +394,7 @@ strong{color:var(--text);font-weight:600}
     </div>
 
     <div class="callout">
-      <p>💡 <strong>The key insight:</strong> all of this conversation happens at <em>build time</em> — before any visitor loads the page. By the time a user clicks "Briefing Note", Netlify has already built a complete HTML file ready to serve instantly.</p>
+      <p>💡 <strong>The key insight:</strong> all of this conversation happens at <em>build time</em> – before any visitor loads the page. By the time a user clicks "Briefing Note", Netlify has already built a complete HTML file ready to serve instantly.</p>
     </div>
   </section>
 
@@ -402,11 +402,11 @@ strong{color:var(--text);font-weight:600}
   <section class="screen animate-in">
     <div class="quiz">
       <span class="quiz-label">🧠 Check your understanding</span>
-      <p class="quiz-q">You want to add a brand-new workflow to the gallery — say, a "Ministerial Submission" workflow. Which statement best describes the work involved?</p>
+      <p class="quiz-q">You want to add a brand-new workflow to the gallery – say, a "Ministerial Submission" workflow. Which statement best describes the work involved?</p>
       <div class="quiz-opts" id="q1-opts">
-        <button class="quiz-opt" data-correct="false" onclick="handleQ('q1-opts','q1-fb',this)">You only need to create one JSON file — WorkflowLayout handles everything else automatically.</button>
+        <button class="quiz-opt" data-correct="false" onclick="handleQ('q1-opts','q1-fb',this)">You only need to create one JSON file – WorkflowLayout handles everything else automatically.</button>
         <button class="quiz-opt" data-correct="false" onclick="handleQ('q1-opts','q1-fb',this)">You edit WorkflowLayout.astro directly to add the new workflow's steps.</button>
-        <button class="quiz-opt" data-correct="true" onclick="handleQ('q1-opts','q1-fb',this)">You create a workflow JSON, building block JSONs (one per step), and a tiny Astro page — then WorkflowLayout renders it all automatically.</button>
+        <button class="quiz-opt" data-correct="true" onclick="handleQ('q1-opts','q1-fb',this)">You create a workflow JSON, building block JSONs (one per step), and a tiny Astro page – then WorkflowLayout renders it all automatically.</button>
         <button class="quiz-opt" data-correct="false" onclick="handleQ('q1-opts','q1-fb',this)">You only need to edit the browse page so it shows up in the list.</button>
       </div>
       <div class="quiz-fb" id="q1-fb"></div>
@@ -417,7 +417,7 @@ strong{color:var(--text);font-weight:600}
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     MODULE 2 — THE WORKFLOW JSON
+     MODULE 2 – THE WORKFLOW JSON
 ═══════════════════════════════════════════════════════ -->
 <section class="module" id="module-2" style="background:var(--bg-warm)">
 <div class="module-content">
@@ -431,7 +431,7 @@ strong{color:var(--text);font-weight:600}
   <!-- Screen 1: JSON metaphor + file location -->
   <section class="screen animate-in">
     <h2 class="screen-heading">JSON is just a labelled form in text format</h2>
-    <p>Think of a JSON file like a government form — fields with labels, filled in with values. The difference is that a computer can read it. You open the file in any text editor, fill in the right fields, save it, and the site knows what to display.</p>
+    <p>Think of a JSON file like a government form – fields with labels, filled in with values. The difference is that a computer can read it. You open the file in any text editor, fill in the right fields, save it, and the site knows what to display.</p>
 
     <div class="file-tree animate-in">
 <span class="ft-dir">📁 data/</span>
@@ -449,13 +449,13 @@ strong{color:var(--text);font-weight:600}
 
     <div class="callout">
       <p><strong>Naming convention:</strong> <code style="font-size:.82rem">wf-{"{"}domain abbreviation{"}"}-{"{"}number{"}"}-{"{"}slug{"}"}.json</code><br>
-      e.g. <code style="font-size:.82rem">wf-pol-001-briefing-note.json</code> — Policy, number 001, slug "briefing-note"</p>
+      eg <code style="font-size:.82rem">wf-pol-001-briefing-note.json</code> – Policy, number 001, slug "briefing-note"</p>
     </div>
   </section>
 
-  <!-- Screen 2: Code ↔ English — workflow metadata fields -->
+  <!-- Screen 2: Code ↔ English – workflow metadata fields -->
   <section class="screen animate-in">
-    <h2 class="screen-heading">The header fields — who this workflow is and what it does</h2>
+    <h2 class="screen-heading">The header fields – who this workflow is and what it does</h2>
     <p>The first section of a workflow JSON describes the workflow itself. Here's the real code from <code style="font-size:.82rem">wf-pol-001-briefing-note.json</code>:</p>
 
     <div class="translation-block">
@@ -473,21 +473,21 @@ strong{color:var(--text);font-weight:600}
       </div>
       <div class="translation-english">
         <span class="tl-label">PLAIN ENGLISH</span>
-        <p class="tl"><strong>id</strong> — a unique identifier. Starts with <code style="font-size:.78rem">WF-</code>, then domain code, then number. Must be unique across all workflows.</p>
-        <p class="tl"><strong>slug</strong> — becomes the URL path: <code style="font-size:.78rem">/workflows/briefing-note</code>. Use lowercase with hyphens, no spaces.</p>
-        <p class="tl"><strong>name</strong> — the human-readable title shown on cards and page headings.</p>
-        <p class="tl tl-edit"><strong>maturity</strong> — how thoroughly it's been tested. One of: <code style="font-size:.78rem">draft</code>, <code style="font-size:.78rem">tested</code>, <code style="font-size:.78rem">reviewed</code>, <code style="font-size:.78rem">validated</code>. Safe to edit anytime.</p>
-        <p class="tl tl-edit"><strong>maturity_note / maturity_updated</strong> — free text context and date. Update these whenever you change maturity.</p>
-        <p class="tl"><strong>domain</strong> — which category it appears under in the browse page. Must match a known value.</p>
-        <p class="tl"><strong>complexity</strong> — shown as a badge: <code style="font-size:.78rem">beginner</code>, <code style="font-size:.78rem">intermediate</code>, or <code style="font-size:.78rem">advanced</code>.</p>
+        <p class="tl"><strong>id</strong> – a unique identifier. Starts with <code style="font-size:.78rem">WF-</code>, then domain code, then number. Must be unique across all workflows.</p>
+        <p class="tl"><strong>slug</strong> – becomes the URL path: <code style="font-size:.78rem">/workflows/briefing-note</code>. Use lowercase with hyphens, no spaces.</p>
+        <p class="tl"><strong>name</strong> – the human-readable title shown on cards and page headings.</p>
+        <p class="tl tl-edit"><strong>maturity</strong> – how thoroughly it's been tested. One of: <code style="font-size:.78rem">draft</code>, <code style="font-size:.78rem">tested</code>, <code style="font-size:.78rem">reviewed</code>, <code style="font-size:.78rem">validated</code>. Safe to edit anytime.</p>
+        <p class="tl tl-edit"><strong>maturity_note / maturity_updated</strong> – free text context and date. Update these whenever you change maturity.</p>
+        <p class="tl"><strong>domain</strong> – which category it appears under in the browse page. Must match a known value.</p>
+        <p class="tl"><strong>complexity</strong> – shown as a badge: <code style="font-size:.78rem">beginner</code>, <code style="font-size:.78rem">intermediate</code>, or <code style="font-size:.78rem">advanced</code>.</p>
       </div>
     </div>
   </section>
 
   <!-- Screen 3: Steps overview -->
   <section class="screen animate-in">
-    <h2 class="screen-heading">The <code style="font-size:.95rem">steps</code> array — the heart of a workflow</h2>
-    <p>After the header, a workflow JSON has a <code style="font-size:.82rem">steps</code> array — a list of steps in order. Here's one step (Step 1 of the Briefing Note workflow) with each field explained:</p>
+    <h2 class="screen-heading">The <code style="font-size:.95rem">steps</code> array – the heart of a workflow</h2>
+    <p>After the header, a workflow JSON has a <code style="font-size:.82rem">steps</code> array – a list of steps in order. Here's one step (Step 1 of the Briefing Note workflow) with each field explained:</p>
 
     <div class="translation-block">
       <div class="translation-code">
@@ -505,14 +505,14 @@ strong{color:var(--text);font-weight:600}
       </div>
       <div class="translation-english">
         <span class="tl-label">PLAIN ENGLISH</span>
-        <p class="tl"><strong>order</strong> — what number this step is. Determines display sequence.</p>
-        <p class="tl"><strong>id</strong> — a string identifier for the step, used internally.</p>
-        <p class="tl"><strong>name</strong> — the step title shown in the workflow header.</p>
-        <p class="tl"><strong>step_type</strong> — either <code style="font-size:.78rem">generation</code> (AI writes something) or <code style="font-size:.78rem">quality_gate</code> (AI reviews something).</p>
-        <p class="tl tl-key"><strong>building_block_id</strong> — 🔑 this is the link to the actual prompt. Must exactly match the <code style="font-size:.78rem">id</code> in a building block JSON file.</p>
-        <p class="tl tl-edit"><strong>trust_level</strong> — the badge colour: <code style="font-size:.78rem">high</code> (green), <code style="font-size:.78rem">medium</code> (amber), <code style="font-size:.78rem">low</code> (red). Safe to edit.</p>
-        <p class="tl tl-edit"><strong>user_action_after</strong> — the "what to do next" callout box. Safe to edit — just plain text.</p>
-        <p class="tl"><strong>output_feeds_to</strong> — which step numbers this output connects to. Used for the progress indicator.</p>
+        <p class="tl"><strong>order</strong> – what number this step is. Determines display sequence.</p>
+        <p class="tl"><strong>id</strong> – a string identifier for the step, used internally.</p>
+        <p class="tl"><strong>name</strong> – the step title shown in the workflow header.</p>
+        <p class="tl"><strong>step_type</strong> – either <code style="font-size:.78rem">generation</code> (AI writes something) or <code style="font-size:.78rem">quality_gate</code> (AI reviews something).</p>
+        <p class="tl tl-key"><strong>building_block_id</strong> – 🔑 this is the link to the actual prompt. Must exactly match the <code style="font-size:.78rem">id</code> in a building block JSON file.</p>
+        <p class="tl tl-edit"><strong>trust_level</strong> – the badge colour: <code style="font-size:.78rem">high</code> (green), <code style="font-size:.78rem">medium</code> (amber), <code style="font-size:.78rem">low</code> (red). Safe to edit.</p>
+        <p class="tl tl-edit"><strong>user_action_after</strong> – the "what to do next" callout box. Safe to edit – just plain text.</p>
+        <p class="tl"><strong>output_feeds_to</strong> – which step numbers this output connects to. Used for the progress indicator.</p>
       </div>
     </div>
   </section>
@@ -521,11 +521,11 @@ strong{color:var(--text);font-weight:600}
   <section class="screen animate-in">
     <div class="quiz">
       <span class="quiz-label">🧠 Check your understanding</span>
-      <p class="quiz-q">A colleague says the "what to do next" instruction box in Step 3 of a workflow is wrong — it tells users to do something that no longer applies. Which field in which file do you edit?</p>
+      <p class="quiz-q">A colleague says the "what to do next" instruction box in Step 3 of a workflow is wrong – it tells users to do something that no longer applies. Which field in which file do you edit?</p>
       <div class="quiz-opts" id="q2-opts">
-        <button class="quiz-opt" data-correct="false" onclick="handleQ('q2-opts','q2-fb',this)">Edit WorkflowLayout.astro — that's where the instruction boxes are rendered.</button>
+        <button class="quiz-opt" data-correct="false" onclick="handleQ('q2-opts','q2-fb',this)">Edit WorkflowLayout.astro – that's where the instruction boxes are rendered.</button>
         <button class="quiz-opt" data-correct="true" onclick="handleQ('q2-opts','q2-fb',this)">Edit the <code>user_action_after</code> field in Step 3 of the workflow JSON file.</button>
-        <button class="quiz-opt" data-correct="false" onclick="handleQ('q2-opts','q2-fb',this)">Edit the building block JSON for that step — that's where user instructions live.</button>
+        <button class="quiz-opt" data-correct="false" onclick="handleQ('q2-opts','q2-fb',this)">Edit the building block JSON for that step – that's where user instructions live.</button>
         <button class="quiz-opt" data-correct="false" onclick="handleQ('q2-opts','q2-fb',this)">Edit the Astro page file for that workflow.</button>
       </div>
       <div class="quiz-fb" id="q2-fb"></div>
@@ -536,7 +536,7 @@ strong{color:var(--text);font-weight:600}
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     MODULE 3 — BUILDING BLOCKS
+     MODULE 3 – BUILDING BLOCKS
 ═══════════════════════════════════════════════════════ -->
 <section class="module" id="module-3" style="background:var(--bg)">
 <div class="module-content">
@@ -544,19 +544,19 @@ strong{color:var(--text);font-weight:600}
   <header class="module-header animate-in">
     <span class="module-number">03</span>
     <h1 class="module-title">Building Blocks</h1>
-    <p class="module-subtitle">Where the actual AI prompts live — and how the blanks get filled in.</p>
+    <p class="module-subtitle">Where the actual AI prompts live – and how the blanks get filled in.</p>
   </header>
 
   <!-- Screen 1: What is a building block -->
   <section class="screen animate-in">
     <h2 class="screen-heading">A building block is a prompt with blanks</h2>
-    <p>Think of a building block like a <strong>Mad Libs template</strong> — a pre-written text with specific blanks waiting to be filled in. The blanks are called <span class="tt" data-tip="Placeholders in a prompt template written as {{variable_name}}. When the workflow runs, these get replaced with the user's actual input — their topic, their agency, their audience, etc.">variables</span>, and they're written like <code style="font-size:.82rem">{"{{topic}}"}</code>.</p>
+    <p>Think of a building block like a <strong>Mad Libs template</strong> – a pre-written text with specific blanks waiting to be filled in. The blanks are called <span class="tt" data-tip="Placeholders in a prompt template written as {{variable_name}}. When the workflow runs, these get replaced with the user's actual input – their topic, their agency, their audience, etc.">variables</span>, and they're written like <code style="font-size:.82rem">{"{{topic}}"}</code>.</p>
 
-    <p>When a user fills in the input form on a workflow page and clicks "Copy", the app swaps those placeholders for the real values — producing a ready-to-paste prompt.</p>
+    <p>When a user fills in the input form on a workflow page and clicks "Copy", the app swaps those placeholders for the real values – producing a ready-to-paste prompt.</p>
 
     <div class="two-col">
       <div class="callout">
-        <p><strong>Generation block</strong><br>Prompts the AI to create something — a draft, a structure, a list.</p>
+        <p><strong>Generation block</strong><br>Prompts the AI to create something – a draft, a structure, a list.</p>
         <p style="margin-top:6px;font-family:var(--font-m);font-size:.72rem;color:var(--text-m)">block_type: "generation"</p>
       </div>
       <div class="callout callout-warn">
@@ -568,7 +568,7 @@ strong{color:var(--text);font-weight:600}
 
   <!-- Screen 2: Code ↔ English of a building block prompt_template -->
   <section class="screen animate-in">
-    <h2 class="screen-heading">Inside a building block — the prompt template</h2>
+    <h2 class="screen-heading">Inside a building block – the prompt template</h2>
     <p>Here's the <code style="font-size:.82rem">prompt_template</code> field from <code style="font-size:.82rem">bb-gen-001.json</code> (the Scope &amp; Research step):</p>
 
     <div class="translation-block">
@@ -590,16 +590,16 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
       </div>
       <div class="translation-english">
         <span class="tl-label">PLAIN ENGLISH</span>
-        <p class="tl"><strong>&lt;role&gt;</strong> — XML tags tell the AI what persona to take on. Claude especially responds well to these structured role definitions.</p>
-        <p class="tl tl-key"><strong>{"{{policy_area}}"}</strong> — a variable. At runtime this becomes whatever the user typed in the "Policy area" input field. Variables must match the <code style="font-size:.78rem">name</code> in the workflow's <code style="font-size:.78rem">inputs_required</code> array.</p>
-        <p class="tl tl-key"><strong>{"{{agency}}"}</strong> — same — becomes "Department of Social Services" or whatever the user entered.</p>
-        <p class="tl"><strong>&lt;task&gt;</strong> — separates the role setup from the actual instruction. Good prompt engineering practice.</p>
-        <p class="tl tl-key"><strong>{"{{topic}}"}</strong>, <strong>{"{{audience}}"}</strong>, <strong>{"{{purpose}}"}</strong> — all filled in from the workflow's input form.</p>
+        <p class="tl"><strong>&lt;role&gt;</strong> – XML tags tell the AI what persona to take on. Claude especially responds well to these structured role definitions.</p>
+        <p class="tl tl-key"><strong>{"{{policy_area}}"}</strong> – a variable. At runtime this becomes whatever the user typed in the "Policy area" input field. Variables must match the <code style="font-size:.78rem">name</code> in the workflow's <code style="font-size:.78rem">inputs_required</code> array.</p>
+        <p class="tl tl-key"><strong>{"{{agency}}"}</strong> – same – becomes "Department of Social Services" or whatever the user entered.</p>
+        <p class="tl"><strong>&lt;task&gt;</strong> – separates the role setup from the actual instruction. Good prompt engineering practice.</p>
+        <p class="tl tl-key"><strong>{"{{topic}}"}</strong>, <strong>{"{{audience}}"}</strong>, <strong>{"{{purpose}}"}</strong> – all filled in from the workflow's input form.</p>
       </div>
     </div>
   </section>
 
-  <!-- Screen 3: Data flow animation — variables flowing in -->
+  <!-- Screen 3: Data flow animation – variables flowing in -->
   <section class="screen animate-in">
     <h2 class="screen-heading">How variables flow from the form to the prompt</h2>
     <p>When a user fills in the input form and clicks "Copy Prompt" on Step 1, here's what happens:</p>
@@ -658,7 +658,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
     <button class="dflow-play" id="dflow-1-btn">▶ Animate</button>
 
     <div class="callout callout-warn" style="margin-top:16px">
-      <p>⚠️ <strong>Critical rule:</strong> every <code style="font-size:.82rem">{"{{variable_name}}"}</code> in a building block's prompt template must exactly match the <code style="font-size:.82rem">name</code> of a field in the workflow's <code style="font-size:.82rem">inputs_required</code> array. A mismatch means the variable won't be filled in — the user sees the placeholder text instead.</p>
+      <p>⚠️ <strong>Critical rule:</strong> every <code style="font-size:.82rem">{"{{variable_name}}"}</code> in a building block's prompt template must exactly match the <code style="font-size:.82rem">name</code> of a field in the workflow's <code style="font-size:.82rem">inputs_required</code> array. A mismatch means the variable won't be filled in – the user sees the placeholder text instead.</p>
     </div>
   </section>
 
@@ -668,10 +668,10 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
       <span class="quiz-label">🧠 Check your understanding</span>
       <p class="quiz-q">You're adding a new building block for a workflow about Cabinet Submissions. The prompt needs the minister's name. You write <code style="font-size:.85rem">{"{{minister_name}}"}</code> in the template. What else needs to match?</p>
       <div class="quiz-opts" id="q3-opts">
-        <button class="quiz-opt" data-correct="false" onclick="handleQ('q3-opts','q3-fb',this)">Nothing — WorkflowLayout will automatically detect the new variable and add an input field.</button>
-        <button class="quiz-opt" data-correct="true" onclick="handleQ('q3-opts','q3-fb',this)">The workflow JSON needs an entry in <code>inputs_required</code> with <code>name: "minister_name"</code> — that's what creates the form field.</button>
+        <button class="quiz-opt" data-correct="false" onclick="handleQ('q3-opts','q3-fb',this)">Nothing – WorkflowLayout will automatically detect the new variable and add an input field.</button>
+        <button class="quiz-opt" data-correct="true" onclick="handleQ('q3-opts','q3-fb',this)">The workflow JSON needs an entry in <code>inputs_required</code> with <code>name: "minister_name"</code> – that's what creates the form field.</button>
         <button class="quiz-opt" data-correct="false" onclick="handleQ('q3-opts','q3-fb',this)">You add <code>minister_name</code> to the Astro page file's <code>blocks</code> object.</button>
-        <button class="quiz-opt" data-correct="false" onclick="handleQ('q3-opts','q3-fb',this)">The variable name doesn't need to match anything — it's just display text in the prompt.</button>
+        <button class="quiz-opt" data-correct="false" onclick="handleQ('q3-opts','q3-fb',this)">The variable name doesn't need to match anything – it's just display text in the prompt.</button>
       </div>
       <div class="quiz-fb" id="q3-fb"></div>
     </div>
@@ -681,7 +681,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     MODULE 4 — ADDING A NEW WORKFLOW
+     MODULE 4 – ADDING A NEW WORKFLOW
 ═══════════════════════════════════════════════════════ -->
 <section class="module" id="module-4" style="background:var(--bg-warm)">
 <div class="module-content">
@@ -689,7 +689,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
   <header class="module-header animate-in">
     <span class="module-number">04</span>
     <h1 class="module-title">Adding a New Workflow</h1>
-    <p class="module-subtitle">The exact recipe — three files, in the right places, wired together correctly.</p>
+    <p class="module-subtitle">The exact recipe – three files, in the right places, wired together correctly.</p>
   </header>
 
   <!-- Screen 1: The three files -->
@@ -718,25 +718,25 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
         <div class="step-num">3</div>
         <div class="step-body">
           <div class="step-title">One Astro page file</div>
-          <div class="step-text">A tiny file — usually just 20-odd lines — that imports the JSON files and passes them to WorkflowLayout. That's literally all it does.</div>
+          <div class="step-text">A tiny file – usually just 20-odd lines – that imports the JSON files and passes them to WorkflowLayout. That's literally all it does.</div>
           <span class="step-file">src/pages/workflows/cabinet-submission.astro</span>
         </div>
       </div>
     </div>
 
     <div class="callout callout-ok">
-      <p>✅ <strong>You never touch WorkflowLayout.astro</strong> when adding a new workflow. The layout handles all the rendering — trust levels, copy buttons, platform tips, progress bars. It just needs to receive the data.</p>
+      <p>✅ <strong>You never touch WorkflowLayout.astro</strong> when adding a new workflow. The layout handles all the rendering – trust levels, copy buttons, platform tips, progress bars. It just needs to receive the data.</p>
     </div>
   </section>
 
-  <!-- Screen 2: Code ↔ English — the Astro page file -->
+  <!-- Screen 2: Code ↔ English – the Astro page file -->
   <section class="screen animate-in">
     <h2 class="screen-heading">The Astro page file is surprisingly small</h2>
-    <p>Here's the <em>entire</em> <code style="font-size:.82rem">briefing-note.astro</code> file — exactly as it appears in the codebase. A new workflow page looks identical to this, just with different filenames:</p>
+    <p>Here's the <em>entire</em> <code style="font-size:.82rem">briefing-note.astro</code> file – exactly as it appears in the codebase. A new workflow page looks identical to this, just with different filenames:</p>
 
     <div class="translation-block">
       <div class="translation-code">
-        <span class="tl-label">CODE (briefing-note.astro — complete file)</span>
+        <span class="tl-label">CODE (briefing-note.astro – complete file)</span>
         <pre><code><span class="cc">---</span>
 <span class="ck">import</span> WorkflowLayout <span class="ck">from</span>
   <span class="cs">'../../layouts/WorkflowLayout.astro'</span>;
@@ -760,12 +760,12 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
       </div>
       <div class="translation-english">
         <span class="tl-label">PLAIN ENGLISH</span>
-        <p class="tl"><strong>The <code style="font-size:.78rem">---</code> fences</strong> mark the <span class="tt" data-tip="The code section at the top of an Astro file, between --- markers. It runs on the server at build time and can import files, fetch data, and run JavaScript logic.">frontmatter</span> — code that runs at build time before the page HTML is output.</p>
-        <p class="tl"><strong>import WorkflowLayout</strong> — load the shared layout template. Path goes up two levels (<code style="font-size:.78rem">../../</code>) from the page file to reach <code style="font-size:.78rem">src/layouts/</code>.</p>
-        <p class="tl"><strong>import workflow</strong> — load the workflow JSON. Goes up THREE levels (<code style="font-size:.78rem">../../../</code>) to reach <code style="font-size:.78rem">data/</code> at the project root.</p>
-        <p class="tl tl-key"><strong>import bb001, bb002…</strong> — load each building block JSON. Give them short variable names (bb001, bb002, qgTrust, etc.).</p>
-        <p class="tl tl-key"><strong>const blocks = {"{"}…{"}"}</strong> — build a lookup table: the key must exactly match the <code style="font-size:.78rem">building_block_id</code> in the workflow's steps, the value is the imported JSON.</p>
-        <p class="tl"><strong>&lt;WorkflowLayout /&gt;</strong> — hand everything to the layout and let it do all the rendering work.</p>
+        <p class="tl"><strong>The <code style="font-size:.78rem">---</code> fences</strong> mark the <span class="tt" data-tip="The code section at the top of an Astro file, between --- markers. It runs on the server at build time and can import files, fetch data, and run JavaScript logic.">frontmatter</span> – code that runs at build time before the page HTML is output.</p>
+        <p class="tl"><strong>import WorkflowLayout</strong> – load the shared layout template. Path goes up two levels (<code style="font-size:.78rem">../../</code>) from the page file to reach <code style="font-size:.78rem">src/layouts/</code>.</p>
+        <p class="tl"><strong>import workflow</strong> – load the workflow JSON. Goes up THREE levels (<code style="font-size:.78rem">../../../</code>) to reach <code style="font-size:.78rem">data/</code> at the project root.</p>
+        <p class="tl tl-key"><strong>import bb001, bb002…</strong> – load each building block JSON. Give them short variable names (bb001, bb002, qgTrust, etc.).</p>
+        <p class="tl tl-key"><strong>const blocks = {"{"}…{"}"}</strong> – build a lookup table: the key must exactly match the <code style="font-size:.78rem">building_block_id</code> in the workflow's steps, the value is the imported JSON.</p>
+        <p class="tl"><strong>&lt;WorkflowLayout /&gt;</strong> – hand everything to the layout and let it do all the rendering work.</p>
       </div>
     </div>
 
@@ -779,14 +779,14 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
     <h2 class="screen-heading">The full checklist for a new workflow</h2>
 
     <ul class="checklist">
-      <li><span class="check-icon">✓</span> <span>Create <code style="font-size:.8rem">data/workflows/wf-{"{"}domain{"}"}-{"{"}num{"}"}-{"{"}slug{"}"}.json</code> — fill in all required fields: id, slug, name, domain, steps, inputs_required</span></li>
-      <li><span class="check-icon">✓</span> <span>Give each step a unique <code style="font-size:.8rem">building_block_id</code> (e.g. <code style="font-size:.8rem">BB-CAB-001</code>) — you'll use this as the key in the Astro page's <code style="font-size:.8rem">blocks</code> object</span></li>
-      <li><span class="check-icon">✓</span> <span>Create a building block JSON for each step in <code style="font-size:.8rem">data/building-blocks/</code> — include <code style="font-size:.8rem">id</code>, <code style="font-size:.8rem">prompt_template</code>, and <code style="font-size:.8rem">variables</code> array</span></li>
+      <li><span class="check-icon">✓</span> <span>Create <code style="font-size:.8rem">data/workflows/wf-{"{"}domain{"}"}-{"{"}num{"}"}-{"{"}slug{"}"}.json</code> – fill in all required fields: id, slug, name, domain, steps, inputs_required</span></li>
+      <li><span class="check-icon">✓</span> <span>Give each step a unique <code style="font-size:.8rem">building_block_id</code> (eg <code style="font-size:.8rem">BB-CAB-001</code>) – you'll use this as the key in the Astro page's <code style="font-size:.8rem">blocks</code> object</span></li>
+      <li><span class="check-icon">✓</span> <span>Create a building block JSON for each step in <code style="font-size:.8rem">data/building-blocks/</code> – include <code style="font-size:.8rem">id</code>, <code style="font-size:.8rem">prompt_template</code>, and <code style="font-size:.8rem">variables</code> array</span></li>
       <li><span class="check-icon">✓</span> <span>Make sure every <code style="font-size:.8rem">{"{{variable}}"}</code> in each prompt template has a matching <code style="font-size:.8rem">name</code> entry in the workflow's <code style="font-size:.8rem">inputs_required</code></span></li>
-      <li><span class="check-icon">✓</span> <span>Create <code style="font-size:.8rem">src/pages/workflows/{"{"}slug{"}"}.astro</code> — import the workflow JSON and all building block JSONs, build the <code style="font-size:.8rem">blocks</code> lookup object, render <code style="font-size:.8rem">&lt;WorkflowLayout /&gt;</code></span></li>
-      <li><span class="warn-icon">⚠</span> <span>Double-check that every <code style="font-size:.8rem">building_block_id</code> in the workflow's steps exactly matches a key in the Astro page's <code style="font-size:.8rem">blocks</code> object — case-sensitive</span></li>
+      <li><span class="check-icon">✓</span> <span>Create <code style="font-size:.8rem">src/pages/workflows/{"{"}slug{"}"}.astro</code> – import the workflow JSON and all building block JSONs, build the <code style="font-size:.8rem">blocks</code> lookup object, render <code style="font-size:.8rem">&lt;WorkflowLayout /&gt;</code></span></li>
+      <li><span class="warn-icon">⚠</span> <span>Double-check that every <code style="font-size:.8rem">building_block_id</code> in the workflow's steps exactly matches a key in the Astro page's <code style="font-size:.8rem">blocks</code> object – case-sensitive</span></li>
       <li><span class="check-icon">✓</span> <span>Set <code style="font-size:.8rem">maturity: "draft"</code> for new workflows (upgrade after testing)</span></li>
-      <li><span class="check-icon">✓</span> <span>Push to GitHub — Netlify will automatically rebuild and the workflow will appear at <code style="font-size:.8rem">/workflows/{"{"}slug{"}"}</code></span></li>
+      <li><span class="check-icon">✓</span> <span>Push to GitHub – Netlify will automatically rebuild and the workflow will appear at <code style="font-size:.8rem">/workflows/{"{"}slug{"}"}</code></span></li>
     </ul>
   </section>
 
@@ -796,7 +796,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
       <span class="quiz-label">🧠 Check your understanding</span>
       <p class="quiz-q">You've created a new workflow JSON with 3 steps. Step 2 has <code style="font-size:.85rem">"building_block_id": "BB-MTG-005"</code>. You create a building block file and save it as <code style="font-size:.85rem">bb-mtg-005.json</code> with <code style="font-size:.85rem">"id": "BB-MTG-005"</code>. You create the Astro page. When you test the site, Step 2's prompt doesn't appear. What's most likely wrong?</p>
       <div class="quiz-opts" id="q4-opts">
-        <button class="quiz-opt" data-correct="false" onclick="handleQ('q4-opts','q4-fb',this)">The building block file is in the wrong folder — it should be in <code>data/workflows/</code>.</button>
+        <button class="quiz-opt" data-correct="false" onclick="handleQ('q4-opts','q4-fb',this)">The building block file is in the wrong folder – it should be in <code>data/workflows/</code>.</button>
         <button class="quiz-opt" data-correct="true" onclick="handleQ('q4-opts','q4-fb',this)">The Astro page's <code>blocks</code> object doesn't have a <code>'BB-MTG-005'</code> key pointing to the imported building block. The import and the lookup key are both missing.</button>
         <button class="quiz-opt" data-correct="false" onclick="handleQ('q4-opts','q4-fb',this)">The building block's <code>id</code> field should be lowercase to match the filename.</button>
         <button class="quiz-opt" data-correct="false" onclick="handleQ('q4-opts','q4-fb',this)">WorkflowLayout needs to be updated to recognise new building block IDs.</button>
@@ -809,7 +809,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     MODULE 5 — EDITING EXISTING WORKFLOWS
+     MODULE 5 – EDITING EXISTING WORKFLOWS
 ═══════════════════════════════════════════════════════ -->
 <section class="module" id="module-5" style="background:var(--bg)">
 <div class="module-content">
@@ -822,7 +822,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
 
   <!-- Screen 1: Edit map -->
   <section class="screen animate-in">
-    <h2 class="screen-heading">What lives where — your edit map</h2>
+    <h2 class="screen-heading">What lives where – your edit map</h2>
     <p>Most edits target one specific file. Here's how to decide which one:</p>
 
     <div class="field-grid stagger-children">
@@ -853,7 +853,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
       </div>
       <div class="field-card animate-in">
         <div class="field-name">Platform-specific tips</div>
-        <div class="field-desc">Edit <code style="font-size:.75rem">platform_tips</code> on the step in the <strong>workflow JSON</strong> — or per-platform custom instructions in the workflow's <code style="font-size:.75rem">custom_instructions</code> object.</div>
+        <div class="field-desc">Edit <code style="font-size:.75rem">platform_tips</code> on the step in the <strong>workflow JSON</strong> – or per-platform custom instructions in the workflow's <code style="font-size:.75rem">custom_instructions</code> object.</div>
         <span class="field-req req-y">workflow JSON</span>
       </div>
       <div class="field-card animate-in">
@@ -871,7 +871,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
 
   <!-- Screen 2: The deploy cycle -->
   <section class="screen animate-in">
-    <h2 class="screen-heading">How changes go live — the deploy cycle</h2>
+    <h2 class="screen-heading">How changes go live – the deploy cycle</h2>
     <p>The pipeline from "I edited a JSON file" to "it's live on the web" looks like this:</p>
 
     <div class="flow-row">
@@ -879,7 +879,7 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
       <div class="flow-arrow">→</div>
       <div class="flow-node" style="border-color:var(--text-m)">💾 Save file</div>
       <div class="flow-arrow">→</div>
-      <div class="flow-node" style="border-color:#E06B56;background:#FFF5F2">🔀 <span class="tt" data-tip="Git is a version control system — it tracks every change you make to files. 'Commit' means saving a named snapshot of your changes. 'Push' means sending those changes to GitHub.">git commit<br>+ push</span><br><small style="font-weight:400;font-size:.72rem">to GitHub</small></div>
+      <div class="flow-node" style="border-color:#E06B56;background:#FFF5F2">🔀 <span class="tt" data-tip="Git is a version control system – it tracks every change you make to files. 'Commit' means saving a named snapshot of your changes. 'Push' means sending those changes to GitHub.">git commit<br>+ push</span><br><small style="font-weight:400;font-size:.72rem">to GitHub</small></div>
       <div class="flow-arrow">→</div>
       <div class="flow-node node-astro">⚡ Netlify<br>detects push<br><small style="font-weight:400;font-size:.72rem">auto-triggers build</small></div>
       <div class="flow-arrow">→</div>
@@ -893,13 +893,13 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
     </div>
 
     <div class="callout callout-warn">
-      <p>⚠️ <strong>Working on a feature branch?</strong> Netlify builds preview deployments for every branch — but only pushes to the live site from <code style="font-size:.82rem">master</code>. Merge your branch via a <span class="tt" data-tip="A Pull Request (PR) is a proposal to merge changes from your branch into the main branch. It lets you review the diff before merging and keeps a record of why changes were made.">PR</span> when you're ready to go live.</p>
+      <p>⚠️ <strong>Working on a feature branch?</strong> Netlify builds preview deployments for every branch – but only pushes to the live site from <code style="font-size:.82rem">master</code>. Merge your branch via a <span class="tt" data-tip="A Pull Request (PR) is a proposal to merge changes from your branch into the main branch. It lets you review the diff before merging and keeps a record of why changes were made.">PR</span> when you're ready to go live.</p>
     </div>
   </section>
 
   <!-- Screen 3: Common gotchas -->
   <section class="screen animate-in">
-    <h2 class="screen-heading">Common gotchas — and how to avoid them</h2>
+    <h2 class="screen-heading">Common gotchas – and how to avoid them</h2>
 
     <div class="step-cards stagger-children">
       <div class="step-card animate-in" style="border-left:3px solid var(--err)">
@@ -920,14 +920,14 @@ Purpose: <span class="cn">{"{{purpose}}"}</span>
         <div class="step-num" style="background:var(--a4)">?</div>
         <div class="step-body">
           <div class="step-title">Wrong path depth in the Astro page</div>
-          <div class="step-text">Using <code style="font-size:.78rem">../../data/</code> instead of <code style="font-size:.78rem">../../../data/</code> — Astro can't find the JSON file and the build fails. Remember: pages are three levels deep from the project root.</div>
+          <div class="step-text">Using <code style="font-size:.78rem">../../data/</code> instead of <code style="font-size:.78rem">../../../data/</code> – Astro can't find the JSON file and the build fails. Remember: pages are three levels deep from the project root.</div>
         </div>
       </div>
       <div class="step-card animate-in" style="border-left:3px solid var(--a4)">
         <div class="step-num" style="background:var(--a4)">?</div>
         <div class="step-body">
           <div class="step-title">Invalid JSON syntax</div>
-          <div class="step-text">A trailing comma, a missing quote, or a stray character breaks JSON parsing and the build fails with a cryptic error. Use a JSON <span class="tt" data-tip="A tool that checks whether your code or data file is syntactically valid — correctly formatted so a computer can parse it. Most code editors highlight JSON errors as you type.">linter</span> (VS Code highlights errors in real time) before pushing.</div>
+          <div class="step-text">A trailing comma, a missing quote, or a stray character breaks JSON parsing and the build fails with a cryptic error. Use a JSON <span class="tt" data-tip="A tool that checks whether your code or data file is syntactically valid – correctly formatted so a computer can parse it. Most code editors highlight JSON errors as you type.">linter</span> (VS Code highlights errors in real time) before pushing.</div>
         </div>
       </div>
     </div>
@@ -1040,15 +1040,15 @@ document.querySelectorAll('.animate-in').forEach(el => io.observe(el));
 /* ── QUIZ ── */
 const feedback = {
   q1: {
-    ok: "Exactly right. A workflow needs all three: a workflow JSON (metadata + step list), building block JSONs (the actual prompts), and an Astro page (the tiny glue file). WorkflowLayout is shared — you never edit it for new content.",
+    ok: "Exactly right. A workflow needs all three: a workflow JSON (metadata + step list), building block JSONs (the actual prompts), and an Astro page (the tiny glue file). WorkflowLayout is shared – you never edit it for new content.",
     err: "Not quite. WorkflowLayout does the rendering work, but it needs to receive data from three separate files you create: a workflow JSON, building block JSONs, and an Astro page that wires them together."
   },
   q2: {
-    ok: "Correct. <code>user_action_after</code> in the workflow JSON is exactly the field that produces that 'what to do next' box. It's safe to edit — just plain text, no side effects.",
+    ok: "Correct. <code>user_action_after</code> in the workflow JSON is exactly the field that produces that 'what to do next' box. It's safe to edit – just plain text, no side effects.",
     err: "Not quite. The 'what to do next' box comes from the <code>user_action_after</code> field on the step in the workflow JSON file. WorkflowLayout reads it; it doesn't define it."
   },
   q3: {
-    ok: "Exactly. The variable in the building block template is just a placeholder — what brings it to life is the matching <code>inputs_required</code> entry in the workflow JSON. That's what creates the form field the user fills in.",
+    ok: "Exactly. The variable in the building block template is just a placeholder – what brings it to life is the matching <code>inputs_required</code> entry in the workflow JSON. That's what creates the form field the user fills in.",
     err: "Not quite. The template variable needs a matching <code>name: \"minister_name\"</code> in the workflow JSON's <code>inputs_required</code> array. That's what creates the form field and supplies the value."
   },
   q4: {
@@ -1056,8 +1056,8 @@ const feedback = {
     err: "Not quite. The most likely issue is in the Astro page. You've created the building block file, but the Astro page still needs to (1) import it, and (2) add <code>'BB-MTG-005': importedVar</code> to the <code>blocks</code> object. Without both, WorkflowLayout can't find the prompt."
   },
   q5: {
-    ok: "Correct. Maturity is stored entirely in the workflow JSON — three fields to update: <code>maturity</code>, <code>maturity_note</code>, and <code>maturity_updated</code>. The badge on the page and roadmap updates automatically when Netlify rebuilds.",
-    err: "Not quite. Maturity is a data field — it lives in the workflow JSON alongside the step definitions. Just open <code>wf-eng-001-stakeholder-analysis.json</code>, update the three maturity fields, and push."
+    ok: "Correct. Maturity is stored entirely in the workflow JSON – three fields to update: <code>maturity</code>, <code>maturity_note</code>, and <code>maturity_updated</code>. The badge on the page and roadmap updates automatically when Netlify rebuilds.",
+    err: "Not quite. Maturity is a data field – it lives in the workflow JSON alongside the step definitions. Just open <code>wf-eng-001-stakeholder-analysis.json</code>, update the three maturity fields, and push."
   }
 };
 

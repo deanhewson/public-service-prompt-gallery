@@ -43,7 +43,7 @@ allBlocks.sort((a, b) => a.name.localeCompare(b.name));
   <link rel="icon" href="/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-  <title>Building Blocks — APS Prompt Gallery</title>
+  <title>Building Blocks – APS Prompt Gallery</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     :root {
@@ -168,7 +168,7 @@ allBlocks.sort((a, b) => a.name.localeCompare(b.name));
       cards.forEach(card => {
         // domain values use underscores; space encoding in data-domains relies on this
         const cardDomains = (card.dataset.domains ?? '').split(' ').filter(Boolean);
-        // quality gates have empty domains by design — they only appear under "All"
+        // quality gates have empty domains by design – they only appear under "All"
         const domainMatch = !activeDomain || cardDomains.includes(activeDomain);
         const typeMatch   = activeTypes.length === 0 || activeTypes.includes(card.dataset.blockType ?? '');
         const searchMatch = fuseMatchIds === null || fuseMatchIds.has(card.dataset.id ?? '');

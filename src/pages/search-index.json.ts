@@ -1,5 +1,5 @@
 // src/pages/search-index.json.ts
-// Build-time endpoint — generates /search-index.json for Fuse.js fuzzy search (Cmd+K overlay).
+// Build-time endpoint – generates /search-index.json for Fuse.js fuzzy search (Cmd+K overlay).
 // Indexes workflows, building blocks, and quality gates. All entries have a `type` field
 // ('workflow' | 'block') so the search overlay can distinguish them.
 

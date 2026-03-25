@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["career_performance"],
 
-  "prompt_template": "<task>\nCompile my monthly performance check-in into a final structured record. Use exactly this format so I can accumulate these month-to-month:\n\n---\nMONTHLY PERFORMANCE CHECK-IN\nOfficer: [I'll fill this in]\nAgency: {{agency}}\nTeam: {{team_or_branch}}\nLevel: {{aps_level}}\nPeriod: {{month_period}}\nDate completed: [today's date]\n\n## OUTCOMES\n[2-3 paragraph summary of key deliverables and contributions this month]\n\n## GOAL ALIGNMENT\n[Table format: Goal | Status (On track / Needs attention / At risk) | Key activities | Notes]\n\n## BEHAVIOURS\n[2-3 paragraph summary of behavioural reflection, referencing APS Values where relevant]\n\n## DEVELOPMENT\n[Brief note on development activities and progress against development goals]\n\n## PATTERNS & THEMES\n[If previous check-in was provided: note any patterns, recurring themes, or changes from last month. If first check-in: skip this section]\n\n## NEXT MONTH\n- Key priorities or focus areas\n- Anything to do differently\n- Support or resources needed\n- Goals to discuss with supervisor (if any)\n---\n\nThen, based on the full reflection, suggest which of these actions (if any) I should take:\n\n1. RAISE WITH SUPERVISOR — flag items where a conversation would help (goal misalignment, resource needs, development opportunities, emerging priorities that shift my focus)\n2. UPDATE PERFORMANCE AGREEMENT — flag if any goals seem outdated or need revision\n3. DOCUMENT PRIVATELY — flag achievements or reflections worth keeping for end-of-cycle but not needing immediate action\n4. NO ACTION NEEDED — if everything is tracking well\n\nFor any items in category 1, draft 2-3 brief talking points I could raise in a check-in conversation with my supervisor.\n</task>\n\n<previous_check_in>\n{{previous_check_in}}\n</previous_check_in>",
+  "prompt_template": "<task>\nCompile my monthly performance check-in into a final structured record. Use exactly this format so I can accumulate these month-to-month:\n\n---\nMONTHLY PERFORMANCE CHECK-IN\nOfficer: [I'll fill this in]\nAgency: {{agency}}\nTeam: {{team_or_branch}}\nLevel: {{aps_level}}\nPeriod: {{month_period}}\nDate completed: [today's date]\n\n## OUTCOMES\n[2-3 paragraph summary of key deliverables and contributions this month]\n\n## GOAL ALIGNMENT\n[Table format: Goal | Status (On track / Needs attention / At risk) | Key activities | Notes]\n\n## BEHAVIOURS\n[2-3 paragraph summary of behavioural reflection, referencing APS Values where relevant]\n\n## DEVELOPMENT\n[Brief note on development activities and progress against development goals]\n\n## PATTERNS & THEMES\n[If previous check-in was provided: note any patterns, recurring themes, or changes from last month. If first check-in: skip this section]\n\n## NEXT MONTH\n- Key priorities or focus areas\n- Anything to do differently\n- Support or resources needed\n- Goals to discuss with supervisor (if any)\n---\n\nThen, based on the full reflection, suggest which of these actions (if any) I should take:\n\n1. RAISE WITH SUPERVISOR – flag items where a conversation would help (goal misalignment, resource needs, development opportunities, emerging priorities that shift my focus)\n2. UPDATE PERFORMANCE AGREEMENT – flag if any goals seem outdated or need revision\n3. DOCUMENT PRIVATELY – flag achievements or reflections worth keeping for end-of-cycle but not needing immediate action\n4. NO ACTION NEEDED – if everything is tracking well\n\nFor any items in category 1, draft 2-3 brief talking points I could raise in a check-in conversation with my supervisor.\n</task>\n\n<previous_check_in>\n{{previous_check_in}}\n</previous_check_in>",
 
   "variables": [
     {
@@ -47,15 +47,15 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "Save this output somewhere you'll be able to find it at end-of-cycle — a personal folder, a note-taking app, whatever works for you. The value of this workflow compounds: month 1 is useful, month 6 is powerful, month 12 gives you a complete performance narrative.",
+      "notes": "Save this output somewhere you'll be able to find it at end-of-cycle – a personal folder, a note-taking app, whatever works for you. The value of this workflow compounds: month 1 is useful, month 6 is powerful, month 12 gives you a complete performance narrative.",
       "prompt_modification": null
     },
     "intermediate": {
-      "notes": "If you flagged items to raise with your supervisor, consider bringing them to your next formal or informal performance conversation. The talking points the AI drafts are a starting point — adjust the tone and emphasis before using them.",
+      "notes": "If you flagged items to raise with your supervisor, consider bringing them to your next formal or informal performance conversation. The talking points the AI drafts are a starting point – adjust the tone and emphasis before using them.",
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "Over time, the PATTERNS & THEMES section becomes the most valuable part of this output. Review it across 3-6 months before your mid-cycle or end-of-cycle review — it often surfaces insights that aren't visible month-to-month.",
+      "notes": "Over time, the PATTERNS & THEMES section becomes the most valuable part of this output. Review it across 3-6 months before your mid-cycle or end-of-cycle review – it often surfaces insights that aren't visible month-to-month.",
       "prompt_modification": null
     }
   },
@@ -64,7 +64,7 @@
   "contributed_by": null,
   "known_limitations": [
     "The AI may suggest patterns or themes that aren't actually meaningful. Your judgement about what matters is final.",
-    "Talking points for supervisor conversations are a starting point only — adjust the tone and framing based on your knowledge of your supervisor and your working relationship.",
+    "Talking points for supervisor conversations are a starting point only – adjust the tone and framing based on your knowledge of your supervisor and your working relationship.",
     "This output is a personal reflection document, not a formal HR artefact. It's designed to inform your performance conversations, not replace them."
   ]
 }

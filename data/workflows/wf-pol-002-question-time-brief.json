@@ -22,7 +22,7 @@
       "description": "The topic the QTB is being prepared for",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. NDIS cost growth, robodebt settlement"
+      "placeholder": "eg NDIS cost growth, robodebt settlement"
     },
     {
       "name": "forum",
@@ -30,7 +30,7 @@
       "description": "Where this will be used",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Senate Estimates, media doorstop, stakeholder Q&A"
+      "placeholder": "eg Senate Estimates, media doorstop, stakeholder Q&A"
     },
     {
       "name": "audience",
@@ -38,7 +38,7 @@
       "description": "Who is being briefed",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Minister, Deputy Secretary, SES Band 2"
+      "placeholder": "eg Minister, Deputy Secretary, SES Band 2"
     },
     {
       "name": "agency",
@@ -46,7 +46,7 @@
       "description": "Your agency or portfolio context",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Department of Social Services"
+      "placeholder": "eg Department of Social Services"
     },
     {
       "name": "policy_area",
@@ -54,7 +54,7 @@
       "description": "The specific policy domain",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. disability policy, aged care"
+      "placeholder": "eg disability policy, aged care"
     },
     {
       "name": "length",
@@ -68,7 +68,7 @@
     {
       "name": "key_documents",
       "label": "Reference materials (optional)",
-      "description": "Paste in publicly available background — recent media coverage, published reports, Hansard extracts. Do not paste OFFICIAL: Sensitive content into public AI tools.",
+      "description": "Paste in publicly available background – recent media coverage, published reports, Hansard extracts. Do not paste OFFICIAL: Sensitive content into public AI tools.",
       "type": "long_text",
       "required": false,
       "placeholder": "Paste relevant publicly available content here..."
@@ -87,7 +87,7 @@
       "is_optional": false,
       "user_action_after": "Review the likely questions and add any from your own knowledge. Your read on what's politically sensitive is more accurate than the model's. Add or remove questions before moving on.",
       "platform_tips": {
-        "copilot": "Include all your context in this first message — topic, forum, audience, and any reference materials. Copilot does not retain context between sessions, so everything it needs for the full workflow should be here."
+        "copilot": "Include all your context in this first message – topic, forum, audience, and any reference materials. Copilot does not retain context between sessions, so everything it needs for the full workflow should be here."
       },
       "output_feeds_to": [2]
     },
@@ -97,7 +97,7 @@
       "name": "Draft QTB",
       "step_type": "generation",
       "building_block_id": "BB-QTB-002",
-      "description": "Drafts the full QTB in standard APS format — key messages, background, talking points, what to avoid.",
+      "description": "Drafts the full QTB in standard APS format – key messages, background, talking points, what to avoid.",
       "trust_level": "medium",
       "is_optional": false,
       "user_action_after": "Read the draft as if you are the reader about to walk into the forum. Does it cover the hard questions? Are the Key Messages actually usable? Note anything that feels wrong or that you couldn't defend.",
@@ -117,7 +117,7 @@
       "is_optional": false,
       "user_action_after": "Check every flagged claim against an authoritative source before the brief is used. In a QTB context, a challenged fact mid-session is a serious problem. Resolve all HIGH RISK items.",
       "platform_tips": {
-        "copilot": "Start a fresh Copilot message for this step. Paste the full QTB draft directly — do not assume Copilot has retained it from the drafting step."
+        "copilot": "Start a fresh Copilot message for this step. Paste the full QTB draft directly – do not assume Copilot has retained it from the drafting step."
       },
       "output_feeds_to": [5]
     },
@@ -127,12 +127,12 @@
       "name": "Parliamentary Scrutiny Test",
       "step_type": "quality_gate",
       "building_block_id": "BB-QTB-003",
-      "description": "Stress-tests the brief from a hostile questioner's perspective — surfaces gaps in talking points before the reader faces a real one.",
+      "description": "Stress-tests the brief from a hostile questioner's perspective – surfaces gaps in talking points before the reader faces a real one.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Review the critique. Address the Top 3 fixes. Some issues may not apply to your context — use your judgment. The 'trap question' is the one most worth preparing a response to.",
+      "user_action_after": "Review the critique. Address the Top 3 fixes. Some issues may not apply to your context – use your judgment. The 'trap question' is the one most worth preparing a response to.",
       "platform_tips": {
-        "copilot": "Start a fresh Copilot message. Paste the full QTB draft at the top — the scrutiny test is most useful when Copilot has the complete text in front of it rather than relying on conversation history.",
+        "copilot": "Start a fresh Copilot message. Paste the full QTB draft at the top – the scrutiny test is most useful when Copilot has the complete text in front of it rather than relying on conversation history.",
         "chatgpt": "If using a standalone conversation rather than a Project, paste the full QTB draft alongside this prompt. GPT-4 produces more reliable adversarial analysis when all context is in the current message."
       },
       "output_feeds_to": [5]
@@ -146,9 +146,9 @@
       "description": "Revises the QTB incorporating verification and scrutiny feedback. Tightens Key Messages and talking points.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Do a final read aloud — talking points in particular should sound natural for the reader to say. Resolve any remaining [VERIFY] or [INSERT DATA] items before the brief is used.",
+      "user_action_after": "Do a final read aloud – talking points in particular should sound natural for the reader to say. Resolve any remaining [VERIFY] or [INSERT DATA] items before the brief is used.",
       "platform_tips": {
-        "copilot": "Start a fresh Copilot message. Include the current draft and a brief summary of the key feedback from Steps 3 and 4 — Copilot won't have retained the critique from those earlier steps."
+        "copilot": "Start a fresh Copilot message. Include the current draft and a brief summary of the key feedback from Steps 3 and 4 – Copilot won't have retained the critique from those earlier steps."
       },
       "output_feeds_to": []
     }
@@ -163,7 +163,7 @@
     "intermediate": {
       "recommended_steps": [1, 2, 3, 4, 5],
       "skip_steps": [],
-      "notes": "Run the full workflow. Step 4 (scrutiny test) is where the model earns its keep — the critique is usually more useful than the draft itself."
+      "notes": "Run the full workflow. Step 4 (scrutiny test) is where the model earns its keep – the critique is usually more useful than the draft itself."
     },
     "advanced": {
       "recommended_steps": [1, 2, 3, 4, 5],
@@ -203,7 +203,7 @@
   "known_limitations": [
     "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "Cannot know the reader's history with a committee, past commitments, or agency-specific intelligence.",
-    "Statistics, program names, and budget figures are high-risk for hallucination — verify all before any brief is used in a high-stakes forum.",
+    "Statistics, program names, and budget figures are high-risk for hallucination – verify all before any brief is used in a high-stakes forum.",
     "This workflow produces AI-assisted drafts. You remain the accountable officer for the advice."
   ]
 }

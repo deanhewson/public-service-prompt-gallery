@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["general_productivity"],
 
-  "prompt_template": "<task>\nContinuing from the meeting context and objectives we've just worked through in this conversation, now draft a meeting agenda.\n\nMeeting duration: {{duration}}\n\nDraft a structured agenda that:\n1. Opens with a clear purpose statement and housekeeping (no more than 2 minutes)\n2. Orders agenda items to build toward the key decisions or outcomes — put contentious items after the group has established rapport, not first\n3. Allocates realistic time for each item based on the {{duration}} total\n4. Includes a clear 'decision point' or 'discussion point' label for each item, so attendees know what's expected of them\n5. Builds in 5 minutes at the end for 'next steps, actions, and owners'\n\nFormat each agenda item as:\n- [Time] Item name — Type: Discussion / Decision / Update / Information\n- Brief note on what needs to happen in this item (1 sentence)\n\nAfter the agenda, note:\n- **Sequencing rationale** — why you ordered it this way\n- **Where conflict might arise** — which items might generate disagreement, and any facilitation suggestions\n- **Time pressure risks** — which items are most likely to run over time, and what to cut if needed\n</task>",
+  "prompt_template": "<task>\nContinuing from the meeting context and objectives we've just worked through in this conversation, now draft a meeting agenda.\n\nMeeting duration: {{duration}}\n\nDraft a structured agenda that:\n1. Opens with a clear purpose statement and housekeeping (no more than 2 minutes)\n2. Orders agenda items to build toward the key decisions or outcomes – put contentious items after the group has established rapport, not first\n3. Allocates realistic time for each item based on the {{duration}} total\n4. Includes a clear 'decision point' or 'discussion point' label for each item, so attendees know what's expected of them\n5. Builds in 5 minutes at the end for 'next steps, actions, and owners'\n\nFormat each agenda item as:\n- [Time] Item name – Type: Discussion / Decision / Update / Information\n- Brief note on what needs to happen in this item (1 sentence)\n\nAfter the agenda, note:\n- **Sequencing rationale** – why you ordered it this way\n- **Where conflict might arise** – which items might generate disagreement, and any facilitation suggestions\n- **Time pressure risks** – which items are most likely to run over time, and what to cut if needed\n</task>",
 
   "variables": [
     {
@@ -17,7 +17,7 @@
       "type": "text",
       "required": false,
       "default": "60 minutes",
-      "placeholder": "e.g. 60 minutes, 90 minutes, half day"
+      "placeholder": "eg 60 minutes, 90 minutes, half day"
     }
   ],
 
@@ -25,7 +25,7 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "The sequencing rationale is worth reading carefully — the order of agenda items significantly affects how a meeting goes. Don't put the most contentious issue first.",
+      "notes": "The sequencing rationale is worth reading carefully – the order of agenda items significantly affects how a meeting goes. Don't put the most contentious issue first.",
       "prompt_modification": null
     },
     "intermediate": {
@@ -33,7 +33,7 @@
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "Share the draft agenda with a key attendee before circulating — their reaction tells you a lot about how the meeting will go. If they push back on an item, find out why before the meeting happens.",
+      "notes": "Share the draft agenda with a key attendee before circulating – their reaction tells you a lot about how the meeting will go. If they push back on an item, find out why before the meeting happens.",
       "prompt_modification": null
     }
   },
@@ -41,8 +41,8 @@
   "tags": ["meeting", "agenda", "preparation", "productivity"],
   "contributed_by": null,
   "known_limitations": [
-    "Time allocations are estimates — adjust based on your knowledge of how this group typically runs.",
+    "Time allocations are estimates – adjust based on your knowledge of how this group typically runs.",
     "The model cannot know your organisation's meeting culture or any norms specific to these attendees.",
-    "Facilitation suggestions are generic — adapt based on the specific dynamics of this group."
+    "Facilitation suggestions are generic – adapt based on the specific dynamics of this group."
   ]
 }

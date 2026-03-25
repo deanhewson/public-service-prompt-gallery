@@ -9,7 +9,7 @@
   "quality_gate_id": "QG-CAREER-001",
   "domains": ["career_performance"],
 
-  "prompt_template": "<instructions>\nReview the officer's complete monthly check-in so far (activity inventory, alignment analysis, and behaviours reflection) and assess it for completeness and honesty.\n\nCheck for:\n\n1. MISSING AREAS — Are there obvious gaps? For example:\n   - Goals with no activity and no explanation\n   - Behavioural dimensions answered very briefly or generically\n   - No mention of challenges, setbacks, or things that didn't go well\n   - Development goals with no progress and no reflection on why\n\n2. SELF-ASSESSMENT CALIBRATION — Does the tone seem realistic?\n   - Is everything described positively with no acknowledgement of difficulty?\n   - Are there vague claims like \"contributed to team goals\" without specifics?\n   - Does the behaviours section read as generic rather than specific to this month?\n\n3. FORWARD-LOOKING GAPS — Has the officer identified:\n   - What they want to do differently next month?\n   - Any support or resources they need?\n   - Whether their goals still feel relevant, or need discussion with their supervisor?\n\nFor each gap found, suggest a specific follow-up question the officer should consider. Keep the tone constructive — this is a thinking aid, not a performance review.\n\nEnd with a brief overall assessment: THOROUGH / ADEQUATE / NEEDS MORE DEPTH\n</instructions>\n\n<check_in_content>\n[Full output from Steps 1-3]\n</check_in_content>",
+  "prompt_template": "<instructions>\nReview the officer's complete monthly check-in so far (activity inventory, alignment analysis, and behaviours reflection) and assess it for completeness and honesty.\n\nCheck for:\n\n1. MISSING AREAS – Are there obvious gaps? For example:\n   - Goals with no activity and no explanation\n   - Behavioural dimensions answered very briefly or generically\n   - No mention of challenges, setbacks, or things that didn't go well\n   - Development goals with no progress and no reflection on why\n\n2. SELF-ASSESSMENT CALIBRATION – Does the tone seem realistic?\n   - Is everything described positively with no acknowledgement of difficulty?\n   - Are there vague claims like \"contributed to team goals\" without specifics?\n   - Does the behaviours section read as generic rather than specific to this month?\n\n3. FORWARD-LOOKING GAPS – Has the officer identified:\n   - What they want to do differently next month?\n   - Any support or resources they need?\n   - Whether their goals still feel relevant, or need discussion with their supervisor?\n\nFor each gap found, suggest a specific follow-up question the officer should consider. Keep the tone constructive – this is a thinking aid, not a performance review.\n\nEnd with a brief overall assessment: THOROUGH / ADEQUATE / NEEDS MORE DEPTH\n</instructions>\n\n<check_in_content>\n[Full output from Steps 1-3]\n</check_in_content>",
 
   "variables": [],
 
@@ -17,11 +17,11 @@
 
   "skill_adaptations": {
     "beginner": {
-      "notes": "This step is optional for your first month. Try it from month 2 onwards — the challenge questions become more useful once you have a sense of what a complete check-in looks like.",
+      "notes": "This step is optional for your first month. Try it from month 2 onwards – the challenge questions become more useful once you have a sense of what a complete check-in looks like.",
       "prompt_modification": null
     },
     "intermediate": {
-      "notes": "If the gate flags areas as needing more depth, go back and add to them. The point isn't a perfect document — it's to make sure you've actually thought about the things that matter.",
+      "notes": "If the gate flags areas as needing more depth, go back and add to them. The point isn't a perfect document – it's to make sure you've actually thought about the things that matter.",
       "prompt_modification": null
     },
     "advanced": {
@@ -34,6 +34,6 @@
   "contributed_by": null,
   "known_limitations": [
     "This gate checks for thoroughness and honesty in tone, not factual accuracy. It can't know if you've omitted important context.",
-    "The gate may flag things as missing that you deliberately excluded (e.g., sensitive matters). Use your judgement about which flags to act on."
+    "The gate may flag things as missing that you deliberately excluded (eg, sensitive matters). Use your judgement about which flags to act on."
   ]
 }

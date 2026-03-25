@@ -1,7 +1,7 @@
 {
   "id": "BB-STK-001",
   "name": "Stakeholder Analysis: Map Stakeholders",
-  "description": "Identifies and maps all stakeholders relevant to a policy initiative, decision, or engagement program — with an initial read on their likely position.",
+  "description": "Identifies and maps all stakeholders relevant to a policy initiative, decision, or engagement program – with an initial read on their likely position.",
   "version": "1.0",
   "last_reviewed": "2026-03-05",
   "block_type": "generation",
@@ -33,31 +33,31 @@
     },
     {
       "name": "context",
-      "description": "Brief context — what's happening, what's the decision or action",
+      "description": "Brief context – what's happening, what's the decision or action",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. We are designing the consultation process for a new aged care standards framework launching mid-year"
+      "placeholder": "eg We are designing the consultation process for a new aged care standards framework launching mid-year"
     },
     {
       "name": "key_documents",
-      "description": "Externally available documents only — eg published annual reports, public policy documents, ABS/AIHW statistics, publicly available evaluations. Do not paste OFFICIAL: Sensitive or classified material into AI tools not approved for that classification. If your agency permits it for the AI tool you're using, you can also reference or upload internal documents directly in the tool rather than pasting them here.",
+      "description": "Externally available documents only – eg published annual reports, public policy documents, ABS/AIHW statistics, publicly available evaluations. Do not paste OFFICIAL: Sensitive or classified material into AI tools not approved for that classification. If your agency permits it for the AI tool you're using, you can also reference or upload internal documents directly in the tool rather than pasting them here.",
       "type": "long_text",
       "required": false,
-      "placeholder": "Paste excerpts from available reference documents here — eg relevant sections of an annual report, published evaluation, or public statistics..."
+      "placeholder": "Paste excerpts from available reference documents here – eg relevant sections of an annual report, published evaluation, or public statistics..."
     }
   ],
   "trust_level": "medium",
   "skill_adaptations": {
     "beginner": {
-      "notes": "The model's stakeholder map is a starting point — it won't know about local or niche organisations specific to your area. Add any missing groups from your own knowledge before proceeding.",
+      "notes": "The model's stakeholder map is a starting point – it won't know about local or niche organisations specific to your area. Add any missing groups from your own knowledge before proceeding.",
       "prompt_modification": null
     },
     "intermediate": {
-      "notes": "Review the 'influence level' ratings critically — the model may under- or over-rate groups it knows less about. Your direct knowledge of who actually has influence matters here.",
+      "notes": "Review the 'influence level' ratings critically – the model may under- or over-rate groups it knows less about. Your direct knowledge of who actually has influence matters here.",
       "prompt_modification": null
     },
     "advanced": {
-      "notes": "Consider running this step from multiple perspectives — for example, from the agency's perspective and from the perspective of the most affected community group — to reveal blind spots.",
+      "notes": "Consider running this step from multiple perspectives – for example, from the agency's perspective and from the perspective of the most affected community group – to reveal blind spots.",
       "prompt_modification": null
     }
   },
@@ -70,7 +70,7 @@
   "contributed_by": null,
   "known_limitations": [
     "The model's knowledge of specific organisations and their current positions may be outdated or inaccurate.",
-    "Local, niche, or recently formed groups are likely to be missed — supplement with your agency's own stakeholder knowledge.",
+    "Local, niche, or recently formed groups are likely to be missed – supplement with your agency's own stakeholder knowledge.",
     "Influence ratings are estimated from general knowledge, not your agency's specific intelligence about who has real sway in this space."
   ]
 }
