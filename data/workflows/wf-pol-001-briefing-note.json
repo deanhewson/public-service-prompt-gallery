@@ -4,18 +4,17 @@
   "name": "Briefing Note",
   "description": "Produce a draft briefing note on a policy topic for senior executive review. Follows standard briefing note conventions with built-in quality checks for factual accuracy, sceptical review, and compliance.",
   "version": "1.0",
-  "last_reviewed": "2026-03-04",
+  "last_reviewed": "2026-03-25",
   "maturity": "tested",
-  "maturity_note": "Reviewed and iterated against real demo use case (PBO, Copilot 365). All 7 steps checked: prompts, platform tips, known limitations, compliance reflection rewritten. Not yet independently reviewed by external practitioner.",
+  "maturity_note": "Initial implementation, tested against a handful of real briefing scenarios.",
   "maturity_updated": "2026-03-25",
+
   "domain": "policy_development",
   "task_type": "briefing_note",
-  "typical_user_level": [
-    "aps5_6",
-    "el1"
-  ],
+  "typical_user_level": ["aps5_6", "el1"],
   "complexity": "intermediate",
   "estimated_time": "30–45 minutes with review",
+
   "inputs_required": [
     {
       "name": "topic",
@@ -23,23 +22,23 @@
       "description": "The policy topic for the briefing note",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. NDIS participant satisfaction trends"
+      "placeholder": "eg NDIS participant satisfaction trends"
     },
     {
       "name": "audience",
       "label": "Audience",
-      "description": "Who will read this (e.g. First Assistant Secretary, Deputy Secretary)",
+      "description": "Who will read this (eg First Assistant Secretary, Deputy Secretary)",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. First Assistant Secretary"
+      "placeholder": "eg First Assistant Secretary"
     },
     {
       "name": "purpose",
       "label": "Purpose",
-      "description": "What the brief is for (e.g. Senate Estimates prep, stakeholder meeting, decision)",
+      "description": "What the brief is for (eg Senate Estimates prep, stakeholder meeting, decision)",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Stakeholder roundtable briefing"
+      "placeholder": "eg Stakeholder roundtable briefing"
     },
     {
       "name": "agency",
@@ -47,7 +46,7 @@
       "description": "Your agency or portfolio context",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. Department of Social Services"
+      "placeholder": "eg Department of Social Services"
     },
     {
       "name": "policy_area",
@@ -55,7 +54,7 @@
       "description": "The specific policy domain you work in",
       "type": "text",
       "required": true,
-      "placeholder": "e.g. disability policy"
+      "placeholder": "eg disability policy"
     },
     {
       "name": "length",
@@ -75,6 +74,7 @@
       "placeholder": "Paste document text or a summary here..."
     }
   ],
+
   "steps": [
     {
       "order": 1,
@@ -85,10 +85,8 @@
       "description": "Identify the key issues, background context, stakeholders, and potential sensitivities relevant to the topic.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Review the issues list critically. Remove items that don't apply to your context. Add anything missing based on your own knowledge — your domain expertise matters most at this stage.",
-      "output_feeds_to": [
-        2
-      ]
+      "user_action_after": "Review the issues list critically. Remove items that don't apply to your context. Add anything missing based on your own knowledge – your domain expertise matters most at this stage.",
+      "output_feeds_to": [2]
     },
     {
       "order": 2,
@@ -96,16 +94,14 @@
       "name": "Structure",
       "step_type": "generation",
       "building_block_id": "BB-GEN-002",
-      "description": "Propose a briefing note structure using APS conventions, tailored to your audience and purpose. Skip this step if your agency already provides a mandatory template or your supervisor has specified a structure — use that instead.",
+      "description": "Propose a briefing note structure using APS conventions, tailored to your audience and purpose. Skip this step if your agency already provides a mandatory template or your supervisor has specified a structure – use that instead.",
       "platform_tips": {
-        "copilot": "If you're in a new chat or returning to this workflow later, paste in the key issues list from Step 1 before sending this prompt — Copilot doesn't carry context across separate conversations."
+        "copilot": "If you're in a new chat or returning to this workflow later, paste in the key issues list from Step 1 before sending this prompt – Copilot doesn't carry context across separate conversations."
       },
       "trust_level": "high",
       "is_optional": true,
       "user_action_after": "Confirm the structure works for your audience and purpose. Adjust headings or emphasis as needed. This is worth checking with your supervisor if you're unsure.",
-      "output_feeds_to": [
-        3
-      ]
+      "output_feeds_to": [3]
     },
     {
       "order": 3,
@@ -116,14 +112,11 @@
       "description": "Generate the full briefing note draft using APS writing conventions, with explicit [VERIFY] flags for uncertain claims.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Read the draft carefully. Note anything that feels wrong, missing, or that you couldn't defend if asked. Look for [VERIFY] and [INSERT DATA] flags — these are your action items.",
+      "user_action_after": "Read the draft carefully. Note anything that feels wrong, missing, or that you couldn't defend if asked. Look for [VERIFY] and [INSERT DATA] flags – these are your action items.",
       "platform_tips": {
-        "copilot": "If you're in a new chat or returning to this workflow later, paste in the key issues list from Step 1 and your agreed structure from Step 2 (or any structure you've been given) before sending this prompt — Copilot doesn't carry context across separate conversations. For detailed drafting, Copilot in Word can also work directly with your document structure."
+        "copilot": "If you're in a new chat or returning to this workflow later, paste in the key issues list from Step 1 and your agreed structure from Step 2 (or any structure you've been given) before sending this prompt – Copilot doesn't carry context across separate conversations. For detailed drafting, Copilot in Word can also work directly with your document structure."
       },
-      "output_feeds_to": [
-        4,
-        5
-      ]
+      "output_feeds_to": [4, 5]
     },
     {
       "order": 4,
@@ -134,13 +127,11 @@
       "description": "Extract and categorise all factual claims in the draft. Makes the trust boundary visible before you rely on the content.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Work through the verification table. Check flagged items against authoritative sources (legislation, agency websites, official statistics). Resolving [VERIFY] items is your accountability step under the PGPA Act — you are the officer responsible for the advice.",
+      "user_action_after": "Work through the verification table. Check flagged items against authoritative sources (legislation, agency websites, official statistics). Resolving [VERIFY] items is your accountability step under the PGPA Act – you are the officer responsible for the advice.",
       "platform_tips": {
-        "copilot": "If you're in the same conversation as the drafting step, the draft is already available — just send the prompt. If you've started a new chat, paste in the full draft before running this prompt."
+        "copilot": "If you're in the same conversation as the drafting step, the draft is already available – just send the prompt. If you've started a new chat, paste in the full draft before running this prompt."
       },
-      "output_feeds_to": [
-        6
-      ]
+      "output_feeds_to": [6]
     },
     {
       "order": 5,
@@ -151,13 +142,11 @@
       "description": "Stress-test the draft from a sceptical senior executive perspective. Surfaces logic gaps and missing perspectives.",
       "trust_level": "medium",
       "is_optional": false,
-      "user_action_after": "Review the critique. Use your judgment on which issues to address — not every point will apply to your context. Focus on the Top 3 priority issues identified.",
+      "user_action_after": "Review the critique. Use your judgment on which issues to address – not every point will apply to your context. Focus on the Top 3 priority issues identified.",
       "platform_tips": {
-        "copilot": "If you're in the same conversation as the drafting step, the draft is already available — just send the prompt. If you've started a new chat, paste in the full draft before running this prompt."
+        "copilot": "If you're in the same conversation as the drafting step, the draft is already available – just send the prompt. If you've started a new chat, paste in the full draft before running this prompt."
       },
-      "output_feeds_to": [
-        6
-      ]
+      "output_feeds_to": [6]
     },
     {
       "order": 6,
@@ -170,11 +159,9 @@
       "is_optional": false,
       "user_action_after": "Review the revised brief. Ensure all [VERIFY] and [INSERT DATA] placeholders are resolved before the final step. If any remain, resolve them now.",
       "platform_tips": {
-        "copilot": "If you're in the same conversation as the previous steps, all context is already available — just send the prompt. If you've started a new chat, paste in the current draft and the key findings from Steps 4 and 5 before sending this prompt."
+        "copilot": "If you're in the same conversation as the previous steps, all context is already available – just send the prompt. If you've started a new chat, paste in the current draft and the key findings from Steps 4 and 5 before sending this prompt."
       },
-      "output_feeds_to": [
-        7
-      ]
+      "output_feeds_to": [7]
     },
     {
       "order": 7,
@@ -182,99 +169,70 @@
       "name": "Compliance Reflection",
       "step_type": "quality_gate",
       "quality_gate_id": "QG-COMPLIANCE-001",
-      "description": "Surface compliance considerations for the five APS frameworks. The AI will quote specific text from the brief and raise questions for you to work through — it does not assess or certify compliance.",
+      "description": "Surface compliance considerations for the five APS frameworks. The AI will quote specific text from the brief and raise questions for you to work through – it does not assess or certify compliance.",
       "trust_level": "low",
       "is_optional": false,
       "user_action_after": "Work through the numbered questions at the end of the output. These are your sign-off checklist. For any question you can't confidently answer yes to, follow up before submitting: check with your supervisor, your agency's legal or governance team, or the relevant framework guidance. The AI has surfaced considerations, not settled them. You are the accountable officer for this advice.",
       "platform_tips": {
-        "copilot": "For this step, paste the full revised brief directly into your message — even in the same conversation, this ensures the reflection is focused on the final version and not an earlier draft."
+        "copilot": "Start a fresh Copilot message for this compliance check. Paste the full revised brief – compliance checking is most reliable as a focused, standalone prompt.",
+        "chatgpt": "If this step feels generic, re-state the specific frameworks to check against (PGPA Act, Privacy Act, APS Values, PSPF, FOI Act) in the prompt before copying."
       },
       "output_feeds_to": []
     }
   ],
+
   "skill_level_guidance": {
     "beginner": {
-      "recommended_steps": [
-        1,
-        3,
-        4,
-        7
-      ],
-      "skip_steps": [
-        2,
-        5,
-        6
-      ],
-      "notes": "Start with research, drafting, and claim verification. The structure and red-team steps add value but increase complexity — try them once you're comfortable."
+      "recommended_steps": [1, 3, 4, 7],
+      "skip_steps": [2, 5, 6],
+      "notes": "Start with research, drafting, and claim verification. The structure and red-team steps add value but increase complexity – try them once you're comfortable."
     },
     "intermediate": {
-      "recommended_steps": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
+      "recommended_steps": [1, 2, 3, 4, 5, 6, 7],
       "skip_steps": [],
-      "notes": "Run the all steps. The user actions after each step are where your expertise adds the most value — read them carefully."
+      "notes": "Run the all steps. The user actions after each step are where your expertise adds the most value – read them carefully."
     },
     "advanced": {
-      "recommended_steps": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
+      "recommended_steps": [1, 2, 3, 4, 5, 6, 7],
       "skip_steps": [],
       "notes": "Consider adding parallel analysis chains (economic, legal, social perspectives) after Step 1. Customise the role definitions for your specific branch. Run the claim verification gate on both the initial and revised drafts."
     }
   },
-  "compliance_frameworks": [
-    "pgpa_act",
-    "pspf",
-    "privacy_act",
-    "aps_values",
-    "foi_act"
-  ],
+
+  "compliance_frameworks": ["pgpa_act", "pspf", "privacy_act", "aps_values", "foi_act"],
   "security_classification": "official",
+
   "worked_example": {
     "scenario": "APS 6 policy officer in the Department of Social Services preparing a briefing note on NDIS participant satisfaction trends for a First Assistant Secretary ahead of a stakeholder roundtable.",
     "note": "This is a fictitious scenario using publicly available information only."
   },
-  "tags": [
-    "policy",
-    "briefing",
-    "core",
-    "popular"
-  ],
+
+  "tags": ["policy", "briefing", "core", "popular"],
   "contributed_by": null,
+
   "custom_instructions": {
     "claude": {
-      "setup_guidance": "Create a Claude Project called 'Policy Drafting' or similar. Paste the instructions below into the Project Instructions field. You can also upload reference documents (agency style guides, previous briefs, legislation extracts) to the Project knowledge base if allowed by your agency for this tool — they will be available in every conversation automatically.",
-      "content": "You are an experienced Australian Public Service (APS) policy analyst at the EL1 level. You write in formal APS style — concise, evidence-based, and impartial. You understand standard APS document conventions including briefing notes, QT briefs, and cabinet submissions.\n\nYou are familiar with accountability obligations under the PGPA Act and information-handling requirements under the PSPF and Privacy Act.\n\nWhen drafting content:\n- Flag uncertain claims with [VERIFY]\n- Flag gaps requiring human input with [INSERT DATA]\n- Do not fabricate statistics, program details, legislative references, or named individuals' roles\n- If you are uncertain about a fact, say so explicitly rather than guessing\n- Keep language plain and direct — avoid jargon unless it is standard APS terminology",
+      "setup_guidance": "Create a Claude Project called 'Policy Drafting' or similar. Paste the instructions below into the Project Instructions field. You can also upload reference documents (agency style guides, previous briefs, legislation extracts) to the Project knowledge base if allowed by your agency for this tool – they will be available in every conversation automatically.",
+      "content": "You are an experienced Australian Public Service (APS) policy analyst at the EL1 level. You write in formal APS style – concise, evidence-based, and impartial. You understand standard APS document conventions including briefing notes, QT briefs, and cabinet submissions.\n\nYou are familiar with accountability obligations under the PGPA Act and information-handling requirements under the PSPF and Privacy Act.\n\nWhen drafting content:\n- Flag uncertain claims with [VERIFY]\n- Flag gaps requiring human input with [INSERT DATA]\n- Do not fabricate statistics, program details, legislative references, or named individuals' roles\n- If you are uncertain about a fact, say so explicitly rather than guessing\n- Keep language plain and direct – avoid jargon unless it is standard APS terminology",
       "document_handling": "If your agency permits it for this tool, upload reference documents (agency style guides, previous briefing notes, relevant legislation extracts) to the Project knowledge base. They will be available in every conversation within the Project without re-uploading."
     },
     "chatgpt": {
       "setup_guidance": "Create a ChatGPT Project called 'Policy Drafting' or similar. Paste the instructions below into the Project instructions field. These will apply to all conversations within the Project, replacing your global Custom Instructions for this context.",
-      "content": "## Role\nYou are an experienced Australian Public Service (APS) policy analyst at the EL1 level. You write in formal APS style — concise, evidence-based, and impartial.\n\n## Standards\nYou understand standard APS document conventions including briefing notes, QT briefs, and cabinet submissions. You are familiar with accountability obligations under the PGPA Act and information-handling requirements under the PSPF and Privacy Act.\n\n## Rules\n- Flag uncertain claims with [VERIFY]\n- Flag gaps requiring human input with [INSERT DATA]\n- Do not fabricate statistics, program details, or legislative references\n- If you are uncertain about a fact, say so explicitly\n- Be concise — use plain APS English, not jargon\n- Avoid excessive bullet points; use flowing paragraphs for policy advice",
+      "content": "## Role\nYou are an experienced Australian Public Service (APS) policy analyst at the EL1 level. You write in formal APS style – concise, evidence-based, and impartial.\n\n## Standards\nYou understand standard APS document conventions including briefing notes, QT briefs, and cabinet submissions. You are familiar with accountability obligations under the PGPA Act and information-handling requirements under the PSPF and Privacy Act.\n\n## Rules\n- Flag uncertain claims with [VERIFY]\n- Flag gaps requiring human input with [INSERT DATA]\n- Do not fabricate statistics, program details, or legislative references\n- If you are uncertain about a fact, say so explicitly\n- Be concise – use plain APS English, not jargon\n- Avoid excessive bullet points; use flowing paragraphs for policy advice",
       "document_handling": "If your agency permits it for this tool, upload reference documents directly to your ChatGPT Project so they persist across conversations. Reference files by name in your prompts for best results (eg 'Using the style guide I uploaded...')."
     },
     "copilot": {
       "setup_guidance": "Go to Settings > Personalisation > Custom Instructions and paste the preferences below. These persist across all Copilot conversations until changed. Custom Instructions work best for broad role and tone preferences - for detailed workflow constraints, paste them at the top of your first message. Stay in a single conversation for the full workflow.",
       "content": "I am an APS policy officer. Write in formal APS style - concise, evidence-based, and impartial. Flag uncertain claims with [VERIFY] and data gaps with [INSERT DATA]. Do not invent statistics, program details, or legislative references.",
-      "document_handling": "Keep reference documents in SharePoint or OneDrive. Use the / key in Copilot Chat to reference them directly in your prompts if allowed by your agency for this tool. For document-heavy drafting, Copilot in Word can be more focused than Chat — but for this workflow, it's fine to stay in Chat. Stay in a single conversation for all workflow steps unless the context window is growing large - Copilot does not retain context across separate chats, you have to provide it again."
+      "document_handling": "Keep reference documents in SharePoint or OneDrive. Use the / key in Copilot Chat to reference them directly in your prompts if allowed by your agency for this tool. For document-heavy drafting, Copilot in Word can be more focused than Chat – but for this workflow, it's fine to stay in Chat. Stay in a single conversation for all workflow steps unless the context window is growing large - Copilot does not retain context across separate chats, you have to provide it again."
     },
     "other": {
       "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context and constraints your AI tool should follow throughout the session.",
-      "content": "Role: You are an experienced Australian Public Service (APS) policy analyst at the EL1 level.\n\nInstructions: Write in formal APS style — concise, evidence-based, and impartial. Follow standard briefing note conventions.\n\nRules:\n- Flag uncertain facts with [VERIFY]\n- Flag gaps needing input with [INSERT DATA]\n- Do not guess at statistics, legislative details, or program specifics\n- If you are uncertain about a fact, say so explicitly.",
+      "content": "Role: You are an experienced Australian Public Service (APS) policy analyst at the EL1 level.\n\nInstructions: Write in formal APS style – concise, evidence-based, and impartial. Follow standard briefing note conventions.\n\nRules:\n- Flag uncertain facts with [VERIFY]\n- Flag gaps needing input with [INSERT DATA]\n- Do not guess at statistics, legislative details, or program specifics\n- If you are uncertain about a fact, say so explicitly.",
       "document_handling": "If your agency permits it for this tool, paste relevant document content (or summaries) directly into the prompts at the steps where you need to reference them."
     }
   },
+
   "known_limitations": [
     "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "Statistics and program details may be outdated or fabricated - always verify before including in any official document.",
