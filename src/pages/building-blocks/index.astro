@@ -166,6 +166,7 @@ allBlocks.sort((a, b) => a.name.localeCompare(b.name));
     function applyFilters() {
       let visible = 0;
       cards.forEach(card => {
+        // domain values use underscores; space encoding in data-domains relies on this
         const cardDomains = (card.dataset.domains ?? '').split(' ').filter(Boolean);
         const domainMatch = !activeDomain || cardDomains.includes(activeDomain);
         const typeMatch   = activeTypes.length === 0 || activeTypes.includes(card.dataset.blockType ?? '');

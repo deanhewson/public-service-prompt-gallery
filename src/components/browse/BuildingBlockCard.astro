@@ -37,6 +37,7 @@ const typeLabel  = typeLabels[block_type]  ?? block_type;
 const typeClass  = typeClasses[block_type] ?? 'badge-default';
 const domainLabel = domains.length > 0 ? (domainLabels[domains[0]] ?? domains[0]) : null;
 const workflowCount = used_in.length;
+// Note: data-domains encodes the domains array as space-separated — domain enum values must not contain spaces.
 ---
 
 <div
