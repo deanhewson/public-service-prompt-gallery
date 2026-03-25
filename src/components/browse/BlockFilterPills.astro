@@ -1,0 +1,67 @@
+---
+// BlockFilterPills.astro
+// Domain pills (radio — one active at a time, primary filter)
+// Block type pills (multi-select, hidden behind "More filters" toggle)
+---
+
+<div class="filter-section" id="block-filters">
+  <div class="filter-row-label">Domain</div>
+  <div class="pills" id="domain-pills">
+    <button type="button" class="pill active" data-domain="" aria-pressed="true">All</button>
+    <button type="button" class="pill" data-domain="policy_development" aria-pressed="false">Policy Development</button>
+    <button type="button" class="pill" data-domain="stakeholder_engagement" aria-pressed="false">Stakeholder Engagement</button>
+    <button type="button" class="pill" data-domain="communications" aria-pressed="false">Communications</button>
+    <button type="button" class="pill" data-domain="general_productivity" aria-pressed="false">General Productivity</button>
+    <button type="button" class="pill" data-domain="career_performance" aria-pressed="false">Career &amp; Performance</button>
+  </div>
+
+  <button type="button" class="more-filters-toggle" id="block-filter-toggle">+ More filters</button>
+
+  <div id="block-filter-secondary" class="hidden">
+    <div class="filter-row-label" style="margin-top:8px">Block type</div>
+    <div class="pills" id="type-pills">
+      <button type="button" class="pill pill-secondary" data-block-type="generation" aria-pressed="false">Generation</button>
+      <button type="button" class="pill pill-secondary" data-block-type="refinement" aria-pressed="false">Refinement</button>
+      <button type="button" class="pill pill-secondary" data-block-type="role_definition" aria-pressed="false">Role Definition</button>
+      <button type="button" class="pill pill-secondary" data-block-type="quality_gate" aria-pressed="false">Quality Gate</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .filter-section { margin-bottom: 14px; }
+  .filter-row-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9ca3af;
+    margin-bottom: 6px;
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+  .pill {
+    padding: 4px 12px;
+    border-radius: 14px;
+    border: 1px solid #dee2e6;
+    background: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #495057;
+    font-family: inherit;
+    transition: background 0.12s, border-color 0.12s;
+  }
+  .pill:hover { border-color: #adb5bd; }
+  .pill.active { background: #170a1c; color: white; border-color: #170a1c; }
+  .pill-secondary.active { background: #ede9fe; color: #5b21b6; border-color: #c4b5fd; }
+  .more-filters-toggle {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    margin-bottom: 6px;
+  }
+  .more-filters-toggle:hover { color: #170a1c; }
+  :global(.hidden) { display: none !important; }
+</style>
