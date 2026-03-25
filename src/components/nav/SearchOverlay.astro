@@ -1,14 +1,14 @@
 <div class="search-overlay" id="search-overlay" aria-hidden="true">
-  <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search workflows">
+  <div class="search-modal" role="dialog" aria-modal="true" aria-label="Search">
     <div class="search-modal-top">
       <input
         type="search"
         id="overlay-search-input"
         class="overlay-search-input"
-        placeholder="Search workflows…"
+        placeholder="Search workflows and blocks…"
         autocomplete="off"
         spellcheck="false"
-        aria-label="Search workflows"
+        aria-label="Search"
         aria-controls="search-results"
         aria-autocomplete="list"
         aria-haspopup="listbox"
@@ -101,6 +101,17 @@
 
   :global(.result-name) { font-weight: 600; font-size: 0.9rem; color: #170a1c; display: block; }
   :global(.result-meta) { font-size: 0.78rem; color: #868e96; margin-top: 2px; display: block; }
+
+  :global(.result-type-badge) {
+    font-size: 0.65rem;
+    background: #ede9fe;
+    color: #5b21b6;
+    padding: 1px 5px;
+    border-radius: 8px;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-weight: 600;
+  }
 </style>
 
 <script>
@@ -216,14 +227,23 @@
       const results = fuseInstance.search(q).slice(0, 8);
       selectedIndex = -1;
       input.setAttribute('aria-activedescendant', '');
-      resultsList.innerHTML = results.map((r: any, i: number) => `
-        <li role="option" id="search-result-${i}" aria-selected="false">
-          <a href="${escapeHtml(r.item.url)}" data-result>
-            <span class="result-name">${escapeHtml(r.item.name)}</span>
-            <span class="result-meta">${escapeHtml(r.item.domain_label)} · ${escapeHtml(r.item.complexity)} · ${escapeHtml(r.item.estimated_time)}</span>
-          </a>
-        </li>
-      `).join('');
+      resultsList.innerHTML = results.map((r: any, i: number) => {
+        const isBlock = r.item.type === 'block';
+        const meta = isBlock
+          ? `${escapeHtml(r.item.domain_label || 'Building Block')} · ${escapeHtml(r.item.block_type_label ?? r.item.block_type ?? '')}`
+          : `${escapeHtml(r.item.domain_label)} · ${escapeHtml(r.item.complexity)} · ${escapeHtml(r.item.estimated_time)}`;
+        const typeTag = isBlock
+          ? ` <span class="result-type-badge">Block</span>`
+          : '';
+        return `
+          <li role="option" id="search-result-${i}" aria-selected="false">
+            <a href="${escapeHtml(r.item.url)}" data-result>
+              <span class="result-name">${escapeHtml(r.item.name)}${typeTag}</span>
+              <span class="result-meta">${meta}</span>
+            </a>
+          </li>
+        `;
+      }).join('');
     }, 150);
   });
 
