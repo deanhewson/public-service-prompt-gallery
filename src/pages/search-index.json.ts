@@ -1,6 +1,7 @@
 // src/pages/search-index.json.ts
-// Build-time endpoint — generates /search-index.json from all workflow JSON files.
-// Fuse.js (CDN) loads this file client-side for fuzzy search.
+// Build-time endpoint — generates /search-index.json for Fuse.js fuzzy search (Cmd+K overlay).
+// Indexes workflows, building blocks, and quality gates. All entries have a `type` field
+// ('workflow' | 'block') so the search overlay can distinguish them.
 
 const domainLabels = {
   policy_development:     'Policy Development',
@@ -10,35 +11,57 @@ const domainLabels = {
   career_performance:     'Career & Performance',
 };
 
-export async function GET() {
-  // import.meta.glob path is relative to THIS file (src/pages/)
-  const modules = import.meta.glob('../../data/workflows/*.json', { eager: true });
+const blockTypeLabels = {
+  generation:      'Generation',
+  refinement:      'Refinement',
+  role_definition: 'Role Definition',
+  quality_gate:    'Quality Gate',
+};
 
-  const index = Object.values(modules).map((wf: any) => {
+export async function GET() {
+  const wfModules  = import.meta.glob('../../data/workflows/*.json',       { eager: true });
+  const bbModules  = import.meta.glob('../../data/building-blocks/*.json', { eager: true });
+  const qgModules  = import.meta.glob('../../data/quality-gates/*.json',   { eager: true });
+
+  const workflowIndex = Object.values(wfModules).map((wf: any) => {
     const domainLabel = domainLabels[wf.domain] ?? wf.domain;
     return {
-      id: wf.id,
-      icon: wf.icon ?? '📋',
-      name: wf.name,
-      description: wf.description ?? '',
-      domain: wf.domain,
+      id:           wf.id,
+      type:         'workflow',
+      icon:         wf.icon ?? '📋',
+      name:         wf.name,
+      description:  wf.description ?? '',
+      domain:       wf.domain,
       domain_label: domainLabel,
-      complexity: wf.complexity ?? '',
-      tags: wf.tags ?? [],
-      step_count: Array.isArray(wf.steps) ? wf.steps.length : 0,
+      complexity:   wf.complexity ?? '',
+      tags:         wf.tags ?? [],
+      step_count:   Array.isArray(wf.steps) ? wf.steps.length : 0,
       estimated_time: wf.estimated_time ?? '',
-      url: `/workflows/${wf.slug}`,
-      search_text: [
-        wf.name,
-        wf.description ?? '',
-        domainLabel,
-        ...(wf.tags ?? []),
-        wf.search_keywords ?? ''
-      ].join(' ')
+      url:          `/workflows/${wf.slug}`,
+      search_text:  [wf.name, wf.description ?? '', domainLabel, ...(wf.tags ?? []), wf.search_keywords ?? ''].join(' '),
     };
   });
 
-  return new Response(JSON.stringify(index), {
+  const allBlocks = [...Object.values(bbModules), ...Object.values(qgModules)];
+  const blockIndex = allBlocks.map((block: any) => {
+    // QG files have no `block_type` field; default to 'quality_gate' by convention
+    const blockType  = block.block_type ?? 'quality_gate';
+    const domainLabel = domainLabels[block.domains?.[0]] ?? '';
+    return {
+      id:           block.id,
+      type:         'block',
+      name:         block.name,
+      description:  block.description ?? '',
+      search_text:  [block.name, block.description ?? '', ...(block.tags ?? [])].join(' '),
+      tags:         block.tags ?? [],
+      block_type:   blockType,
+      block_type_label: blockTypeLabels[blockType] ?? blockType,
+      domain_label: domainLabel,
+      url:          '/building-blocks/',
+    };
+  });
+
+  return new Response(JSON.stringify([...workflowIndex, ...blockIndex]), {
     headers: { 'Content-Type': 'application/json' },
   });
 }

@@ -1,0 +1,227 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  description: string;
+  block_type: string;
+  domains: string[];
+  variable_count: number;
+  prompt_template: string;
+  used_in: { name: string; slug: string }[];
+  tags: string[];
+}
+
+const { id, name, description, block_type, domains, variable_count, prompt_template, used_in, tags } = Astro.props;
+
+const typeLabels = {
+  generation:      'Generation',
+  refinement:      'Refinement',
+  role_definition: 'Role Definition',
+  quality_gate:    'Quality Gate',
+} as const;
+const typeClasses = {
+  generation:      'badge-generation',
+  refinement:      'badge-refinement',
+  role_definition: 'badge-role',
+  quality_gate:    'badge-qg',
+} as const;
+const domainLabels = {
+  policy_development:     'Policy Development',
+  stakeholder_engagement: 'Stakeholder Engagement',
+  general_productivity:   'General Productivity',
+  communications:         'Communications',
+  career_performance:     'Career & Performance',
+} as const;
+
+const typeLabel  = typeLabels[block_type]  ?? block_type;
+const typeClass  = typeClasses[block_type] ?? 'badge-default';
+const domainLabel = domains.length > 0 ? (domainLabels[domains[0]] ?? domains[0]) : null;
+const workflowCount = used_in.length;
+// Note: data-domains encodes the domains array as space-separated — domain enum values must not contain spaces.
+---
+
+<div
+  class="bb-card"
+  data-id={id}
+  data-domains={domains.join(' ')}
+  data-block-type={block_type}
+  tabindex="0"
+>
+  <div class="card-header">
+    <div class="card-badges">
+      <span class={`badge ${typeClass}`}>{typeLabel}</span>
+      {domainLabel && <span class="badge badge-domain">{domainLabel}</span>}
+    </div>
+    <span class="card-chevron" aria-hidden="true">▾</span>
+  </div>
+
+  <div class="card-id">{id}</div>
+  <div class="card-name">{name}</div>
+  <p class="card-desc">{description}</p>
+
+  <div class="card-foot">
+    {workflowCount > 0 && (
+      <span class="workflow-count">
+        <span class="wf-dot" aria-hidden="true"></span>
+        Used in {workflowCount} workflow{workflowCount !== 1 ? 's' : ''}
+      </span>
+    )}
+    {workflowCount === 0 && <span class="workflow-count-zero">Not used in a workflow</span>}
+    {variable_count > 0 && <span>{variable_count} variable{variable_count !== 1 ? 's' : ''}</span>}
+  </div>
+
+  <div class="expand-body">
+    <div class="prompt-box">
+      <div class="prompt-toolbar">
+        <span>Prompt — {name}</span>
+        <button class="copy-btn" type="button">Copy prompt</button>
+      </div>
+      <pre class="prompt-text">{prompt_template}</pre>
+    </div>
+
+    {used_in.length > 0 && (
+      <div class="used-in-section">
+        <div class="used-in-label">Used in workflows</div>
+        <div class="used-in-chips">
+          {used_in.map(wf => (
+            <a href={`/workflows/${wf.slug}`} class="wf-chip">{wf.name}</a>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .bb-card {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+  }
+  .bb-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .bb-card:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+  :global(.bb-card.open) {
+    border-color: #a78bfa;
+    box-shadow: 0 2px 12px rgba(167,139,250,0.15);
+    grid-column: 1 / -1;
+    cursor: default;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+  .card-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .badge {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    border-radius: 9px;
+    font-weight: 600;
+  }
+  .badge-generation  { background: #dbeafe; color: #1d4ed8; }
+  .badge-refinement  { background: #fce7f3; color: #9d174d; }
+  .badge-role        { background: #fef3c7; color: #92400e; }
+  .badge-qg          { background: #ede7f6; color: #6f42c1; }
+  .badge-default     { background: #f3f4f6; color: #374151; }
+  .badge-domain      { background: #f3f4f6; color: #374151; }
+
+  .card-chevron {
+    color: #9ca3af;
+    font-size: 0.85rem;
+    transition: transform 0.18s;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  :global(.bb-card.open) .card-chevron { transform: rotate(180deg); }
+
+  .card-id { font-size: 0.68rem; color: #aaa; font-family: monospace; margin-bottom: 2px; }
+  .card-name { font-weight: 600; font-size: 0.9rem; color: #170a1c; margin-bottom: 4px; }
+  .card-desc {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin: 0 0 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  :global(.bb-card.open) .card-desc { -webkit-line-clamp: unset; overflow: visible; }
+
+  .card-foot { display: flex; gap: 12px; font-size: 0.72rem; color: #9ca3af; align-items: center; }
+  .workflow-count { display: flex; align-items: center; gap: 4px; }
+  .wf-dot { width: 6px; height: 6px; border-radius: 50%; background: #a78bfa; }
+  .workflow-count-zero { color: #ced4da; }
+
+  /* ── Expanded body ── */
+  .expand-body { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f0f0; }
+  :global(.bb-card.open) .expand-body { display: block; }
+
+  .prompt-box {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .prompt-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 0.78rem;
+    color: #6c757d;
+  }
+  .copy-btn {
+    background: #170a1c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: #163e80; }
+  :global(.copy-btn.copied) { background: #198754; }
+
+  .prompt-text {
+    padding: 14px;
+    font-size: 0.82rem;
+    font-family: monospace;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 0;
+    color: #212529;
+  }
+
+  .used-in-section { margin-top: 10px; }
+  .used-in-label {
+    font-size: 0.72rem;
+    color: #6c757d;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .used-in-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .wf-chip {
+    background: #ede9fe;
+    color: #5b21b6;
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: background 0.12s;
+  }
+  .wf-chip:hover { background: #c4b5fd; color: #3b0764; text-decoration: none; }
+</style>
