@@ -10,7 +10,10 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Why structured AI workflows, how the trust model works, and what the APS Prompt Gallery is for." />
   <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <title>About – APS Prompt Gallery</title>
@@ -30,10 +33,20 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
     }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); margin: 0; line-height: 1.6; }
     h1, h2, h3 { font-family: var(--font-heading); }
-    .container { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
-    h1 { color: var(--color-primary); margin: 0 0 16px; font-size: 1.8rem; }
-    .lead { color: var(--color-muted); max-width: 620px; margin: 0 0 48px; }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
+    /* ── Page header ─────────────────────────────────── */
+    .page-header {
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 40px;
+    }
+    .page-header h1 { margin: 0 0 10px; font-size: 1.8rem; color: var(--color-primary); }
+    .page-header p { margin: 0; color: var(--color-muted); max-width: 620px; }
+
+    /* ── Section headings ────────────────────────────── */
     .section-heading {
       font-size: 0.75rem;
       font-weight: 700;
@@ -45,7 +58,28 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
       border-bottom: 1px solid var(--color-border);
     }
 
-    /* ── Maturity model ──────────────────────────────────── */
+    /* ── Prose sections ──────────────────────────────── */
+    .prose-section {
+      margin-bottom: 40px;
+    }
+    .prose-section h2 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin: 0 0 12px;
+    }
+    .prose-section p {
+      margin: 0 0 14px;
+      max-width: 680px;
+      font-size: 0.95rem;
+    }
+    .prose-section p:last-child { margin-bottom: 0; }
+
+    /* ── Trust level colours (shared with .maturity-stage-label) ── */
+    .trust-high     { background: #d1e7dd; color: #0f5132; }
+    .trust-medium   { background: #fff3cd; color: #664d03; }
+    .trust-low      { background: #f8d7da; color: #58151c; }
+
+    /* ── Maturity model ──────────────────────────────── */
     .maturity-intro {
       font-size: 0.9rem;
       color: var(--color-muted);
@@ -93,15 +127,94 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
       padding: 12px 16px;
     }
   </style>
+  <script data-goatcounter="https://deanhewson.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <TopNav />
   <WorkflowNav />
   <MobileMenu />
   <div class="container">
-    <h1>About</h1>
-    <p class="lead">Content coming soon. This page will explain the project, how it works, and the trust model behind prompt design for Australian Public Service staff.</p>
 
+    <div class="page-header">
+      <h1>About</h1>
+      <p>Why structured AI workflows, how the trust model works, and what the APS Prompt Gallery is for.</p>
+    </div>
+
+    <!-- Opening -->
+    <div class="prose-section">
+      <p>
+        We hear a lot about what you can use AI for and whether it is appropriate.
+        What has been missing is the practical how layer: how to prompt well for complex government work, how to verify
+        outputs systematically, and how to build compliance checking into the process rather than bolting it on at the end.
+      </p>
+      <p>
+        This project fills that gap. It provides structured, multi-step workflows for common APS tasks, with quality gates
+        built in at each stage. Instead of giving you a single prompt and hoping for the best, each workflow breaks a task
+        into steps where you can inspect, verify, and redirect the AI's output before moving on.
+      </p>
+      <p>
+        It is free, open source, works with any AI tool your agency approves (Claude, ChatGPT, Copilot), and does not
+        store any information you enter.
+      </p>
+    </div>
+
+    <!-- Why workflows -->
+    <div class="prose-section">
+      <h2>Why workflows, not just prompts</h2>
+      <p>
+        A single prompt like "write me a briefing note" produces inconsistent results that depend entirely on the individual's
+        prompting intuition. Two officers doing the same task get wildly different quality. Good approaches are not captured,
+        shared, or improved.
+      </p>
+      <p>
+        Workflows solve this by breaking complex tasks into a sequence of smaller steps, where the output of one becomes the
+        input for the next. Each step has a specific purpose: research, structure, draft, verify, challenge, revise. This is
+        how developers have been using AI for years. It produces better, more consistent results because each step is
+        inspectable, and the officer can intervene at any point.
+      </p>
+      <p>
+        The real value is in the quality gates: verification steps that challenge the AI's output before you rely on it.
+        Claim verification extracts every factual claim and categorises it by reliability. Red-team review stress-tests the
+        draft from a sceptical senior executive perspective. Compliance checks run the output against PGPA Act, PSPF,
+        Privacy Act, and APS Values requirements. These are not optional extras. They are the accountability layer that
+        makes AI-assisted work defensible.
+      </p>
+    </div>
+
+    <!-- Trust model -->
+    <div class="prose-section">
+      <h2>The trust model</h2>
+      <p>
+        The hardest part of using AI in government is not generating text. It is knowing how much to trust what it produces.
+        A well-formatted briefing note looks equally polished whether the underlying facts are real or hallucinated. This
+        creates two failure modes: over-trust (rubber-stamping AI output without verification) and under-trust (rejecting
+        AI entirely after one bad experience).
+      </p>
+      <p>Every step in every workflow carries an explicit trust level:</p>
+      <div class="maturity-stages">
+        <div class="maturity-stage-card">
+          <span class="maturity-stage-label trust-high">High trust</span>
+          <p class="maturity-stage-desc">Structuring, formatting, brainstorming, summarising content you provided. Use with light review.</p>
+        </div>
+        <div class="maturity-stage-card">
+          <span class="maturity-stage-label trust-medium">Medium trust</span>
+          <p class="maturity-stage-desc">Drafting prose, identifying issues, stakeholder analysis. Use as a starting point; verify key claims.</p>
+        </div>
+        <div class="maturity-stage-card">
+          <span class="maturity-stage-label trust-low">Low trust</span>
+          <p class="maturity-stage-desc">Specific statistics, legislative references, current events, program details. Always independently verify.</p>
+        </div>
+      </div>
+      <p>
+        Quality gates are mapped to trust levels. Low-trust outputs require claim verification. Medium-trust outputs should
+        go through completeness and bias checks. High-trust outputs may only need a tone and audience review. The goal is
+        to make the trust boundary impossible to miss, so officers can make informed decisions about what to verify and
+        how much effort to invest.
+      </p>
+    </div>
+
+    <!-- Maturity model -->
     <div class="section-heading">Workflow maturity</div>
     <p class="maturity-intro">
       Each workflow carries a maturity stage that tells you how much confidence you can place in its design.
@@ -133,7 +246,77 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
       Reviewed requires a trusted practitioner reviewer. Validated requires feedback from multiple agencies.
       <a href="/roadmap">See where each workflow currently sits →</a>
     </p>
+
+    <!-- Compliance by design -->
+    <div class="prose-section">
+      <h2>Compliance by design</h2>
+      <p>
+        APS work operates under specific accountability frameworks that do not apply to general productivity. Under the
+        PGPA Act, officers are accountable for the advice they provide. Under the PSPF, information must be handled
+        according to its classification. The Privacy Act and Australian Privacy Principles govern personal information.
+        APS Values require impartiality, ethical conduct, and commitment to service.
+      </p>
+      <p>
+        These are not afterthoughts in the Gallery. Compliance checks are embedded as standard workflow steps. Every
+        workflow that produces advice or analysis includes a compliance gate that reviews the output against relevant
+        frameworks. The prompts themselves are designed with classification awareness: they are built for OFFICIAL-level
+        work using public AI tools, and they include explicit guidance about what not to include.
+      </p>
+    </div>
+
+    <!-- Who this is for -->
+    <div class="prose-section">
+      <h2>Who this is for</h2>
+      <p>
+        The workflows are designed for APS staff at any level across policy, program delivery, stakeholder engagement,
+        and general productivity domains. Each workflow adapts to your experience level:
+      </p>
+      <p>
+        <strong>Getting started:</strong> simplified workflow with fewer steps, copy-paste-ready prompts, and clear
+        guidance on what to do with each output.
+      </p>
+      <p>
+        <strong>Full workflow:</strong> the complete multi-step sequence with all quality gates.
+      </p>
+      <p>
+        <strong>Expert mode:</strong> advanced options including parallel analysis chains, custom role definitions, and
+        iterative verification loops.
+      </p>
+      <p>
+        Your AI prompting skill and your domain expertise are separate things. A senior EL2 policy expert who is new to
+        AI tools needs different support than an APS 5 who has been experimenting with Claude for months. The skill level
+        toggle controls the prompting complexity, but your domain judgement is what makes every quality gate output
+        valuable. The workflows are designed so that AI does the drafting and stress-testing, and you bring the expertise
+        and accountability.
+      </p>
+    </div>
+
+    <!-- About the project -->
+    <div class="prose-section">
+      <h2>About the project</h2>
+      <p>
+        This is an independent, side-of-desk project built by Dean Hewson at the Parliamentary Budget Office. It is not
+        an official Australian Government resource and does not represent the views of any agency.
+      </p>
+      <p>
+        The project is open source under CC BY 4.0. The source code and all workflow content are available on
+        <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">GitHub</a>.
+        Contributions are welcome from APS staff across agencies, whether that is suggesting a new workflow, improving
+        an existing one, or reporting something that does not work. See the
+        <a href="https://github.com/deanhewson/public-service-prompt-gallery/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">contribution guide</a>
+        or the <a href="/workflow-guide">workflow structure guide</a> for how to get involved.
+      </p>
+      <p>
+        The longer-term vision is community ownership. A library like this is most valuable when it reflects real work
+        across agencies, not one person's perspective. If your agency is interested in forking the library for internal
+        use, running it behind Entra ID authentication on Azure Static Web Apps, or contributing domain-specific
+        workflows, get in touch via
+        <a href="https://www.linkedin.com/in/deanhewson" target="_blank" rel="noopener">LinkedIn</a> or
+        <a href="https://github.com/deanhewson/public-service-prompt-gallery" target="_blank" rel="noopener">GitHub</a>.
+      </p>
+    </div>
+
   </div>
-<SearchOverlay />
+  <SearchOverlay />
 </body>
 </html>
