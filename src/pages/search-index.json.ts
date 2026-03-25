@@ -1,4 +1,8 @@
 // src/pages/search-index.json.ts
+// Build-time endpoint — generates /search-index.json for Fuse.js fuzzy search (Cmd+K overlay).
+// Indexes workflows, building blocks, and quality gates. All entries have a `type` field
+// ('workflow' | 'block') so the search overlay can distinguish them.
+
 const domainLabels = {
   policy_development:     'Policy Development',
   stakeholder_engagement: 'Stakeholder Engagement',
@@ -40,6 +44,7 @@ export async function GET() {
 
   const allBlocks = [...Object.values(bbModules), ...Object.values(qgModules)];
   const blockIndex = allBlocks.map((block: any) => {
+    // QG files have no `block_type` field; default to 'quality_gate' by convention
     const blockType  = block.block_type ?? 'quality_gate';
     const domainLabel = domainLabels[block.domains?.[0]] ?? '';
     return {
