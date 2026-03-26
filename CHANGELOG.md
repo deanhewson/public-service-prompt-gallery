@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2.0] - 2026-03-26
+
+### Fixed
+- Briefing note Step 1 (Scope & Research) now includes `{{length}}` so the target page length is visible in the prompt
+- Briefing note Steps 1 and 2 now include the `{{key_documents}}` reference block — always shown as a nudge even when empty
+- `{{key_documents}}` conditional removed from all three drafting steps so users see the placeholder and are prompted to add references after copying
+
+### Changed
+- Site title renamed from "APS GenAI Prompt Gallery" to "APS Prompt Gallery" across all pages
+
 ## [0.1.1.0] - 2026-03-25
 
 ### Added
