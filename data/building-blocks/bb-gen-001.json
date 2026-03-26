@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["policy_development"],
 
-  "prompt_template": "<role>\nYou are a senior Australian Public Service policy analyst with expertise in {{policy_area}}, working in {{agency}}.\n</role>\n\n<task>\nIdentify the key issues, considerations, and context relevant to a briefing note on the following topic.\n\nTopic: {{topic}}\nAudience: {{audience}}\nPurpose: {{purpose}}\n{{#if key_documents}}\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n{{/if}}\n\nProduce a structured list covering:\n\n1. **Key issues** – the main points that must be addressed in the brief (5–8 items, in priority order)\n2. **Background context** – essential context the reader needs to understand the topic\n3. **Stakeholders affected** – who has a stake in this topic and their likely positions\n4. **Potential sensitivities** – political, legal, or operational risks the brief should acknowledge\n5. **Information gaps** – what information you would ideally have but don't; mark these [VERIFY]\n\nBe specific to the APS context. Use plain language. Where a claim requires verification, write [VERIFY: description].\n</task>",
+  "prompt_template": "<role>\nYou are a senior Australian Public Service policy analyst with expertise in {{policy_area}}, working in {{agency}}.\n</role>\n\n<task>\nIdentify the key issues, considerations, and context relevant to a briefing note on the following topic.\n\nTopic: {{topic}}\nAudience: {{audience}}\nPurpose: {{purpose}}\nTarget brief length: {{length}}\nI'm also providing these reference documents to draw on:\n\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n\nProduce a structured list covering:\n\n1. **Key issues** – the main points that must be addressed in the brief (5–8 items, in priority order)\n2. **Background context** – essential context the reader needs to understand the topic\n3. **Stakeholders affected** – who has a stake in this topic and their likely positions\n4. **Potential sensitivities** – political, legal, or operational risks the brief should acknowledge\n5. **Information gaps** – what information you would ideally have but don't; mark these [VERIFY]\n\nBe specific to the APS context. Use plain language. Where a claim requires verification, write [VERIFY: description].\n</task>",
 
   "variables": [
     {
@@ -45,6 +45,13 @@
       "type": "text",
       "required": true,
       "examples": ["Senate Estimates preparation", "stakeholder roundtable briefing", "decision on funding allocation"]
+    },
+    {
+      "name": "length",
+      "description": "Target length of the briefing note — helps calibrate how much depth and detail to cover in the research",
+      "type": "text",
+      "required": false,
+      "default": "2 pages"
     },
     {
       "name": "key_documents",

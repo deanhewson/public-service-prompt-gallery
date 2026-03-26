@@ -8,7 +8,7 @@
   "block_type": "generation",
   "domains": ["policy_development"],
 
-  "prompt_template": "<role>\nYou are a senior APS policy analyst preparing a briefing note for {{audience}} in {{agency}}.\n</role>\n\n<task>\nContinuing from the research and key issues we've just developed, now propose a structure for a {{length}} briefing note on: {{topic}}\n\nAudience: {{audience}}\nPurpose: {{purpose}}\n\nFrom the issues list above, pay particular attention to anything flagged as a sensitivity or information gap – these will shape where the brief needs to be most careful.\n\nUse standard APS briefing note conventions. Typical sections include:\n- Purpose (1–2 sentences: why this brief exists)\n- Background (concise context the reader needs)\n- Key issues / Analysis (the substance of the brief)\n- Options or Recommendations (if the purpose calls for a decision)\n- Next steps / Action required\n\nAdapt the structure to suit this specific audience and purpose. For each proposed section:\n- Provide the section heading\n- Write 2–3 sentences on what it will cover and why it matters\n- Note the approximate word count or length\n\nKeep the total proposed brief within {{length}}.\n</task>",
+  "prompt_template": "<role>\nYou are a senior APS policy analyst preparing a briefing note for {{audience}} in {{agency}}.\n</role>\n\n<task>\nContinuing from the research and key issues we've just developed, now propose a structure for a {{length}} briefing note on: {{topic}}\n\nAudience: {{audience}}\nPurpose: {{purpose}}\nI'm also providing these reference documents to draw on:\n\n<reference_documents>\n{{key_documents}}\n</reference_documents>\n\nFrom the issues list above, pay particular attention to anything flagged as a sensitivity or information gap – these will shape where the brief needs to be most careful.\n\nUse standard APS briefing note conventions. Typical sections include:\n- Purpose (1–2 sentences: why this brief exists)\n- Background (concise context the reader needs)\n- Key issues / Analysis (the substance of the brief)\n- Options or Recommendations (if the purpose calls for a decision)\n- Next steps / Action required\n\nAdapt the structure to suit this specific audience and purpose. For each proposed section:\n- Provide the section heading\n- Write 2–3 sentences on what it will cover and why it matters\n- Note the approximate word count or length\n\nKeep the total proposed brief within {{length}}.\n</task>",
 
   "variables": [
     {
@@ -41,6 +41,12 @@
       "type": "text",
       "required": false,
       "default": "2 pages"
+    },
+    {
+      "name": "key_documents",
+      "description": "Unless internal documents are approved by your agency for use in your tool, use externally available documents only — eg published annual reports, public policy documents, ABS/AIHW statistics, publicly available evaluations.",
+      "type": "long_text",
+      "required": false
     }
   ],
 
