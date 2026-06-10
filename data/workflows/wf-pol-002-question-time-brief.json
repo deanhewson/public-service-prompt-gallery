@@ -84,6 +84,7 @@
       "building_block_id": "BB-QTB-001",
       "description": "Maps the issue, identifies likely question angles, hard questions, and key messages before drafting.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Review the likely questions and add any from your own knowledge. Your read on what's politically sensitive is more accurate than the model's. Add or remove questions before moving on.",
       "platform_tips": {
@@ -99,6 +100,7 @@
       "building_block_id": "BB-QTB-002",
       "description": "Drafts the full QTB in standard APS format – key messages, background, talking points, what to avoid.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Read the draft as if you are the reader about to walk into the forum. Does it cover the hard questions? Are the Key Messages actually usable? Note anything that feels wrong or that you couldn't defend.",
       "platform_tips": {
@@ -114,6 +116,7 @@
       "quality_gate_id": "QG-TRUST-001",
       "description": "Extracts and categorises every factual claim in the draft. In a QTB, unverified statistics can cause serious problems under questioning.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Check every flagged claim against an authoritative source before the brief is used. In a QTB context, a challenged fact mid-session is a serious problem. Resolve all HIGH RISK items.",
       "platform_tips": {
@@ -129,6 +132,7 @@
       "building_block_id": "BB-QTB-003",
       "description": "Stress-tests the brief from a hostile questioner's perspective – surfaces gaps in talking points before the reader faces a real one.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Review the critique. Address the Top 3 fixes. Some issues may not apply to your context – use your judgment. The 'trap question' is the one most worth preparing a response to.",
       "platform_tips": {
@@ -145,6 +149,7 @@
       "building_block_id": "BB-QTB-004",
       "description": "Revises the QTB incorporating verification and scrutiny feedback. Tightens Key Messages and talking points.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Do a final read aloud – talking points in particular should sound natural for the reader to say. Resolve any remaining [VERIFY] or [INSERT DATA] items before the brief is used.",
       "platform_tips": {

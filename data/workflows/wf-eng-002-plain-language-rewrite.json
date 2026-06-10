@@ -60,6 +60,7 @@
       "building_block_id": "BB-PLR-001",
       "description": "Analyses what makes the source text hard to read and sets the objectives for the rewrite.",
       "trust_level": "high",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Review the jargon list and structure recommendations. Add any technical terms or requirements the model missed. The 'what must be preserved' section is important – note any legal or technical precision that cannot be lost.",
       "platform_tips": {
@@ -75,6 +76,7 @@
       "building_block_id": "BB-PLR-002",
       "description": "Produces the plain language rewrite applying the audit findings.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Read the rewrite aloud. Does it sound natural? Compare it to the source – has any important meaning been lost or changed? Note any sections that still feel dense or unclear.",
       "platform_tips": {
@@ -90,6 +92,7 @@
       "building_block_id": "BB-PLR-003",
       "description": "Reviews the rewrite against plain language principles and checks for meaning changes.",
       "trust_level": "high",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Address the Top 3 fixes. For any remaining jargon or long sentences, ask the AI to rewrite those specific parts. If the meaning check identifies any subtle changes to meaning, correct them before using the document.",
       "platform_tips": {
