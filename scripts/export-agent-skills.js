@@ -284,6 +284,67 @@ function buildGenericInstructions(workflow, blocks, gates) {
 }
 
 // ---------------------------------------------------------------------------
+// Copilot Agent Builder (2b)
+// ---------------------------------------------------------------------------
+
+function copilotStepSummary(step, entity) {
+  const core = stripForCopilot(entity.prompt_template);
+  let combined = `${step.description} ${core}`.replace(/\s+/g, ' ').trim();
+  if (combined.length > STEP_SUMMARY_CAP) {
+    combined = combined.slice(0, STEP_SUMMARY_CAP - 1).trimEnd() + '…';
+  }
+  return combined;
+}
+
+function buildCopilotAgent(workflow, blocks, gates) {
+  const oneLineSummary = workflow.description.replace(/\.\s*$/, '');
+  const taskType = humanize(workflow.task_type || workflow.name).toLowerCase();
+  const domainLabel = (DOMAIN_LABELS[workflow.domain] || humanize(workflow.domain)).toLowerCase();
+
+  const descriptionField = `Guides Australian Public Service officers through the APS Prompt Gallery's ${workflow.name} workflow: ${oneLineSummary}. Works step by step with mandatory officer checkpoints for verification and compliance reflection. Use when drafting ${taskType} or when asked for structured, accountable AI assistance with ${domainLabel}.`;
+
+  const stepLines = workflow.steps.map((step) => {
+    const entity = resolveStepEntity(step, blocks, gates);
+    const isCheckpoint = step.agent_mode === 'human_gate';
+    const checkpointTag = isCheckpoint ? ' — CHECKPOINT' : '';
+    const summary = copilotStepSummary(step, entity);
+    return `${step.order}. ${step.name}${checkpointTag} (trust: ${step.trust_level}). ${summary}`;
+  });
+
+  const instructionsField = [
+    buildRoleSection(workflow),
+    '',
+    buildProtocolSection(),
+    '',
+    '# STEPS',
+    '',
+    ...stepLines,
+    '',
+    buildClosingSection(workflow),
+  ].join('\n');
+
+  const lines = [];
+  lines.push(GENERATED_COMMENT);
+  lines.push('');
+  lines.push(`# ${workflow.name} — Copilot Agent Builder configuration`);
+  lines.push('<!-- Paste each block into the matching Agent Builder field. -->');
+  lines.push('');
+  lines.push('## Description field (max 1,000 characters)');
+  lines.push('');
+  lines.push(descriptionField);
+  lines.push('');
+  lines.push('## Instructions field (max 8,000 characters)');
+  lines.push('');
+  lines.push(instructionsField);
+
+  return {
+    markdown: lines.join('\n') + '\n',
+    descriptionField,
+    instructionsField,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -297,7 +358,10 @@ function main() {
   const enabled = Object.values(workflows).filter((wf) => wf.agent_export?.enabled === true);
 
   console.log(`=== APS Prompt Gallery — Agent Export Generator ===\n`);
-  console.log(`Found ${enabled.length} workflow(s) with agent_export.enabled === true:\n`);
+  console.log(`Found ${enabled.length} workflow(s) with agent_export.enabled === true.\n`);
+
+  const charErrors = [];
+  const indexEntries = [];
 
   for (const wf of enabled) {
     const claudeSkillMd = buildClaudeSkill(wf, blocks, gates);
@@ -306,8 +370,42 @@ function main() {
     const genericMd = buildGenericInstructions(wf, blocks, gates);
     writeFileSync(path.join(OUTPUT_DIR, `${wf.slug}-agent-instructions.md`), genericMd, 'utf8');
 
-    console.log(`${wf.id} (${wf.slug}) — ${wf.steps.length} steps — wrote claude-skill, agent-instructions`);
+    const { markdown: copilotMd, descriptionField, instructionsField } = buildCopilotAgent(wf, blocks, gates);
+    writeFileSync(path.join(OUTPUT_DIR, `${wf.slug}-copilot-agent.md`), copilotMd, 'utf8');
+
+    console.log(`${wf.id} (${wf.slug}) — ${wf.steps.length} steps`);
+    console.log(`  copilot description: ${descriptionField.length}/${COPILOT_DESCRIPTION_LIMIT} chars`);
+    console.log(`  copilot instructions: ${instructionsField.length}/${COPILOT_INSTRUCTIONS_LIMIT} chars`);
+
+    if (descriptionField.length > COPILOT_DESCRIPTION_LIMIT) {
+      charErrors.push(`${wf.id}: Copilot description field is ${descriptionField.length} chars, exceeds limit of ${COPILOT_DESCRIPTION_LIMIT} by ${descriptionField.length - COPILOT_DESCRIPTION_LIMIT}`);
+    }
+    if (instructionsField.length > COPILOT_INSTRUCTIONS_LIMIT) {
+      charErrors.push(`${wf.id}: Copilot instructions field is ${instructionsField.length} chars, exceeds limit of ${COPILOT_INSTRUCTIONS_LIMIT} by ${instructionsField.length - COPILOT_INSTRUCTIONS_LIMIT}`);
+    }
+
+    indexEntries.push({
+      slug: wf.slug,
+      name: wf.name,
+      files: {
+        claude_skill: `${wf.slug}-claude-skill.md`,
+        copilot_agent: `${wf.slug}-copilot-agent.md`,
+        generic: `${wf.slug}-agent-instructions.md`,
+      },
+      experimental: wf.agent_export.platforms,
+    });
   }
+
+  writeFileSync(path.join(OUTPUT_DIR, 'index.json'), JSON.stringify(indexEntries, null, 2) + '\n', 'utf8');
+  console.log(`\nWrote index.json (${indexEntries.length} workflows)`);
+
+  if (charErrors.length > 0) {
+    console.error('\nCharacter limit violations:');
+    for (const e of charErrors) console.error(`  ${e}`);
+    process.exit(1);
+  }
+
+  console.log('\nDone.');
 }
 
 main();
