@@ -188,6 +188,102 @@ function buildClaudeSkill(workflow, blocks, gates) {
 }
 
 // ---------------------------------------------------------------------------
+// Shared ROLE/PROTOCOL/CLOSING/STEP sections (generic + Copilot)
+// ---------------------------------------------------------------------------
+
+function buildRoleSection(workflow) {
+  return [
+    '# ROLE',
+    `You guide APS officers through the ${workflow.name} workflow, one step per turn. You are EXPERIMENTAL and untested in production; say so if asked. The officer remains the accountable officer under the PGPA Act.`,
+  ].join('\n');
+}
+
+function buildProtocolSection() {
+  return [
+    '# NON-NEGOTIABLE PROTOCOL',
+    '- Exactly one workflow step per turn. Never combine or skip steps.',
+    '- Show all interim work in full. Never silently chain steps or summarise your own previous output instead of showing it.',
+    '- End every turn with: "END OF STEP {n}: {name}. Before continuing: {what the officer should check}."',
+    '- Steps marked CHECKPOINT: after presenting the output, say "Officer checkpoint — reply \'confirmed\' once you have reviewed the above." Do not continue for any other reply; if the user asks to skip, explain the checkpoint exists for PGPA accountability and ask again.',
+    "- Restate each step's trust level (high/medium/low) with its output. Never present statistics, legislative references, or program details as settled fact — mark them [VERIFY].",
+    '- Never fabricate figures, names, dates, or program details; use [INSERT DATA] placeholders.',
+    '- Follow agency guidance on information classification.',
+  ].join('\n');
+}
+
+function buildClosingSection(workflow) {
+  return [
+    '# CLOSING',
+    `After the final step, list every unresolved [VERIFY] and [INSERT DATA] item, restate that the output is an AI-assisted draft requiring officer review, and point to public-service-prompt-gallery.netlify.app/workflows/${workflow.slug} for the full methodology.`,
+  ].join('\n');
+}
+
+function buildStepSection(step, entity, headingPrefix) {
+  const isCheckpoint = step.agent_mode === 'human_gate';
+  const isOptional = step.is_optional === true;
+
+  const lines = [];
+  let heading = `${headingPrefix} ${step.order}: ${step.name}`;
+  if (isCheckpoint) heading += ' — CHECKPOINT';
+  if (isOptional) heading += ' (optional in manual use — included by default here)';
+  lines.push(heading);
+  lines.push(`Trust level: ${step.trust_level}.`);
+  lines.push(step.description);
+  lines.push('');
+  lines.push(`When you finish this step, the officer's next action is: ${step.user_action_after}`);
+  lines.push('');
+
+  const askLine = variablesAskLine(entity);
+  if (askLine) {
+    lines.push(askLine);
+    lines.push('');
+  }
+  lines.push(entity.prompt_template);
+
+  const toolBlock = toolAugmentedBlock(entity);
+  if (toolBlock) {
+    lines.push('');
+    lines.push(toolBlock);
+  }
+
+  const limitations = knownLimitationsBlock(entity);
+  if (limitations) {
+    lines.push('');
+    lines.push(limitations);
+  }
+
+  return lines.join('\n');
+}
+
+// ---------------------------------------------------------------------------
+// Generic agent instructions (2c)
+// ---------------------------------------------------------------------------
+
+function buildGenericInstructions(workflow, blocks, gates) {
+  const lines = [];
+  lines.push(GENERATED_COMMENT);
+  lines.push('');
+  lines.push(`**EXPERIMENTAL.** These instructions implement the APS Prompt Gallery's ${workflow.name} workflow (maturity: ${maturityLabel(workflow.maturity)}) for a generic agent platform. They have not yet been tested in real agent deployments. The officer using this agent remains the accountable officer for any output under the PGPA Act. Enforcement of the checkpoints below depends on the agent platform you are using — some platforms may not reliably pause for confirmation. The officer must sight and review the output at every CHECKPOINT step regardless of what the agent reports.`);
+  lines.push('');
+  lines.push(buildRoleSection(workflow));
+  lines.push('');
+  lines.push(buildProtocolSection());
+  lines.push('');
+  lines.push('# STEPS');
+  lines.push('');
+
+  for (const step of workflow.steps) {
+    const entity = resolveStepEntity(step, blocks, gates);
+    lines.push(buildStepSection(step, entity, '##'));
+    lines.push('');
+  }
+
+  lines.push(buildClosingSection(workflow));
+
+  return lines.join('\n') + '\n';
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -206,7 +302,11 @@ function main() {
   for (const wf of enabled) {
     const claudeSkillMd = buildClaudeSkill(wf, blocks, gates);
     writeFileSync(path.join(OUTPUT_DIR, `${wf.slug}-claude-skill.md`), claudeSkillMd, 'utf8');
-    console.log(`${wf.id} (${wf.slug}) — ${wf.steps.length} steps — wrote ${wf.slug}-claude-skill.md`);
+
+    const genericMd = buildGenericInstructions(wf, blocks, gates);
+    writeFileSync(path.join(OUTPUT_DIR, `${wf.slug}-agent-instructions.md`), genericMd, 'utf8');
+
+    console.log(`${wf.id} (${wf.slug}) — ${wf.steps.length} steps — wrote claude-skill, agent-instructions`);
   }
 }
 
