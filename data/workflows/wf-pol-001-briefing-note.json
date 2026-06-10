@@ -240,6 +240,15 @@
     }
   },
 
+  "agent_export": {
+    "enabled": true,
+    "platforms": {
+      "claude_skill": { "experimental": true, "notes": "" },
+      "copilot_agent": { "experimental": true, "notes": "Longest workflow in the Gallery. If Agent Builder instruction limits are reached, the generator compresses step guidance — the full prompts remain available on this page." },
+      "generic": { "experimental": true, "notes": "" }
+    }
+  },
+
   "known_limitations": [
     "The AI can only work with what info you give it. Before uploading internal documents or data to your generative AI tool, check your agency's AI use policy on what you're allowed to include.",
     "Statistics and program details may be outdated or fabricated - always verify before including in any official document.",
