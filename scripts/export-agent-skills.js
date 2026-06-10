@@ -101,6 +101,93 @@ function stripForCopilot(template) {
 }
 
 // ---------------------------------------------------------------------------
+// Claude Skill (2a)
+// ---------------------------------------------------------------------------
+
+function buildClaudeSkill(workflow, blocks, gates) {
+  const skillName = `aps-${workflow.slug}`;
+  const taskType = humanize(workflow.task_type || workflow.name).toLowerCase();
+  const description = `${workflow.description} Follows the APS Prompt Gallery ${workflow.name} methodology with mandatory officer checkpoints. Use when an Australian Public Service officer asks for help producing ${taskType}.`;
+
+  const lines = [];
+  lines.push('---');
+  lines.push(`name: ${skillName}`);
+  lines.push(`description: ${description}`);
+  lines.push('---');
+  lines.push('');
+  lines.push(GENERATED_COMMENT);
+  lines.push('');
+  lines.push(`# ${workflow.name} — APS Prompt Gallery methodology`);
+  lines.push('');
+  lines.push(`**EXPERIMENTAL.** This skill is generated from the APS Prompt Gallery's ${workflow.name} workflow (maturity: ${maturityLabel(workflow.maturity)}). It has not yet been tested in real agent deployments. The officer using it remains the accountable officer for any output under the PGPA Act.`);
+  lines.push('');
+  lines.push('## How to run this workflow');
+  lines.push('');
+  lines.push('Work through the steps below **in order, one step per response**. Never combine steps. Never skip a step marked CHECKPOINT.');
+  lines.push('');
+  lines.push('At every step:');
+  lines.push("- Produce the step's output in full — never summarise your own interim work.");
+  lines.push('- End your response with: `— END OF STEP {n}: {step name}. Before continuing: {step.user_action_after}`');
+  lines.push('- At steps marked **CHECKPOINT**, additionally state: "This is an officer checkpoint. I will not continue until you confirm you have reviewed the output above." Then stop and wait. Do not proceed on an ambiguous reply — ask for explicit confirmation.');
+  lines.push('');
+  lines.push("Trust guidance: steps are marked high / medium / low trust. Restate the step's trust level when you present its output. Never present low-trust content (specific statistics, legislative references, program details) as settled fact.");
+  lines.push('');
+  lines.push("Classification: follow the officer's agency guidance on what information classification may be used with this tool. Do not encourage the officer to paste material above the approved classification.");
+  lines.push('');
+  lines.push('## Steps');
+  lines.push('');
+
+  for (const step of workflow.steps) {
+    const entity = resolveStepEntity(step, blocks, gates);
+    const isCheckpoint = step.agent_mode === 'human_gate';
+    const isOptional = step.is_optional === true;
+
+    let heading = `### Step ${step.order}: ${step.name}`;
+    if (isCheckpoint) heading += ' — CHECKPOINT';
+    if (isOptional) heading += ' (optional in manual use — included by default here)';
+    lines.push(heading);
+    lines.push(`Trust level: ${step.trust_level}.`);
+    lines.push(step.description);
+    lines.push('');
+    lines.push(`When you finish this step, the officer's next action is: ${step.user_action_after}`);
+    lines.push('');
+    lines.push('Prompt methodology for this step:');
+    lines.push('');
+
+    const askLine = variablesAskLine(entity);
+    if (askLine) {
+      lines.push(askLine);
+      lines.push('');
+    }
+    lines.push(entity.prompt_template);
+
+    const toolBlock = toolAugmentedBlock(entity);
+    if (toolBlock) {
+      lines.push('');
+      lines.push(toolBlock);
+    }
+
+    const limitations = knownLimitationsBlock(entity);
+    if (limitations) {
+      lines.push('');
+      lines.push(limitations);
+    }
+
+    lines.push('');
+  }
+
+  lines.push('## Appendix: workflow limitations');
+  lines.push('');
+  for (const lim of workflow.known_limitations) {
+    lines.push(`- ${lim}`);
+  }
+  lines.push('');
+  lines.push(`Generated from the APS Prompt Gallery (public-service-prompt-gallery.netlify.app), ${generationDate(workflow)}.`);
+
+  return lines.join('\n') + '\n';
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -114,9 +201,12 @@ function main() {
   const enabled = Object.values(workflows).filter((wf) => wf.agent_export?.enabled === true);
 
   console.log(`=== APS Prompt Gallery — Agent Export Generator ===\n`);
-  console.log(`Found ${enabled.length} workflow(s) with agent_export.enabled === true:`);
+  console.log(`Found ${enabled.length} workflow(s) with agent_export.enabled === true:\n`);
+
   for (const wf of enabled) {
-    console.log(`  - ${wf.id} (${wf.slug}) — ${wf.steps.length} steps`);
+    const claudeSkillMd = buildClaudeSkill(wf, blocks, gates);
+    writeFileSync(path.join(OUTPUT_DIR, `${wf.slug}-claude-skill.md`), claudeSkillMd, 'utf8');
+    console.log(`${wf.id} (${wf.slug}) — ${wf.steps.length} steps — wrote ${wf.slug}-claude-skill.md`);
   }
 }
 
