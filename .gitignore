@@ -15,6 +15,10 @@ notes/sprint-review-design-*.md
 notes/design-*.md
 notes/workflow-iteration-log.md
 notes/pitch.md
+notes/2026-06-10-agent-ready-gallery-plan.md
+notes/2026-06-10 sprint-1-agent-schema-handoff.md
+notes/2026-06-10 sprint-2-export-generator-handoff.md
+notes/2026-06-10 sprint-3-ui-reframe-handoff.md
 
 # Obsidian
 .obsidian/workspace.json
@@ -41,4 +45,8 @@ desktop.ini
 # Logo working files
 logo1.gh
 logo1.svg
+notes/logo1.png
 .gstack/
+
+# Obsidian Bases (stray local files)
+Untitled.base
