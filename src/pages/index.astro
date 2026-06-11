@@ -15,6 +15,7 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Lexend:wght@300..700&display=swap" rel="stylesheet" />
   <title>APS Prompt Gallery</title>
+  <meta name="description" content="Structured, multi-step AI workflows for APS staff, with built-in compliance checks and trust levels. Free and early-stage – help shape what's next.">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
 
@@ -351,6 +352,25 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
     }
     .agency-callout a { color: var(--color-primary); }
 
+    /* ── Get involved (callout pair) ─────────────────── */
+    .callout-pair {
+      margin: 40px 0 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .callout-pair .agency-callout {
+      margin: 0;
+    }
+
+    /* ── Early-stage note ────────────────────────────── */
+    .early-stage-note {
+      margin: 16px 0 0;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+    .early-stage-note a { color: var(--color-primary); }
+
     /* ── Footer ──────────────────────────────────────── */
     .footer {
       margin: 48px 0 32px;
@@ -362,6 +382,7 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
 
     /* ── Responsive ──────────────────────────────────── */
     @media (max-width: 680px) {
+      .callout-pair { grid-template-columns: 1fr; }
       .method-points { grid-template-columns: 1fr; }
       .howto-steps { flex-direction: column; align-items: flex-start; gap: 8px; }
       .howto-arrow { display: none; }
@@ -380,21 +401,32 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
 
 <div class="container">
   <div class="hero">
-    <h2>Test and refine, not ask and hope.</h2>
+    <h2>Human-in-the-loop AI workflows for government work.</h2>
     <p>
-      Most of us have found AI useful for simple tasks. The harder problem is using it
-      consistently for complex work – briefings, stakeholder analysis, plain language
-      rewrites – in a way that's repeatable and can get better over time.
-      That's what this library is for.
+      Most of us have found AI useful for quick tasks. The harder problem is the work that
+      has to survive scrutiny – briefings, stakeholder analysis, plain language rewrites –
+      where you're accountable for what goes out under your name.
     </p>
     <p>
-      Step-by-step workflows for Australian Public Service staff, built for Claude, ChatGPT,
-      and Copilot. Free, no login required, no information saved.
+      This library builds those checks into every workflow: claim verification, red-team
+      review, and a compliance check against the PGPA Act, PSPF, Privacy Act and APS Values.
+      Every step also carries an explicit trust level, so you always know what to verify
+      yourself.
+    </p>
+    <p>
+      Step-by-step workflows for Australian Public Service staff (APS 3-4 to SES), built for
+      Claude, ChatGPT, and Copilot. Free, no login required, no information saved.
     </p>
 
     <div class="security-notice">
       <strong>About AI tools and classification:</strong> Follow agency guidance on what information classification you can use in public or agency-provided AI tools.
     </div>
+
+    <p class="early-stage-note">
+      This is an early-stage, side-of-desk project, built by one APS officer and growing
+      with feedback from people who use it.
+      <a href="/about#about-the-project">More about the project →</a>
+    </p>
 
     <div class="hero-howto">
       <h4>How to use this site</h4>
@@ -491,17 +523,36 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
     </div>
   </div>
 
-  <!-- Agency callout -->
-  <div class="agency-callout">
-    <div class="agency-callout-icon">🏛️</div>
-    <div>
-      <h4>Using this in your agency?</h4>
-      <p>
-        This library is designed to be forked. Agencies can maintain a private version with
-        their own workflows and branding while contributing improvements back to the shared upstream.
-        <a href="https://github.com/deanhewson/public-service-prompt-gallery/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">See the contribution guide →</a>
-      </p>
+  <!-- Get involved -->
+  <div class="callout-pair">
+
+    <!-- Individual contributor callout -->
+    <div class="agency-callout">
+      <div class="agency-callout-icon">💬</div>
+      <div>
+        <h4>Tried a workflow?</h4>
+        <p>
+          This library gets better with real use. If something worked well, didn't quite
+          fit, or you can see a workflow that's missing, tell us.
+          Use the feedback form at the bottom of any workflow page, or
+          <a href="https://github.com/deanhewson/public-service-prompt-gallery/issues/new?template=workflow-submission.md" target="_blank" rel="noopener">suggest a new workflow on GitHub →</a>
+        </p>
+      </div>
     </div>
+
+    <!-- Agency callout -->
+    <div class="agency-callout">
+      <div class="agency-callout-icon">🏛️</div>
+      <div>
+        <h4>Using this in your agency?</h4>
+        <p>
+          This library is designed to be forked. Maintain a private version with your own
+          workflows and branding, while contributing improvements back to the shared upstream.
+          <a href="https://github.com/deanhewson/public-service-prompt-gallery/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">See the contribution guide →</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 
   <!-- Policy Development -->

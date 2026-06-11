@@ -1,9 +1,12 @@
 # APS Prompt Gallery
 
-A structured prompt library for Australian Public Service staff, designed to help you use generative AI tools more effectively and safely. Early release — 6 workflows live and tested, with more in development.
+Human-in-the-loop AI workflows for government work.
+
+A structured prompt library for Australian Public Service staff, with quality checks, trust levels, and compliance considerations (PGPA Act, PSPF, Privacy Act, APS Values) built into every workflow.
 
 **Live site:** [public-service-prompt-gallery.netlify.app](https://public-service-prompt-gallery.netlify.app)
 
+This is an early-stage, side-of-desk project – 6 workflows live and tested, with more in development, built and maintained by one APS officer. It grows through feedback and contributions from APS staff across agencies; see [Contributing](#contributing) below.
 
 ---
 
