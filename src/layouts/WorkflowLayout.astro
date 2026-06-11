@@ -588,6 +588,21 @@ const domainLabels = {
 
     .trust-icon { font-size: 1rem; flex-shrink: 0; }
 
+    /* ── Tool-augmented gate toggle ────────────────── */
+    .tool-augmented-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--color-muted);
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .tool-augmented-toggle input[type="checkbox"] {
+      cursor: pointer;
+    }
+
     /* ── User action ────────────────────────────────── */
     .user-action {
       border-left: 3px solid var(--color-accent);
@@ -1303,15 +1318,35 @@ const domainLabels = {
 
           <div class="platform-tip-callout" id={`platform-tip-${step.order}`} style="display:none"></div>
 
+          {content?.tool_augmented && (
+            <label class="tool-augmented-toggle" for={`tool-augmented-${step.order}`}>
+              <input type="checkbox" id={`tool-augmented-${step.order}`} data-tool-augmented-toggle={step.order} />
+              My AI tool can search the web
+            </label>
+          )}
+
           {content && (
             <div class="prompt-box">
               <div class="prompt-toolbar">
                 <span>Prompt – {content.name}</span>
                 <button class="copy-btn" data-copy={step.order}>Copy prompt</button>
               </div>
-              <div class="prompt-text" id={`prompt-${step.order}`} data-template={content.prompt_template} data-platform-prompts={JSON.stringify(content.platform_prompts ?? {})}>
+              <div
+                class="prompt-text"
+                id={`prompt-${step.order}`}
+                data-template={content.prompt_template}
+                data-platform-prompts={JSON.stringify(content.platform_prompts ?? {})}
+                data-tool-template={content.tool_augmented ? content.tool_augmented.prompt_template : undefined}
+              >
                 {content.prompt_template}
               </div>
+            </div>
+          )}
+
+          {content?.tool_augmented && (
+            <div class={`trust-explainer ${isGate ? 'trust-gate' : `trust-${trust}`}`} id={`tool-augmented-note-${step.order}`} style="display:none">
+              <span class="trust-icon">{isGate ? '◈' : (trust === 'high' ? '✓' : trust === 'medium' ? '⚠' : '✗')}</span>
+              <span>{content.tool_augmented.trust_note}</span>
             </div>
           )}
 
@@ -1629,7 +1664,15 @@ const domainLabels = {
     return result;
   }
 
+  // ── Tool-augmented gate toggle state (per step, default off) ────────────
+  const toolAugmentedOn = new Set();
+
   function getEffectiveTemplate(el) {
+    const toolTemplate = el.getAttribute('data-tool-template');
+    if (toolTemplate) {
+      const stepNum = parseInt(el.closest('.step-card')?.getAttribute('data-step'));
+      if (toolAugmentedOn.has(stepNum)) return toolTemplate;
+    }
     const platformPrompts = JSON.parse(el.getAttribute('data-platform-prompts') || '{}');
     return platformPrompts[currentPlatform] || el.getAttribute('data-template');
   }
@@ -2028,6 +2071,23 @@ const domainLabels = {
       });
     });
   }
+
+  // ── Tool-augmented gate toggle ───────────────────────────────────────────
+  document.querySelectorAll('[data-tool-augmented-toggle]').forEach(checkbox => {
+    const stepNum = parseInt(checkbox.getAttribute('data-tool-augmented-toggle'));
+    checkbox.addEventListener('change', () => {
+      const isOn = checkbox.checked;
+      if (isOn) {
+        toolAugmentedOn.add(stepNum);
+      } else {
+        toolAugmentedOn.delete(stepNum);
+      }
+      const note = document.getElementById(`tool-augmented-note-${stepNum}`);
+      if (note) note.style.display = isOn ? '' : 'none';
+      updatePrompts();
+      gcEvent(`/event/gate-variant-toggle/step-${stepNum}`, `Gate variant toggle: step ${stepNum}` + (isOn ? ' on' : ' off'));
+    });
+  });
 
   // ── Initialise ───────────────────────────────────────────────────────────
   applySkillLevel('intermediate');
