@@ -164,6 +164,38 @@ architecture doc (`notes/aps-genai-prompt-library-architecture.md`) first.
 - `official_sensitive`
 - `protected`
 
+**Agent mode** (workflow steps only — experimental, used for agentic execution)
+
+- `autonomous` — in agentic execution the agent may complete this step and continue, surfacing the output as it goes.
+- `human_gate` — the agent must stop after this step, present the output (including any verification/consideration table) in full, and await explicit officer confirmation before continuing.
+
+**Agent export** (per workflow, optional — experimental)
+
+```json
+"agent_export": {
+  "enabled": true,
+  "platforms": {
+    "claude_skill": { "experimental": true, "notes": "" },
+    "copilot_agent": { "experimental": true, "notes": "" },
+    "generic": { "experimental": true, "notes": "" }
+  }
+}
+```
+
+The per-platform objects allow each platform to carry divergent metadata and content overrides independently — for example, one platform can be de-flagged from experimental once tested while the others remain experimental.
+
+**Tool-augmented quality gate variant** (per quality gate, optional)
+
+```json
+"tool_augmented": {
+  "requires": ["web_search"],
+  "trust_note": "...",
+  "prompt_template": "..."
+}
+```
+
+Only add a `tool_augmented` variant where external verification (e.g. web search) genuinely changes what the gate can check — not as a default addition to every gate.
+
 ---
 
 ## Variable syntax

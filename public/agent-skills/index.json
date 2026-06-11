@@ -1,0 +1,140 @@
+[
+  {
+    "slug": "monthly-performance-check-in",
+    "name": "Monthly Performance Check-in",
+    "files": {
+      "claude_skill": "monthly-performance-check-in-claude-skill.md",
+      "copilot_agent": "monthly-performance-check-in-copilot-agent.md",
+      "generic": "monthly-performance-check-in-agent-instructions.md"
+    },
+    "experimental": {
+      "claude_skill": {
+        "experimental": true,
+        "notes": ""
+      },
+      "copilot_agent": {
+        "experimental": true,
+        "notes": ""
+      },
+      "generic": {
+        "experimental": true,
+        "notes": ""
+      }
+    }
+  },
+  {
+    "slug": "stakeholder-analysis",
+    "name": "Stakeholder Analysis",
+    "files": {
+      "claude_skill": "stakeholder-analysis-claude-skill.md",
+      "copilot_agent": "stakeholder-analysis-copilot-agent.md",
+      "generic": "stakeholder-analysis-agent-instructions.md"
+    },
+    "experimental": {
+      "claude_skill": {
+        "experimental": true,
+        "notes": ""
+      },
+      "copilot_agent": {
+        "experimental": true,
+        "notes": ""
+      },
+      "generic": {
+        "experimental": true,
+        "notes": ""
+      }
+    }
+  },
+  {
+    "slug": "plain-language-rewrite",
+    "name": "Plain Language Rewrite",
+    "files": {
+      "claude_skill": "plain-language-rewrite-claude-skill.md",
+      "copilot_agent": "plain-language-rewrite-copilot-agent.md",
+      "generic": "plain-language-rewrite-agent-instructions.md"
+    },
+    "experimental": {
+      "claude_skill": {
+        "experimental": true,
+        "notes": ""
+      },
+      "copilot_agent": {
+        "experimental": true,
+        "notes": ""
+      },
+      "generic": {
+        "experimental": true,
+        "notes": ""
+      }
+    }
+  },
+  {
+    "slug": "meeting-preparation",
+    "name": "Meeting Preparation",
+    "files": {
+      "claude_skill": "meeting-preparation-claude-skill.md",
+      "copilot_agent": "meeting-preparation-copilot-agent.md",
+      "generic": "meeting-preparation-agent-instructions.md"
+    },
+    "experimental": {
+      "claude_skill": {
+        "experimental": true,
+        "notes": ""
+      },
+      "copilot_agent": {
+        "experimental": true,
+        "notes": ""
+      },
+      "generic": {
+        "experimental": true,
+        "notes": ""
+      }
+    }
+  },
+  {
+    "slug": "briefing-note",
+    "name": "Briefing Note",
+    "files": {
+      "claude_skill": "briefing-note-claude-skill.md",
+      "copilot_agent": "briefing-note-copilot-agent.md",
+      "generic": "briefing-note-agent-instructions.md"
+    },
+    "experimental": {
+      "claude_skill": {
+        "experimental": true,
+        "notes": ""
+      },
+      "copilot_agent": {
+        "experimental": true,
+        "notes": "Longest workflow in the Gallery. If Agent Builder instruction limits are reached, the generator compresses step guidance — the full prompts remain available on this page."
+      },
+      "generic": {
+        "experimental": true,
+        "notes": ""
+      }
+    }
+  },
+  {
+    "slug": "question-time-brief",
+    "name": "Question Time Brief",
+    "files": {
+      "claude_skill": "question-time-brief-claude-skill.md",
+      "copilot_agent": "question-time-brief-copilot-agent.md",
+      "generic": "question-time-brief-agent-instructions.md"
+    },
+    "experimental": {
+      "claude_skill": {
+        "experimental": true,
+        "notes": ""
+      },
+      "copilot_agent": {
+        "experimental": true,
+        "notes": ""
+      },
+      "generic": {
+        "experimental": true,
+        "notes": ""
+      }
+    }
+  }
+]

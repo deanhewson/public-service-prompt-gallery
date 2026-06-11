@@ -103,6 +103,7 @@
       "building_block_id": "BB-CAREER-001",
       "description": "Build a comprehensive list of what you actually did this month. For Copilot M365 users, the AI searches your emails, calendar, Teams, and documents. For all other tools, the AI guides you through structured recall questions.",
       "trust_level": "high",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Review the activity inventory carefully. Add anything the AI missed – it can only work with what you told it or what Copilot found. Remove anything trivial. This list is the foundation for the rest of the workflow.",
       "output_feeds_to": [2]
@@ -115,6 +116,7 @@
       "building_block_id": "BB-CAREER-002",
       "description": "Map your activities against your performance agreement goals, team priorities, and development objectives. Surface gaps and unexpected priorities.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "This is where your judgement matters most. The AI can only assess alignment based on what you told it – it doesn't know if a goal is actually on track behind the scenes, or if your 'unaligned work' was a critical emerging priority your supervisor asked you to handle. Correct the assessment where needed.",
       "output_feeds_to": [3, 4]
@@ -127,6 +129,7 @@
       "building_block_id": "BB-CAREER-003",
       "description": "Reflect on HOW you worked, not just WHAT you delivered. The APSC framework weights behaviours equally with outcomes. The AI prompts you through five dimensions: collaboration, accountability, adaptability, communication, and development mindset.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": true,
       "user_action_after": "Behavioural reflection is harder than listing achievements – it's easy to default to 'everything was fine.' If the summary feels generic or avoidant, push yourself to be more specific. The value of this step compounds over months.",
       "output_feeds_to": [4]
@@ -140,6 +143,7 @@
       "quality_gate_id": "QG-CAREER-001",
       "description": "Challenge whether the reflection is thorough and honest, not just flattering. Checks for missing areas, superficial self-assessment, and forward-looking gaps. Outputs THOROUGH / ADEQUATE / NEEDS MORE DEPTH.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": true,
       "user_action_after": "If the gate flags areas as needing more depth, go back and add to them. The point isn't a perfect document – it's to make sure you've actually thought about the things that matter. If something is flagged that you genuinely don't want to document, that's fine – just make a private mental note.",
       "output_feeds_to": [5]
@@ -152,6 +156,7 @@
       "building_block_id": "BB-CAREER-005",
       "description": "Produce the final monthly record in a consistent, accumulation-friendly format. Identifies recommended actions and optionally drafts talking points for supervisor conversations.",
       "trust_level": "high",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Save this output somewhere you'll find it at end-of-cycle. The value of this workflow compounds – month 1 is useful, month 6 is powerful, month 12 gives you a complete performance narrative to draw from. If you flagged items to raise with your supervisor, consider bringing them to your next performance conversation.",
       "output_feeds_to": []
@@ -207,6 +212,15 @@
       "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context your AI tool should follow throughout the session.",
       "content": "Role: You are helping an Australian Public Service officer with a structured monthly performance reflection.\n\nContext: The APSC non-SES Performance Framework assesses both outcomes (what was delivered) and behaviours (how work was done, aligned to APS Values: Impartial, Committed to service, Accountable, Respectful, Ethical).\n\nInstructions:\n- Be supportive but honest – gently probe if self-assessment seems superficial or avoids difficult areas\n- Do not fabricate achievements or inflate the officer's contributions\n- Do not include names of other staff – use generic references (eg, 'your supervisor', 'a team member')\n- Keep all inputs at OFFICIAL level – do not include information classified OFFICIAL: Sensitive or above",
       "document_handling": "Paste relevant content (your performance agreement, previous check-in) directly into the prompts at the steps where you need to reference them."
+    }
+  },
+
+  "agent_export": {
+    "enabled": true,
+    "platforms": {
+      "claude_skill": { "experimental": true, "notes": "" },
+      "copilot_agent": { "experimental": true, "notes": "" },
+      "generic": { "experimental": true, "notes": "" }
     }
   },
 

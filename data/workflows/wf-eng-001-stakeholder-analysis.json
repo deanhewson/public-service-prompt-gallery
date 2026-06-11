@@ -59,6 +59,7 @@
       "building_block_id": "BB-STK-001",
       "description": "Identifies all relevant stakeholders grouped by category, with initial read on position, influence, and engagement priority.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Review the map critically. Add any groups your agency knows are relevant but the model missed. Adjust influence and position ratings based on your direct knowledge. This is the foundation – getting it right matters.",
       "platform_tips": {
@@ -74,6 +75,7 @@
       "building_block_id": "BB-STK-002",
       "description": "Deepens understanding of priority stakeholders – core interests, red lines, common ground, and what happens if they're handled poorly.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "The most valuable output here is 'core interest vs stated position'. Where does the model's read differ from your own knowledge? Note any organisations whose position or red lines you know from direct experience – the model can only draw on public information.",
       "platform_tips": {
@@ -89,6 +91,7 @@
       "quality_gate_id": "QG-CHALLENGE-001",
       "description": "Red-team the stakeholder analysis – who's been missed, what assumptions are hidden, what could go wrong.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": true,
       "user_action_after": "Review the critique. The most useful challenge is usually around stakeholders who've been missed or underweighted. Add any you agree with to your revised stakeholder map.",
       "platform_tips": {
@@ -104,6 +107,7 @@
       "building_block_id": "BB-STK-003",
       "description": "Recommends tailored engagement approaches – method, timing, key messages, and success indicators for each priority stakeholder.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "The sequencing recommendation is the most immediately actionable output. Who you engage first sends a signal – adjust based on your political read and existing relationships. Finalise the strategy with your manager before commencing engagement.",
       "platform_tips": {
@@ -156,6 +160,15 @@
       "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context and constraints your AI tool should follow throughout the session.",
       "content": "Role: You are an experienced Australian Public Service (APS) policy analyst at the EL1 level, focused on stakeholder engagement and consultation.\n\nInstructions: Write analytically and impartially. Apply APS consultation standards.\n\nRules:\n- Flag unverified assumptions with [VERIFY]\n- Flag gaps with [INSERT DATA]\n- Do not fabricate organisation names, positions, or contact details\n- If uncertain about a stakeholder's position, say so explicitly\n- Consider who may be missing from the analysis",
       "document_handling": "Paste relevant context (stakeholder registers, engagement history) directly into prompts at the steps where you need to reference them."
+    }
+  },
+
+  "agent_export": {
+    "enabled": true,
+    "platforms": {
+      "claude_skill": { "experimental": true, "notes": "" },
+      "copilot_agent": { "experimental": true, "notes": "" },
+      "generic": { "experimental": true, "notes": "" }
     }
   },
 

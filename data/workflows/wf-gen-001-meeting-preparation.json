@@ -76,6 +76,7 @@
       "building_block_id": "BB-MTG-001",
       "description": "Defines what the meeting needs to achieve, key issues, attendee dynamics, and any pre-meeting actions.",
       "trust_level": "high",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Review the objectives – do they match what you actually need from this meeting? Adjust the attendee analysis based on your direct knowledge of these people. Note any pre-meeting actions that need to happen before you move on.",
       "platform_tips": {
@@ -91,6 +92,7 @@
       "building_block_id": "BB-MTG-002",
       "description": "Produces a structured agenda ordered to achieve the objectives, with time allocations and item types.",
       "trust_level": "high",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Check the time allocations against your experience of how long this group takes. Adjust the order if needed. Circulate to a colleague or the chair for sense-check before finalising.",
       "platform_tips": {
@@ -106,6 +108,7 @@
       "building_block_id": "BB-MTG-003",
       "description": "Drafts a brief for attendees covering context, key issues, and what they need to come prepared to contribute. Optional for smaller internal meetings.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": true,
       "user_action_after": "Check all [VERIFY] flags before circulating. Have a senior officer review before it goes out – this represents your agency. Update any [INSERT: document name] placeholders with actual references.",
       "platform_tips": {
@@ -122,6 +125,7 @@
       "building_block_id": "BB-MTG-004",
       "description": "Generates opening questions, deepening prompts, and decision-forcing questions for each agenda item. For the chair or facilitator.",
       "trust_level": "high",
+      "agent_mode": "autonomous",
       "is_optional": true,
       "user_action_after": "Select the prompts that feel right for your group – you don't need all of them. Have the decision-forcing questions ready but use them with judgment. Good facilitation reads the room.",
       "platform_tips": {
@@ -174,6 +178,15 @@
       "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context and constraints your AI tool should follow throughout the session.",
       "content": "Role: You are an experienced Australian Public Service (APS) officer skilled at preparing meeting materials.\n\nInstructions: Write in clear, professional APS style. Keep agendas realistic and time-aware.\n\nRules:\n- Flag uncertain facts with [VERIFY]\n- Flag gaps needing input with [INSERT DATA]\n- Do not invent participant names, roles, or positions\n- Do not overload the agenda beyond what the time allows",
       "document_handling": "Paste relevant background documents or context directly into the prompts at the steps where you need to reference them."
+    }
+  },
+
+  "agent_export": {
+    "enabled": true,
+    "platforms": {
+      "claude_skill": { "experimental": true, "notes": "" },
+      "copilot_agent": { "experimental": true, "notes": "" },
+      "generic": { "experimental": true, "notes": "" }
     }
   },
 

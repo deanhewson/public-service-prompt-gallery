@@ -185,7 +185,7 @@ const domainLabels = {
       flex-wrap: wrap;
     }
 
-    .skill-btn, .platform-btn {
+    .skill-btn, .platform-btn, .agent-tab-btn {
       padding: 7px 16px;
       border: 2px solid var(--color-border);
       border-radius: 6px;
@@ -196,11 +196,11 @@ const domainLabels = {
       font-family: inherit;
       transition: all 0.15s;
     }
-    .skill-btn:hover, .platform-btn:hover {
+    .skill-btn:hover, .platform-btn:hover, .agent-tab-btn:hover {
       border-color: var(--color-primary);
       color: var(--color-primary);
     }
-    .skill-btn.active, .platform-btn.active {
+    .skill-btn.active, .platform-btn.active, .agent-tab-btn.active {
       background: var(--color-primary);
       border-color: var(--color-primary);
       color: white;
@@ -588,6 +588,21 @@ const domainLabels = {
 
     .trust-icon { font-size: 1rem; flex-shrink: 0; }
 
+    /* ── Tool-augmented gate toggle ────────────────── */
+    .tool-augmented-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--color-muted);
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .tool-augmented-toggle input[type="checkbox"] {
+      cursor: pointer;
+    }
+
     /* ── User action ────────────────────────────────── */
     .user-action {
       border-left: 3px solid var(--color-accent);
@@ -911,6 +926,154 @@ const domainLabels = {
       line-height: 1.5;
     }
 
+    /* ── Agent export section ──────────────────────── */
+    .agent-export-section {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-surface);
+      margin: 24px 0;
+      overflow: hidden;
+    }
+
+    .agent-export-summary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+    .agent-export-summary::-webkit-details-marker { display: none; }
+
+    .agent-export-summary h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .badge-experimental {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--color-alert-light);
+      color: var(--color-alert);
+      border: 1px solid var(--color-alert);
+    }
+
+    .agent-export-chevron {
+      margin-left: auto;
+      color: var(--color-muted);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    details.agent-export-section[open] .agent-export-chevron { transform: rotate(180deg); }
+
+    .agent-export-body {
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .agent-export-intro {
+      font-size: 0.875rem;
+      color: var(--color-text);
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+
+    .agent-export-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .agent-export-panel { display: none; }
+    .agent-export-panel.active { display: block; }
+
+    .agent-export-howto {
+      font-size: 0.875rem;
+      color: var(--color-text);
+      background: var(--color-accent-light);
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .agent-export-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .agent-export-download {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    details.agent-export-details {
+      margin-bottom: 4px;
+    }
+    details.agent-export-details summary {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+
+    /* Dynamically-injected instructions content – must use :global() to escape Astro CSS scoping */
+    :global(.agent-instructions-box) {
+      background: #f8f9fa;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    :global(.agent-toolbar) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: #e9ecef;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    :global(.agent-copy-btn) {
+      padding: 4px 12px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    :global(.agent-copy-btn:hover) { background: #163e80; }
+    :global(.agent-copy-btn.copied) { background: var(--color-high); }
+
+    :global(.agent-instructions-content) {
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #24292e;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
     /* ── Responsive ─────────────────────────────────── */
     @media (max-width: 680px) {
       .inputs-grid { grid-template-columns: 1fr; }
@@ -1155,15 +1318,35 @@ const domainLabels = {
 
           <div class="platform-tip-callout" id={`platform-tip-${step.order}`} style="display:none"></div>
 
+          {content?.tool_augmented && (
+            <label class="tool-augmented-toggle" for={`tool-augmented-${step.order}`}>
+              <input type="checkbox" id={`tool-augmented-${step.order}`} data-tool-augmented-toggle={step.order} />
+              My AI tool can search the web
+            </label>
+          )}
+
           {content && (
             <div class="prompt-box">
               <div class="prompt-toolbar">
                 <span>Prompt – {content.name}</span>
                 <button class="copy-btn" data-copy={step.order}>Copy prompt</button>
               </div>
-              <div class="prompt-text" id={`prompt-${step.order}`} data-template={content.prompt_template} data-platform-prompts={JSON.stringify(content.platform_prompts ?? {})}>
+              <div
+                class="prompt-text"
+                id={`prompt-${step.order}`}
+                data-template={content.prompt_template}
+                data-platform-prompts={JSON.stringify(content.platform_prompts ?? {})}
+                data-tool-template={content.tool_augmented ? content.tool_augmented.prompt_template : undefined}
+              >
                 {content.prompt_template}
               </div>
+            </div>
+          )}
+
+          {content?.tool_augmented && (
+            <div class={`trust-explainer ${isGate ? 'trust-gate' : `trust-${trust}`}`} id={`tool-augmented-note-${step.order}`} style="display:none">
+              <span class="trust-icon">{isGate ? '◈' : (trust === 'high' ? '✓' : trust === 'medium' ? '⚠' : '✗')}</span>
+              <span>{content.tool_augmented.trust_note}</span>
             </div>
           )}
 
@@ -1193,6 +1376,85 @@ const domainLabels = {
       </div>
     );
   })}
+
+  {workflow.agent_export?.enabled && (
+    <!-- Agent export section -->
+    <details class="agent-export-section">
+      <summary class="agent-export-summary">
+        <h2>Run this workflow as an agent</h2>
+        <span class="badge-experimental">Experimental</span>
+        <span class="agent-export-chevron">▼</span>
+      </summary>
+      <div class="agent-export-body">
+        <p class="agent-export-intro">
+          These exports package this workflow's methodology – the step sequence, trust levels, and officer checkpoints – for AI tools that can run multi-step work themselves. They are <strong>experimental: generated from the workflow, not yet tested in real agent deployments.</strong> The checkpoints are written into the agent's instructions, but instruction-following is not enforcement. Whatever the agent reports, you must sight each checkpoint output yourself before relying on it – you remain the accountable officer.
+        </p>
+
+        <div class="agent-export-tabs">
+          <button class="agent-tab-btn active" data-agent-tab="claude_skill">Claude Skill</button>
+          <button class="agent-tab-btn" data-agent-tab="copilot_agent">Copilot Agent</button>
+          <button class="agent-tab-btn" data-agent-tab="generic">Other agents</button>
+        </div>
+
+        <div class="agent-export-panel active" data-agent-panel="claude_skill">
+          <p class="agent-export-howto">
+            A single-file Claude Skill. In Claude Code, save it as <code>SKILL.md</code> in a folder under your skills directory. In Claude.ai, place the file in a folder, compress that folder, and upload it under Settings → Capabilities (the file itself downloads as plain markdown so it passes most agency firewalls – you create the compressed folder locally). The skill makes Claude run this workflow step by step and stop at every officer checkpoint.
+          </p>
+          <div class="agent-export-actions">
+            <a class="agent-export-download" data-agent-download="claude_skill" href={`/agent-skills/${workflow.slug}-claude-skill.md`} download>Download .md</a>
+          </div>
+          <details class="agent-export-details" data-agent-details="claude_skill">
+            <summary>View instructions</summary>
+            <div class="agent-instructions-box">
+              <div class="agent-toolbar">
+                <span>Claude Skill instructions</span>
+                <button class="agent-copy-btn" data-agent-copy="claude_skill" disabled>Copy</button>
+              </div>
+              <div class="agent-instructions-content" data-agent-content="claude_skill">Loading…</div>
+            </div>
+          </details>
+        </div>
+
+        <div class="agent-export-panel" data-agent-panel="copilot_agent">
+          <p class="agent-export-howto">
+            Paste-ready configuration for Agent Builder in Microsoft 365 Copilot: a Description block and an Instructions block. The instructions force a one-step-per-turn approach with visible interim outputs and typed confirmation at checkpoints. Be aware that Copilot's orchestrator treats instructions as guidance, not rules – gate-skipping is possible, so check that each step's output actually appears before moving on. For stronger enforcement, your agency can rebuild this agent in Copilot Studio with checkpoints as deterministic topics – see the About page.
+          </p>
+          <div class="agent-export-actions">
+            <a class="agent-export-download" data-agent-download="copilot_agent" href={`/agent-skills/${workflow.slug}-copilot-agent.md`} download>Download .md</a>
+          </div>
+          <details class="agent-export-details" data-agent-details="copilot_agent">
+            <summary>View instructions</summary>
+            <div class="agent-instructions-box">
+              <div class="agent-toolbar">
+                <span>Copilot Agent instructions</span>
+                <button class="agent-copy-btn" data-agent-copy="copilot_agent" disabled>Copy</button>
+              </div>
+              <div class="agent-instructions-content" data-agent-content="copilot_agent">Loading…</div>
+            </div>
+          </details>
+        </div>
+
+        <div class="agent-export-panel" data-agent-panel="generic">
+          <p class="agent-export-howto">
+            Generic agent instructions with the full prompt methodology. Checkpoint enforcement depends entirely on your platform – treat the stops as your responsibility, not the agent's.
+          </p>
+          <div class="agent-export-actions">
+            <a class="agent-export-download" data-agent-download="generic" href={`/agent-skills/${workflow.slug}-agent-instructions.md`} download>Download .md</a>
+          </div>
+          <details class="agent-export-details" data-agent-details="generic">
+            <summary>View instructions</summary>
+            <div class="agent-instructions-box">
+              <div class="agent-toolbar">
+                <span>Agent instructions</span>
+                <button class="agent-copy-btn" data-agent-copy="generic" disabled>Copy</button>
+              </div>
+              <div class="agent-instructions-content" data-agent-content="generic">Loading…</div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </details>
+  )}
 
   <!-- Feedback form -->
   <div class="feedback-section" id="workflow-feedback">
@@ -1235,6 +1497,11 @@ const domainLabels = {
   stepOrders:        workflow.steps.map((s) => s.order),
   customInstructions: workflow.custom_instructions ?? null,
   stepPlatformTips:  workflow.steps.map(s => ({ order: s.order, tips: s.platform_tips ?? null })),
+  agentExportFiles: workflow.agent_export?.enabled ? {
+    claude_skill:  `/agent-skills/${workflow.slug}-claude-skill.md`,
+    copilot_agent: `/agent-skills/${workflow.slug}-copilot-agent.md`,
+    generic:       `/agent-skills/${workflow.slug}-agent-instructions.md`,
+  } : null,
 })}></script>
 
 <script>
@@ -1397,7 +1664,15 @@ const domainLabels = {
     return result;
   }
 
+  // ── Tool-augmented gate toggle state (per step, default off) ────────────
+  const toolAugmentedOn = new Set();
+
   function getEffectiveTemplate(el) {
+    const toolTemplate = el.getAttribute('data-tool-template');
+    if (toolTemplate) {
+      const stepNum = parseInt(el.closest('.step-card')?.getAttribute('data-step'));
+      if (toolAugmentedOn.has(stepNum)) return toolTemplate;
+    }
     const platformPrompts = JSON.parse(el.getAttribute('data-platform-prompts') || '{}');
     return platformPrompts[currentPlatform] || el.getAttribute('data-template');
   }
@@ -1723,6 +1998,96 @@ const domainLabels = {
       updatePrivacyUI();
     });
   }
+
+  // ── Agent export section ─────────────────────────────────────────────────
+  const agentExportFiles = _pageData.agentExportFiles;
+  const agentExportCache = {};
+
+  function escapeHTML(text) {
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  if (agentExportFiles) {
+    // Tab switching
+    document.querySelectorAll('[data-agent-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.getAttribute('data-agent-tab');
+        document.querySelectorAll('[data-agent-tab]').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-agent-tab') === tab);
+        });
+        document.querySelectorAll('[data-agent-panel]').forEach(panel => {
+          panel.classList.toggle('active', panel.getAttribute('data-agent-panel') === tab);
+        });
+      });
+    });
+
+    // Fetch instructions on first expand
+    document.querySelectorAll('[data-agent-details]').forEach(details => {
+      const platformKey = details.getAttribute('data-agent-details');
+      details.addEventListener('toggle', async () => {
+        if (!details.open || agentExportCache[platformKey]) return;
+        const contentEl = details.querySelector('[data-agent-content]');
+        const copyBtn = details.querySelector('[data-agent-copy]');
+        try {
+          const res = await fetch(agentExportFiles[platformKey]);
+          const text = await res.text();
+          agentExportCache[platformKey] = text;
+          if (contentEl) contentEl.innerHTML = escapeHTML(text);
+          if (copyBtn) copyBtn.disabled = false;
+        } catch {
+          if (contentEl) contentEl.textContent = 'Could not load instructions. Try the download link instead.';
+        }
+      });
+    });
+
+    // Copy buttons
+    document.querySelectorAll('[data-agent-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const platformKey = btn.getAttribute('data-agent-copy');
+        const text = agentExportCache[platformKey];
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        gcEvent(`/event/agent-copy/${platformKey}`, `Skill copy: ${platformKey}`);
+      });
+    });
+
+    // Download links
+    document.querySelectorAll('[data-agent-download]').forEach(link => {
+      link.addEventListener('click', () => {
+        const platformKey = link.getAttribute('data-agent-download');
+        gcEvent(`/event/agent-download/${platformKey}`, `Skill download: ${platformKey}`);
+      });
+    });
+  }
+
+  // ── Tool-augmented gate toggle ───────────────────────────────────────────
+  document.querySelectorAll('[data-tool-augmented-toggle]').forEach(checkbox => {
+    const stepNum = parseInt(checkbox.getAttribute('data-tool-augmented-toggle'));
+    checkbox.addEventListener('change', () => {
+      const isOn = checkbox.checked;
+      if (isOn) {
+        toolAugmentedOn.add(stepNum);
+      } else {
+        toolAugmentedOn.delete(stepNum);
+      }
+      const note = document.getElementById(`tool-augmented-note-${stepNum}`);
+      if (note) note.style.display = isOn ? '' : 'none';
+      updatePrompts();
+      gcEvent(`/event/gate-variant-toggle/step-${stepNum}`, `Gate variant toggle: step ${stepNum}` + (isOn ? ' on' : ' off'));
+    });
+  });
 
   // ── Initialise ───────────────────────────────────────────────────────────
   applySkillLevel('intermediate');

@@ -84,6 +84,7 @@
       "building_block_id": "BB-GEN-001",
       "description": "Identify the key issues, background context, stakeholders, and potential sensitivities relevant to the topic.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Review the issues list critically. Remove items that don't apply to your context. Add anything missing based on your own knowledge – your domain expertise matters most at this stage.",
       "output_feeds_to": [2]
@@ -99,6 +100,7 @@
         "copilot": "If you're in a new chat or returning to this workflow later, paste in the key issues list from Step 1 before sending this prompt – Copilot doesn't carry context across separate conversations."
       },
       "trust_level": "high",
+      "agent_mode": "human_gate",
       "is_optional": true,
       "user_action_after": "Confirm the structure works for your audience and purpose. Adjust headings or emphasis as needed. This is worth checking with your supervisor if you're unsure.",
       "output_feeds_to": [3]
@@ -111,6 +113,7 @@
       "building_block_id": "BB-GEN-003",
       "description": "Generate the full briefing note draft using APS writing conventions, with explicit [VERIFY] flags for uncertain claims.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Read the draft carefully. Note anything that feels wrong, missing, or that you couldn't defend if asked. Look for [VERIFY] and [INSERT DATA] flags – these are your action items.",
       "platform_tips": {
@@ -126,6 +129,7 @@
       "quality_gate_id": "QG-TRUST-001",
       "description": "Extract and categorise all factual claims in the draft. Makes the trust boundary visible before you rely on the content.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Work through the verification table. Check flagged items against authoritative sources (legislation, agency websites, official statistics). Resolving [VERIFY] items is your accountability step under the PGPA Act – you are the officer responsible for the advice.",
       "platform_tips": {
@@ -141,6 +145,7 @@
       "quality_gate_id": "QG-CHALLENGE-001",
       "description": "Stress-test the draft from a sceptical senior executive perspective. Surfaces logic gaps and missing perspectives.",
       "trust_level": "medium",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Review the critique. Use your judgment on which issues to address – not every point will apply to your context. Focus on the Top 3 priority issues identified.",
       "platform_tips": {
@@ -156,6 +161,7 @@
       "building_block_id": "BB-GEN-004",
       "description": "Revise the draft incorporating verification findings and challenge feedback. Produces an improved version ready for final compliance check.",
       "trust_level": "medium",
+      "agent_mode": "autonomous",
       "is_optional": false,
       "user_action_after": "Review the revised brief. Ensure all [VERIFY] and [INSERT DATA] placeholders are resolved before the final step. If any remain, resolve them now.",
       "platform_tips": {
@@ -171,6 +177,7 @@
       "quality_gate_id": "QG-COMPLIANCE-001",
       "description": "Surface compliance considerations for the five APS frameworks. The AI will quote specific text from the brief and raise questions for you to work through – it does not assess or certify compliance.",
       "trust_level": "low",
+      "agent_mode": "human_gate",
       "is_optional": false,
       "user_action_after": "Work through the numbered questions at the end of the output. These are your sign-off checklist. For any question you can't confidently answer yes to, follow up before submitting: check with your supervisor, your agency's legal or governance team, or the relevant framework guidance. The AI has surfaced considerations, not settled them. You are the accountable officer for this advice.",
       "platform_tips": {
@@ -230,6 +237,15 @@
       "setup_guidance": "Paste the instructions below at the start of each new conversation before running the workflow steps. This establishes the context and constraints your AI tool should follow throughout the session.",
       "content": "Role: You are an experienced Australian Public Service (APS) policy analyst at the EL1 level.\n\nInstructions: Write in formal APS style – concise, evidence-based, and impartial. Follow standard briefing note conventions.\n\nRules:\n- Flag uncertain facts with [VERIFY]\n- Flag gaps needing input with [INSERT DATA]\n- Do not guess at statistics, legislative details, or program specifics\n- If you are uncertain about a fact, say so explicitly.",
       "document_handling": "If your agency permits it for this tool, paste relevant document content (or summaries) directly into the prompts at the steps where you need to reference them."
+    }
+  },
+
+  "agent_export": {
+    "enabled": true,
+    "platforms": {
+      "claude_skill": { "experimental": true, "notes": "" },
+      "copilot_agent": { "experimental": true, "notes": "Longest workflow in the Gallery. If Agent Builder instruction limits are reached, the generator compresses step guidance — the full prompts remain available on this page." },
+      "generic": { "experimental": true, "notes": "" }
     }
   },
 

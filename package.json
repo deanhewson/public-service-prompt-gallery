@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/export-agent-skills.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "astro build"
+    "test": "astro build",
+    "export-skills": "node scripts/export-agent-skills.js"
   },
   "dependencies": {
     "astro": "^5.17.1"
