@@ -180,6 +180,12 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
         Privacy Act, and APS Values requirements. These are not optional extras. They are the accountability layer that
         makes AI-assisted work defensible.
       </p>
+      <p>
+        The steps were never really for the AI. As models improve, they need less hand-holding to produce a competent
+        draft in one pass — but the officer's accountability hasn't changed. Each step boundary is a point where a human
+        can genuinely inspect, redirect, and own the work. That's what the PGPA Act asks of the officer, and it's
+        something a single opaque AI run can't provide, however capable the model.
+      </p>
     </div>
 
     <!-- Trust model -->
@@ -211,6 +217,32 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
         go through completeness and bias checks. High-trust outputs may only need a tone and audience review. The goal is
         to make the trust boundary impossible to miss, so officers can make informed decisions about what to verify and
         how much effort to invest.
+      </p>
+    </div>
+
+    <!-- Agent era -->
+    <div class="prose-section">
+      <h2>Built for the agent era</h2>
+      <p>
+        AI tools are becoming agentic — able to run multi-step work themselves rather than waiting for a prompt at each
+        step. That makes the Gallery's checkpoints more valuable, not less: an agent that researches, drafts, critiques
+        and revises in one unbroken run is exactly the kind of process an accountable officer can't sign off on unseen.
+      </p>
+      <p>
+        So each workflow now exports its methodology in agent formats — a Claude Skill, a Microsoft 365 Copilot Agent
+        Builder configuration, and generic agent instructions — with the officer checkpoints written into the agent's
+        own instructions. These exports are <strong>experimental</strong>: generated from the workflows, not yet tested
+        in real agent deployments. The experimental flag is separate from a workflow's maturity stage, and is lifted per
+        platform as real-world testing happens.
+      </p>
+      <p>
+        There's a deliberate escalation path here. The copy-paste workflows give you full manual control. The agent
+        exports add convenience with advisory checkpoints. Beyond that sits the institutional tier: agencies can rebuild
+        these workflows in Copilot Studio, where checkpoints become deterministic conversation topics the orchestrator
+        enforces rather than instructions it follows, and grounding can extend to Dataverse — including, as it matures,
+        capturing the methodology as Dataverse business skills that any of the agency's agents can discover and follow.
+        The methodology stays the same at every tier; what strengthens is the enforcement and governance around it. The
+        Gallery ships the first two tiers and documents the third.
       </p>
     </div>
 
@@ -292,7 +324,7 @@ import SearchOverlay from '../components/nav/SearchOverlay.astro';
     </div>
 
     <!-- About the project -->
-    <div class="prose-section">
+    <div class="prose-section" id="about-the-project">
       <h2>About the project</h2>
       <p>
         This is an independent, side-of-desk project built by Dean Hewson at the Parliamentary Budget Office. It is not
